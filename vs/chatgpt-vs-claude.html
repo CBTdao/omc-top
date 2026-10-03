@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChatGPT vs Claude vs Gemini (2026) — Which Chatbot Wins? | AITop</title>
+  <meta name="description" content="A one-table comparison of ChatGPT, Claude and Gemini: pricing, models, context window, Chinese support, strengths, weaknesses and a clear verdict.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%235b5bd6'/%3E%3Ctext x='32' y='42' font-size='28' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ET%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="../index.html"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+        <a href="chatgpt-vs-claude.html" data-i18n="nav.vs">Comparisons</a>
+        <a href="../best/ai-chatbots.html" data-i18n="nav.best">Rankings</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="../index.html" data-i18n="crumb.home">Home</a> › <a href="chatgpt-vs-claude.html" data-i18n="crumb.vs">Comparisons</a></p>
+      <h1>ChatGPT vs Claude vs Gemini: which chatbot should you use in 2026?</h1>
+      <p class="updated" id="updatedLine"></p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div id="cmpRoot"></div>
+    <div class="verdict"><h2 data-i18n="ui.verdict">The verdict</h2><p id="verdictText"></p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Love AI? Meet the network that powers it.</b><span data-i18n="banner.sub"> Omniverse Compute — decentralized GPU power on BNB Chain. Testnet live, community airdrop Nov 1.</span></p>
+      <a class="omc-cta" href="https://omc.network" target="_blank" rel="noopener" data-i18n="banner.cta">Explore OMC →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script>
+    window.VS_DATA = {
+      updated: "2026-10-03",
+      tools: [
+        {
+          name: "ChatGPT", by: "OpenAI", score: "9.2",
+          pricing: { en: "Free tier · Plus $20/mo · Pro $200/mo", zh: "免费档 · Plus $20/月 · Pro $200/月" },
+          model: { en: "GPT-5 family, multimodal", zh: "GPT-5 系列，多模态" },
+          context: { en: "Very large (hundreds of K tokens)", zh: "非常大（数十万 tokens 级）" },
+          chinese: { en: "Excellent", zh: "优秀" },
+          api: { en: "Yes, pay-as-you-go", zh: "有，按量计费" },
+          pros: { en: ["Best all-round quality and speed", "Huge ecosystem: plugins, apps, integrations", "Voice, vision and image generation built in"], zh: ["综合质量与速度最佳", "生态庞大：插件、应用、集成丰富", "内置语音、视觉与图像生成"] },
+          cons: { en: ["Usage limits on cheaper plans", "Occasional over-cautious answers"], zh: ["低价档有用量限制", "偶尔回答过于保守"] }
+        },
+        {
+          name: "Claude", by: "Anthropic", score: "9.0",
+          pricing: { en: "Free tier · Pro $20/mo · Max $100+/mo", zh: "免费档 · Pro $20/月 · Max $100+/月" },
+          model: { en: "Claude 4.x (Sonnet / Opus)", zh: "Claude 4.x（Sonnet / Opus）" },
+          context: { en: "200K–1M tokens", zh: "20 万–100 万 tokens" },
+          chinese: { en: "Very good", zh: "很好" },
+          api: { en: "Yes, pay-as-you-go", zh: "有，按量计费" },
+          pros: { en: ["Top-tier coding and long-document work", "Natural, high-quality writing style", "Huge context for whole-codebase analysis"], zh: ["编程与长文档处理顶尖", "文风自然、写作质量高", "超大上下文可分析整个代码库"] },
+          cons: { en: ["No built-in image generation", "Tighter rate limits on busy days"], zh: ["无内置图像生成", "高峰期限流较严格"] }
+        },
+        {
+          name: "Gemini", by: "Google", score: "8.8",
+          pricing: { en: "Generous free tier · AI Pro ~$20/mo · Ultra $249/mo", zh: "免费档大方 · AI Pro 约 $20/月 · Ultra $249/月" },
+          model: { en: "Gemini 3 family, natively multimodal", zh: "Gemini 3 系列，原生多模态" },
+          context: { en: "1M+ tokens", zh: "100 万+ tokens" },
+          chinese: { en: "Good", zh: "良好" },
+          api: { en: "Yes, generous free API quota", zh: "有，免费额度慷慨" },
+          pros: { en: ["Best free tier of the big three", "Deep Google Workspace & Android integration", "Million-token context for huge documents"], zh: ["三巨头中免费档最良心", "与 Google 全家桶/安卓深度集成", "百万 token 上下文处理超大文档"] },
+          cons: { en: ["Answer quality less consistent", "Privacy policy concerns for some users"], zh: ["回答质量稳定性稍逊", "部分用户在意其隐私政策"] }
+        }
+      ],
+      verdict: {
+        en: "Pick ChatGPT for the best all-round assistant with the richest ecosystem. Pick Claude if your work is code, long documents or writing quality — it is the writer's and developer's pick. Pick Gemini if you want the most capable free option or already live in Google's ecosystem. Many power users quietly pay for two of them.",
+        zh: "要综合最强、生态最丰富选 ChatGPT；工作以代码、长文档、写作为主选 Claude——写作者和程序员的首选；想要最强免费档或已深陷 Google 生态选 Gemini。很多重度用户其实悄悄买了两个。"
+      }
+    };
+  </script>
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/table.js"></script>
+</body>
+</html>
