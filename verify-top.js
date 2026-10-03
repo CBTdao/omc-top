@@ -39,7 +39,13 @@ async function load(page) {
   vc.on("error", (...a) => errs.push("console.error: " + a.join(" ")));
   const dom = await JSDOM.fromURL("http://127.0.0.1:" + PORT + page, {
     runScripts: "dangerously", resources: "usable", pretendToBeVisual: true, virtualConsole: vc,
-    beforeParse(win) { win.scrollTo = () => {}; }
+    beforeParse(win) {
+      win.scrollTo = () => {};
+      win.IntersectionObserver = class { constructor() {} observe() {} unobserve() {} disconnect() {} };
+      win.elementFromPoint = () => null;
+      win.document.elementFromPoint = () => null;
+      win.adsbygoogle = [];
+    }
   });
   await new Promise((r) => {
     if (dom.window.document.readyState === "complete") r();
@@ -59,9 +65,10 @@ async function load(page) {
       ok(doc.documentElement.lang === "en", "default en");
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
-      ok(doc.querySelectorAll(".cat-card").length === 6, "6 category cards");
-      ok(doc.querySelectorAll(".vs-card").length === 5, "3 comparisons + 2 rankings cards");
+      ok(doc.querySelectorAll(".cat-card").length === 7, "7 category cards", doc.querySelectorAll(".cat-card").length);
+      ok(doc.querySelectorAll(".vs-card").length === 7, "3 comparisons + 4 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
+      ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
       ok(/3,000 words/.test(doc.querySelector("[data-i18n='hero.title']").textContent), "punchy hero en");
       setLang(win, doc, "zh");
       ok(doc.documentElement.lang === "zh", "switch to zh");
@@ -107,17 +114,23 @@ async function load(page) {
       win.close();
     }
 
-    console.log("\n[best/ai-chatbots & best/ai-image-generators]");
-    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html"]) {
+    console.log("\n[best pages]");
+    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
       ok(doc.querySelectorAll(".rank-item").length === 5, p + ": 5 ranked items");
       ok(/updated|更新于/i.test(doc.getElementById("updatedLine").textContent), p + ": updated line", doc.getElementById("updatedLine").textContent.slice(0, 30));
+      ok(!!doc.querySelector('script[src*="adsbygoogle"]'), p + ": AdSense present");
       setLang(win, doc, "zh");
       ok(doc.querySelectorAll(".rank-item .rank-line").length === 5, p + ": zh re-render intact");
       ok(/[一-龥]/.test(doc.querySelector(".rank-line").textContent), p + ": rank lines in zh");
       win.close();
     }
+
+    const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+    ok((sitemap.match(/<url>/g) || []).length === 8, "sitemap has 8 URLs");
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
   } finally {
     srv.close();
   }
