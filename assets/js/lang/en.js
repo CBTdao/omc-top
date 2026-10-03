@@ -4,9 +4,9 @@ window.I18N.en = {
   "nav.vs": "Comparisons",
   "nav.best": "Rankings",
 
-  "hero.kicker": "Independent · No hype · Updated monthly",
-  "hero.title": "Which AI tool should you actually use?",
-  "hero.sub": "One table per question. Pricing, models, strengths, weaknesses and a clear verdict — no 3,000-word fluff.",
+  "hero.kicker": "Independent · Opinionated · Zero sponsors",
+  "hero.title": "Every AI comparison is 3,000 words of nothing. Here's the table.",
+  "hero.sub": "Real prices, real weaknesses, real verdicts — so you can close twelve tabs and get back to work.",
 
   "cats.title": "Browse by category",
   "cat.chat": "Chat assistants",
@@ -58,5 +58,14 @@ window.I18N.en = {
   "ui.free": "Free tier",
   "ui.open": "Open source",
   "ui.from": "From",
-  "ui.rankline": "Why it ranks here"
+  "ui.rankline": "Why it ranks here",
+
+  /* editorial blocks */
+  "ui.tldr": "The 30-second answer",
+  "ui.truths": "What the landing pages won't tell you",
+  "ui.faq": "Straight answers",
+  "how.title": "How we review (no sponsors, no exceptions)",
+  "how.1": "We pay for every plan with our own money. Nobody has ever seen a draft.",
+  "how.2": "Each tool gets at least two weeks of real work — ship deadlines, not demo prompts.",
+  "how.3": "Prices re-checked monthly. If a vendor changes something and we miss it, the page says when it was last verified."
 };

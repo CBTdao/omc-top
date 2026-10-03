@@ -46,6 +46,38 @@
     if (v) v.textContent = L(d.verdict);
     var u = document.getElementById("updatedLine");
     if (u) u.textContent = t("ui.updated", { date: d.updated });
+    renderExtras(d);
+  }
+
+  function renderExtras(d) {
+    /* TL;DR box */
+    var tl = document.getElementById("tldrBox");
+    if (tl) {
+      if (d.tldr) {
+        tl.hidden = false;
+        tl.querySelector("p").textContent = L(d.tldr);
+      }
+    }
+    /* ugly truths */
+    var tr = document.getElementById("truthsSec");
+    if (tr) {
+      if (d.truths && d.truths.length) {
+        tr.hidden = false;
+        document.getElementById("truthsRoot").innerHTML = d.truths.map(function (x) {
+          return '<div class="truth-card"><b>' + esc(x.tool) + '</b><p>' + esc(L(x.text)) + '</p></div>';
+        }).join("");
+      }
+    }
+    /* FAQ */
+    var fq = document.getElementById("faqSec");
+    if (fq) {
+      if (d.faq && d.faq.length) {
+        fq.hidden = false;
+        document.getElementById("faqRoot").innerHTML = d.faq.map(function (x) {
+          return '<details class="faq-item"><summary>' + esc(L(x.q)) + '</summary><p>' + esc(L(x.a)) + '</p></details>';
+        }).join("");
+      }
+    }
   }
 
   function renderBest() {

@@ -31,8 +31,11 @@
       <p class="updated" id="updatedLine"></p>
     </div>
     <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr" id="tldrBox" hidden><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p></p></div>
     <div id="cmpRoot"></div>
+    <section class="section" id="truthsSec" hidden><h2 data-i18n="ui.truths">What the landing pages won't tell you</h2><div class="truth-grid" id="truthsRoot"></div></section>
     <div class="verdict"><h2 data-i18n="ui.verdict">The verdict</h2><p id="verdictText"></p></div>
+    <section class="faq" id="faqSec" hidden><h2 data-i18n="ui.faq">Straight answers</h2><div id="faqRoot"></div></section>
   </main>
 
   <aside class="omc-banner">
@@ -53,6 +56,20 @@
   <script>
     window.VS_DATA = {
       updated: "2026-10-03",
+      tldr: {
+        en: "Midjourney: pay $10, get beauty. Stable Diffusion: pay nothing, get a hobby. Pick your fighter.",
+        zh: "Midjourney：花 10 美元，直接出美图。Stable Diffusion：一分不花，收获一个爱好。选你的战士。"
+      },
+      truths: [
+        { tool: "Midjourney", text: { en: "There is no free tier. Not even a meaningful trial. The $10 is a toll booth — and you'll pay it happily once you see the output.", zh: "没有免费档，连像样的试用都没有。10 美元是过路费——等你看到出图效果，会心甘情愿地交。" } },
+        { tool: "Midjourney", text: { en: "Prompts are in English, whether you like it or not. Chinese prompts work but leave quality on the table.", zh: "不管你乐不乐意，英文提示词才是完全体。中文也能用，但质量悄悄打了折。" } },
+        { tool: "Stable Diffusion", text: { en: "\"Free\" is free like a puppy: the model costs nothing, the GPU feeding it doesn't exist yet. Budget for hardware or rented compute.", zh: "『免费』就像免费领养小狗：模型不要钱，喂它的 GPU 还没着落。预算里得算上硬件或租算力的钱。" } }
+      ],
+      faq: [
+        { q: { en: "Can I run Stable Diffusion without my own GPU?", zh: "没有自己的 GPU 能跑 Stable Diffusion 吗？" }, a: { en: "Yes — rent by the hour from cloud GPU providers, or use hosting services with a monthly fee. Decentralized compute networks (like OMC, this site's sponsor-less banner above) are also emerging for exactly this.", zh: "可以——按小时租云端 GPU，或用包月托管服务。去中心化算力网络（比如上方横幅里的 OMC）干的就是这件事。" } },
+        { q: { en: "Is Midjourney worth $10/month?", zh: "Midjourney 每月 10 美元值吗？" }, a: { en: "If images are part of your output — yes, easily. It replaces a stock-photo subscription and a designer's first draft in the same click.", zh: "如果图片是你产出的一部分——值，非常值。一次点击同时替代了图库订阅和设计师的初稿。" } },
+        { q: { en: "Who owns the images I generate?", zh: "生成的图版权归谁？" }, a: { en: "SD self-hosted: everything is yours. Midjourney: paid plans get broad commercial rights, but read the current terms — they've changed before.", zh: "自部署 SD：全部归你。Midjourney：付费档有较宽的商业使用权，但请读当时的条款——它改过不止一次。" } }
+      ],
       tools: [
         {
           name: "Midjourney", by: "Midjourney, Inc.", score: "9.3",

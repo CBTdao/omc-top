@@ -31,8 +31,11 @@
       <p class="updated" id="updatedLine"></p>
     </div>
     <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr" id="tldrBox" hidden><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p></p></div>
     <div id="cmpRoot"></div>
+    <section class="section" id="truthsSec" hidden><h2 data-i18n="ui.truths">What the landing pages won't tell you</h2><div class="truth-grid" id="truthsRoot"></div></section>
     <div class="verdict"><h2 data-i18n="ui.verdict">The verdict</h2><p id="verdictText"></p></div>
+    <section class="faq" id="faqSec" hidden><h2 data-i18n="ui.faq">Straight answers</h2><div id="faqRoot"></div></section>
   </main>
 
   <aside class="omc-banner">
@@ -53,6 +56,20 @@
   <script>
     window.VS_DATA = {
       updated: "2026-10-03",
+      tldr: {
+        en: "ChatGPT for everything, Claude for code and writing, Gemini if you're broke or married to Google. That's the whole fight — the table below is the receipts.",
+        zh: "什么都想要选 ChatGPT，写代码写文章选 Claude，没钱用或嫁给了 Google 选 Gemini。架就这么多——下面的表格是证据。"
+      },
+      truths: [
+        { tool: "ChatGPT", text: { en: "The $20 plan increasingly feels like the trailer for the $200 plan. Usage limits arrive exactly when you're on a roll.", zh: "$20 档越来越像 $200 档的预告片。用量限制总在你手感最热的时候准时到达。" } },
+        { tool: "Claude", text: { en: "The best writer in the business — and the strictest bouncer. Hit your limit at 2pm on a Tuesday and you're done for the day.", zh: "业内最好的写手，也是最严的保安。周二下午两点用超额，今天到此为止。" } },
+        { tool: "Gemini", text: { en: "The free tier is genuinely excellent — and the fine print is your data, plus the occasional answer delivered with total confidence and zero accuracy.", zh: "免费档确实香——但细看你付出的是数据，偶尔还会收到一道自信满满、准确率为零的答案。" } }
+      ],
+      faq: [
+        { q: { en: "Which one is the smartest?", zh: "哪个最聪明？" }, a: { en: "Wrong question. All three are smarter than most tasks require. Pick by workflow: where your files live, what you make, and which app you're willing to keep open.", zh: "问错问题了。三个都比你多数任务需要的更聪明。按工作流选：文件在哪、产出什么、愿意常开哪个应用。" } },
+        { q: { en: "Can I just use all three free tiers?", zh: "能把三家的免费档都用上吗？" }, a: { en: "Yes — and you should, for at least a week, before paying anyone. Most people discover their 'must-have' plan was a habit, not a need.", zh: "能——而且应该先用满一周再考虑付费。多数人会发现自己的『刚需』其实是习惯，不是需求。" } },
+        { q: { en: "Which handles Chinese best?", zh: "哪家中文最强？" }, a: { en: "ChatGPT leads for nuance, Claude for long Chinese documents, Gemini is fine. If Chinese is your main language, also look at DeepSeek — it's free and shockingly good.", zh: "微妙语义 ChatGPT 最强，中文长文档选 Claude，Gemini 够用。如果中文是主力语言，还可以看看 DeepSeek——免费且好得离谱。" } }
+      ],
       tools: [
         {
           name: "ChatGPT", by: "OpenAI", score: "9.2",

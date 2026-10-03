@@ -61,9 +61,11 @@ async function load(page) {
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
       ok(doc.querySelectorAll(".cat-card").length === 6, "6 category cards");
       ok(doc.querySelectorAll(".vs-card").length === 5, "3 comparisons + 2 rankings cards");
+      ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
+      ok(/3,000 words/.test(doc.querySelector("[data-i18n='hero.title']").textContent), "punchy hero en");
       setLang(win, doc, "zh");
       ok(doc.documentElement.lang === "zh", "switch to zh");
-      ok(doc.querySelector("[data-i18n='hero.title']").textContent.includes("AI 工具"), "hero translated", doc.querySelector("[data-i18n='hero.title']").textContent);
+      ok(doc.querySelector("[data-i18n='hero.title']").textContent.includes("三千字"), "hero translated", doc.querySelector("[data-i18n='hero.title']").textContent);
       ok(win.localStorage.getItem("aitop_lang") === "zh", "explicit choice persisted");
       setLang(win, doc, "en");
       ok(win.localStorage.getItem("aitop_lang") === "en", "switch back persisted");
@@ -78,11 +80,21 @@ async function load(page) {
       ok(cols === 4, "3 tool columns rendered", String(cols));
       ok(doc.querySelectorAll(".cmp tbody tr").length === 8, "8 comparison rows");
       ok(doc.querySelectorAll(".row-pros ul li").length >= 6, "pros lists rendered");
+      ok(doc.getElementById("tldrBox").hidden === false, "TL;DR box visible");
+      ok(/receipts/.test(doc.getElementById("tldrBox").textContent), "TL;DR en copy");
+      ok(doc.getElementById("truthsSec").hidden === false, "truths section visible");
+      ok(doc.querySelectorAll(".truth-card").length === 3, "3 truth cards");
+      ok(/strictest bouncer/.test(doc.getElementById("truthsRoot").textContent), "truths en copy");
+      ok(doc.getElementById("faqSec").hidden === false, "faq section visible");
+      ok(doc.querySelectorAll(".faq-item").length === 3, "3 faq items");
       ok(/9\.2/.test(doc.querySelector(".score-badge").textContent), "score badges rendered");
       ok(/ChatGPT for the best all-round/.test(doc.getElementById("verdictText").textContent), "verdict en rendered");
       setLang(win, doc, "zh");
       ok(/综合最强|生态/.test(doc.getElementById("verdictText").textContent), "verdict re-rendered zh", doc.getElementById("verdictText").textContent.slice(0, 20));
       ok(/价格/.test(doc.querySelector(".cmp tbody tr td").textContent), "table labels zh");
+      ok(/架就这么多|证据/.test(doc.getElementById("tldrBox").textContent), "TL;DR re-rendered zh");
+      ok(doc.querySelectorAll(".truth-card").length === 3, "truth cards zh intact");
+      ok(/[一-龥]/.test(doc.querySelector(".faq-item summary").textContent), "faq zh");
       win.close();
     }
 

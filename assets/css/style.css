@@ -94,6 +94,34 @@ table.cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
 .verdict h2 { font-size: 18px; margin-bottom: 8px; }
 .verdict p { color: var(--muted); font-size: 14.5px; }
 
+/* TL;DR */
+.tldr { position: relative; background: linear-gradient(120deg, #5b5bd6, #7c3aed); color: #fff; border-radius: var(--radius); padding: 18px 20px 16px; margin: 20px 0 6px; }
+.tldr-tag { display: inline-block; background: rgba(255,255,255,.18); border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 11px; margin-bottom: 8px; }
+.tldr p { font-size: 15.5px; line-height: 1.55; font-weight: 500; }
+
+/* ugly truths */
+.truth-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-bottom: 24px; }
+.truth-card { background: #fff7f5; border: 1px solid #f3ddd8; border-radius: var(--radius); padding: 16px 18px; }
+.truth-card b { display: block; font-size: 14.5px; color: var(--bad); margin-bottom: 6px; }
+.truth-card p { font-size: 13.5px; color: #6b4a45; line-height: 1.55; }
+
+/* FAQ */
+.faq { padding-bottom: 26px; }
+.faq h2 { font-size: 21px; margin-bottom: 14px; }
+.faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.faq-item summary { cursor: pointer; padding: 14px 18px; font-size: 14.5px; font-weight: 600; list-style: none; position: relative; padding-right: 40px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--brand); font-weight: 700; }
+.faq-item[open] summary::after { content: "–"; }
+.faq-item[open] summary { border-bottom: 1px solid var(--line); }
+.faq-item p { padding: 12px 18px 14px; font-size: 14px; color: var(--muted); }
+
+/* how we review */
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding-bottom: 24px; }
+.how-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.how-card span { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; background: var(--brand-soft); color: var(--brand); border-radius: 50%; font-weight: 800; font-size: 13px; margin-bottom: 10px; }
+.how-card p { font-size: 13.5px; color: var(--muted); }
+
 /* ranked list */
 .rank-list { display: flex; flex-direction: column; gap: 12px; margin: 22px 0 30px; }
 .rank-item { display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
@@ -110,7 +138,7 @@ table.cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
 .disclaimer { font-size: 12.5px; color: var(--muted-2); background: #fff8e8; border: 1px solid #f2e3b3; border-radius: 10px; padding: 10px 14px; margin: 0 0 24px; }
 
 @media (max-width: 760px) {
-  .cat-grid, .vs-grid { grid-template-columns: 1fr; }
+  .cat-grid, .vs-grid, .truth-grid, .how-grid { grid-template-columns: 1fr; }
   .nav-links { gap: 14px; font-size: 13.5px; }
   .hero { padding: 44px 0 34px; }
   .cmp td:first-child { width: 110px; }

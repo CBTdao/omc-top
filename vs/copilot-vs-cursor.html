@@ -31,8 +31,11 @@
       <p class="updated" id="updatedLine"></p>
     </div>
     <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr" id="tldrBox" hidden><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p></p></div>
     <div id="cmpRoot"></div>
+    <section class="section" id="truthsSec" hidden><h2 data-i18n="ui.truths">What the landing pages won't tell you</h2><div class="truth-grid" id="truthsRoot"></div></section>
     <div class="verdict"><h2 data-i18n="ui.verdict">The verdict</h2><p id="verdictText"></p></div>
+    <section class="faq" id="faqSec" hidden><h2 data-i18n="ui.faq">Straight answers</h2><div id="faqRoot"></div></section>
   </main>
 
   <aside class="omc-banner">
@@ -53,6 +56,20 @@
   <script>
     window.VS_DATA = {
       updated: "2026-10-03",
+      tldr: {
+        en: "Copilot is a great passenger in the car you already own. Cursor is a different car. If you write code all day, move to the other car.",
+        zh: "Copilot 是你现有座驾里的好副驾；Cursor 是另一辆车。如果你整天写代码，换车。"
+      },
+      truths: [
+        { tool: "GitHub Copilot", text: { en: "$10 buys you 80% of Cursor's magic inside the IDE you already love. The other 20% costs $10 more and a weekend migration.", zh: "10 美元能买到 Cursor 八成的魔法，还不用离开你心爱的 IDE。剩下两成要多付 10 美元外加一个周末的迁移成本。" } },
+        { tool: "Cursor", text: { en: "The tab key becomes a drug. Your laptop's fan becomes a jet engine the moment agent mode starts renovating your codebase.", zh: "Tab 键会成瘾。Agent 模式开始翻修你代码库的那一刻，笔记本风扇会变成喷气发动机。" } },
+        { tool: "Cursor", text: { en: "\"Free tier\" means about 2,000 completions before the paywall taps you on the shoulder. Serious users hit Pro by week two.", zh: "『免费档』大约够 2000 次补全，然后付费墙就会拍拍你的肩膀。认真用户第二周就上 Pro 了。" } }
+      ],
+      faq: [
+        { q: { en: "Can I use both at once?", zh: "能两个一起用吗？" }, a: { en: "Yes, and most working developers do: Copilot inside JetBrains or Neovim for the day job, Cursor for the greenfield project that's eating your nights.", zh: "能，而且多数在职开发者都这么干：主业在 JetBrains/Neovim 里挂 Copilot，晚上那个吞噬你精力的新项目用 Cursor。" } },
+        { q: { en: "Is Cursor just VS Code with a theme?", zh: "Cursor 就是换皮 VS Code？" }, a: { en: "It's a fork, but the AI plumbing goes deep — project-wide context, agent edits across files, and a codebase you can literally ask questions of. Try the agent mode once and the fork detail stops mattering.", zh: "确实是 fork，但 AI 管线扎得很深——全项目上下文、跨文件 Agent 修改、还能直接向整个代码库提问。用过一次 Agent 模式，你就不会再纠结换皮这件事了。" } },
+        { q: { en: "Will AI coding tools replace junior developers?", zh: "AI 编程工具会取代初级程序员吗？" }, a: { en: "They replace typing, not judgment. Every tool here still needs someone who knows what 'correct' looks like — that someone is currently being paid more, not less.", zh: "它们取代的是打字，不是判断力。这些工具都需要一个知道『什么才叫对』的人——而这个人现在的身价在涨，不是在跌。" } }
+      ],
       tools: [
         {
           name: "GitHub Copilot", by: "GitHub / Microsoft", score: "8.9",
