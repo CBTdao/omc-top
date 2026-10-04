@@ -4,7 +4,7 @@ window.I18N.en = {
   "nav.vs": "Comparisons",
   "nav.best": "Rankings",
 
-  "hero.kicker": "Independent · Opinionated · Zero sponsors",
+  "hero.kicker": "Independent · Opinionated · Disclosed ownership",
   "hero.title": "Every AI comparison is 3,000 words of nothing. Here's the table.",
   "hero.sub": "Real prices, real weaknesses, real verdicts — so you can close twelve tabs and get back to work.",
 
@@ -15,11 +15,6 @@ window.I18N.en = {
   "cat.image.ex": "Midjourney · Stable Diffusion · Flux",
   "cat.pro": "Professional tools",
   "cat.pro.ex": "Legal AI · Insurance software",
-  "cat.write": "Writing",
-  "cat.video": "Video",
-  "cat.code": "Coding",
-  "cat.audio": "Voice & music",
-  "cat.soon": "Coming soon",
 
   "hot.title": "Head-to-head comparisons",
   "hot.c1": "The big three chatbots, one table",
@@ -43,9 +38,9 @@ window.I18N.en = {
   "rank.r6": "Best AI tools for real estate agents",
   "rank.r6.m": "Lead response · nurture · valuation, ranked",
 
-  "banner.title": "Love AI? Meet the network that powers it.",
-  "banner.sub": " Omniverse Compute — decentralized GPU power on BNB Chain. Testnet live, community airdrop Nov 1.",
-  "banner.cta": "Explore OMC →",
+  "banner.title": "Operated by the Omniverse Compute team",
+  "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",
+  "banner.cta": "Editorial policy →",
 
   "footer.note": "AITop is an independent guide. Prices and features change fast — always check the vendor's page. Data as of the date shown on each page.",
   "footer.rights": "© 2026 AITop. Reviews are editorial and independent.",
@@ -54,6 +49,7 @@ window.I18N.en = {
   "f.privacy": "Privacy",
   "f.terms": "Terms",
   "f.about": "About",
+  "f.contact": "Contact",
 
   /* shared page keys */
   "crumb.home": "Home",

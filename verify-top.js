@@ -65,7 +65,7 @@ async function load(page) {
       ok(doc.documentElement.lang === "en", "default en");
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
-      ok(doc.querySelectorAll(".cat-card").length === 7, "7 category cards", doc.querySelectorAll(".cat-card").length);
+      ok(doc.querySelectorAll(".cat-card").length === 3, "3 category cards (live ones only, no coming-soon placeholders)", doc.querySelectorAll(".cat-card").length);
       ok(doc.querySelectorAll(".vs-card").length === 9, "3 comparisons + 6 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
@@ -143,7 +143,7 @@ async function load(page) {
       ok(!!doc.querySelector('.legal a[href*="support@omc.network"]') || /support@omc\.network/.test(doc.querySelector(".legal").textContent), p + ": contact address present");
       const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
       ok(/"BreadcrumbList"/.test(bld), p + ": breadcrumb JSON-LD");
-      ok(doc.querySelectorAll('.footer-links a[data-i18n^="f."]').length === 3, p + ": 3 footer legal links");
+      ok(doc.querySelectorAll('.footer-links a[data-i18n^="f."]').length === 4, p + ": 4 footer legal links");
       setLang(win, doc, "zh");
       ok(/[一-龥]/.test(doc.querySelector('.footer-links a[data-i18n="f.privacy"]').textContent), p + ": footer links translate to zh", doc.querySelector('.footer-links a[data-i18n="f.privacy"]').textContent);
       win.close();
@@ -167,10 +167,31 @@ async function load(page) {
       ok(/Corrections policy|corrections/i.test(doc.body.textContent), "about: corrections policy");
       win.close();
     }
+    {
+      const { win, doc } = await load("/contact.html");
+      ok(/editor@omc\.center/.test(doc.body.textContent), "contact: editorial address present");
+      ok(/Corrections\./.test(doc.body.textContent), "contact: corrections welcome section");
+      ok(/no accounts and no forms|Do not send/i.test(doc.body.textContent), "contact: privacy caution note");
+      const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
+      ok(/"ContactPage"/.test(bld), "contact: ContactPage JSON-LD");
+      ok(/"BreadcrumbList"/.test(bld), "contact: breadcrumb JSON-LD");
+      ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "contact: AdSense present");
+      win.close();
+    }
+
+    console.log("\n[favicon set]");
+    for (const f of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "assets/img/logo.png"]) ok(fs.existsSync(path.join(ROOT, f)), "file exists: " + f);
+    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html"];
+    for (const p of allPages) {
+      const html = fs.readFileSync(path.join(ROOT, p), "utf8");
+      ok(!/rel="icon" href="data:image/.test(html), p + ": no data-URI icon");
+      ok(html.includes('href="/favicon.svg"') && html.includes('href="/favicon.ico"'), p + ": real favicon links");
+      ok(html.includes("/apple-touch-icon.png"), p + ": apple-touch link");
+    }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 13, "sitemap has 13 URLs", String((sitemap.match(/<url>/g) || []).length));
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "/privacy", "/terms", "/about"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 14, "sitemap has 14 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
   } finally {
     srv.close();

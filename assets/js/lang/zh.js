@@ -4,7 +4,7 @@ window.I18N.zh = {
   "nav.vs": "对比评测",
   "nav.best": "排行榜",
 
-  "hero.kicker": "独立评测 · 敢下结论 · 零赞助",
+  "hero.kicker": "独立评测 · 敢下结论 · 关系透明",
   "hero.title": "别的 AI 对比写三千字废话，我们直接上表格。",
   "hero.sub": "真实价格、真实缺点、真实结论——看完关掉十几个标签页，该用哪个心里有数。",
 
@@ -15,11 +15,6 @@ window.I18N.zh = {
   "cat.image.ex": "Midjourney · Stable Diffusion · Flux",
   "cat.pro": "专业行业工具",
   "cat.pro.ex": "法律 AI · 保险软件",
-  "cat.write": "AI 写作",
-  "cat.video": "AI 视频",
-  "cat.code": "AI 编程",
-  "cat.audio": "语音与音乐",
-  "cat.soon": "即将上线",
 
   "hot.title": "热门对比",
   "hot.c1": "三大聊天机器人，一表看懂",
@@ -43,9 +38,9 @@ window.I18N.zh = {
   "rank.r6": "房产经纪 AI 工具 TOP5",
   "rank.r6.m": "线索响应 · 培育 · 估值排行",
 
-  "banner.title": "热爱 AI？来认识驱动 AI 的网络。",
-  "banner.sub": " Omniverse Compute——币安链上的去中心化 GPU 算力网络。测试网已上线，社区空投 11 月 1 日开启。",
-  "banner.cta": "了解 OMC →",
+  "banner.title": "由 Omniverse Compute 团队运营",
+  "banner.sub": " AITop 由 OMC（币安链上的去中心化 GPU 算力网络）团队建设与维护，每一页都如实披露，且 OMC 从不出现在我们的评测排名中。",
+  "banner.cta": "编辑方针 →",
 
   "footer.note": "AITop 为独立评测指南。AI 工具价格与功能更新极快，请以官方页面为准；数据以各页面标注日期为准。",
   "footer.rights": "© 2026 AITop。评测内容独立客观。",
@@ -54,6 +49,7 @@ window.I18N.zh = {
   "f.privacy": "隐私政策",
   "f.terms": "使用条款",
   "f.about": "关于我们",
+  "f.contact": "联系",
 
   /* shared page keys */
   "crumb.home": "首页",
