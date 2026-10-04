@@ -169,7 +169,8 @@ async function load(page) {
     }
     {
       const { win, doc } = await load("/contact.html");
-      ok(/editor@omc\.center/.test(doc.body.textContent), "contact: editorial address present");
+      ok(/support@omc\.network/.test(doc.body.textContent), "contact: editorial address present");
+      ok(!/editor@omc\.center/.test(doc.body.textContent), "contact: no stale omc.center address");
       ok(/Corrections\./.test(doc.body.textContent), "contact: corrections welcome section");
       ok(/no accounts and no forms|Do not send/i.test(doc.body.textContent), "contact: privacy caution note");
       const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
