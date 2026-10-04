@@ -1,0 +1,30 @@
+# AITop
+
+> AI tools, compared honestly: head-to-head comparisons and rankings
+
+This site is static HTML in English. Chinese is available via the language toggle (client-side).
+
+## Site pages
+
+- [https://top.omc.network/about](https://top.omc.network/about): About & Editorial Policy — AITop
+- [https://top.omc.network/contact](https://top.omc.network/contact): Contact — AITop
+- [https://top.omc.network/](https://top.omc.network/): Top AI Tools Compared 2026 — ChatGPT vs Claude, Best AI Image Generators & More | AITop by OMC
+- [https://top.omc.network/privacy](https://top.omc.network/privacy): Privacy Policy — AITop
+- [https://top.omc.network/terms](https://top.omc.network/terms): Terms of Use — AITop
+
+## Articles & comparisons
+
+- [https://top.omc.network/vs/chatgpt-vs-claude](https://top.omc.network/vs/chatgpt-vs-claude): ChatGPT vs Claude vs Gemini (2026) — Which Chatbot Wins? | AITop
+- [https://top.omc.network/vs/chatgpt-vs-gemini](https://top.omc.network/vs/chatgpt-vs-gemini): ChatGPT vs Gemini (2026) — Which One Should You Actually Pay For? | AITop
+- [https://top.omc.network/vs/copilot-vs-cursor](https://top.omc.network/vs/copilot-vs-cursor): GitHub Copilot vs Cursor (2026) — Best AI Coding Assistant? | AITop
+- [https://top.omc.network/vs/midjourney-vs-stable-diffusion](https://top.omc.network/vs/midjourney-vs-stable-diffusion): Midjourney vs Stable Diffusion (2026) — Which AI Image Tool? | AITop
+- [https://top.omc.network/vs/perplexity-vs-chatgpt](https://top.omc.network/vs/perplexity-vs-chatgpt): Perplexity vs ChatGPT (2026) — Search Engine or Assistant? | AITop
+- [https://top.omc.network/best/ai-chatbots](https://top.omc.network/best/ai-chatbots): Best AI Chatbots of 2026 — Top 5 Tested & Ranked | AITop
+- [https://top.omc.network/best/ai-image-generators](https://top.omc.network/best/ai-image-generators): Best AI Image Generators of 2026 — Top 5 Ranked | AITop
+- [https://top.omc.network/best/ai-legal-tools](https://top.omc.network/best/ai-legal-tools): Best AI Legal Tools of 2026 — Harvey, CoCounsel, Lexis+ AI Compared | AITop
+- [https://top.omc.network/best/ai-tools-for-accountants](https://top.omc.network/best/ai-tools-for-accountants): Best AI Tools for Accountants in 2026 — Top 5 Compared | AITop
+- [https://top.omc.network/best/ai-tools-for-real-estate-agents](https://top.omc.network/best/ai-tools-for-real-estate-agents): Best AI Tools for Real Estate Agents in 2026 — Top 5 Compared | AITop
+- [https://top.omc.network/best/ai-tools-for-small-business](https://top.omc.network/best/ai-tools-for-small-business): Best AI Tools for Small Business in 2026 — ChatGPT, Zapier, Notion, QuickBooks, HubSpot | AITop
+- [https://top.omc.network/best/ai-video-tools](https://top.omc.network/best/ai-video-tools): Best AI Video Generators of 2026 — Veo, Runway, Kling, Pika, Sora Compared | AITop
+- [https://top.omc.network/best/ai-writing-tools](https://top.omc.network/best/ai-writing-tools): Best AI Writing Tools of 2026 — Jasper, Copy.ai, Rytr, Grammarly Compared | AITop
+- [https://top.omc.network/best/insurance-agent-software](https://top.omc.network/best/insurance-agent-software): Best Software for Insurance Agents in 2026 — Top 5 Compared | AITop

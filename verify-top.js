@@ -195,6 +195,20 @@ async function load(page) {
     ok((sitemap.match(/<url>/g) || []).length === 19, "sitemap has 19 URLs", String((sitemap.match(/<url>/g) || []).length));
     for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
+
+    /* ---------------- SEO: canonical + OG + twitter on every page ---------------- */
+    console.log("\n[seo head tags]");
+    const htmlFiles = allPages;
+    for (const p of htmlFiles) {
+      const src = fs.readFileSync(path.join(ROOT, p), "utf8");
+      ok(src.includes('rel="canonical"') && /rel="canonical" href="https:\/\//.test(src), p + " canonical (absolute)");
+      ok(src.includes('property="og:title"'), p + " og:title");
+      ok(src.includes('property="og:image" content="https://') && src.includes("/og-image.png"), p + " og:image");
+      ok(src.includes('name="twitter:card" content="summary_large_image"'), p + " twitter:card");
+    }
+    ok(fs.existsSync(path.join(ROOT, "og-image.png")), "og-image.png exists");
+    ok(fs.existsSync(path.join(ROOT, "llms.txt")), "llms.txt exists");
+    ok(fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8").startsWith("# AITop"), "llms.txt header");
   } finally {
     srv.close();
   }
