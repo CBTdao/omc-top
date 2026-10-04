@@ -66,7 +66,7 @@ async function load(page) {
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
       ok(doc.querySelectorAll(".cat-card").length === 3, "3 category cards (live ones only, no coming-soon placeholders)", doc.querySelectorAll(".cat-card").length);
-      ok(doc.querySelectorAll(".vs-card").length === 9, "3 comparisons + 6 rankings cards", doc.querySelectorAll(".vs-card").length);
+      ok(doc.querySelectorAll(".vs-card").length === 14, "5 comparisons + 9 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
       const ld = [...doc.querySelectorAll('script[type="application/ld+json"]')];
@@ -110,7 +110,7 @@ async function load(page) {
     }
 
     console.log("\n[vs/midjourney-vs-stable-diffusion & vs/copilot-vs-cursor]");
-    for (const p of ["/vs/midjourney-vs-stable-diffusion.html", "/vs/copilot-vs-cursor.html"]) {
+    for (const p of ["/vs/midjourney-vs-stable-diffusion.html", "/vs/copilot-vs-cursor.html", "/vs/chatgpt-vs-gemini.html", "/vs/perplexity-vs-chatgpt.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
       ok(doc.querySelectorAll(".cmp thead th").length === 3, p + ": 2 tool columns");
@@ -119,11 +119,12 @@ async function load(page) {
     }
 
     console.log("\n[best pages]");
-    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html", "/best/ai-tools-for-accountants.html", "/best/ai-tools-for-real-estate-agents.html"]) {
+    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html", "/best/ai-tools-for-accountants.html", "/best/ai-tools-for-real-estate-agents.html", "/best/ai-video-tools.html", "/best/ai-writing-tools.html", "/best/ai-tools-for-small-business.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
       ok(doc.querySelectorAll(".rank-item").length === 5, p + ": 5 ranked items");
       ok(/updated|更新于/i.test(doc.getElementById("updatedLine").textContent), p + ": updated line", doc.getElementById("updatedLine").textContent.slice(0, 30));
+      ok(!!doc.querySelector("main .verdict") && doc.getElementById("verdictText").textContent.length > 40, p + ": verdict survives render (bestRoot div balance)", doc.querySelectorAll("main .verdict").length);
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), p + ": AdSense present");
       const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
       ok(/"BreadcrumbList"/.test(bld), p + ": breadcrumb JSON-LD");
@@ -182,7 +183,7 @@ async function load(page) {
 
     console.log("\n[favicon set]");
     for (const f of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "assets/img/logo.png"]) ok(fs.existsSync(path.join(ROOT, f)), "file exists: " + f);
-    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html"];
+    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html"];
     for (const p of allPages) {
       const html = fs.readFileSync(path.join(ROOT, p), "utf8");
       ok(!/rel="icon" href="data:image/.test(html), p + ": no data-URI icon");
@@ -191,8 +192,8 @@ async function load(page) {
     }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 14, "sitemap has 14 URLs", String((sitemap.match(/<url>/g) || []).length));
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 19, "sitemap has 19 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
   } finally {
     srv.close();
