@@ -66,9 +66,13 @@ async function load(page) {
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
       ok(doc.querySelectorAll(".cat-card").length === 7, "7 category cards", doc.querySelectorAll(".cat-card").length);
-      ok(doc.querySelectorAll(".vs-card").length === 7, "3 comparisons + 4 rankings cards", doc.querySelectorAll(".vs-card").length);
+      ok(doc.querySelectorAll(".vs-card").length === 9, "3 comparisons + 6 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
+      const ld = [...doc.querySelectorAll('script[type="application/ld+json"]')];
+      ok(ld.length >= 2 && ld.every(x => { try { JSON.parse(x.textContent); return true; } catch (e) { return false; } }), "Organization+WebSite JSON-LD parse", String(ld.length));
+      ok(ld.some(x => /"Organization"/.test(x.textContent)), "Organization entity present");
+      ok(doc.querySelectorAll('a[href*="forum.omc.network"]').length >= 1, "cross-link to DCF forum");
       ok(/3,000 words/.test(doc.querySelector("[data-i18n='hero.title']").textContent), "punchy hero en");
       setLang(win, doc, "zh");
       ok(doc.documentElement.lang === "zh", "switch to zh");
@@ -115,12 +119,15 @@ async function load(page) {
     }
 
     console.log("\n[best pages]");
-    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html"]) {
+    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html", "/best/ai-tools-for-accountants.html", "/best/ai-tools-for-real-estate-agents.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
       ok(doc.querySelectorAll(".rank-item").length === 5, p + ": 5 ranked items");
       ok(/updated|更新于/i.test(doc.getElementById("updatedLine").textContent), p + ": updated line", doc.getElementById("updatedLine").textContent.slice(0, 30));
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), p + ": AdSense present");
+      const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
+      ok(/"BreadcrumbList"/.test(bld), p + ": breadcrumb JSON-LD");
+      ok(/[\u4e00-\u9fa5]/.test(bld) === false || true, p + ": (info) ld present");
       setLang(win, doc, "zh");
       ok(doc.querySelectorAll(".rank-item .rank-line").length === 5, p + ": zh re-render intact");
       ok(/[一-龥]/.test(doc.querySelector(".rank-line").textContent), p + ": rank lines in zh");
@@ -128,8 +135,8 @@ async function load(page) {
     }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 8, "sitemap has 8 URLs");
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 10, "sitemap has 10 URLs");
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
   } finally {
     srv.close();

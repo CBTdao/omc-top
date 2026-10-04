@@ -38,6 +38,10 @@ window.I18N.en = {
   "rank.r3.m": "Harvey · CoCounsel · Lexis+ AI, compared",
   "rank.r4": "Best software for insurance agents",
   "rank.r4.m": "AMS · rating · CRM, what a small agency needs",
+  "rank.r5": "Best AI tools for accountants",
+  "rank.r5.m": "Bookkeeping · AP automation · close, compared",
+  "rank.r6": "Best AI tools for real estate agents",
+  "rank.r6.m": "Lead response · nurture · valuation, ranked",
 
   "banner.title": "Love AI? Meet the network that powers it.",
   "banner.sub": " Omniverse Compute — decentralized GPU power on BNB Chain. Testnet live, community airdrop Nov 1.",

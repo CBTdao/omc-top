@@ -38,6 +38,10 @@ window.I18N.zh = {
   "rank.r3.m": "Harvey · CoCounsel · Lexis+ AI 横评",
   "rank.r4": "保险代理人最佳软件",
   "rank.r4.m": "机构管理 · 报价 · CRM，小机构怎么选",
+  "rank.r5": "会计 AI 工具 TOP5",
+  "rank.r5.m": "记账 · 发票自动化 · 月结横评",
+  "rank.r6": "房产经纪 AI 工具 TOP5",
+  "rank.r6.m": "线索响应 · 培育 · 估值排行",
 
   "banner.title": "热爱 AI？来认识驱动 AI 的网络。",
   "banner.sub": " Omniverse Compute——币安链上的去中心化 GPU 算力网络。测试网已上线，社区空投 11 月 1 日开启。",
