@@ -50,6 +50,11 @@ window.I18N.en = {
   "footer.note": "AITop is an independent guide. Prices and features change fast — always check the vendor's page. Data as of the date shown on each page.",
   "footer.rights": "© 2026 AITop. Reviews are editorial and independent.",
 
+  /* footer legal links */
+  "f.privacy": "Privacy",
+  "f.terms": "Terms",
+  "f.about": "About",
+
   /* shared page keys */
   "crumb.home": "Home",
   "crumb.vs": "Comparisons",

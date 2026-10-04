@@ -134,9 +134,43 @@ async function load(page) {
       win.close();
     }
 
+    console.log("\n[legal pages]");
+    for (const p of ["/privacy.html", "/terms.html", "/about.html"]) {
+      const { win, doc, errs } = await load(p);
+      ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
+      ok(!!doc.querySelector('script[src*="adsbygoogle"]'), p + ": AdSense present");
+      ok(doc.querySelectorAll(".legal h2").length >= 6, p + ": legal sections rendered", String(doc.querySelectorAll(".legal h2").length));
+      ok(!!doc.querySelector('.legal a[href*="support@omc.network"]') || /support@omc\.network/.test(doc.querySelector(".legal").textContent), p + ": contact address present");
+      const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
+      ok(/"BreadcrumbList"/.test(bld), p + ": breadcrumb JSON-LD");
+      ok(doc.querySelectorAll('.footer-links a[data-i18n^="f."]').length === 3, p + ": 3 footer legal links");
+      setLang(win, doc, "zh");
+      ok(/[一-龥]/.test(doc.querySelector('.footer-links a[data-i18n="f.privacy"]').textContent), p + ": footer links translate to zh", doc.querySelector('.footer-links a[data-i18n="f.privacy"]').textContent);
+      win.close();
+    }
+    {
+      const { win, doc } = await load("/privacy.html");
+      ok(/Personalized ads|personalized advertising/i.test(doc.body.textContent) || /Google Ads Settings/.test(doc.body.textContent), "privacy: Google ad opt-out disclosed");
+      ok(/CCPA|CPRA/.test(doc.body.textContent), "privacy: CCPA/CPRA rights stated");
+      ok(/aitop_lang/.test(doc.body.textContent), "privacy: names the localStorage key");
+      win.close();
+    }
+    {
+      const { win, doc } = await load("/terms.html");
+      ok(/no affiliate links/i.test(doc.body.textContent), "terms: affiliate disclosure");
+      ok(/not legal, tax, accounting, insurance, financial/i.test(doc.body.textContent), "terms: no professional advice clause");
+      win.close();
+    }
+    {
+      const { win, doc } = await load("/about.html");
+      ok(/Omniverse Compute/.test(doc.body.textContent), "about: operator disclosure");
+      ok(/Corrections policy|corrections/i.test(doc.body.textContent), "about: corrections policy");
+      win.close();
+    }
+
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 10, "sitemap has 10 URLs");
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 13, "sitemap has 13 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "/privacy", "/terms", "/about"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
   } finally {
     srv.close();

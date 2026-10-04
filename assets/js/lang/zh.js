@@ -50,6 +50,11 @@ window.I18N.zh = {
   "footer.note": "AITop 为独立评测指南。AI 工具价格与功能更新极快，请以官方页面为准；数据以各页面标注日期为准。",
   "footer.rights": "© 2026 AITop。评测内容独立客观。",
 
+  /* footer legal links */
+  "f.privacy": "隐私政策",
+  "f.terms": "使用条款",
+  "f.about": "关于我们",
+
   /* shared page keys */
   "crumb.home": "首页",
   "crumb.vs": "对比评测",
