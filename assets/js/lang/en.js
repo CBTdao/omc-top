@@ -45,6 +45,8 @@ window.I18N.en = {
   "hot.c6.m": "Terminal agent vs AI-native IDE · verdict",
   "hot.c7": "Do you pay for context or for horsepower?",
   "hot.c7.m": "Workspace grounding · price · verdict",
+  "hot.c8": "Who actually owns the answer?",
+  "hot.c8.m": "Citations · ad exposure · free tier · verdict",
   "rank.r7": "Best AI video generators of 2026",
   "rank.r7.m": "Veo · Runway · Kling · Pika · Sora, routed by job",
   "rank.r8": "Best AI writing tools of 2026",
@@ -55,6 +57,8 @@ window.I18N.en = {
   "rank.r10.m": "Claude Code · Cursor · Copilot, scored",
   "rank.r11": "Best AI presentation tools of 2026",
   "rank.r11.m": "Gamma · Canva · Beautiful.ai, and who exports .pptx",
+  "rank.r12": "Best AI music generators of 2026",
+  "rank.r12.m": "Suno · ElevenLabs · Mureka — and what you can actually export",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",

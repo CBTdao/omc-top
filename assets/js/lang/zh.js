@@ -45,6 +45,8 @@ window.I18N.zh = {
   "hot.c6.m": "终端 Agent vs AI 原生 IDE · 结论",
   "hot.c7": "你付的是上下文，还是算力？",
   "hot.c7.m": "工作区上下文 · 价格 · 结论",
+  "hot.c8": "答案到底归谁？",
+  "hot.c8.m": "引用 · 广告暴露 · 免费档 · 结论",
   "rank.r7": "2026 最佳 AI 视频生成工具",
   "rank.r7.m": "Veo · Runway · 可灵 · Pika · Sora 按活选",
   "rank.r8": "2026 最佳 AI 写作工具",
@@ -55,6 +57,8 @@ window.I18N.zh = {
   "rank.r10.m": "Claude Code · Cursor · Copilot，逐一打分",
   "rank.r11": "AI 演示文稿工具 TOP5（2026）",
   "rank.r11.m": "Gamma · Canva · Beautiful.ai，以及谁能导出 .pptx",
+  "rank.r12": "AI 音乐生成工具 TOP5（2026）",
+  "rank.r12.m": "Suno · ElevenLabs · Mureka —— 以及你实际能导出什么",
 
   "banner.title": "由 Omniverse Compute 团队运营",
   "banner.sub": " AITop 由 OMC（币安链上的去中心化 GPU 算力网络）团队建设与维护，每一页都如实披露，且 OMC 从不出现在我们的评测排名中。",
