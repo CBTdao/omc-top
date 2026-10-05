@@ -135,6 +135,44 @@ async function load(page) {
       win.close();
     }
 
+    console.log("\n[glossary hub]");
+    {
+      const { win, doc, errs } = await load("/glossary/index.html");
+      ok(errs.length === 0, "no runtime errors", errs.join(" | "));
+      ok(doc.documentElement.lang === "en", "default en");
+      ok(doc.querySelectorAll(".gl-list").length === 3, "3 grouped sections");
+      ok(doc.querySelectorAll(".gl-list a").length === 8, "8 glossary entry links", String(doc.querySelectorAll(".gl-list a").length));
+      const hubMiss = [...doc.querySelectorAll(".gl-list a")].map(a => a.getAttribute("href")).filter(h => !fs.existsSync(path.join(ROOT, "glossary", h)));
+      ok(hubMiss.length === 0, "hub: all entry targets exist on disk", hubMiss.join(","));
+      const hld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
+      ok(/"DefinedTermSet"/.test(hld), "DefinedTermSet JSON-LD");
+      ok((hld.match(/"DefinedTerm"/g) || []).length >= 8, "8 hasDefinedTerm entries", String((hld.match(/"DefinedTerm"/g) || []).length));
+      ok(/"BreadcrumbList"/.test(hld), "breadcrumb JSON-LD");
+      ok(!!doc.querySelector("a[data-i18n='nav.glossary']"), "nav glossary link present");
+      setLang(win, doc, "zh");
+      ok(doc.documentElement.lang === "zh", "switch to zh");
+      ok(/[\u4e00-\u9fa5]/.test(doc.querySelector("a[data-i18n='nav.glossary']").textContent), "nav glossary translated zh", doc.querySelector("a[data-i18n='nav.glossary']").textContent);
+      win.close();
+    }
+
+    console.log("\n[glossary entries]");
+    for (const slug of ["ai-token", "context-window", "rag", "ai-hallucination", "voice-cloning", "stem-separation", "ai-music-license", "ai-watermark"]) {
+      const p = "/glossary/" + slug + ".html";
+      const { win, doc, errs } = await load(p);
+      ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
+      const ld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
+      ok(/"DefinedTerm"/.test(ld), p + ": DefinedTerm JSON-LD");
+      ok(/"BreadcrumbList"/.test(ld), p + ": breadcrumb JSON-LD");
+      ok(doc.querySelectorAll(".gl-check li").length >= 3, p + ": checklist items >= 3", String(doc.querySelectorAll(".gl-check li").length));
+      const inks = [...doc.querySelectorAll("a[href^='../vs/'], a[href^='../best/']")].map(a => a.getAttribute("href"));
+      ok(inks.length >= 1, p + ": internal links to review pages", String(inks.length));
+      const missing = inks.filter(h => !fs.existsSync(path.join(ROOT, p, "..", h)));
+      ok(missing.length === 0, p + ": internal link targets exist", missing.join(","));
+      setLang(win, doc, "zh");
+      ok(doc.documentElement.lang === "zh", p + ": switch to zh");
+      win.close();
+    }
+
     console.log("\n[legal pages]");
     for (const p of ["/privacy.html", "/terms.html", "/about.html"]) {
       const { win, doc, errs } = await load(p);
@@ -183,7 +221,7 @@ async function load(page) {
 
     console.log("\n[favicon set]");
     for (const f of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "assets/img/logo.png"]) ok(fs.existsSync(path.join(ROOT, f)), "file exists: " + f);
-    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html"];
+    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html", "glossary/index.html", "glossary/ai-token.html", "glossary/context-window.html", "glossary/rag.html", "glossary/ai-hallucination.html", "glossary/voice-cloning.html", "glossary/stem-separation.html", "glossary/ai-music-license.html", "glossary/ai-watermark.html"];
     for (const p of allPages) {
       const html = fs.readFileSync(path.join(ROOT, p), "utf8");
       ok(!/rel="icon" href="data:image/.test(html), p + ": no data-URI icon");
@@ -192,8 +230,8 @@ async function load(page) {
     }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 25, "sitemap has 25 URLs", String((sitemap.match(/<url>/g) || []).length));
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 34, "sitemap has 34 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "<loc>https://top.omc.network/glossary</loc>", "glossary/ai-token", "glossary/context-window", "glossary/rag", "glossary/ai-hallucination", "glossary/voice-cloning", "glossary/stem-separation", "glossary/ai-music-license", "glossary/ai-watermark", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
 
     /* ---------------- SEO: canonical + OG + twitter on every page ---------------- */
@@ -209,6 +247,15 @@ async function load(page) {
     ok(fs.existsSync(path.join(ROOT, "og-image.png")), "og-image.png exists");
     ok(fs.existsSync(path.join(ROOT, "llms.txt")), "llms.txt exists");
     ok(fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8").startsWith("# AITop"), "llms.txt header");
+    ok(fs.readFileSync(path.join(ROOT, "llms.txt"), "utf8").includes("## Glossary"), "llms.txt glossary section");
+
+    console.log("\n[glossary cross-links from review pages]");
+    for (const d of ["vs", "best"]) {
+      for (const f of fs.readdirSync(path.join(ROOT, d)).filter(x => x.endsWith(".html"))) {
+        const src = fs.readFileSync(path.join(ROOT, d, f), "utf8");
+        ok(src.includes('class="gl-note"') && src.includes('href="../glossary/"'), d + "/" + f + ": gl-note cross-link present");
+      }
+    }
   } finally {
     srv.close();
   }

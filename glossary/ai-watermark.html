@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is AI Watermarking &amp; Provenance? C2PA Explained (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/ai-watermark">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is AI Watermarking & Provenance? C2PA Explained (2026) | AITop">
+  <meta property="og:description" content="Watermarks and content credentials are invisible labels that mark AI-generated media and record where it came from. How C2PA works, what platforms now require, and why stripping them is the mistake to avoid.">
+  <meta property="og:url" content="https://top.omc.network/glossary/ai-watermark">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is AI Watermarking & Provenance? C2PA Explained (2026) | AITop">
+  <meta name="twitter:description" content="Watermarks and content credentials mark AI-generated media and record where it came from. How C2PA works, what platforms require, and why stripping them is the mistake to avoid.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Watermarks and content credentials are invisible labels that mark AI-generated media and record where it came from. How C2PA works, what platforms now require, and why stripping them is the mistake to avoid.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"AI watermarking and provenance","item":"https://top.omc.network/glossary/ai-watermark"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"AI watermarking and provenance","description":"Embedded markers (inaudible/inaudible-in-audio, pixel-level or metadata credentials such as C2PA) that identify content as AI-generated and record its origin and edit history.","url":"https://top.omc.network/glossary/ai-watermark","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="../index.html"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+        <a href="../vs/chatgpt-vs-claude.html" data-i18n="nav.vs">Comparisons</a>
+        <a href="../best/ai-chatbots.html" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="../index.html" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is AI watermarking &amp; provenance?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-06. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>Watermarking is the practice of embedding an invisible, durable marker into AI-generated output — inaudible patterns in audio, subtle signals in images, structured metadata in files — that identifies it as machine-made. Provenance is the broader system those markers feed: the <b>C2PA content-credential</b> standard, which attaches a signed record of how a file was made and edited. In 2026 this stopped being optional philosophy and became workflow reality: major platforms embed credentials by default, big platforms require disclosure of synthetic media, and regulators pushed labeling rules into force.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Two mechanisms, often confused. A <b>watermark</b> is baked into the content itself — statistically detectable even after re-encoding, export or a screenshot, though not after every kind of manipulation. A <b>content credential</b> (C2PA's "nutrition label") travels as signed metadata: what tool made this, when, with what model, and every significant edit since. Credentials are richer but fragile — strip the metadata and the history is gone; watermarks are resilient but carry less information. Robust systems do both, which is what the major platforms converged on during 2025&ndash;2026.</p>
+      <p>Detection — looking at unmarked content and guessing "AI or not?" — is a separate, much weaker technology: false positives are routine and adversarial evasion is easy. That's why the industry pivoted to provenance ("check the label at the source") rather than detection ("scan the pixels and pray").</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because credentials have become a distribution question. Platforms increasingly check <i>disclosure</i> on synthetic media — and content lacking credentials can be throttled, labeled, or rejected where AI content policy applies (political ads are the strictest case). For commercial users the calculus flipped: a tool that embeds C2PA credentials and supports disclosure protects your distribution; a tool marketed on "no watermark, undetectable" is promising to get your content flagged somewhere you care about — and, worse, advertises that its vendor's relationship to platform rules is adversarial. For personal sketches none of this matters; the moment content touches ads, news, or audience trust, it's a spec.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p>C2PA membership expanded across camera makers, AI vendors and social platforms, and several generators now attach credentials by default rather than as an opt-in. Regulatory pressure solidified in parallel: the EU AI Act's transparency obligations require machine-readable marking of synthetic media, and platform-level disclosure rules (YouTube and peers) tightened around realistic AI content. The arms race didn't stop — stripping tools exist, and provenance is only as strong as the weakest exporter in your pipeline — but the norm flipped: <i>removing</i> credentials is now the behavior that platforms, and increasingly the law, treat as the violation. If a tool offers to strip them, that's not a feature; it's a confession.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li>Check whether the tool embeds credentials or watermarks by default — and whether you can export with them intact.</li>
+        <li>Disclose synthetic media where the destination platform requires it; ads and political content are the strictest zones.</li>
+        <li>Never strip watermarks or credentials from outputs you distribute — beyond ToS, several jurisdictions now treat it as a violation.</li>
+        <li>For commercial work, keep provenance records alongside your license records (see <a href="ai-music-license.html">commercial-use rights</a>).</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Provenance shows up across the visual and audio tools we rank: <a href="../best/ai-image-generators.html">the best AI image generators</a>, <a href="../vs/midjourney-vs-stable-diffusion.html">Midjourney vs Stable Diffusion</a> (closed service vs self-hosted — very different credential stories), and <a href="../best/ai-music-generators.html">the AI music generators</a> (inaudible audio watermarks on exports). Related terms: <a href="voice-cloning.html">voice cloning</a>, <a href="ai-music-license.html">commercial-use rights</a> — or back to <a href="./">the full glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Provenance went from an ethics seminar topic to a distribution requirement in about two years. The safe position in 2026 is simple: use tools that label honestly, keep the labels, and treat anyone selling "undetectable" as selling your account's future. Trust me — the platforms check.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="../about.html" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="../privacy.html" data-i18n="f.privacy">Privacy</a> · <a href="../terms.html" data-i18n="f.terms">Terms</a> · <a href="../about.html" data-i18n="f.about">About</a> · <a href="../contact.html" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

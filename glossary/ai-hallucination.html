@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is an AI Hallucination? Confident Fabrication, Explained (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/ai-hallucination">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is an AI Hallucination? Confident Fabrication, Explained (2026) | AITop">
+  <meta property="og:description" content="A hallucination is a model stating something false with total confidence — no shifty eyes, no hedging. What causes it, which 2026 tools fight it hardest, and the four checks that catch it.">
+  <meta property="og:url" content="https://top.omc.network/glossary/ai-hallucination">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is an AI Hallucination? Confident Fabrication, Explained (2026) | AITop">
+  <meta name="twitter:description" content="A hallucination is a model stating something false with total confidence. What causes it, which 2026 tools fight it hardest, and the checks that catch it.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="A hallucination is a model stating something false with total confidence — no shifty eyes, no hedging. What causes it, which 2026 tools fight it hardest, and the four checks that catch it.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"AI hallucination","item":"https://top.omc.network/glossary/ai-hallucination"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"AI hallucination","description":"When an AI model states false information with fluent confidence — invented facts, sources, quotes or numbers — because it generates plausible text rather than verified truth.","url":"https://top.omc.network/glossary/ai-hallucination","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="../index.html"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+        <a href="../vs/chatgpt-vs-claude.html" data-i18n="nav.vs">Comparisons</a>
+        <a href="../best/ai-chatbots.html" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="../index.html" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is an AI hallucination?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-06. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>A hallucination is a model stating something false with total confidence — an invented statistic, a nonexistent court case, a quote no one ever said, delivered in the same smooth tone as everything else. There is no shifty eye, no disclaimer; fluency carries no signal about truth. The cause is structural, not a bug to patch: models generate the <i>plausible next words</i>, and plausible is not the same as true. In 2026 hallucination rates have fallen sharply on benchmarks — but confident wrongness persists exactly where you can least afford it.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>The name is unfortunate — it suggests seeing things, as if the model had perception to fail with. What actually happens is more mundane: the model is a prediction engine for plausible text. When it reaches a fact it doesn't reliably hold, it doesn't stop or hedge; it continues with the most statistically likely continuation, which can be a beautifully formatted fabrication. Ask for a citation and it will happily produce one — authors, journal, volume number, all fluent, none real — because "generate a citation-shaped string" and "generate a true citation" are the same task to a model with no truth oracle.</p>
+      <p>Hallucinations cluster in predictable places: obscure facts the training data barely covered, specific numbers and names, recent events past the model's knowledge cutoff, and anything about <i>your</i> private documents the model has never seen. They are rare where the internet is dense and loud, and thickest where the internet is thin and quiet — which is precisely the terrain of professional work.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because vendors diverge on mitigation, and the difference is a buying criterion. The strongest mitigations are architectural: grounding answers in retrieval with citations (see <a href="rag.html">RAG</a>) so claims come with receipts; refusing to answer when retrieval comes up empty; and explicit "verify" passes. Web-connected assistants hallucinate less on current events than offline models precisely because they check before speaking. For high-stakes domains, this is the whole product: the best <a href="../best/ai-legal-tools.html">AI legal tools</a> are, at bottom, hallucination-control systems with a legal UI.</p>
+      <p>The real-world stakes are documented, not hypothetical: courts on both sides of the Atlantic have sanctioned lawyers for filings citing decisions that never existed — model-fabricated case law, submitted unchecked. Every one of those was preventable by the four checks below.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p>Progress is real: grounding, better training and web access cut benchmark hallucination rates substantially year over year, and "I don't know" appears more often than it used to — that's a feature, not a regression. But three traps remain open. <b>Long-tail obscurity</b>: niche entities and small jurisdictions are where fabrication still thrives. <b>Confident compression</b>: summarizing your own document, a model can blend what the document says with what it plausibly would say. And <b>citation theater</b>: sources that exist but don't support the specific claim — subtler than pure invention and more common. Fluency is now a design goal, which means it can no longer be read as a credibility signal.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li>Treat every specific fact — number, name, date, case — as a claim to verify, not a fact you received.</li>
+        <li>Prefer tools that cite sources by default, and actually open them: a real source that doesn't support the claim is still a hallucination.</li>
+        <li>Re-ask critical questions in a fresh session; inconsistent answers across sessions are a fabrication flag.</li>
+        <li>Never ship or file anything where a wrong fact costs money or credibility without a human check against the primary source.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Hallucination risk is a running thread in <a href="../best/ai-chatbots.html">the best AI chatbots</a>, <a href="../vs/perplexity-vs-chatgpt.html">Perplexity vs ChatGPT</a> (citation-first vs chat-first design), and <a href="../best/ai-legal-tools.html">the AI legal tools ranking</a>. Related terms: <a href="rag.html">RAG</a>, <a href="context-window.html">context window</a> — or back to <a href="./">the full glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Hallucination isn't a bug on the roadmap; it's the cost of how these systems work, managed to different degrees by different products. Buy tools that show their sources, keep the four checks in your fingers, and reserve real suspicion for the obscure, the specific and the recent — the three neighborhoods where confident fiction still lives.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="../about.html" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="../privacy.html" data-i18n="f.privacy">Privacy</a> · <a href="../terms.html" data-i18n="f.terms">Terms</a> · <a href="../about.html" data-i18n="f.about">About</a> · <a href="../contact.html" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

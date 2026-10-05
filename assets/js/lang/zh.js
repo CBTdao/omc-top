@@ -3,6 +3,7 @@ window.I18N.zh = {
   "nav.home": "首页",
   "nav.vs": "对比评测",
   "nav.best": "排行榜",
+  "nav.glossary": "术语表",
 
   "hero.kicker": "独立评测 · 敢下结论 · 关系透明",
   "hero.title": "别的 AI 对比写三千字废话，我们直接上表格。",
@@ -77,6 +78,7 @@ window.I18N.zh = {
   "crumb.home": "首页",
   "crumb.vs": "对比评测",
   "crumb.best": "排行榜",
+  "crumb.glossary": "术语表",
   "ui.updated": "数据更新于 {date}。价格可能已有变化，请以官方为准。",
   "ui.verdict": "结论",
   "ui.pricing": "价格",

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is RAG? Retrieval-Augmented Generation, Plain English (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/rag">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is RAG? Retrieval-Augmented Generation, Plain English (2026) | AITop">
+  <meta property="og:description" content="RAG is look-it-up-then-answer: retrieve relevant passages, generate with them cited. The architecture behind AI search and enterprise assistants — and why citation quality is the tell of a good one.">
+  <meta property="og:url" content="https://top.omc.network/glossary/rag">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is RAG? Retrieval-Augmented Generation, Plain English (2026) | AITop">
+  <meta name="twitter:description" content="RAG is look-it-up-then-answer: retrieve relevant passages, generate with them cited. Why citation quality is the tell of a good one.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="RAG is look-it-up-then-answer: retrieve relevant passages, generate with them cited. The architecture behind AI search and enterprise assistants — and why citation quality is the tell of a good one.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"RAG (retrieval-augmented generation)","item":"https://top.omc.network/glossary/rag"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"RAG (retrieval-augmented generation)","description":"A technique where a model looks up relevant documents first, then generates an answer grounded in them, usually with citations. The architecture behind AI search engines and assistants that check their work.","url":"https://top.omc.network/glossary/rag","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="../index.html"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+        <a href="../vs/chatgpt-vs-claude.html" data-i18n="nav.vs">Comparisons</a>
+        <a href="../best/ai-chatbots.html" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="../index.html" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is RAG (retrieval-augmented generation)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-06. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>RAG is "look it up, then answer." Instead of relying on what the model memorized in training, the tool first <i>retrieves</i> relevant passages — from a search index, your company wiki, your PDF pile — hands them to the model, and generates an answer grounded in them, usually with citations. It is the architecture behind AI search engines, "chat with your documents" products and most enterprise assistants. RAG doesn't eliminate hallucination; it gives you the receipts to catch it.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Break the acronym apart and the whole idea falls out. <b>Retrieval</b>: a search step finds the handful of passages most relevant to your question. <b>Augmented</b>: those passages are injected into the model's context alongside your question — the model reads them like an open-book exam. <b>Generation</b>: the model writes an answer based on that material, ideally quoting and citing as it goes.</p>
+      <p>The crucial insight is that a model's training knowledge is frozen and unattributable, while retrieval is fresh and checkable. A model trained in March cannot know about an October price change; a RAG pipeline that searched yesterday can. That is why the products where being <i>current</i> matters — AI search, support bots, document analysis — are all RAG underneath, whatever the landing page calls it.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because RAG quality is a product differentiator hiding behind a shared buzzword. Two tools can both say "grounded in your documents" and differ enormously: one retrieves the right five passages and cites them precisely; the other retrieves sloppily and cites confidently. The model gets the glory, but the <b>retriever</b> is where quality lives — garbage retrieval produces confident garbage no matter how good the model is. When you evaluate any "AI search" or "chat with your files" tool, you are mostly evaluating a search engine wearing a language model's jacket.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p>AI search made RAG the default consumer-facing architecture: Google AI Mode generates directly on top of Google's index, Perplexity built citations into the product itself, and ChatGPT Search bolts retrieval onto a chatbot — three genuinely different implementations we compare in <a href="../vs/perplexity-vs-google-ai-mode.html">our AI search showdown</a>. The arms race has moved to trust: ad slots inside AI answers, AI-search-optimisation spam planting fake sources, and citation formats that make sources harder to verify all appeared in 2025&ndash;2026. The healthy user habit is now the same as the healthy architecture: click the citation, read the passage, confirm it supports the claim.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li>Click citations before trusting them — confirm the linked source actually supports the sentence it's attached to.</li>
+        <li>Test freshness on purpose: ask about something that changed this month and see what the tool's index knows.</li>
+        <li>For document chat, test retrieval with a detail buried mid-document, not just the summary page.</li>
+        <li>Prefer tools that cite <b>every</b> factual claim by default over tools that cite only when pressed.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>RAG is the load-bearing wall of <a href="../vs/perplexity-vs-google-ai-mode.html">Perplexity vs Google AI Mode vs ChatGPT Search</a> and <a href="../vs/perplexity-vs-chatgpt.html">Perplexity vs ChatGPT</a>, and it is the feature that makes <a href="../best/ai-legal-tools.html">AI legal tools</a> trustworthy enough for filing work. Related terms: <a href="context-window.html">context window</a>, <a href="ai-hallucination.html">AI hallucination</a> — or back to <a href="./">the full glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>RAG is the difference between a model that <i>knows</i> and a tool that <i>checks</i>. It is not magic and not optional — it is the open-book exam every serious AI product gives its model before answering. Judge the retrieval, click the citations, and the buzzword collapses back into the only question that matters: can this tool show its work?</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="../about.html" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="../privacy.html" data-i18n="f.privacy">Privacy</a> · <a href="../terms.html" data-i18n="f.terms">Terms</a> · <a href="../about.html" data-i18n="f.about">About</a> · <a href="../contact.html" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -34,3 +34,15 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/best/ai-video-tools](https://top.omc.network/best/ai-video-tools): Best AI Video Generators of 2026 — Veo, Runway, Kling, Pika, Sora Compared | AITop
 - [https://top.omc.network/best/ai-writing-tools](https://top.omc.network/best/ai-writing-tools): Best AI Writing Tools of 2026 — Jasper, Copy.ai, Rytr, Grammarly Compared | AITop
 - [https://top.omc.network/best/insurance-agent-software](https://top.omc.network/best/insurance-agent-software): Best Software for Insurance Agents in 2026 — Top 5 Compared | AITop
+
+## Glossary (AI buyer's terms, plain English)
+
+- [https://top.omc.network/glossary](https://top.omc.network/glossary): AI Glossary — What AI Tool Terms Actually Mean for Buyers | AITop
+- [https://top.omc.network/glossary/ai-token](https://top.omc.network/glossary/ai-token): What Is an AI Token? What It Means When You Pay Per Token | AITop
+- [https://top.omc.network/glossary/context-window](https://top.omc.network/glossary/context-window): What Is a Context Window? Why It Changes Which AI You Pay For | AITop
+- [https://top.omc.network/glossary/rag](https://top.omc.network/glossary/rag): What Is RAG (Retrieval-Augmented Generation)? In Buyer's Terms | AITop
+- [https://top.omc.network/glossary/ai-hallucination](https://top.omc.network/glossary/ai-hallucination): What Is an AI Hallucination? Why It Should Change What You Buy | AITop
+- [https://top.omc.network/glossary/voice-cloning](https://top.omc.network/glossary/voice-cloning): What Is Voice Cloning? What You Can Legally & Ethically Clone | AITop
+- [https://top.omc.network/glossary/stem-separation](https://top.omc.network/glossary/stem-separation): What Is Stem Separation? Why AI Music Tools Fight Over It | AITop
+- [https://top.omc.network/glossary/ai-music-license](https://top.omc.network/glossary/ai-music-license): AI Music Licensing Explained — Can You Actually Use That Song? | AITop
+- [https://top.omc.network/glossary/ai-watermark](https://top.omc.network/glossary/ai-watermark): What Is AI Watermarking? Does It Restrict What You Can Do? | AITop

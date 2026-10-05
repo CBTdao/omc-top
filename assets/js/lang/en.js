@@ -3,6 +3,7 @@ window.I18N.en = {
   "nav.home": "Home",
   "nav.vs": "Comparisons",
   "nav.best": "Rankings",
+  "nav.glossary": "Glossary",
 
   "hero.kicker": "Independent · Opinionated · Disclosed ownership",
   "hero.title": "Every AI comparison is 3,000 words of nothing. Here's the table.",
@@ -77,6 +78,7 @@ window.I18N.en = {
   "crumb.home": "Home",
   "crumb.vs": "Comparisons",
   "crumb.best": "Rankings",
+  "crumb.glossary": "Glossary",
   "ui.updated": "Data last updated: {date}. Pricing may have changed — verify with the vendor.",
   "ui.verdict": "The verdict",
   "ui.pricing": "Pricing",

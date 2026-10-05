@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is a Context Window? Advertised vs Usable (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/context-window">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is a Context Window? Advertised vs Usable (2026) | AITop">
+  <meta property="og:description" content="A context window is how much a model can hold in mind at once — your prompt, attached documents and its reply all share it. Why the advertised number and the usable number are different things in 2026.">
+  <meta property="og:url" content="https://top.omc.network/glossary/context-window">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is a Context Window? Advertised vs Usable (2026) | AITop">
+  <meta name="twitter:description" content="A context window is how much a model can hold in mind at once. Why the advertised number and the usable number are different things in 2026.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="A context window is how much a model can hold in mind at once — your prompt, attached documents and its reply all share it. Why the advertised number and the usable number are different things in 2026.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Context window","item":"https://top.omc.network/glossary/context-window"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Context window","description":"The maximum amount of text — prompt, attachments and the model's own reply — a model can consider at once, measured in tokens.","url":"https://top.omc.network/glossary/context-window","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="../index.html"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="../index.html" data-i18n="nav.home">Home</a>
+        <a href="../vs/chatgpt-vs-claude.html" data-i18n="nav.vs">Comparisons</a>
+        <a href="../best/ai-chatbots.html" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="../index.html" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is a context window?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-06. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>The context window is how much a model can hold in mind at once, measured in tokens: your prompt, every document you attach, the whole chat history, and the reply being written all share one space. It is the model's workbench, not its brain — nothing outside the window exists for the current answer. Advertised windows now reach into the hundreds of thousands and even millions of tokens, but the <i>usable</i> window — where quality stays sharp — is smaller, and that gap is where marketing lives.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Think of it as one shared whiteboard of fixed size. Your instructions go on it, the PDF you uploaded goes on it, the last forty messages of the conversation go on it — and when it fills, something has to come off. Older turns get compressed, summarized or silently dropped, which is why a chatbot that "remembered" something yesterday can forget it today: the memory left the whiteboard, not the model.</p>
+      <p>Two consequences follow. First, the window is <b>shared</b>: a 200k-token window with a 150k-token document attached leaves less room than you think, and long conversations quietly eat it. Second, quality is not uniform across the board — models attend most reliably to the beginning and end of what they can see, and long-buried details are where mistakes breed.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because the workloads that feel "big" — a 300-page contract, a whole codebase, a semester of chat history — live or die on this number and on how the tool manages it. The right question is never "how big is the window?" but "what does the tool do when the window runs out?" Vendors diverge hard here: some compress and summarize automatically, some retrieve only relevant chunks (see <a href="rag.html">RAG</a>), some simply truncate and hope you don't notice. Same advertised number, very different experience.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p>Window sizes became a marketing arms race after million-token claims landed, so the number stopped being informative on its own. What distinguishes tools now is <i>effective use</i>: how much of a huge document the model can actually reason over without dropping the needle you asked about. Benchmarks that test long-document comprehension show large gaps between models with identical claimed windows — and long-context input is also billed by the token, so a careless 500k-token prompt is a real invoice. The practical hierarchy in 2026: a modest window with excellent retrieval beats a giant window with lazy truncation, almost every time.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li>Test with <b>your</b> document, not the vendor's demo — upload your longest real file and ask about a detail buried in the middle.</li>
+        <li>Ask what happens at overflow: compression, retrieval, or silent truncation?</li>
+        <li>Check the price of long prompts if you pay per token — window size and bill size are the same knob.</li>
+        <li>For recurring large-document work, prefer tools with explicit retrieval over tools that just claim a big window.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Window claims and their fine print run through <a href="../best/ai-chatbots.html">the best AI chatbots</a>, <a href="../vs/chatgpt-vs-claude.html">ChatGPT vs Claude</a> (two different philosophies of long-context handling), and <a href="../vs/notion-ai-vs-chatgpt.html">Notion AI vs ChatGPT</a> (where workspace search does the heavy lifting). Related terms: <a href="rag.html">RAG</a> and <a href="ai-token.html">AI token</a> — or back to <a href="./">the full glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>The context window is capacity, not competence. Treat advertised token counts as the size of the parking lot, not the quality of the driving — and judge tools by what they do when the whiteboard fills. That one question separates the tools engineered for real work from the ones engineered for spec sheets.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="../about.html" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="../privacy.html" data-i18n="f.privacy">Privacy</a> · <a href="../terms.html" data-i18n="f.terms">Terms</a> · <a href="../about.html" data-i18n="f.about">About</a> · <a href="../contact.html" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
