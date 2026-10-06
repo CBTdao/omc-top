@@ -27,6 +27,7 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/best/ai-legal-tools](https://top.omc.network/best/ai-legal-tools): Best AI Legal Tools of 2026 — Harvey, CoCounsel, Lexis+ AI Compared | AITop
 - [https://top.omc.network/best/ai-presentation-tools](https://top.omc.network/best/ai-presentation-tools): Best AI Presentation Tools of 2026 — Gamma, Canva, Beautiful.ai & More | AITop
 - [https://top.omc.network/best/ai-music-generators](https://top.omc.network/best/ai-music-generators): Best AI Music Generators of 2026 — Suno, ElevenLabs, Mureka & Why Udio Can't Export | AITop
+- [https://top.omc.network/best/ai-transcription-tools](https://top.omc.network/best/ai-transcription-tools): Best AI Transcription Tools of 2026 — Otter, Fireflies, Descript, Notta, Rev & Whisper, Scored | AITop
 - [https://top.omc.network/vs/perplexity-vs-google-ai-mode](https://top.omc.network/vs/perplexity-vs-google-ai-mode): Perplexity vs Google AI Mode vs ChatGPT Search (2026) — Which AI Search Engine? | AITop
 - [https://top.omc.network/best/ai-tools-for-accountants](https://top.omc.network/best/ai-tools-for-accountants): Best AI Tools for Accountants in 2026 — Top 5 Compared | AITop
 - [https://top.omc.network/best/ai-tools-for-real-estate-agents](https://top.omc.network/best/ai-tools-for-real-estate-agents): Best AI Tools for Real Estate Agents in 2026 — Top 5 Compared | AITop

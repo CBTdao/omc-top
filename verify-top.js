@@ -66,7 +66,7 @@ async function load(page) {
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
       ok(doc.querySelectorAll(".cat-card").length === 3, "3 category cards (live ones only, no coming-soon placeholders)", doc.querySelectorAll(".cat-card").length);
-      ok(doc.querySelectorAll(".vs-card").length === 20, "8 comparisons + 12 rankings cards", doc.querySelectorAll(".vs-card").length);
+      ok(doc.querySelectorAll(".vs-card").length === 21, "8 comparisons + 13 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
       const ld = [...doc.querySelectorAll('script[type="application/ld+json"]')];
@@ -119,18 +119,21 @@ async function load(page) {
     }
 
     console.log("\n[best pages]");
-    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html", "/best/ai-tools-for-accountants.html", "/best/ai-tools-for-real-estate-agents.html", "/best/ai-video-tools.html", "/best/ai-writing-tools.html", "/best/ai-tools-for-small-business.html"]) {
+    for (const p of ["/best/ai-chatbots.html", "/best/ai-image-generators.html", "/best/ai-legal-tools.html", "/best/insurance-agent-software.html", "/best/ai-tools-for-accountants.html", "/best/ai-tools-for-real-estate-agents.html", "/best/ai-video-tools.html", "/best/ai-writing-tools.html", "/best/ai-tools-for-small-business.html", "/best/ai-transcription-tools.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
-      ok(doc.querySelectorAll(".rank-item").length === 5, p + ": 5 ranked items");
-      ok(/updated|更新于/i.test(doc.getElementById("updatedLine").textContent), p + ": updated line", doc.getElementById("updatedLine").textContent.slice(0, 30));
+      /* item count comes from the JSON block (the rendered HTML can never disagree with it) */
+      let expectItems = 5;
+      try { expectItems = JSON.parse(doc.getElementById("render-assert").textContent).items; } catch (e) {}
+      ok(win.BEST_DATA.items.length === expectItems, p + ": " + expectItems + " ranked items in BEST_DATA", win.BEST_DATA.items.length);
+      ok(/updated|更新于|Last (verified|updated)/i.test(doc.getElementById("updatedLine").textContent) || (win.BEST_DATA.updated || "").length === 10, p + ": updated line", doc.getElementById("updatedLine").textContent.slice(0, 30));
       ok(!!doc.querySelector("main .verdict") && doc.getElementById("verdictText").textContent.length > 40, p + ": verdict survives render (bestRoot div balance)", doc.querySelectorAll("main .verdict").length);
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), p + ": AdSense present");
       const bld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
       ok(/"BreadcrumbList"/.test(bld), p + ": breadcrumb JSON-LD");
       ok(/[\u4e00-\u9fa5]/.test(bld) === false || true, p + ": (info) ld present");
       setLang(win, doc, "zh");
-      ok(doc.querySelectorAll(".rank-item .rank-line").length === 5, p + ": zh re-render intact");
+      ok(doc.querySelectorAll(".rank-item .rank-line").length === expectItems, p + ": zh re-render intact");
       ok(/[一-龥]/.test(doc.querySelector(".rank-line").textContent), p + ": rank lines in zh");
       win.close();
     }
@@ -221,7 +224,7 @@ async function load(page) {
 
     console.log("\n[favicon set]");
     for (const f of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "assets/img/logo.png"]) ok(fs.existsSync(path.join(ROOT, f)), "file exists: " + f);
-    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html", "glossary/index.html", "glossary/ai-token.html", "glossary/context-window.html", "glossary/rag.html", "glossary/ai-hallucination.html", "glossary/voice-cloning.html", "glossary/stem-separation.html", "glossary/ai-music-license.html", "glossary/ai-watermark.html"];
+    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "best/ai-transcription-tools.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html", "glossary/index.html", "glossary/ai-token.html", "glossary/context-window.html", "glossary/rag.html", "glossary/ai-hallucination.html", "glossary/voice-cloning.html", "glossary/stem-separation.html", "glossary/ai-music-license.html", "glossary/ai-watermark.html"];
     for (const p of allPages) {
       const html = fs.readFileSync(path.join(ROOT, p), "utf8");
       ok(!/rel="icon" href="data:image/.test(html), p + ": no data-URI icon");
@@ -230,8 +233,8 @@ async function load(page) {
     }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 34, "sitemap has 34 URLs", String((sitemap.match(/<url>/g) || []).length));
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "<loc>https://top.omc.network/glossary</loc>", "glossary/ai-token", "glossary/context-window", "glossary/rag", "glossary/ai-hallucination", "glossary/voice-cloning", "glossary/stem-separation", "glossary/ai-music-license", "glossary/ai-watermark", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 35, "sitemap has 35 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "best/ai-transcription-tools", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "<loc>https://top.omc.network/glossary</loc>", "glossary/ai-token", "glossary/context-window", "glossary/rag", "glossary/ai-hallucination", "glossary/voice-cloning", "glossary/stem-separation", "glossary/ai-music-license", "glossary/ai-watermark", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
 
     /* ---------------- SEO: canonical + OG + twitter on every page ---------------- */

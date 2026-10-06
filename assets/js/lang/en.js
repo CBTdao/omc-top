@@ -60,6 +60,8 @@ window.I18N.en = {
   "rank.r11.m": "Gamma · Canva · Beautiful.ai, and who exports .pptx",
   "rank.r12": "Best AI music generators of 2026",
   "rank.r12.m": "Suno · ElevenLabs · Mureka — and what you can actually export",
+  "rank.r13": "Best AI transcription tools of 2026",
+  "rank.r13.m": "Otter · Fireflies · Descript — priced by the hour, scored by accuracy",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",

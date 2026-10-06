@@ -60,6 +60,8 @@ window.I18N.zh = {
   "rank.r11.m": "Gamma · Canva · Beautiful.ai，以及谁能导出 .pptx",
   "rank.r12": "AI 音乐生成工具 TOP5（2026）",
   "rank.r12.m": "Suno · ElevenLabs · Mureka —— 以及你实际能导出什么",
+  "rank.r13": "AI 语音转写工具 TOP5（2026）",
+  "rank.r13.m": "Otter · Fireflies · Descript —— 按时长计费，按准确率打分",
 
   "banner.title": "由 Omniverse Compute 团队运营",
   "banner.sub": " AITop 由 OMC（币安链上的去中心化 GPU 算力网络）团队建设与维护，每一页都如实披露，且 OMC 从不出现在我们的评测排名中。",
