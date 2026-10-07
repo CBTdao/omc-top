@@ -170,7 +170,7 @@ async function run() {
       ok(doc.documentElement.lang === "en", "default en");
       ok(doc.querySelectorAll(".gl-list").length === 4, "4 grouped sections");
       ok(doc.querySelectorAll(".gl-list a").length === 9, "9 glossary entry links", String(doc.querySelectorAll(".gl-list a").length));
-      const hubMiss = [...doc.querySelectorAll(".gl-list a")].map(a => a.getAttribute("href")).filter(h => !fs.existsSync(path.join(ROOT, "glossary", h)));
+      const hubMiss = [...doc.querySelectorAll(".gl-list a")].map(a => a.getAttribute("href")).filter(h => !fs.existsSync(path.join(ROOT, h.replace(/^\//, "") + ".html")));
       ok(hubMiss.length === 0, "hub: all entry targets exist on disk", hubMiss.join(","));
       const hld = [...doc.querySelectorAll('script[type="application/ld+json"]')].map(x => x.textContent).join(" ");
       ok(/"DefinedTermSet"/.test(hld), "DefinedTermSet JSON-LD");
@@ -192,9 +192,9 @@ async function run() {
       ok(/"DefinedTerm"/.test(ld), p + ": DefinedTerm JSON-LD");
       ok(/"BreadcrumbList"/.test(ld), p + ": breadcrumb JSON-LD");
       ok(doc.querySelectorAll(".gl-check li").length >= 3, p + ": checklist items >= 3", String(doc.querySelectorAll(".gl-check li").length));
-      const inks = [...doc.querySelectorAll("a[href^='../vs/'], a[href^='../best/']")].map(a => a.getAttribute("href"));
+      const inks = [...doc.querySelectorAll("a[href^='/vs/'], a[href^='/best/']")].map(a => a.getAttribute("href"));
       ok(inks.length >= 1, p + ": internal links to review pages", String(inks.length));
-      const missing = inks.filter(h => !fs.existsSync(path.join(ROOT, p, "..", h)));
+      const missing = inks.filter(h => !fs.existsSync(path.join(ROOT, h.replace(/^\//, "") + ".html")));
       ok(missing.length === 0, p + ": internal link targets exist", missing.join(","));
       setLang(win, doc, "zh");
       ok(doc.documentElement.lang === "zh", p + ": switch to zh");
