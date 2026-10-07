@@ -281,7 +281,7 @@ async function run() {
     for (const d of ["vs", "best"]) {
       for (const f of fs.readdirSync(path.join(ROOT, d)).filter(x => x.endsWith(".html"))) {
         const src = fs.readFileSync(path.join(ROOT, d, f), "utf8");
-        ok(src.includes('class="gl-note"') && src.includes('href="../glossary/"'), d + "/" + f + ": gl-note cross-link present");
+        ok(src.includes('class="gl-note"') && src.includes('href="/glossary"'), d + "/" + f + ": gl-note cross-link present");
       }
     }
 }
