@@ -62,6 +62,8 @@ window.I18N.en = {
   "rank.r12.m": "Suno · ElevenLabs · Mureka — and what you can actually export",
   "rank.r13": "Best AI transcription tools of 2026",
   "rank.r13.m": "Otter · Fireflies · Descript — priced by the hour, scored by accuracy",
+  "rank.r14": "Best AI customer service tools of 2026",
+  "rank.r14.m": "Fin · Zendesk · Gorgias — priced per resolved conversation, not per seat",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",
