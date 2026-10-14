@@ -64,6 +64,8 @@ window.I18N.en = {
   "rank.r13.m": "Otter · Fireflies · Descript — priced by the hour, scored by accuracy",
   "rank.r14": "Best AI customer service tools of 2026",
   "rank.r14.m": "Fin · Zendesk · Gorgias — priced per resolved conversation, not per seat",
+  "rank.r15": "Best AI voice generators of 2026",
+  "rank.r15.m": "ElevenLabs · Cartesia · OpenAI · Google · PlayHT · Polly — priced by credits, characters or tokens",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",

@@ -64,6 +64,8 @@ window.I18N.zh = {
   "rank.r13.m": "Otter · Fireflies · Descript —— 按时长计费，按准确率打分",
   "rank.r14": "AI 客服工具 TOP5（2026）",
   "rank.r14.m": "Fin · Zendesk · Gorgias —— 按「已解决对话」计费，不按席位",
+  "rank.r15": "AI 语音生成工具 TOP5（2026）",
+  "rank.r15.m": "ElevenLabs · Cartesia · OpenAI · Google · PlayHT · Polly —— 按积分、字符还是 token 计费，才是账单的关键",
 
   "banner.title": "由 Omniverse Compute 团队运营",
   "banner.sub": " AITop 由 OMC（币安链上的去中心化 GPU 算力网络）团队建设与维护，每一页都如实披露，且 OMC 从不出现在我们的评测排名中。",

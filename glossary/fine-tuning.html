@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Fine-Tuning? Why It Is Not How You Teach an AI Your Facts (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/fine-tuning">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Fine-Tuning? Why It Is Not How You Teach an AI Your Facts (2026) | AITop">
+  <meta property="og:description" content="Fine-tuning trains behaviour — tone, format, refusal patterns — not facts. What LoRA changed, what the fine-tuned inference premium costs forever, and why the data work usually dwarfs the compute.">
+  <meta property="og:url" content="https://top.omc.network/glossary/fine-tuning">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Fine-Tuning? Why It Is Not How You Teach an AI Your Facts (2026) | AITop">
+  <meta name="twitter:description" content="LoRA trains under 1% of the model's parameters, so a fine-tune now costs an evening and one GPU. The permanent part is the inference premium — and the data, not the compute.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Fine-tuning trains behaviour — tone, format, refusal patterns — not facts. What LoRA changed, what the fine-tuned inference premium costs forever, and why the data work usually dwarfs the compute.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Fine-tuning","item":"https://top.omc.network/glossary/fine-tuning"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Fine-tuning","description":"Continuing the training of an already pre-trained model on your own examples, so it adopts a behaviour — a tone, an output format, a domain vocabulary, a refusal pattern — rather than new facts. In 2026 the default method is LoRA or QLoRA, which trains a small adapter (often under 1% of the model's parameters) instead of the whole model, and the ongoing cost is a permanent premium on the fine-tuned model's inference rather than the one-off training run.","url":"https://top.omc.network/glossary/fine-tuning","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is fine-tuning?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-14. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>Fine-tuning is taking a model that has already been trained and training it further on <b>your own examples</b>, so it adopts a <b>behaviour</b> — a tone, an output format, a vocabulary, a refusal pattern. It is not a way to give a model new facts: knowledge goes stale, cannot be cited, and belongs in retrieval instead. The 2026 default method is <b>LoRA</b> (or its memory-frugal cousin QLoRA), which trains a small adapter — often under <b>1%</b> of the model's parameters — rather than the whole model, so a job that needed a rack of GPUs now runs on one card in an evening. The bill has three parts, and almost nobody quotes them together: the one-off training run, a <b>permanent inference premium</b> on the fine-tuned model, and the data work, which is usually the biggest of the three.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Every commercial model you can call today is a <b>base model</b> that someone else pre-trained on a very large corpus. Fine-tuning starts from that checkpoint and keeps training it — but on a much smaller set of examples that you supply, each of which shows the behaviour you want. The examples can be instruction/response pairs, conversations with a target assistant turn, or a labelled classification set. The model's weights move, slightly and unevenly, toward whatever the examples have in common. That is the whole mechanism.</p>
+      <p>Three families are worth separating, because vendors describe them as one thing and price them as three. <b>Supervised fine-tuning (SFT)</b> is the mainstream: show the model good answers and let it imitate. <b>Preference methods</b> — DPO and KTO are the common ones — train on pairs or rankings, teaching the model both what to do and what to avoid, which is why they are the reference tool for tone and refusal problems. <b>Reinforcement fine-tuning (RFT)</b> needs a reward you can compute automatically: a maths answer that checks out, a unit test that passes. If you cannot say objectively whether an output is correct, RFT has nothing to learn from.</p>
+      <p>The most useful thing to hold onto is what fine-tuning <b>does not</b> change. It does not add facts — the knowledge cutoff and the model's grasp of the world outside your examples are unaffected. It does not expand the context window. It does not make a small model reason like a large one. What it reliably changes is <b>compliance</b>: how often the output lands in your schema, holds your voice, uses your terminology, and stops producing the refusals you have trained out.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because fine-tuning is the most expensive answer to a question that usually has a cheaper one. Work through three in order. <b>Can a better prompt fix it?</b> A system prompt with explicit format rules and a few examples handles most "it doesn't behave the way I want" complaints, and it costs nothing but an afternoon. <b>Is the problem knowledge?</b> If the model does not know your products, policies or prices, that is retrieval — a RAG layer is cheaper to build, instantly updatable, and can cite its sourcing, none of which a fine-tune can do. <b>Only then ask whether it is behaviour:</b> tone that drifts mid-conversation, JSON that will not validate, domain jargon it keeps mangling, procedural rules too long to paste into every prompt. Those are the cases where training actually buys something.</p>
+      <p>The arithmetic is unforgiving at low volume. Fine-tuning carries a fixed cost — the data work, the training runs, the evaluation — and the savings only arrive as the volume grows, because the return comes from inference. The rule of thumb practitioners converge on is that below roughly 100,000 requests a month the training investment rarely pays back through inference savings, and that a workload whose requirements are still changing is the worst possible candidate: prompts ship in seconds, and a fine-tune you have to redo next month is technical debt with a GPU bill attached.</p>
+      <p>Which is why the production pattern that actually works is a sequence rather than a choice. Prompt first. Add retrieval when you hit the knowledge wall. Fine-tune only the residual failures that prompting cannot reach. Then, if inference cost matters, distil the result into a smaller model. Teams that skip the first two steps routinely spend weeks fine-tuning knowledge that is stale by the second month.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>LoRA made fine-tuning cheap, and it became the default.</b> Instead of updating every weight, LoRA freezes the base model and trains small low-rank matrices beside the attention layers, which at inference are merged back so there is no added latency. The consequence is a different order of cost: training under 1% of the parameters means 10 to 100 times less compute, single-GPU runs instead of racks, and an artefact you can delete to return the model to its original state. Adapters are also stackable, so one base model can carry several behaviours. For the overwhelming majority of tasks in 2026, LoRA is where you start and, usually, where you stop.</p>
+      <p><b>The one-off training bill is the small part, and the inference premium is the permanent one.</b> OpenAI's fine-tuning API is the lowest-friction route: training a GPT-4o mini run is billed at $3 per million training tokens and a GPT-4o run at $25 per million, and the tuned model then bills at $0.30 per million input tokens and $1.20 per million output tokens — more than the un-tuned model, for as long as you use it. That is the structural point: fine-tuning is not a purchase, it is a subscription to a slightly more expensive model. It only makes sense when the tuned model replaces something bigger and pricier, which is the one case where the maths works in your favour.</p>
+      <p><b>The cost nobody budgets for is the data.</b> Managed training is billed per training token, which makes it look trivial; the dataset behind it is not. Curating, cleaning and validating instruction data is labour, and it is usually the largest line in the project — synthetic generation from a cheap model is a real shortcut, professional human annotation at roughly $0.05 to $0.50 per example is not, and either way the engineering time to build, evaluate and iterate exceeds the compute. The 2026 consensus has also moved on quantity: with parameter-efficient methods, a few hundred carefully curated examples often beat several thousand scraped ones, and teams that stall chasing dataset size are usually chasing the wrong problem.</p>
+      <p><b>And the bar keeps rising.</b> Every base-model release absorbs work that needed a fine-tune eighteen months earlier. Before committing, compare the current base model against your actual failing cases with a good prompt — because the most common 2026 outcome of a fine-tuning project is discovering that a model released last quarter already did the job.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Name the failure mode before you name the method.</b> Knowledge, tone, format, refusal or latency — each points at a different tool, and only the last three are fine-tuning problems.</li>
+        <li><b>Try prompting and retrieval first, in that order.</b> A prompt ships in an afternoon and a retrieval layer updates in minutes. Neither commits you to a retraining cycle when the product changes.</li>
+        <li><b>Count your examples before your budget.</b> A few hundred curated, consistent examples is the 2026 starting point. If you cannot assemble that, you do not yet have a dataset worth training on.</li>
+        <li><b>Price the inference premium, not the training run.</b> The tuned model costs more per token forever; work out whether it replaces a bigger model at volume before you pay for the first training job.</li>
+        <li><b>Ask what you will do at the next model release.</b> If the answer is "retrain from scratch in a month", you are buying debt — the version-switching cost is the part nobody puts in the plan.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Fine-tuning is the thing vendors imply when they say a product is "trained on your data", and it is the line item that explains why some plans cost more than the token maths suggests: <a href="/best/ai-chatbots">the best AI chatbots of 2026</a> (where the difference between a general assistant and a tuned one is a subscription tier), <a href="/best/ai-coding-assistants">the best AI coding assistants</a> (where a stable output format is worth more than raw capability, which is exactly what a fine-tune buys), and <a href="/best/ai-customer-service-tools">the best AI customer service tools</a> (where the agent's behaviour, not its knowledge, is what you are billed for per resolution). Related terms: <a href="/glossary/rag">RAG</a> is the technique you should be comparing it against — retrieval for what changes, fine-tuning for what should not; <a href="/glossary/ai-token">AI token</a> explains the per-token meter the inference premium sits on; and <a href="/glossary/ai-hallucination">AI hallucination</a> is the failure that fine-tuning cannot fix and retrieval frequently can. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Fine-tuning buys behaviour, and only behaviour: tone, format, vocabulary, refusal — not facts, not knowledge, not reasoning. In 2026 that makes it cheap, thanks to LoRA, and easy to do for the wrong reason, because prompting and retrieval are still the right first answers. So the buyer's version of the question is not "can we fine-tune this?" but "which of our failures is a behaviour failure, and is the volume high enough that the permanent inference premium is worth paying?" Get that order right and fine-tuning is a small, reversible adapter. Get it wrong and it is an expensive way to relearn what a better prompt already knew.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
