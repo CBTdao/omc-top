@@ -8,15 +8,15 @@ weaknesses and a clear verdict — no 3,000-word fluff.
 It is a sister property of [Omniverse Compute (OMC)](https://omc.network) — the decentralized GPU compute network on
 BNB Chain. Content is independent; OMC appears only in a clearly-labelled site-wide banner.
 
-## Page inventory (37 URLs)
+## Page inventory (39 URLs)
 
 | Type | Count | Path | Notes |
 |---|---|---|---|
 | Home | 1 | `/` | Category browser, hot comparisons, rankings |
-| Ranking | 14 | `/best/<slug>` | "Best AI X of 2026" listicles, `BEST_DATA` object |
+| Ranking | 15 | `/best/<slug>` | "Best AI X of 2026" listicles, `BEST_DATA` object |
 | Comparison | 8 | `/vs/<slug>` | "A vs B" head-to-heads, `VS_DATA` object |
 | Glossary hub | 1 | `/glossary` | Index linking all terms |
-| Glossary term | 9 | `/glossary/<term>` | ai-agent, ai-hallucination, ai-music-license, ai-token, ai-watermark, context-window, rag, stem-separation, voice-cloning |
+| Glossary term | 10 | `/glossary/<term>` | ai-agent, ai-hallucination, ai-music-license, ai-token, ai-watermark, context-window, fine-tuning, rag, stem-separation, voice-cloning |
 | Utility | 4 | `/about` `/contact` `/privacy` `/terms` | — |
 
 ## Tech
