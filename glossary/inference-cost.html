@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Inference Cost? Why Output Costs 5× Input | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/inference-cost">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Inference Cost? Why Output Costs 5× Input | AITop">
+  <meta property="og:description" content="Inference cost is what you pay to run a model, not to train it — and the meter is lopsided.">
+  <meta property="og:url" content="https://top.omc.network/glossary/inference-cost">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Inference Cost? Why Output Costs 5× Input | AITop">
+  <meta name="twitter:description" content="Output tokens bill at 5–6× input, cached input at 5–10%, batch at half — and one long prompt can cross a price cliff. The 2026 arithmetic of what a model costs to run.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Inference cost is what you pay to run a model, not to train it — and the meter is lopsided.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Inference cost","item":"https://top.omc.network/glossary/inference-cost"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Inference cost","description":"The cost of running a trained model to produce answers, as opposed to the one-off cost of training it. For hosted APIs it is billed per token, with output tokens priced at roughly five to six times input tokens, cached input discounted to five to ten percent of the fresh price, and batch jobs at half rate. For self-hosted models it is the hourly cost of the hardware divided by the throughput it sustains, which makes utilisation — batch size and concurrency — the largest single multiplier in the bill.","url":"https://top.omc.network/glossary/inference-cost","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is inference cost?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-21. Numbers dated; verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>Inference cost is what you pay to <b>run</b> a model — every question answered — as opposed to the one-off cost of training it. It is not one number, because the meter is lopsided in four places. <b>Output bills at five to six times the input rate</b> on both major API vendors. <b>Cached input bills at five to ten percent</b> of the fresh rate. <b>Batch jobs cost half</b> and <b>priority jobs cost double</b>. And context length is a <b>cliff, not a slope</b>: cross a vendor's threshold and the same token gets more expensive mid-conversation. Self-hosted, the shape is different but the lesson is the same — cost per token is the GPU's hourly price divided by the throughput it actually sustains, so at batch size one a card can cost forty times more per token than it does under load. In both worlds, the bill is set by <b>your traffic shape</b>, not by the headline price per million.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Every model has two lives. <b>Training</b> is the expensive, one-time run that produces the weights. <b>Inference</b> is every use after that: the forward pass that turns your prompt into an answer. Inference cost is the second one, and it is the one that compounds — a training run happens once and then sits on the balance sheet, while inference happens millions of times and shows up on every invoice until you switch the product off.</p>
+      <p>The hosted version of the bill is simple arithmetic: input tokens × input rate + output tokens × output rate, per million. What makes it hard to predict is that the two rates are not the same, and neither is constant. The self-hosted version replaces that meter with a division: <b>cost per token = cost of the hardware per hour ÷ tokens produced per hour</b>. Same idea, different lever — and the lever is utilisation, because a GPU that is idle still costs the same per hour as one that is saturated.</p>
+      <p>That is why two teams running "the same model" can pay wildly different amounts. They are not buying the same thing. One is buying tokens at a price list; the other is buying GPU-hours and hoping to fill them. Inference cost is the term that forces those two facts into one conversation, which is exactly what a procurement decision needs.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because the ratio between input and output decides which architecture is cheaper, and most buyers never check it. Output tokens are where the money is: on OpenAI's current price sheet a short-context <b>gpt-6.1-sol</b> request bills <b>$2.00 per million input and $10.00 per million output</b>, and the same five-to-one shape holds across its siblings — <b>gpt-5.4</b> at $2.50 and $15.00, <b>gpt-6-astra</b> at $10.00 and $50.00. Anthropic's current line is identical in structure: <b>Sonnet 5.5 at $2 / $10</b>, <b>Opus 5.5 at $4 / $20</b>, <b>Haiku 5.5 at $0.10 / $0.50</b>. Five times, every model, both vendors. If your product generates long answers from short prompts you are living on the expensive side of the meter; if it classifies, extracts or reranks — long input, one-line output — you are on the cheap side. Same vendor, same model, opposite economics.</p>
+      <p>Three multipliers then decide the rest, and they all reward a boring property: <b>repetition</b>. Cached input is billed at a fraction of fresh input — <b>$0.10 against $2.00</b> on gpt-6.1-sol, <b>$0.10 against $2.00</b> on Sonnet 5.5, <b>$0.01 against $0.10</b> on Haiku 5.5 — so a chatbot that resends the same system prompt and history every turn is paying full price for text the model has already seen. Batch processing is <b>half price</b> on both vendors for work nobody is waiting on. Priority processing is <b>double price</b> on both for work somebody is. None of these are discounts you negotiate; they are modes you choose, and choosing none of them is itself a decision to pay list price.</p>
+      <p>So the buyer's question is not "which model is cheapest per million tokens". It is "what is the shape of my traffic, and which of these four levers does it touch". A support bot with a 4,000-token system prompt, a 1,200-token conversation and a 200-token answer is a caching problem wearing a model-choice costume. A nightly document pipeline is a batch problem. A live agent that must respond inside 800 ms is a priority problem, and it will cost double no matter which vendor wins the bake-off.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The published rates moved, the shape did not.</b> The absolute numbers on both price sheets are lower than a year ago and will be lower again; the five-to-one output premium has survived every generation so far, because it reflects physics rather than pricing strategy. Generating a token requires reading the whole model and writing one token's worth of work; checking a prompt token can be done in parallel with thousands of others. Output is the serial part, and serial work does not get cheaper just because the parallel part did. A vendor that quoted input-only prices and hid the output rate would be quoting half a product.</p>
+      <p><b>Context length is a cliff.</b> This is the 2026 detail that most cost models still miss. OpenAI's current sheets split at roughly <b>272K input tokens</b>, where input doubles and output rises by half — gpt-6-astra goes from <b>$10 / $50</b> to <b>$20 / $75</b> per million. Anthropic's Haiku 5.5 splits at <b>100K tokens</b>, and above that line input goes from $0.10 to <b>$0.50</b> and output from $0.50 to <b>$2.50</b> — five times, for the same model. A retrieval pipeline that grows its context from 90K to 110K tokens does not get 20% more expensive; on that model it gets five times more expensive. Design to sit under the line, or budget for the jump deliberately.</p>
+      <p><b>Caching is the biggest lever nobody prices.</b> It is also the most fragile: OpenAI's cache starts at a 1,024-token prefix, extends in 128-token increments, and is typically cleared after <b>five to ten minutes of inactivity</b> and always within an hour of last use. Anthropic prices a five-minute cache <i>write</i> at 1.25× input, so a cache you write and never read is a loss. Warm caches reward steady traffic and punish bursty traffic — the same product can see a 40% saving in one week and none in the next without a line of code changing.</p>
+      <p><b>Self-hosting trades a price list for a utilisation problem.</b> Token generation is memory-bandwidth-bound, not compute-bound: each new token requires streaming the weights past the compute units, which works out to roughly <b>one FLOP per byte</b> against a hardware balance point of about <b>206 FLOP/byte</b> on an H200. The practical ceiling is bandwidth divided by the bytes read per token — a 70B model in FP8 is about 70 GB, so <b>4.8 TB/s ÷ 70 GB ≈ 69 tokens per second</b> on one H200 at batch size one, against about <b>48</b> on an H100's 3.35 TB/s. Now divide the rental rate by that throughput: a card at <b>$2.50 an hour</b> producing 48 tokens a second is <b>about $14.50 per million output tokens</b>; the same card batching enough concurrent users to sustain 2,000 tokens a second is <b>about $0.35</b>. Forty times the difference, from batching alone, with no change in hardware or model.</p>
+      <p><b>And the arithmetic is the only honest forecast.</b> Vendors are entitled to reprice; both sheets above carry dated promotions and tier changes. Treat every rate in this entry as an observation from October 2026, recompute with your own traffic mix, and re-check before you sign anything multi-year.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Split your traffic into input and output before comparing vendors.</b> A workload that is 95% input and 5% output is priced by a different column than one that generates long answers — compare the column you actually live in.</li>
+        <li><b>Find the context cliff on every model you shortlist.</b> Ask what happens above the vendor's threshold: doubling input and half-again output, or five times both. Then measure your real prompt distribution against it.</li>
+        <li><b>Design for cache hits or stop expecting them.</b> Stable prefixes, system prompts first, no timestamps at the top of the prompt — and check the cache TTL, because a five-minute window only pays on steady traffic.</li>
+        <li><b>Move everything nobody is waiting for to batch.</b> Half price on both major vendors for the same model is the cheapest optimisation available, and it is a queue configuration rather than an engineering project.</li>
+        <li><b>If you self-host, quote cost per million output tokens at your real concurrency.</b> Batch-size-one throughput is a ceiling, not a forecast — and a utilisation figure you have not measured is a guess with a decimal point.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Inference cost is the number behind three arguments you will meet in any AI tool purchase: <a href="/best/ai-chatbots">the best AI chatbots of 2026</a> (where "unlimited" plans are priced against a token cost the vendor is quietly absorbing), <a href="/best/ai-coding-assistants">the best AI coding assistants</a> (where long files and repeated context make caching the difference between a viable seat price and a loss-making one), and <a href="/best/ai-customer-service-tools">the best AI customer service tools</a> (where per-resolution pricing is an inference bill with the variance moved to the vendor). Related terms: <a href="/glossary/ai-token">AI token</a> is the unit this cost is metered in; <a href="/glossary/context-window">context window</a> explains why the cliff exists at all; <a href="/glossary/ai-agent">AI agent</a> is the workload that multiplies every lever at once, because an agent makes many calls per task; and <a href="/glossary/fine-tuning">fine-tuning</a> is the decision that adds a permanent premium to this bill. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Inference cost is the price of every answer, and it is set by four levers the price list does not advertise: output costs five to six times input, cached input costs a tenth, batch halves it, priority doubles it — with context length acting as a cliff rather than a slope. Self-hosted, the same logic arrives as a division, and utilisation becomes the multiplier that can move cost per token by 40×. So the buying question is never "what does a million tokens cost". It is "what shape is my traffic, which levers does it touch, and where is the nearest cliff" — and the team that answers that pays a fraction of what the team beside it pays for exactly the same model.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
