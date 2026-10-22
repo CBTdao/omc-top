@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Are Open Weights? Why "Open" Is Not "Open Source" | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/open-weights">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Are Open Weights? Why &quot;Open&quot; Is Not &quot;Open Source&quot; | AITop">
+  <meta property="og:description" content="Open weights means the model file is downloadable — not that the license is clean. The 2026 license map, and the clauses that decide what you may ship.">
+  <meta property="og:url" content="https://top.omc.network/glossary/open-weights">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Are Open Weights? Why &quot;Open&quot; Is Not &quot;Open Source&quot; | AITop">
+  <meta name="twitter:description" content="Downloadable weights, licenses that range from MIT to a 700-million-user clause. What open weights buys you in 2026 — and what it silently doesn't.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Open weights means the model file is downloadable — not that the license is clean. The 2026 license map, and the clauses that decide what you may ship.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Open weights","item":"https://top.omc.network/glossary/open-weights"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Open weights","description":"A model whose trained parameters are published for download, so anyone can run, inspect and fine-tune it on their own hardware — regardless of what the license allows. Open weights is a distribution statement, not a license category: the terms range from permissive (MIT, Apache 2.0) to custom licenses with user caps, distillation bans or remote-restriction clauses. Most major open-weight families (Llama, DeepSeek, Qwen, Mistral, Gemma) withhold their training data and full training code, which is why the Open Source Initiative's 2024 definition classes them as open-weight rather than open-source.","url":"https://top.omc.network/glossary/open-weights","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What are open weights?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-22. License terms are snapshots — read the model card before you ship.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Open weights</b> means a model's trained parameters are published as files you can download, run on your own hardware, inspect and fine-tune — as opposed to a closed model you can only reach through the vendor's API. It is a statement about <b>distribution, not licensing</b>. The license attached to those weights ranges from genuinely permissive (DeepSeek-R1 ships under MIT; the Qwen3 family under Apache 2.0) to custom documents with real teeth — Meta's Llama license caps free commercial use at <b>700 million monthly active users</b>, restricts using outputs to train competing models, and requires a separate grant above that line at Meta's sole discretion. None of the major open-weight families publishes its training data, which is why the Open Source Initiative's 2024 definition classes Llama, and most of the "open" field, as open-weight but <b>not open-source</b>. The practical reading: open weights buys you control, privacy and a hosting bill; the license decides what you may legally ship.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A model has three parts that can be open or closed independently: the <b>weights</b> (the trained parameters, usually gigabytes to terabytes of files), the <b>code</b> that trained and runs it, and the <b>data</b> it was trained on. A closed model gives you none of the three — you get a network endpoint. An open-weights model gives you the first one: you download the weights, load them onto your own or rented GPUs, and serve the model yourself. That single fact changes the product in three ways at once: your prompts and data never leave your infrastructure, you can modify the model (see <a href="/glossary/fine-tuning">fine-tuning</a>), and your cost structure switches from per-token billing to hardware and utilisation — the arithmetic in <a href="/glossary/inference-cost">inference cost</a>.</p>
+      <p>What open weights does <b>not</b> mean is "open source", and the confusion is not pedantic. In software, open source means a standard license (MIT, Apache, GPL) that grants use for any purpose, with no permission gates. The Open Source Initiative's <b>Open Source AI Definition (OSAID 1.0)</b>, published in October 2024, extends that to models: it requires the license to grant the freedoms to use, study, modify and share, plus enough information about the training data and the training code that a skilled person could rebuild a substantially equivalent system. By that bar, essentially every famous "open" model is open-weight only — the weights are public, but the data and the full training recipe are not. The OSI has said this about Llama explicitly; a permissive <i>license</i> like Apache 2.0 on a model with closed data still lands in the open-weight column.</p>
+      <p>The third layer, easy to miss, is <b>gating</b>. Many open-weight models sit behind an accept-the-terms download gate on Hugging Face or the vendor's site, and some licenses make the vendor the continuing arbiter of your use — a model you "have" can still come with conditions you have to read.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because the label "open" on a landing page can hide four completely different legal products, and the difference between them decides whether your product can ship. The practical map in 2026 looks like this:</p>
+      <p><b>Permissive, no questions asked.</b> DeepSeek-R1 ships under <b>MIT</b> — the announcement explicitly allows using the model's outputs to distill other models, and the license text on the repository confirms it. The Qwen3 family from Alibaba is under <b>Apache 2.0</b>, the same license that lets Mistral's open releases ship commercially without restrictions. If your product might grow, be acquired, or be embedded anywhere, this tier is the one where nobody ever has to call a lawyer.</p>
+      <p><b>Custom licenses with conditions.</b> Meta's <b>Llama Community License</b> allows commercial use — until your product passes <b>700 million monthly active users</b>, at which point you must request a separate license that Meta grants "in its sole discretion". The same license restricts using Llama outputs to improve other large models — the exact thing DeepSeek's MIT grant permits. Google's <b>Gemma</b> family (through Gemma 3) ships under custom Gemma Terms of Use that require propagating Google's prohibited-use policy downstream and reserve the right to restrict usage remotely — a clause no standard license contains. Gemma 4 has since moved to Apache 2.0, which tells you how quickly this tier can move in either direction. None of these are traps for a startup running a support bot; all of them are traps for a diligence review at scale.</p>
+      <p><b>Fully open, data and all.</b> A small set of projects — Ai2's OLMo is the standard example — publish the corpus, code, logs and checkpoints alongside the weights, and are the only entries that clear the OSI's bar. They matter for auditability and research; for a buying decision they are a narrow slice of the market.</p>
+      <p>So the buyer's question is never "is it open?". It is: <b>which tier, whose license, and what clause bites at my scale</b> — read on the specific model card you will deploy, because a fine-tune or a quantised copy inherits the base model's license no matter what the uploader wrote, and vendors routinely keep the family's top model closed while the rest ships openly.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The word "open" is a marketing asset, and it is being farmed.</b> Vendors that ship custom licenses still describe them as open source in launch materials; the OSI and licensing researchers have spent two years pushing back, and the honest term for most of the field is exactly the one this entry defines — open weights. When a vendor's page says "open", the two checks that take minutes and prevent months of pain are the <b>license field on the model card</b> and the <b>gating flag</b>. A missing license is closer to "no rights granted" than to "do what you like".</p>
+      <p><b>The clauses are real, not hypothetical.</b> The 700-million-user threshold in the Llama license is aimed at Meta's actual competitors — you will not hit it — but the <b>distillation restriction</b> touches ordinary practice: fine-tuning on another model's outputs is a common technique, and under the Llama license it is restricted, while under DeepSeek's MIT it is expressly allowed. Teams discover these clauses at the worst possible moment: during acquisition diligence or a platform review, when the model is already load-bearing.</p>
+      <p><b>Open weights moved the frontier, and priced it.</b> The reason this term appears in a buyer's glossary at all is that open-weight releases now sit near the top of capability leaderboards, which forces every closed vendor's pricing to be defended against a model you could, in principle, host yourself. That threat is what keeps per-token prices falling — and it is why the self-hosting arithmetic in <a href="/glossary/inference-cost">inference cost</a> has become a real procurement input rather than a thought experiment: an API premium is only "premium" up to the point where hosting the open alternative on rented GPUs is cheaper at your traffic shape. For most teams below meaningful scale, the API still wins; the point is that the comparison is now legitimate, and the license is what determines whether the open option is even on the table.</p>
+      <p><b>And the license can change under you.</b> Families have reset their terms between generations, and community licenses are vendor documents, not treaties. Record the license text and commit hash of the weights you actually deployed; a screenshot of the model card the day you shipped is the cheapest insurance in this whole glossary.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Read the license on the exact model card you will deploy</b> — not the family name, not the press release, and not the uploader's tag on a fine-tune, which inherits the base model's terms regardless of what it says.</li>
+        <li><b>Sort your shortlist into MIT/Apache vs custom-license tiers before comparing quality.</b> A model that beats another by 2% on a benchmark but drags a 700-million-user clause or a distillation ban into your legal review is usually the worse buy.</li>
+        <li><b>Check whether outputs can train other models.</b> If you plan to fine-tune on generated data, this single clause splits the field: explicitly allowed under DeepSeek's MIT, restricted under Llama's community license.</li>
+        <li><b>Price both lives of the model.</b> Per-token via the vendor's API vs self-hosted at your real concurrency — the open-weights option is only "free" in the sense that you have swapped a price list for a utilisation problem.</li>
+        <li><b>Archive the license and weights hash on the day you ship.</b> Community licenses are vendor documents that can change between releases; your compliance story should not depend on a page that can be edited.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Open weights is the quiet variable behind three decisions you will meet in any AI tool purchase: <a href="/best/ai-chatbots">the best AI chatbots of 2026</a> (where the "open" alternatives on every leaderboard are open-weight models served by someone), <a href="/best/ai-coding-assistants">the best AI coding assistants</a> (where self-hosting an open model is the only way to keep proprietary code off someone else's servers), and <a href="/best/ai-customer-service-tools">the best AI customer service tools</a> (where "bring your own model" means bringing an open-weight one — and its license). Related terms: <a href="/glossary/fine-tuning">fine-tuning</a> is the main technical reason to want the weights at all; <a href="/glossary/inference-cost">inference cost</a> is the bill you accept in exchange; <a href="/glossary/context-window">context window</a> and <a href="/glossary/ai-token">AI token</a> are the specs you compare once the license clears. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Open weights tells you where the model file lives, not what you may do with it. The field splits cleanly: MIT and Apache 2.0 releases you can build a company on without a lawyer, custom licenses whose clauses are aimed at Meta-sized rivals but still bind everyone, and a small fully-open set that publishes its data. None of the famous "open" models is open-source by the OSI's 2024 definition, and the license — not the benchmark — is what decides whether your product can ship. Read the model card, sort by license tier, and archive the terms you deployed against: that is the whole discipline this term asks of you.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
