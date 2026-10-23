@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Multimodal AI? One Model, Many Inputs — and Three Different Bills | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/multimodal">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Multimodal AI? One Model, Many Inputs — and Three Different Bills | AITop">
+  <meta property="og:description" content="Multimodal means one model that reads text, images, audio and video. The catch: every vendor tokenizes those inputs differently, so the same image costs three different bills.">
+  <meta property="og:url" content="https://top.omc.network/glossary/multimodal">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Multimodal AI? One Model, Many Inputs — and Three Different Bills | AITop">
+  <meta name="twitter:description" content="Natively multimodal vs bolted-on, and the tokenization math that makes the same 1024×1024 image cost 258 tokens on one API and over a thousand on another.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Multimodal means one model that reads text, images, audio and video. The catch: every vendor tokenizes those inputs differently, so the same image costs three different bills.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Multimodal","item":"https://top.omc.network/glossary/multimodal"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Multimodal","description":"A model that processes more than one kind of data — typically text plus images, audio or video — inside a single network, rather than chaining separate specialist models together. In buyer's terms, multimodal changes two things at once: which inputs a tool can accept natively (a voice assistant built on one multimodal model hears tone and interruption; a three-model transcribe-then-answer pipeline does not), and how you are billed, because non-text inputs are tokenized by vendor-specific rules — per tile, per pixel area, or per second of audio.","url":"https://top.omc.network/glossary/multimodal","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is multimodal AI?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-23. Tokenization rules below are vendor documentation snapshots — they change with model generations.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Multimodal</b> describes a model that handles more than one kind of data — usually text plus images, audio or video — in a <b>single network</b>, instead of chaining a transcriber, an image captioner and a language model together. OpenAI's GPT-4o (May 2024) made the term mainstream: it accepts any combination of text, audio, images and video as input and is trained end-to-end, so all inputs and outputs pass through the same neural network — which is why it can respond to audio in an average of 320 milliseconds, where the old three-model voice pipeline averaged seconds and lost tone, laughter and background sound along the way. For a buyer, multimodality shows up in two places: which inputs a tool takes <b>natively</b> (and what it can hear that a pipeline can't), and the <b>bill</b> — because images, audio and video are tokenized by rules that differ sharply per vendor, so the same 1024×1024 screenshot can cost a few hundred tokens on one API and well over a thousand on another.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A model's <b>modality</b> is the kind of data it can read or write. A text-only model sees characters; a multimodal model sees pixels, waveforms and frames as first-class input, all converted into the same token stream the model already consumes (see <a href="/glossary/ai-token">AI token</a>). Two architectures get sold under the same word. <b>Natively multimodal</b> models — OpenAI's GPT-4o is the canonical example — are trained end-to-end across text, vision and audio; OpenAI's own launch material contrasts this with the voice mode that preceded it, which chained three separate models (speech-to-text, a text model, text-to-speech) and therefore could not observe tone, speaker count or background noise. <b>Bolted-on multimodality</b> is the pipeline version: vision or audio grafted onto a text model through adapters. Both accept your image; only one has actually "seen" it the way it sees text.</p>
+      <p>The distinction is not academic. A native multimodal model answers spoken audio with sub-second latency because there is no transcription round-trip; a pipeline burns time and drops information at every seam. And when a product page says "supports images", the honest follow-up question is <i>how</i>: one model may read a chart as native visual input, while another runs it through an OCR layer first — the difference shows up in what it gets wrong, not just in what it costs.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because "multimodal" on a landing page is a capability claim with a meter attached, and the meter is where vendors differ most. Every major API converts non-text input into tokens, but the conversion rules are completely different — and they are published, so you can do the arithmetic before you commit:</p>
+      <p><b>OpenAI: tile-based.</b> Image inputs are billed by 512-pixel tiles. At <code>detail: low</code>, an image is a flat <b>85 tokens</b> regardless of size; at <code>detail: high</code>, the image is scaled and split into 512×512 tiles worth <b>170 tokens each, plus the 85-token base</b> (the current 4o/4.1/4.5 generation; newer models use 70/140). OpenAI's documentation works the example for you: a 1024×1024 image at high detail costs <b>765 tokens</b> — 4 tiles × 170 + 85.</p>
+      <p><b>Anthropic: pixel-area.</b> Claude counts images at approximately <b>(width × height) ÷ 750</b> tokens, with images resized to fit the model's native resolution cap first (1568 pixels on the long edge for most models, ~1,568 tokens; newer large models allow more). Anthropic's docs price a 1000×1000 image at about <b>1,334 tokens</b> — no tiling, the bill simply scales with pixel area, which makes it cheap for small images and expensive for large ones.</p>
+      <p><b>Google: per-tile flat rate.</b> Gemini counts any image ≤384 pixels in both dimensions at a flat <b>258 tokens</b>; larger images are cut into 768×768 tiles at <b>258 tokens each</b> — so the same 1024×1024 screenshot tiles into 4 pieces and bills roughly 1,032 tokens. Audio and video are metered by the second: <b>32 tokens per second</b> of audio, <b>263 tokens per second</b> of video. That last number is the one people miss when they feed an hour of meeting recording to a "multimodal" model.</p>
+      <p>Same image, three bills: 765 tokens on one API, ~1,334 on another, ~1,032 on a third — and those tokens then price at whatever your model's per-token rate is (see <a href="/glossary/inference-cost">inference cost</a>). A tool that looks cheaper per text token can be materially more expensive at your actual workload, because your workload is photographs.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Every flagship chatbot is now multimodal, which is exactly why the term has stopped being a differentiator on its own.</b> Since GPT-4o's May 2024 launch set the pattern — one network, text/audio/image/video in, any combination out — "multimodal" migrated from a feature bullet to table stakes across the major assistants. The differentiators have moved downstream of the label: <i>which</i> modalities are native rather than pipelined, what the input limits are (image counts, video length, file sizes), and how the output side works — a model that sees video but can only reply in text is multimodal in the input column only.</p>
+      <p><b>The billing rules are a moving target, and the vendor doc is the only source.</b> Tile sizes, base token counts and per-second rates have all changed between model generations — the constants in this entry are documentation snapshots, not physics. Two habits keep you safe: check the token-counting page for the <i>exact</i> model you will deploy before quoting costs to a client, and use the vendors' own calculators or count-token API endpoints to price a realistic sample of your workload — ten representative images and one representative minute of audio will expose a billing surprise that no comparison table will.</p>
+      <p><b>Watch for the pipeline hiding under a multimodal badge.</b> Product-level "multimodal" claims can still be pipelines internally: a voice assistant that transcribes then generates loses exactly what native models capture — tone, overlapping speakers, background audio — and adds latency at each seam. The test is behavioral, not linguistic: interrupt it mid-sentence and see whether it hears you, or ask it about sarcasm in a voicemail.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Ask "native or pipelined?" before "multimodal or not?"</b> A natively multimodal model hears tone and interruption; a transcribe-then-answer pipeline does not, no matter what the feature matrix says. Latency on spoken input is the tell.</li>
+        <li><b>Price your real inputs, not your text.</b> Run your typical image sizes and audio lengths through each vendor's published tokenization rule — flat 85-token low detail, 85+170 per 512px tile, width×height÷750, or 258 per 768×768 tile — and multiply by the per-token rate. The cheapest model per text token is often not the cheapest per photograph.</li>
+        <li><b>Meter audio and video by the second.</b> At ~263 tokens per second, an hour of video input is roughly 950k tokens before you have asked it a single question. Workloads that sounded small in prompts are large in seconds.</li>
+        <li><b>Check the input limits you will actually hit.</b> Max images per request, max pixels per image, max video length and file-size caps differ per model and per API tier; a tool that accepts images is not a tool that accepts your images.</li>
+        <li><b>Re-check the token rules per model generation.</b> Tile constants and per-second rates are documentation, not contracts — archive the page you priced against, the way you would a quote.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Multimodality is the quiet variable in three purchases you will meet on this site: <a href="/vs/chatgpt-vs-claude">the ChatGPT vs Claude vs Gemini comparison</a> (where the same screenshot bills three ways and the vision quirks differ per family), <a href="/best/ai-transcription-tools">the best AI transcription tools</a> (where native audio input is the entire product, and the per-second metering above is your real cost driver), and <a href="/best/ai-image-generators">the best AI image generators</a> (where output modality, not input, is what you are paying for). Related terms: <a href="/glossary/ai-token">AI token</a> is the metered unit everything above converts into; <a href="/glossary/context-window">context window</a> is the budget those image tokens share with your text; <a href="/glossary/inference-cost">inference cost</a> is how the token bill becomes an invoice; and <a href="/glossary/ai-agent">AI agent</a> is where multimodal inputs meet automated loops. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Multimodal means one model that reads text, images, audio and video natively — and in 2026 every flagship has that, so the word itself no longer decides anything. What decides purchases now is which modalities are native rather than pipelined, what the input limits are, and above all the billing: images are tokenized by vendor-specific rules (tiles, pixel area, or flat per-tile rates) and audio by the second, so the same workload can cost twice as much on one API as on another. Read the token-counting doc for the exact model you will deploy, price a realistic sample of your inputs, and treat "multimodal" on a landing page as the start of the question, not the answer.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

@@ -53,3 +53,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/fine-tuning](https://top.omc.network/glossary/fine-tuning): What Is Fine-Tuning? Why It Is Not How You Teach an AI Your Facts | AITop
 - [https://top.omc.network/glossary/inference-cost](https://top.omc.network/glossary/inference-cost): What Is Inference Cost? Why Output Costs 5× Input | AITop
 - [https://top.omc.network/glossary/open-weights](https://top.omc.network/glossary/open-weights): What Are Open Weights? Why "Open" Is Not "Open Source" | AITop
+- [https://top.omc.network/glossary/multimodal](https://top.omc.network/glossary/multimodal): What Is Multimodal AI? One Model, Many Inputs — and Three Different Bills | AITop
