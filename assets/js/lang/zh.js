@@ -79,6 +79,10 @@ window.I18N.zh = {
 
 
   "footer.game": "真图还是 AI 小游戏",
+  "pbar.network": "官网",
+  "pbar.forum": "算力论坛",
+  "pbar.top": "AI 工具站",
+  "pbar.game": "游戏",
 
 
 

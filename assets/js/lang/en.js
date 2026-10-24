@@ -79,6 +79,10 @@ window.I18N.en = {
 
 
   "footer.game": "Real or AI game",
+  "pbar.network": "Network",
+  "pbar.forum": "Forum",
+  "pbar.top": "AI Top",
+  "pbar.game": "Game",
 
 
 
