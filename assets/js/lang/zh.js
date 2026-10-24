@@ -5,6 +5,8 @@ window.I18N.zh = {
   "nav.best": "排行榜",
   "nav.glossary": "术语表",
 
+  "nav.game": "真图还是 AI",
+
   "hero.kicker": "独立评测 · 敢下结论 · 关系透明",
   "hero.title": "别的 AI 对比写三千字废话，我们直接上表格。",
   "hero.sub": "真实价格、真实缺点、真实结论——看完关掉十几个标签页，该用哪个心里有数。",
@@ -74,6 +76,21 @@ window.I18N.zh = {
   "banner.cta": "编辑方针 →",
 
   "footer.note": "AITop 为独立评测指南。AI 工具价格与功能更新极快，请以官方页面为准；数据以各页面标注日期为准。",
+
+
+  "footer.game": "真图还是 AI 小游戏",
+
+
+
+  "game.title": "真图还是 AI — 每日照片挑战",
+
+
+
+  "game.sub": " 每天五组图。一张是真实照片，一张由模型生成。如果你读过我们的对比表，你已经占了不公平的优势。",
+
+
+
+  "game.cta": "开始今天的挑战 →",
   "footer.rights": "© 2026 AITop。评测内容独立客观。",
 
   /* footer legal links */

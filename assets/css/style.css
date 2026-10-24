@@ -66,6 +66,9 @@ a { text-decoration: none; color: inherit; }
 .omc-in b { color: #fff; }
 .omc-cta { color: #f8d33a; font-weight: 700; font-size: 14.5px; white-space: nowrap; }
 .omc-cta:hover { text-decoration: underline; }
+.omc-banner.game { background: linear-gradient(120deg, #0b1a26, #123c52 60%, #17607d); }
+.omc-banner.game .omc-badge { background: linear-gradient(135deg, #35d0a5, #6ee7c0); color: #06231b; }
+.omc-banner.game .omc-cta { color: #6ee7c0; }
 
 /* footer */
 .site-footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted-2); font-size: 12.5px; }
