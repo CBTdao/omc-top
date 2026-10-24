@@ -157,6 +157,17 @@ table.cmp { width: 100%; border-collapse: collapse; min-width: 640px; }
 .legal .callout p:last-child { margin-bottom: 0; }
 .legal .callout strong { color: var(--ink); }
 
+
+/* nav-mobile-trim — 390px 下 5 个导航项会把语言选择器挤出屏幕外。
+   收敛掉首页正文已提供入口的 Comparisons / Rankings，保住 Game 入口；
+   logo 只留徽章，文字隐藏。 */
+@media (max-width: 620px) {
+  .header-in { gap: 12px; }
+  .logo-text { display: none; }
+  .nav-links { gap: 10px; font-size: 12.5px; }
+  .nav-links a:nth-child(2),
+  .nav-links a:nth-child(3) { display: none; }
+}
 @media (max-width: 760px) {
   .cat-grid, .vs-grid, .truth-grid, .how-grid { grid-template-columns: 1fr; }
   .nav-links { gap: 14px; font-size: 13.5px; }
