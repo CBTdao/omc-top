@@ -48,6 +48,8 @@ window.I18N.zh = {
   "hot.c7.m": "工作区上下文 · 价格 · 结论",
   "hot.c8": "答案到底归谁？",
   "hot.c8.m": "引用 · 广告暴露 · 免费档 · 结论",
+  "hot.c9": "是个服务，还是个应用？",
+  "hot.c9.m": "许可 · MLX · 本地 API 端口 · 结论",
   "rank.r7": "2026 最佳 AI 视频生成工具",
   "rank.r7.m": "Veo · Runway · 可灵 · Pika · Sora 按活选",
   "rank.r8": "2026 最佳 AI 写作工具",

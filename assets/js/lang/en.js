@@ -48,6 +48,8 @@ window.I18N.en = {
   "hot.c7.m": "Workspace grounding · price · verdict",
   "hot.c8": "Who actually owns the answer?",
   "hot.c8.m": "Citations · ad exposure · free tier · verdict",
+  "hot.c9": "A service, or an app?",
+  "hot.c9.m": "Licence · MLX · local API port · verdict",
   "rank.r7": "Best AI video generators of 2026",
   "rank.r7.m": "Veo · Runway · Kling · Pika · Sora, routed by job",
   "rank.r8": "Best AI writing tools of 2026",

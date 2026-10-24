@@ -91,7 +91,7 @@ async function run() {
       ok(doc.getElementById("langSelect").value === "en", "switcher defaults en");
       ok(win.localStorage.getItem("aitop_lang") === null, "default not persisted");
       ok(doc.querySelectorAll(".cat-card").length === 3, "3 category cards (live ones only, no coming-soon placeholders)", doc.querySelectorAll(".cat-card").length);
-      ok(doc.querySelectorAll(".vs-card").length === 23, "8 comparisons + 15 rankings cards", doc.querySelectorAll(".vs-card").length);
+      ok(doc.querySelectorAll(".vs-card").length === 24, "9 comparisons + 15 rankings cards", doc.querySelectorAll(".vs-card").length);
       ok(doc.querySelectorAll(".how-card").length === 3, "how-we-review cards");
       ok(!!doc.querySelector('script[src*="adsbygoogle"]'), "AdSense script present");
       const ld = [...doc.querySelectorAll('script[type="application/ld+json"]')];
@@ -135,7 +135,7 @@ async function run() {
     }
 
     console.log("\n[vs/midjourney-vs-stable-diffusion & vs/copilot-vs-cursor]");
-    for (const p of ["/vs/midjourney-vs-stable-diffusion.html", "/vs/copilot-vs-cursor.html", "/vs/chatgpt-vs-gemini.html", "/vs/perplexity-vs-chatgpt.html"]) {
+    for (const p of ["/vs/midjourney-vs-stable-diffusion.html", "/vs/copilot-vs-cursor.html", "/vs/chatgpt-vs-gemini.html", "/vs/perplexity-vs-chatgpt.html", "/vs/ollama-vs-lm-studio.html"]) {
       const { win, doc, errs } = await load(p);
       ok(errs.length === 0, p + ": no runtime errors", errs.join(" | "));
       ok(doc.querySelectorAll(".cmp thead th").length === 3, p + ": 2 tool columns");
@@ -249,7 +249,7 @@ async function run() {
 
     console.log("\n[favicon set]");
     for (const f of ["favicon.svg", "favicon.ico", "apple-touch-icon.png", "assets/img/logo.png"]) ok(fs.existsSync(path.join(ROOT, f)), "file exists: " + f);
-    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "best/ai-transcription-tools.html", "best/ai-customer-service-tools.html", "best/ai-voice-generators.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html", "glossary/index.html", "glossary/ai-token.html", "glossary/context-window.html", "glossary/rag.html", "glossary/ai-hallucination.html", "glossary/voice-cloning.html", "glossary/stem-separation.html", "glossary/ai-music-license.html", "glossary/ai-watermark.html", "glossary/ai-agent.html", "glossary/fine-tuning.html", "glossary/inference-cost.html", "glossary/open-weights.html", "glossary/multimodal.html"];
+    const allPages = ["index.html", "privacy.html", "terms.html", "about.html", "contact.html", "best/ai-chatbots.html", "best/ai-image-generators.html", "best/ai-legal-tools.html", "best/insurance-agent-software.html", "best/ai-tools-for-accountants.html", "best/ai-tools-for-real-estate-agents.html", "best/ai-video-tools.html", "best/ai-writing-tools.html", "best/ai-tools-for-small-business.html", "best/ai-coding-assistants.html", "best/ai-presentation-tools.html", "best/ai-music-generators.html", "best/ai-transcription-tools.html", "best/ai-customer-service-tools.html", "best/ai-voice-generators.html", "vs/chatgpt-vs-claude.html", "vs/copilot-vs-cursor.html", "vs/midjourney-vs-stable-diffusion.html", "vs/chatgpt-vs-gemini.html", "vs/perplexity-vs-chatgpt.html", "vs/claude-code-vs-cursor.html", "vs/notion-ai-vs-chatgpt.html", "vs/perplexity-vs-google-ai-mode.html", "vs/ollama-vs-lm-studio.html", "glossary/index.html", "glossary/ai-token.html", "glossary/context-window.html", "glossary/rag.html", "glossary/ai-hallucination.html", "glossary/voice-cloning.html", "glossary/stem-separation.html", "glossary/ai-music-license.html", "glossary/ai-watermark.html", "glossary/ai-agent.html", "glossary/fine-tuning.html", "glossary/inference-cost.html", "glossary/open-weights.html", "glossary/multimodal.html"];
     for (const p of allPages) {
       const html = fs.readFileSync(path.join(ROOT, p), "utf8");
       ok(!/rel="icon" href="data:image/.test(html), p + ": no data-URI icon");
@@ -258,8 +258,8 @@ async function run() {
     }
 
     const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
-    ok((sitemap.match(/<url>/g) || []).length === 42, "sitemap has 42 URLs", String((sitemap.match(/<url>/g) || []).length));
-    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "best/ai-transcription-tools", "best/ai-customer-service-tools", "best/ai-voice-generators", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "<loc>https://top.omc.network/glossary</loc>", "glossary/ai-token", "glossary/context-window", "glossary/rag", "glossary/ai-hallucination", "glossary/voice-cloning", "glossary/stem-separation", "glossary/ai-music-license", "glossary/ai-watermark", "glossary/ai-agent", "glossary/fine-tuning", "glossary/inference-cost", "glossary/open-weights", "glossary/multimodal", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
+    ok((sitemap.match(/<url>/g) || []).length === 43, "sitemap has 43 URLs", String((sitemap.match(/<url>/g) || []).length));
+    for (const slug of ["best/ai-legal-tools", "best/insurance-agent-software", "best/ai-tools-for-accountants", "best/ai-tools-for-real-estate-agents", "best/ai-video-tools", "best/ai-writing-tools", "best/ai-tools-for-small-business", "best/ai-coding-assistants", "best/ai-presentation-tools", "best/ai-music-generators", "best/ai-transcription-tools", "best/ai-customer-service-tools", "best/ai-voice-generators", "vs/chatgpt-vs-gemini", "vs/perplexity-vs-chatgpt", "vs/claude-code-vs-cursor", "vs/notion-ai-vs-chatgpt", "vs/perplexity-vs-google-ai-mode", "vs/ollama-vs-lm-studio", "<loc>https://top.omc.network/glossary</loc>", "glossary/ai-token", "glossary/context-window", "glossary/rag", "glossary/ai-hallucination", "glossary/voice-cloning", "glossary/stem-separation", "glossary/ai-music-license", "glossary/ai-watermark", "glossary/ai-agent", "glossary/fine-tuning", "glossary/inference-cost", "glossary/open-weights", "glossary/multimodal", "/privacy", "/terms", "/about", "/contact"]) ok(sitemap.includes(slug), "sitemap includes " + slug);
     ok(fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8").includes("Sitemap:"), "robots.txt points at sitemap");
 
     /* ---------------- SEO: canonical + OG + twitter on every page ---------------- */
