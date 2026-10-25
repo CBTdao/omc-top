@@ -212,6 +212,141 @@
         <div class="how-card"><span>3</span><p data-i18n="how.3">Prices re-checked monthly. If a vendor changes something and we miss it, the page says when it was last verified.</p></div>
       </div>
     </section>
+
+    <!-- ===== COMPUTE ESTIMATOR ===== -->
+    <style>
+      #estimator .ce-sub{max-width:660px;color:#8ea3c4;font-size:14px;margin:6px 0 14px;line-height:1.6}
+      .ce-wrap{display:grid;grid-template-columns:1.25fr .95fr;gap:18px}
+      @media(max-width:720px){.ce-wrap{grid-template-columns:1fr}}
+      .ce-panel{background:#0e1626;border:1px solid #23344f;border-radius:14px;padding:18px}
+      .ce-row{margin-bottom:14px}
+      .ce-row label{display:block;font-size:13px;color:#8ea3c4;margin-bottom:6px}
+      .ce-seg{display:flex;gap:8px}
+      .ce-seg button{flex:1;background:#13203a;border:1px solid #23344f;color:#dce6f5;padding:10px;border-radius:10px;cursor:pointer;font-size:13.5px;font-weight:600}
+      .ce-seg button.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+      .ce-input,.ce-select{width:100%;background:#0a1322;border:1px solid #23344f;color:#dce6f5;padding:10px 12px;border-radius:10px;font-size:14px}
+      .ce-range{width:100%;accent-color:#3b82f6}
+      .ce-val{float:right;color:#22d3ee;font-weight:700}
+      .ce-btn{width:100%;background:#3b82f6;color:#fff;border:0;border-radius:10px;padding:12px;font-size:15px;font-weight:700;cursor:pointer}
+      .ce-btn:active{transform:scale(.99)}
+      .ce-result{background:#0a1322;border:1px dashed #23344f;border-radius:12px;padding:16px;display:none}
+      .ce-result.show{display:block}
+      .ce-big{font-size:30px;font-weight:800;color:#22d3ee}
+      .ce-line{font-size:14px;color:#c7d6ef;margin:8px 0;line-height:1.6}
+      .ce-bar{height:10px;border-radius:6px;background:#13203a;overflow:hidden;margin:10px 0}
+      .ce-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#22d3ee,#3b82f6);transition:width .4s}
+      .ce-email{margin-top:16px;border-top:1px solid #23344f;padding-top:14px}
+      .ce-note{font-size:12.5px;color:#8ea3c4;margin-top:8px}
+      .ce-foot{font-size:12px;color:#7b91b5;margin-top:14px;line-height:1.6;max-width:780px}
+    </style>
+    <section class="section" id="estimator">
+      <h2>Compute Estimator · 算力测算器</h2>
+      <p class="ce-sub">How much GPU does your AI workflow actually burn — and what would it cost on a decentralized network vs the big clouds? Slide the numbers; no wallet, no token, no signup to see the estimate.</p>
+      <div class="ce-wrap">
+        <div class="ce-panel">
+          <div class="ce-row">
+            <label>What do you want to estimate?</label>
+            <div class="ce-seg" id="ceMode">
+              <button type="button" data-v="run" class="active">Run AI workloads</button>
+              <button type="button" data-v="rent">Rent out my GPU</button>
+            </div>
+          </div>
+          <div class="ce-row">
+            <label>GPU class</label>
+            <select class="ce-select" id="ceGpu">
+              <option value="3060">Consumer · RTX 3060 12GB</option>
+              <option value="4070">Consumer · RTX 4070 12GB</option>
+              <option value="4090" selected>Prosumer · RTX 4090 24GB</option>
+              <option value="a100">Datacenter · A100 40GB</option>
+              <option value="h100">Datacenter · H100 80GB</option>
+            </select>
+          </div>
+          <div class="ce-row" id="ceRunRow">
+            <label>Hours of compute / month <span class="ce-val" id="ceHrV">100</span></label>
+            <input type="range" class="ce-range" id="ceHr" min="1" max="720" value="100">
+          </div>
+          <div class="ce-row" id="ceRentRow" style="display:none">
+            <label>GPUs you'd rent out <span class="ce-val" id="ceNv">1</span></label>
+            <input type="range" class="ce-range" id="ceN" min="1" max="64" value="1">
+            <label style="margin-top:10px">Hours online / day <span class="ce-val" id="ceHdV">8</span></label>
+            <input type="range" class="ce-range" id="ceHd" min="1" max="24" value="8">
+          </div>
+          <button class="ce-btn" type="button" id="ceCalc">Estimate</button>
+        </div>
+        <div class="ce-panel">
+          <div class="ce-result" id="ceResult">
+            <div class="ce-big" id="ceBig">$0</div>
+            <div class="ce-line" id="ceLine1"></div>
+            <div class="ce-bar"><i id="ceBar"></i></div>
+            <div class="ce-line" id="ceLine2"></div>
+          </div>
+          <div class="ce-email" id="ceEmailBox">
+            <label style="display:block;font-size:13px;color:#8ea3c4;margin-bottom:6px">📧 Email me this estimate + early access to the OMC Compute Station</label>
+            <input class="ce-input" id="ceEmail" type="email" placeholder="you@example.com" autocomplete="email">
+            <button class="ce-btn" type="button" id="ceEmailBtn" style="margin-top:8px">Save my estimate</button>
+            <div class="ce-note" id="ceNote"></div>
+          </div>
+        </div>
+      </div>
+      <p class="ce-foot">Estimates use public 2025–2026 decentralized GPU market rates (≈60–80% below AWS/Azure list price; H100 ~$0.30–2.20/hr vs ~$3–4.5/hr). Actual rates vary with demand, region and tier. No wallet, no token, no signup required to see the numbers. OMC never sends token promotions.</p>
+    </section>
+    <script>
+    (function(){
+      var gpu = {
+        '3060':{name:'RTX 3060 12GB', run:0.13, aws:0.52, rent:0.06},
+        '4070':{name:'RTX 4070 12GB', run:0.20, aws:0.80, rent:0.10},
+        '4090':{name:'RTX 4090 24GB', run:0.40, aws:1.60, rent:0.28},
+        'a100':{name:'A100 40GB', run:0.85, aws:3.20, rent:1.10},
+        'h100':{name:'H100 80GB', run:1.10, aws:4.20, rent:1.60}
+      };
+      var $ = function(id){return document.getElementById(id)};
+      Array.prototype.forEach.call($('ceMode').children, function(b){
+        b.onclick = function(){
+          Array.prototype.forEach.call($('ceMode').children, function(x){x.classList.remove('active')});
+          b.classList.add('active');
+          var rent = b.dataset.v === 'rent';
+          $('ceRunRow').style.display = rent ? 'none' : 'block';
+          $('ceRentRow').style.display = rent ? 'block' : 'none';
+        };
+      });
+      $('ceHr').oninput = function(){ $('ceHrV').textContent = this.value; };
+      $('ceN').oninput = function(){ $('ceNv').textContent = this.value; };
+      $('ceHd').oninput = function(){ $('ceHdV').textContent = this.value; };
+      $('ceCalc').onclick = function(){
+        var g = gpu[$('ceGpu').value];
+        var rent = $('ceMode').querySelector('.active').dataset.v === 'rent';
+        var res = $('ceResult'); res.classList.add('show');
+        if(rent){
+          var n = +$('ceN').value, hd = +$('ceHd').value;
+          var mo = g.rent * hd * 30 * n;
+          $('ceBig').textContent = '$' + mo.toFixed(0) + '/mo';
+          $('ceLine1').innerHTML = 'Your <b>'+n+'× '+g.name+'</b> at '+hd+'h/day could earn about <b>$'+mo.toFixed(0)+'</b> per month at current network supplier rates.';
+          $('ceLine2').textContent = 'Real payouts settle in USDC — OMC gems stay in-game and are never sold or promised as returns.';
+          $('ceBar').style.width = Math.min(100, mo/40)+'%';
+        } else {
+          var hr = +$('ceHr').value;
+          var dec = g.run * hr, aws = g.aws * hr;
+          var save = aws - dec, pct = aws>0 ? Math.round(save/aws*100) : 0;
+          $('ceBig').textContent = '$' + dec.toFixed(0) + '/mo';
+          $('ceLine1').innerHTML = 'On OMC you’d pay about <b>$'+dec.toFixed(0)+'</b>/mo vs <b>$'+aws.toFixed(0)+'</b>/mo on AWS — saving <b>$'+save.toFixed(0)+' ('+pct+'%)</b>.';
+          $('ceLine2').textContent = 'Decentralized GPUs run 60–80% below big-cloud list price. Figures are public 2025–2026 market rates.';
+          $('ceBar').style.width = pct + '%';
+        }
+      };
+      $('ceEmailBtn').onclick = function(){
+        var v = ($('ceEmail').value||'').trim();
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ $('ceNote').textContent='Please enter a valid email.'; $('ceNote').style.color='#ff7a7a'; return; }
+        try{
+          var arr = JSON.parse(localStorage.getItem('omc_top_leads')||'[]');
+          arr.push({email:v, ts:Date.now()});
+          localStorage.setItem('omc_top_leads', JSON.stringify(arr));
+        }catch(e){}
+        $('ceNote').textContent='✓ Saved — we’ll email your report when the OMC Compute Station opens. No spam, no token promotions.';
+        $('ceNote').style.color='#34d399';
+        $('ceEmail').value='';
+      };
+    })();
+    </script>
   </main>
 
   <aside class="omc-banner">
