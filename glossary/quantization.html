@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Quantization? Bits per Weight, and the VRAM Formula Every Local LLM Buyer Needs | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/quantization">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Quantization? Bits per Weight, and the VRAM Formula Every Local LLM Buyer Needs | AITop">
+  <meta property="og:description" content="Quantization is storing a model's weights at fewer bits per parameter. The buyer's version is one formula: VRAM ≈ parameters × bytes per weight. Q4_K_M at ~4.5 bits/weight is the default that fits a 70B model on a 48GB card.">
+  <meta property="og:url" content="https://top.omc.network/glossary/quantization">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Quantization? Bits per Weight, and the VRAM Formula Every Local LLM Buyer Needs | AITop">
+  <meta name="twitter:description" content="Quantization is the bits-per-weight dial. Lower it and a 70B model drops from 140 GB to ~39 GB. The catch: quality loss, and the KV cache stays full precision no matter what.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Quantization is storing a model's weights at fewer bits per parameter. The buyer's version is one formula: VRAM ≈ parameters × bytes per weight. Q4_K_M at ~4.5 bits/weight is the default that fits a 70B model on a 48GB card.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Quantization","item":"https://top.omc.network/glossary/quantization"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Quantization (bits per weight)","description":"In AI tool buying, quantization is the practice of storing a model's weights at fewer bits per parameter than the 16-bit format used in training. Fewer bits per weight means a smaller file, less VRAM and often faster generation, at the cost of some accuracy. The buyer-relevant quantity is bits per weight (bpw): FP16 is 16 bits (2 bytes), Q8_0 is 8 bits, Q4_K_M is about 4.5 bits, and the VRAM a model needs scales directly as parameters × bytes per weight.","url":"https://top.omc.network/glossary/quantization","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is quantization (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-26. Bit widths below are the GGUF / llama.cpp K-quant conventions current in 2026 — they move with tooling generations, so check the file you actually download.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Quantization</b> is how a model is squeezed into less memory: instead of storing every weight at the 16-bit precision used in training (FP16, 2 bytes each), the file is written at <b>fewer bits per weight</b>. That single dial decides whether a model fits your GPU at all. The only formula you need is <b>VRAM ≈ parameters × bytes per weight</b>: a 7B model at FP16 is about <b>14 GB</b>, while at <b>Q4_K_M (~4.5 bits/weight)</b> it is about <b>4 GB</b>; a 70B model drops from <b>140 GB</b> at FP16 to roughly <b>39 GB</b> at Q4_K_M — the difference between "needs a datacenter" and "fits one 48 GB card". Q4_K_M is the community default because it keeps most of the quality for a quarter of the size; go lower and the quality loss climbs. The catch buyers miss: the <b>KV cache stays full precision</b> no matter how aggressively you quantize the weights, so long-context use still needs the memory.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A model's <b>parameters</b> (its "weights") are just numbers, and each number is stored using some number of <b>bits</b>. Training and the highest-fidelity serving use <b>FP16</b> or <b>BF16</b> — <b>16 bits, or 2 bytes, per weight</b> — which is the reference point everyone quotes sizes against. <b>Quantization</b> stores those same weights at 8 bits, 4 bits, or even less. Fewer bits per weight means a smaller file, less VRAM to hold it, and — because every token generated has to be shuttled through memory — often faster generation on the same hardware.</p>
+      <p>The trade is accuracy. Squashing 16-bit numbers into 4 bits throws away information, and the model gets slightly worse at its job. The art is doing it where the eye (or the benchmark) won't notice. Modern formats like llama.cpp's <b>K-quants</b> are not uniform: a "Q4" file mixes ~4-bit storage for most weights with ~6-bit storage for the layers that are most sensitive to precision loss, which is why the real average lands at <b>~4.5 bits per weight</b> rather than a clean 4. The label on the filename — Q2_K, Q3_K_M, Q4_K_M, Q5_K_M, Q8_0 — is the headline you actually shop by.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because it is the difference between "this runs on my machine" and "this needs a cloud quota." The math is one line: <b>VRAM for weights ≈ parameters × bytes per weight</b>. Worked examples that match every calculator and vendor card:</p>
+      <p><b>FP16 (16 bits, 2 bytes/weight)</b> — a 7B model is ~14 GB, a 70B model is ~140 GB. This is the unquantized reference; almost nobody runs it locally. <b>Q8_0 (8 bits, ~1 byte/weight)</b> — roughly half the size, quality loss usually described as near-imperceptible (a percent or two on perplexity). <b>Q4_K_M (~4.5 bits/weight)</b> — about a quarter of the FP16 size; a 70B model lands near <b>39 GB</b>, which is why a single 48 GB workstation card can serve it. <b>Q3_K_M (~3.5 bits/weight) and Q2_K (~2.5)</b> save more still but the quality loss becomes noticeable on harder tasks.</p>
+      <p>Two buying rules fall out of this. First, <b>bigger models quantize better</b>: a 70B model at Q4_K_M loses proportionally less quality than a 7B model at the same precision, because there is more redundancy to spare — so if you have the VRAM for a bigger quantized model, take it over a smaller model at higher precision. Second, <b>mixture-of-experts models quantize especially well</b>, because only a subset of parameters is active for any given token, so a coarse weight format hurts less (see <a href="/glossary/mixture-of-experts">mixture of experts</a>). Q4_K_M is the default recommendation for exactly this reason: for most local users it is 90%+ of the quality at 25% of the memory.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The precision ladder is now a hardware feature, not just a file trick.</b> NVIDIA's Blackwell generation added native <b>FP4 (NVFP4)</b> support, making 4-bit a compute-accelerated precision that GPUs can actually multiply in, not merely a storage format — which is why "4-bit" stopped meaning "slow and lossy" in 2025–2026. <b>FP8</b> is likewise a first-class inference precision now, sitting between INT8 and FP16. The practical buyer still lives in the GGUF K-quant world for local models, but the underlying bit widths are no longer exotic.</p>
+      <p><b>The bits-per-weight number on the filename is the only thing you can trust at a glance.</b> Quality loss is measured with <i>perplexity</i> (how hesitant the model is on a fixed test text), and it is not a human star rating — vendors who say "no quality loss" are selling, not measuring. The widely repeated community range is <b>~5–10% perplexity loss for Q4_K_M</b> and <b>~1–2% for Q8_0</b>, but the real number depends on the model, the task, and the temperature, so treat those as orders of magnitude, not specs. One phrase to distrust on sight: "2× faster" from quantization alone, quoted without saying it assumes INT4/FP4 hardware — on a CPU or an older GPU the win is the memory saving, not a flat 2×.</p>
+      <p><b>Quantizing the weights does not quantize the memory that grows with your conversation.</b> The attention state (the KV cache) is normally kept at FP16 regardless of how aggressively you compressed the weights, so a model that fits at Q4 with a short context can still balloon past your VRAM at a 32K or 128K context window — that budget scales with context length and architecture, not with parameter count (see <a href="/glossary/context-window">context window</a>). "Fits in 4 GB" almost always means "fits at a short context."</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Memorize one formula: VRAM ≈ parameters × bytes per weight.</b> 16 bits = 2 bytes (FP16), 8 bits ≈ 1 byte (Q8_0), ~4.5 bits ≈ 0.56 byte (Q4_K_M). A 7B/70B model is 14/140 GB at FP16 and ~4/39 GB at Q4_K_M — do the multiplication before you buy the card.</li>
+        <li><b>Default to Q4_K_M unless you have a reason not to.</b> It is the community standard for a reason: most of the quality at a quarter of the size. Step up to Q5_K_M or Q8_0 only when you have the VRAM and the task is precision-sensitive (code, exact math).</li>
+        <li><b>Bigger quantized beats smaller precise.</b> A 70B model at Q4_K_M usually beats a 14B model at Q8_0 on hard tasks, because larger models tolerate lower precision better. Spend your VRAM on parameter count first.</li>
+        <li><b>Read the bits-per-weight, not the marketing.</b> "Runs locally" with no quant named usually means Q4 or lower; check the filename. And ignore "no quality loss" and bare "2× faster" claims that don't state the hardware and the perplexity they measured against.</li>
+        <li><b>Budget the KV cache separately.</b> Weights at Q4, but the context cache stays FP16 — a model that fits at 4K context can overflow the same card at 32K. The context length, not the weight format, often decides the real ceiling.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Quantization is the quiet variable in three purchases you will meet on this site: <a href="/vs/ollama-vs-lm-studio">the Ollama vs LM Studio comparison</a> (both are local runners, and which quant you pull is the entire "will it fit?" question), <a href="/best/ai-chatbots">the best AI chatbots ranking</a> (where model size and context length decide whether a tool is usable on your hardware), and <a href="/glossary/mixture-of-experts">mixture of experts</a> (the architecture that quantizes best). Related terms: <a href="/glossary/context-window">context window</a> is the budget the KV cache shares with your text, and <a href="/glossary/inference-cost">inference cost</a> is what the bits-per-weight decision does to your per-token bill. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Quantization is just the bits-per-weight dial, and the only number that matters to a buyer is one formula: VRAM ≈ parameters × bytes per weight. At FP16 every weight is 2 bytes, so a 70B model needs 140 GB; at Q4_K_M (~4.5 bits) it needs about 39 GB — the gap between a datacenter and a single 48 GB card. Q4_K_M is the default because it keeps most of the quality for a quarter of the size, bigger models survive lower precision better than small ones, and mixture-of-experts models survive it best of all. The things to keep honest: the KV cache stays full precision no matter how you compress the weights (so long context still blows the budget), "no quality loss" and bare "2× faster" are marketing unless they name the hardware and the perplexity, and the bit width on the filename is the only spec you can trust at a glance. Read the quant, do the multiplication, then buy the card.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

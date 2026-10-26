@@ -39,8 +39,10 @@
   <url><loc>https://top.omc.network/glossary/inference-cost</loc><lastmod>2026-10-21</lastmod><priority>0.8</priority></url>
   <url><loc>https://top.omc.network/glossary/open-weights</loc><lastmod>2026-10-22</lastmod><priority>0.8</priority></url>
   <url><loc>https://top.omc.network/glossary/multimodal</loc><lastmod>2026-10-23</lastmod><priority>0.8</priority></url>
+  <url><loc>https://top.omc.network/glossary/mixture-of-experts</loc><lastmod>2026-10-25</lastmod><priority>0.8</priority></url>
   <url><loc>https://top.omc.network/about</loc><lastmod>2026-10-05</lastmod><priority>0.5</priority></url>
   <url><loc>https://top.omc.network/privacy</loc><lastmod>2026-10-05</lastmod><priority>0.3</priority></url>
   <url><loc>https://top.omc.network/terms</loc><lastmod>2026-10-05</lastmod><priority>0.3</priority></url>
   <url><loc>https://top.omc.network/contact</loc><lastmod>2026-10-05</lastmod><priority>0.5</priority></url>
+  <url><loc>https://top.omc.network/glossary/quantization</loc><lastmod>2026-10-26</lastmod><priority>0.8</priority></url>
 </urlset>

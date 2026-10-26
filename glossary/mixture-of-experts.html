@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Mixture of Experts? Two Parameter Counts, One Bill | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/mixture-of-experts">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Mixture of Experts? Two Parameter Counts, One Bill | AITop">
+  <meta property="og:description" content="Mixture of experts splits a model into specialists and runs only a few per token. That gives every MoE model two parameter counts — and the bigger one decides whether it fits on your hardware.">
+  <meta property="og:url" content="https://top.omc.network/glossary/mixture-of-experts">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Mixture of Experts? Two Parameter Counts, One Bill | AITop">
+  <meta name="twitter:description" content="671B total, 37B active. 46.7B total, 12.9B active. The active number sets your speed and your API bill; the total number sets your VRAM. Reading an MoE spec sheet the wrong way round is the most expensive mistake in local AI.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Mixture of experts splits a model into specialists and runs only a few per token. That gives every MoE model two parameter counts — and the bigger one decides whether it fits on your hardware.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Mixture of experts","item":"https://top.omc.network/glossary/mixture-of-experts"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Mixture of experts (MoE)","description":"A sparse model architecture in which each transformer layer's feed-forward block is split into many parallel 'experts', and a small router network sends each token to only a few of them. The consequence buyers must understand is that every MoE model carries two parameter counts: total parameters, which is how much memory the model occupies when loaded, and active parameters, which is how much computation one token triggers. Vendors quote both, and the gap between them — 671B total against 37B active for DeepSeek-V3, 46.7B against 12.9B for Mixtral 8x7B — is the whole reason MoE models can be cheap to call and expensive to self-host.","url":"https://top.omc.network/glossary/mixture-of-experts","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is mixture of experts?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-25. Parameter counts below are from official model cards and technical reports; they do not change with the weather, but new releases do.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Mixture of experts</b> (MoE) splits the model's feed-forward layers into many parallel <b>experts</b> and lets a small <b>router</b> send each token to only a few of them. The point is to grow a model's capacity without growing the work per token. The catch, for anyone choosing a tool, is that every MoE model therefore has <b>two</b> parameter counts. <b>Total parameters</b> is what you have to load into memory; <b>active parameters</b> is what actually runs for one token, and that is what sets speed and, indirectly, your API bill. DeepSeek-V3 is <b>671B total but 37B active</b>. Mixtral 8x7B is <b>46.7B total but 12.9B active</b> — which is also why it is not 56B, despite the name. Read a spec sheet with the wrong number and you will size hardware for a model that does not fit, or pay for speed you do not get.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A dense transformer runs <b>every</b> parameter for <b>every</b> token. A 70B dense model does 70B parameters' worth of arithmetic to emit one token, whether the token is "the" or a line of Python. MoE keeps the size and drops the obligation: inside each transformer layer, the feed-forward block is replaced by a set of separate expert networks — 8 in Mixtral, 256 routed experts plus one shared expert in DeepSeek-V3 — and a learned <b>router</b> picks the top few for each token. Mixtral picks <b>2 of 8</b>. DeepSeek-V3 picks <b>8 of 256</b>. The unselected experts stay loaded but idle.</p>
+      <p>Two things follow, and only one of them is in the marketing. The first is real: capacity per unit of compute goes up, because a token only pays for the experts it visits. Mistral's own launch post puts it plainly — Mixtral has <b>46.7B total parameters but only uses 12.9B per token</b>, so it "processes input and generates output at the same speed and for the same cost as a 12.9B model." The second is the one that bites: <b>all</b> of the parameters still have to be resident. Nobody pages an expert in from disk mid-token at production latency. Mixtral's VRAM footprint is that of a 47B dense model, not a 13B one.</p>
+      <p>This is not a fringe architecture any more. DeepSeek-V3 — <b>671B total, 37B activated</b>, 61 layers, trained on 14.8T tokens — made it the default way to build a frontier open-weights model, and the naming convention followed: Qwen3-235B-A22B carries both numbers in its name, <b>235B total, 22B active</b>. When a model name contains an "A", that number is the active count, and it is the one that predicts how fast the thing responds.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because the two counts point at two different purchase decisions, and vendors quote whichever one flatters the page. Total parameters is a <b>memory</b> number: it decides whether the model fits on your card, your node, or your budget at all. Active parameters is a <b>throughput</b> number: it decides how many tokens per second you get and how much compute the provider burns per call. An API sells you the second and absorbs the first. A self-hoster pays for the first and only gets the second's benefit if the arithmetic works out.</p>
+      <p>That arithmetic is unforgiving at the top of the range. DeepSeek-V3's 671B parameters, stored at one byte each — 8-bit, which is already compressed relative to the 16-bit weights most models ship in — is <b>671 GB before a single token of KV cache</b>. There is no consumer configuration that holds it. An 8-GPU node with 141 GB per GPU (1.13 TB of HBM) can, in principle, hold the weights with room for cache; four 80 GB accelerators (320 GB) cannot, at any quantization that still resembles the model. The "37B active" line that makes the model feel like a 37B model is true about speed and irrelevant about fit.</p>
+      <p>The naming adds a second trap. <b>Mixtral 8x7B is 46.7B parameters, not 56B</b> — the experts replace only the feed-forward blocks, so attention, embeddings and the router are counted once rather than eight times. Multiply the label and you overestimate the memory by about a fifth; read only the active count and you underestimate it by nearly four times. Both errors are common, and both are avoidable by looking for the pair of numbers rather than the name.</p>
+      <p>One more assumption worth retiring: <b>experts are not topic specialists</b>. The intuitive story — a physics expert, a code expert, a poetry expert — is not what the routing analysis shows. Mistral's own paper reported that it found no obvious pattern in expert assignment by topic; selection tracked the <b>syntax</b> of the text more than its domain, especially in the first and last layers. "Expert" is a structural term, not a job title, which is why you cannot buy a model "with a coding expert" any more than you can buy a car with a specific cylinder.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Sparsity moved from research trick to default, and the spec sheets got harder to read.</b> Through 2024 the open-weights frontier was dense models in the 7B–70B band with MoE as an exception; by 2026 the largest open releases are almost all sparse, and several carry the active count in the product name precisely because buyers kept misreading it. If you are comparing a "235B" model against a "70B" dense model, you are comparing a 235 GB memory footprint against a 70 GB one — with compute closer to 22B against 70B. Those are not the same trade, in either direction.</p>
+      <p><b>The API price is the active count wearing a disguise.</b> Per-token pricing on a hosted MoE reflects the compute the provider actually spends, which tracks active parameters far more than total. That is the honest reason a 671B model can be priced like a mid-size one — and the reason a "cheap per token" model can still be the expensive choice once you measure your own workload (see <a href="/glossary/inference-cost">inference cost</a>). The provider is renting you the active path and amortizing the total across many customers; you get none of that amortization when the box is yours.</p>
+      <p><b>Quantization changes the memory number, not the shape of the problem.</b> Compressing weights to 4 bits cuts the resident footprint by roughly three-quarters against 16-bit, which is what makes 47B-class MoE models runnable on a 24 GB card at all — but it does not turn a 671B model into a laptop model. And because the router chooses per token, you cannot drop experts you think you will not need: the router decides, not you (see <a href="/glossary/open-weights">open weights</a> for what you are allowed to do with the file once you have it).</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Find both numbers before you compare anything.</b> Total parameters sets memory, active parameters sets per-token compute. A spec sheet with one number is incomplete, and the missing one is usually the one that hurts.</li>
+        <li><b>Size the hardware on the total, not the active count.</b> Weights must be resident to serve at latency — Mixtral's VRAM need is that of a ~47B dense model even though each token runs 12.9B. Active parameters predict tokens per second, never gigabytes.</li>
+        <li><b>Do the byte arithmetic rather than trusting the label.</b> Total parameters × bytes per weight = weight memory. At 8 bits, 671B is ~671 GB; at 4 bits, ~336 GB; at 16 bits, ~1.34 TB. Add KV cache, which grows with context and batch (see <a href="/glossary/context-window">context window</a>).</li>
+        <li><b>Never multiply the name.</b> "8x7B" is 46.7B because attention and embeddings are shared. Check the model card for the pair of figures instead of doing algebra on the product name.</li>
+        <li><b>Test the task, not the benchmark.</b> A sparse model's routing is per token and per layer; behaviour on your specific prompts — especially long-context recall and tool calling — is not implied by its MMLU score. Run your own sample before switching.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Three purchases on this site turn on the total-versus-active distinction: <a href="/best/ai-chatbots">the best AI chatbots</a> (where every frontier assistant you are ranking is almost certainly sparse, and the price gap between tiers is the active path, not the total size), <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude vs Gemini</a> (three vendors, three unpublished architectures, one published price list — which is why we price behaviour rather than parameter counts), and <a href="/vs/ollama-vs-lm-studio">Ollama vs LM Studio</a> plus <a href="/best/ai-coding-assistants">the best AI coding assistants</a> (the two places where local MoE models actually get attempted, and where "it fits" means the total). Related terms: <a href="/glossary/ai-token">AI token</a> is the unit the active count is spent in; <a href="/glossary/inference-cost">inference cost</a> is how that spend becomes an invoice; <a href="/glossary/fine-tuning">fine-tuning</a> is where MoE complicates things further, since adapters usually attach to shared layers rather than to individual experts; and <a href="/glossary/multimodal">multimodal</a> models are frequently sparse too, stacking a second axis of metering on top. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Mixture of experts buys capacity with sparsity: split the feed-forward layers into experts, route each token to a few, and a model can be huge without being slow. That produces two parameter counts, and confusing them is the most expensive reading mistake in AI tooling — the total decides whether the model fits in memory (671B is 671 GB at 8 bits, whatever the active count says), the active count decides how fast and how cheaply each token comes out (37B for DeepSeek-V3, 12.9B for Mixtral 8x7B). Vendors quote whichever number flatters the page; read both, size hardware on the big one, and judge speed on the small one. And forget the story about topic specialists — the router follows syntax, not subject matter.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
