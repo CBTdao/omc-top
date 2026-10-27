@@ -56,3 +56,5 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/open-weights](https://top.omc.network/glossary/open-weights): What Are Open Weights? Why "Open" Is Not "Open Source" | AITop
 - [https://top.omc.network/glossary/multimodal](https://top.omc.network/glossary/multimodal): What Is Multimodal AI? One Model, Many Inputs — and Three Different Bills | AITop
 - [https://top.omc.network/glossary/mixture-of-experts](https://top.omc.network/glossary/mixture-of-experts): What Is Mixture of Experts? Two Parameter Counts, One Bill | AITop
+- [https://top.omc.network/glossary/quantization](https://top.omc.network/glossary/quantization): What Is Quantization? Bits per Weight, and the VRAM Formula Every Local LLM Buyer Needs | AITop
+- [https://top.omc.network/glossary/tokens-per-second](https://top.omc.network/glossary/tokens-per-second): What Is Tokens per Second? The Two Speeds Every LLM Benchmark Hides | AITop

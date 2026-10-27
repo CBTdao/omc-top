@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Tokens per Second? The Two Speeds Every LLM Benchmark Hides | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/tokens-per-second">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Tokens per Second? The Two Speeds Every LLM Benchmark Hides | AITop">
+  <meta property="og:description" content="Tokens per second hides two different speeds: prefill (compute-bound, sets your time to first token) and decode (memory-bandwidth-bound, sets how fast text streams). The buyer's formula: decode speed ≈ memory bandwidth ÷ model size.">
+  <meta property="og:url" content="https://top.omc.network/glossary/tokens-per-second">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Tokens per Second? The Two Speeds Every LLM Benchmark Hides | AITop">
+  <meta name="twitter:description" content="Decode speed ≈ memory bandwidth ÷ model size. A 70B model at FP16 tops out near 24 tok/s even on an H100. Batching makes servers richer, not your chat faster.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Tokens per second hides two different speeds: prefill (compute-bound, sets your time to first token) and decode (memory-bandwidth-bound, sets how fast text streams). The buyer's formula: decode speed ≈ memory bandwidth ÷ model size.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Tokens per second","item":"https://top.omc.network/glossary/tokens-per-second"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Tokens per second (tok/s)","description":"In AI tool buying, tokens per second is the speed a language model generates text, but it actually hides two different speeds. Prefill reads your whole prompt at once and is compute-bound — it sets your time to first token. Decode generates one token at a time and is memory-bandwidth-bound — each new token requires streaming the model's weights from memory, so single-stream decode speed is roughly memory bandwidth divided by model size in bytes. A benchmark that quotes one tok/s number without saying which phase it measured cannot be checked.","url":"https://top.omc.network/glossary/tokens-per-second","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is tokens per second (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-27. The phase distinction below is standard across serving-stack documentation (vLLM's tuning guide treats prefill as compute-bound and decode as memory-bound) — but any specific tok/s number you read is hardware-and-model specific, so check what was measured.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Tokens per second (tok/s)</b> is the speed a language model writes text — and the label hides <b>two different speeds</b>. <b>Prefill</b> reads your entire prompt in one parallel pass and is <b>compute-bound</b>: it decides your <b>time to first token</b> (TTFT), which is what a long document costs you. <b>Decode</b> then writes the answer one token at a time and is <b>memory-bandwidth-bound</b>: every new token means streaming the model's weights out of memory again, so single-stream decode speed is roughly <b>bandwidth ÷ model size in bytes</b>. That formula explains most of what you feel: a 70B model at FP16 (~140 GB) tops out around <b>24 tok/s even on an H100</b> (3.35 TB/s), while a 7B model at 4-bit (~4 GB) can theoretically pass <b>250 tok/s on an RTX 4090</b>. Batching makes a server serve more people — it does <b>not</b> make any one person's text stream faster.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A <b>token</b> is a chunk of text — roughly a word or part of one (see <a href="/glossary/ai-token">AI token</a>, where the same unit is also the billing unit). Inference runs in two phases, and serving-stack documentation is explicit that they hit different hardware limits. <b>Prefill</b> processes all of your prompt tokens together — system prompt, chat history, retrieved documents, everything. Because the work is one wide parallel pass, the limit is raw math throughput, which is why serving docs describe prefill as <b>compute-bound</b>. <b>Decode</b> is a serial chain: each new token depends on all previous ones, and each step re-reads the model's weights from memory — which is why the same documentation describes decode as <b>memory-bound</b>.</p>
+      <p>The two phases report wildly different numbers for the same model on the same device — thousands of tok/s for prefill, tens to low hundreds for decode — and a benchmark line like "2,000 tok/s" that doesn't name its phase is usually quoting prefill, which is not the number you feel while reading. The three measurements that matter: <b>TTFT</b> (time to first token: queue wait + prefill — what a long prompt costs you), <b>ITL / TPOT</b> (inter-token latency, the gap between tokens once streaming starts), and <b>throughput</b> (tokens per second across <i>all</i> users on the machine — the number providers optimize, not the number you experience).</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p>Because the decode formula is one line and it explains almost every speed difference between hardware: <b>decode tok/s ≈ memory bandwidth ÷ bytes read per forward pass</b>. For a dense model at batch size 1, the bytes per pass are roughly the size of the weights. NVIDIA's spec pages put the H100 SXM at <b>3.35 TB/s</b> of memory bandwidth; an RTX 4090 is <b>1,008 GB/s</b> and an RTX 4070 <b>504 GB/s</b>. Run the division (this is our arithmetic, not a vendor claim — real runs land below the ceiling because of KV-cache traffic and runtime overhead):</p>
+      <p><b>70B model at FP16 (~140 GB of weights)</b> — H100 SXM: 3,350 ÷ 140 ≈ <b>24 tok/s ceiling</b>; RTX 4090: ≈ 7 tok/s; RTX 4070: ≈ 3.6 tok/s. This is why big models need datacenter silicon to feel responsive <i>before</i> anyone mentions compute. <b>7B model at Q4 (~4 GB)</b> — RTX 4090: ≈ 250 tok/s ceiling, comfortably fast. Same card, same day, 30–70× apart — the model choice, not the marketing, decides the speed.</p>
+      <p>Three levers fall out of the formula, and every one of them has its own entry on this site. <b>Quantization</b> (see <a href="/glossary/quantization">quantization</a>) shrinks the bytes per pass — a 4-bit file reads roughly a quarter of the data of FP16, which is why it speeds up decode specifically. <b>Mixture of experts</b> (see <a href="/glossary/mixture-of-experts">mixture of experts</a>) means only the active parameters are read per token, so the bytes per pass are far smaller than the total parameter count suggests. And <b>memory bandwidth</b> is a spec-sheet number you can compare directly across cards — it predicts single-stream speed far better than TFLOPS does, because TFLOPS governs prefill, not decode.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Batching makes servers richer, not your chat faster.</b> Serving engines like vLLM pack many users' decode steps into shared batches, which raises total throughput enormously — but each individual stream still waits on the same memory-bound step. The throughput-vs-latency tradeoff is the central tension of LLM serving: you cannot maximize both, and a provider quoting "up to X tok/s" is almost always quoting aggregate throughput under load, not what your session will feel like. Chunked-prefill scheduling (which batches compute-bound prefill work with memory-bound decode work) exists precisely to protect ITL from large prompts — the serving docs treat that interference as the default failure mode, not an edge case.</p>
+      <p><b>Every speed claim needs a scope or it cannot be checked.</b> Which phase (prefill or decode)? Which model, at which quantization? Which runtime (llama.cpp, vLLM, TensorRT-LLM), which device, batch size 1 or under load? Community benchmark tooling separates the phases for exactly this reason — llama.cpp's llama-bench reports prompt processing (pp) and text generation (tg) as different numbers. A claim scoped this narrowly survives replication; a bare "2× faster" does not. The same skepticism applies to "instant" AI tool demos: a snappy reply to a short question says nothing about how the tool handles your 30-page document, because that wait is prefill (TTFT), which the demo never showed.</p>
+      <p><b>Context length taxes decode too, not just TTFT.</b> Every decode step also reads the growing KV cache — the attention state for your whole conversation — so long-context sessions get slower per token even when the weights fit comfortably (see <a href="/glossary/context-window">context window</a>). If a tool feels fast on message one and sluggish by message twenty, that is the cache growing, not your imagination.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Memorize one formula: decode speed ≈ memory bandwidth ÷ model size in bytes.</b> Divide your card's bandwidth by the weights the model actually reads per token. A 70B FP16 model (~140 GB) caps near 24 tok/s even on an H100 (3.35 TB/s) — no driver update fixes arithmetic.</li>
+        <li><b>Ask which phase a benchmark measured.</b> Prefill (thousands of tok/s, compute-bound) and decode (tens to low hundreds, bandwidth-bound) differ by 10–50× on the same hardware. A tok/s number with no phase named is usually prefill.</li>
+        <li><b>Buy bandwidth, not TFLOPS, for chat.</b> TFLOPS decides how fast your prompt is read (TTFT); bandwidth decides how fast text streams. A cheaper card with more bandwidth often feels faster than a compute monster with slow memory.</li>
+        <li><b>Shrink the bytes, not the card.</b> Quantization (4-bit weights) and mixture-of-experts architectures both cut the bytes read per token — the two levers that make big models usable on small hardware.</li>
+        <li><b>Treat "up to X tok/s" as a server metric.</b> It is aggregate throughput across concurrent users. Your single stream is bounded by the same memory step whether the GPU serves one person or fifty — ask for TTFT and ITL at your prompt length instead.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>The two-speeds split explains three purchases on this site: <a href="/vs/ollama-vs-lm-studio">the Ollama vs LM Studio comparison</a> (both are local runners, and the tok/s you get is decided by the formula above, not the UI), <a href="/best/ai-chatbots">the best AI chatbots ranking</a> (where a tool that feels instant on short chats can stall on long RAG documents — that is prefill, and it bills as <a href="/glossary/inference-cost">inference cost</a> too), and <a href="/glossary/quantization">quantization</a> (the lever that shrinks the bytes per pass). Related terms: <a href="/glossary/mixture-of-experts">mixture of experts</a> cuts the bytes read per token architecturally, and <a href="/glossary/context-window">context window</a> is the budget whose KV cache taxes every decode step. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Tokens per second is two numbers wearing one label: prefill, which is compute-bound and sets your time to first token, and decode, which is memory-bandwidth-bound and sets how fast the text streams. The only formula a buyer needs is decode speed ≈ memory bandwidth ÷ model size in bytes — it puts a 70B FP16 model near 24 tok/s even on an H100 and a 7B 4-bit model past 250 tok/s on an RTX 4090, and it tells you that bandwidth, quantization, and active-parameter count matter more than TFLOPS for anything you actually read. Be suspicious of any tok/s claim that doesn't name its phase, model, quant, runtime, and hardware; be extra suspicious of "up to X tok/s" from a provider, because that is batched throughput for their server, not a speed you will ever feel. Two numbers, one question each: how long until the first token (TTFT), and how fast does it type (ITL).</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
