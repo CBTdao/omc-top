@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is a KV Cache? The Hidden VRAM Bill Behind Every Long Chat | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/kv-cache">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is a KV Cache? The Hidden VRAM Bill Behind Every Long Chat | AITop">
+  <meta property="og:description" content="The KV cache stores the attention state of every token you've sent so the model never recomputes it. It grows linearly with context — a Llama 3 70B chat at 128K context carries ~40 GB of it. The formula every buyer should know: 2 × layers × KV heads × head size × bytes per token.">
+  <meta property="og:url" content="https://top.omc.network/glossary/kv-cache">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is a KV Cache? The Hidden VRAM Bill Behind Every Long Chat | AITop">
+  <meta name="twitter:description" content="Weights get the credit; the KV cache gets the OOM. A 70B model carries ~320 KiB of cache per token — 8K context ≈ 2.5 GiB, 128K ≈ 40 GiB. It is why long chats slow down and why batch size has a ceiling.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="The KV cache stores the attention state of every token you've sent so the model never recomputes it. It grows linearly with context — a Llama 3 70B chat at 128K context carries ~40 GB of it. The formula every buyer should know: 2 × layers × KV heads × head size × bytes per token.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"KV cache","item":"https://top.omc.network/glossary/kv-cache"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"KV cache","description":"The KV cache is the memory where an inference server keeps the attention keys and values of every token in the current conversation, so each new token does not have to recompute attention over the whole history. Its size grows linearly with context length: roughly 2 × layers × KV heads × head dimension × bytes per element per token. For Llama 3 70B that is about 320 KiB per token — 2.5 GiB for an 8K-token chat and about 40 GB at 128K context, which is on par with the model's own weights. The cache is why long chats slow down, why batch size has a ceiling, and why tools run out of VRAM even when the weights fit.","url":"https://top.omc.network/glossary/kv-cache","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is a KV cache (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-28. The size formula below is standard across inference-serving literature — vLLM's own engineering blog treats KV-cache management as the central memory problem of LLM serving — but any specific cache number is model-and-precision specific, so run the arithmetic for your model.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>The <b>KV cache</b> is where an inference server keeps the <b>attention keys and values of every token you've already sent</b>, so each new token doesn't recompute attention over the whole conversation. It is the quiet second consumer of your VRAM — and it grows <b>linearly with context length</b>, not with model cleverness. The buyer's formula: <b>2 × layers × KV heads × head size × bytes per element, per token</b>. For Llama 3 70B (80 layers, 8 KV heads, head size 128, FP16) that is about <b>320 KiB per token</b> — an 8K-token chat carries <b>~2.5 GiB</b> of cache, and a 128K-context session carries <b>~40 GB</b>, on par with the model's own weights. The cache is why long chats slow down, why "my model fits but it OOMs anyway" happens, and why providers charge differently for fresh vs cached input tokens.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A transformer generates text one token at a time, and every new token attends to <b>all</b> the tokens before it — your system prompt, the document you pasted, the whole conversation. During the forward pass, each layer computes a <b>key</b> and a <b>value</b> vector for every token. Since past tokens never change, recomputing their keys and values at every step would be pure waste, so the runtime stores them in GPU memory. That stored state is the KV cache. It is a deliberate trade: spend memory to skip redundant compute — the same memory-vs-recompute logic that shows up in <a href="/glossary/quantization">quantization</a>, just in the opposite direction.</p>
+      <p>The size arithmetic is one line, and it is worth memorizing because no vendor puts the answer on a spec sheet: <b>cache bytes = 2 × layers × KV heads × head dimension × context length × batch size × bytes per element</b>. The leading 2 counts the separate K and V tensors; everything else is the model's architecture. The number of <i>query</i> heads is deliberately absent — under grouped-query attention, many query heads share one KV head, which is the main architectural lever for shrinking this number (see <a href="/glossary/mixture-of-experts">mixture of experts</a> for the other spec-sheet trap of two param counts).</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Weights are the bill you planned for; the cache is the bill you get.</b> Worked example, using numbers that are public and cross-checkable — Llama 3 70B: 80 layers, 8 KV heads, head size 128, FP16 cache. Per token: 2 × 80 × 8 × 128 × 2 bytes = <b>327,680 bytes ≈ 320 KiB</b>. An 8,192-token chat: ~<b>2.5 GiB</b>. A 128,000-token document session: ~<b>40 GB</b> — roughly the size of the model's FP8 weights. That is why the most common local-LLM failure is not "the weights don't fit" but "the weights fit at 2K context and the process dies at 32K" (see <a href="/glossary/context-window">context window</a>). If a local runner like the ones in <a href="/vs/ollama-vs-lm-studio">our Ollama vs LM Studio comparison</a> crashes on your long document, the KV cache is the usual suspect.</p>
+      <p><b>The cache, not the weights, sets how many people a GPU can serve.</b> A server keeps every active conversation's cache in memory, so the batch size ceiling is (memory left after weights) ÷ (cache bytes per conversation). This is why architecture choices that shrink the per-token cache translate directly into capacity: Llama 3 70B uses <b>8 KV heads instead of 64</b> — an 8× reduction from grouped-query attention alone; KV-cache quantization to FP8 halves it again; and DeepSeek's multi-head latent attention (MLA) compresses the cache into a smaller latent vector per token.</p>
+      <p><b>Serving engines exist largely to manage this one data structure.</b> vLLM's original engineering writeup is blunt: its authors found existing serving systems wasting <b>60–80%</b> of KV-cache memory to fragmentation and over-reservation, and built PagedAttention — which pages the cache like an operating system pages virtual memory — to cut waste to <b>under 4%</b>. The same block-table trick lets concurrent requests share the cache of a common prefix (system prompt, pasted document), which vLLM reports cuts memory use for shared-prefix workloads by up to <b>55%</b>. Prefix reuse is also why API providers can bill cached input tokens at a fraction of fresh ones — the discount reflects real memory savings (see <a href="/glossary/inference-cost">inference cost</a>).</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Long context taxes speed, not just memory.</b> Every decode step reads the entire accumulated cache, so per-token latency creeps up as the conversation grows even when everything fits comfortably — the effect we flagged in <a href="/glossary/tokens-per-second">tokens per second</a>. A tool that feels instant on message one and sluggish by message twenty is not degrading; its cache is growing. Advertised context windows describe what the model <i>can</i> hold, not what your hardware holds <i>at full speed</i>.</p>
+      <p><b>"1M context!" claims and usable context are different numbers.</b> A model card quoting a maximum context length says nothing about how much VRAM the cache consumes there, how much the first token will cost, or how degraded attention is at the far end. In 2026 the honest question for any long-context pitch is: at that length, what is the cache footprint, and is it quantized? A 128K session on a 70B model at FP16 cache is a ~40 GB structure before you serve a second user. Marketing quotes the window; the arithmetic quotes the bill.</p>
+      <p><b>The cache is also the reason providers price context at all.</b> Per-token pricing exists because serving memory scales with stored context, and the cached-vs-fresh input price split exists because prefix caching turns that memory into a shared, reusable asset. When you evaluate an API or a self-hosted stack on <a href="/best/ai-chatbots">a ranking like our chatbot guide</a>, remember that the same model can be cheap with prompt reuse and expensive without it — the KV cache is the mechanism behind both numbers.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Run the formula before you buy RAM.</b> Cache bytes per token ≈ 2 × layers × KV heads × head size × bytes per element. For a Llama-3-70B-class model at FP16 that is ~320 KiB/token; multiply by your real context length, then by concurrent users.</li>
+        <li><b>Budget for cache <i>and</i> weights.</b> If weights take 80% of VRAM, your context and batch headroom live in the remaining 20%. A model that "fits" can still OOM the moment a long document arrives.</li>
+        <li><b>Prefer GQA/MLA models for long context.</b> KV-head count is the architectural lever: 8 KV heads instead of 64 is an 8× smaller cache before anyone mentions quantization. The model card lists it — check it.</li>
+        <li><b>Quantize the cache before shrinking the context.</b> FP8/INT8 KV cache roughly halves (or quarters) the footprint for a small quality cost — usually a better trade than amputating your context window.</li>
+        <li><b>Ask whether the runtime pages the cache.</b> Systems with paged attention and prefix caching waste under 4% of cache memory versus 60–80% for naive runtimes — and shared system prompts stop being billed as fresh tokens.</li>
+        <li><b>Expect slowdown, not just OOM.</b> Decode reads the whole cache every step, so latency per token grows with the conversation. If a tool slows down in long chats, that is physics, not a bug.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>The cache explains three purchases on this site: <a href="/vs/ollama-vs-lm-studio">the Ollama vs LM Studio comparison</a> (both runners expose context-length and KV-quantization settings, and those settings decide whether your long document OOMs), <a href="/best/ai-chatbots">the best AI chatbots ranking</a> (where "handles long documents" claims are really claims about cache management and pricing), and <a href="/glossary/quantization">quantization</a> (which shrinks both weights and cache, but by different dials). Related terms: <a href="/glossary/context-window">context window</a> is the budget the cache spends against; <a href="/glossary/tokens-per-second">tokens per second</a> is the speed the cache taxes; <a href="/glossary/mixture-of-experts">mixture of experts</a> shrinks the bytes read per token while the cache shrinks the bytes stored. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>The KV cache is the attention state of your entire conversation, stored so the model never recomputes it — and it is the second consumer of your VRAM that no spec sheet mentions. One formula covers it: 2 × layers × KV heads × head size × bytes, per token, per conversation. That arithmetic puts a Llama-3-70B-class chat at ~320 KiB per token — 2.5 GiB at 8K context, ~40 GB at 128K — and it explains the three things buyers actually feel: why long chats OOM even when the weights fit, why every provider caps concurrency, and why cached input tokens bill at a fraction of fresh ones. Check KV-head count on the model card, budget cache alongside weights, and treat any context-window headline as a memory bill you haven't been shown yet.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
