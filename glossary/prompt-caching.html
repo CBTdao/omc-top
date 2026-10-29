@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Prompt Caching? Why the Same Prompt Costs a Tenth the Second Time | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/prompt-caching">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Prompt Caching? Why the Same Prompt Costs a Tenth the Second Time | AITop">
+  <meta property="og:description" content="Prompt caching bills a repeated prefix at a fraction of the fresh rate. Anthropic reads cache at 0.1× input with a 1.25× write, OpenAI at 0.1× with a 1.25× write of its own, Gemini at ~10% plus hourly storage, DeepSeek at 2% with no storage fee. The break-even arithmetic, provider by provider.">
+  <meta property="og:url" content="https://top.omc.network/glossary/prompt-caching">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Prompt Caching? Why the Same Prompt Costs a Tenth the Second Time | AITop">
+  <meta name="twitter:description" content="Every major API now sells you the same prefix twice at two prices. Anthropic and OpenAI both charge 1.25× to write and 0.1× to read; Gemini rents cached tokens by the hour; DeepSeek just discounts them 98%. Here is the break-even arithmetic.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Prompt caching stores a repeated prompt prefix so later requests read it at a discounted rate instead of reprocessing it. 2026 list prices: Anthropic 1.25× write / 0.1× read, OpenAI 1.25× write / 0.1× read, Gemini ~10% of input plus $0.50 per million cached tokens per hour, DeepSeek 2% with no storage fee. Includes the break-even math and the prefix rules that decide whether you ever get a hit.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Prompt caching","item":"https://top.omc.network/glossary/prompt-caching"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Prompt caching","description":"Prompt caching is a per-provider billing and serving feature that stores the processed prefix of a prompt — the part that repeats across requests, such as system instructions, tool definitions or a reference document — so later calls re-read it instead of reprocessing it. Providers meter three separate rates: a cache write (usually 1.1× to 2.5× the normal input price), a cache read or hit (as low as 0.02× to 0.1×), and ordinary input for everything after the cached prefix. A hit requires an exactly identical prefix, so prompt order — stable content first, variable content last — decides whether caching works at all. In 2026 the mechanism is table stakes across major APIs, but the pricing shapes differ: Anthropic and OpenAI charge a write premium and cheap reads, Google rents cached tokens by the hour, and DeepSeek discounts hits with no write or storage fee.","url":"https://top.omc.network/glossary/prompt-caching","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is prompt caching (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-29. Multipliers below are the providers' own published list rates as of this date and are stated relative to each provider's base input price, so they survive a price cut; the dollar examples are our arithmetic on those rates, not vendor claims.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Prompt caching</b> is how every major API sells you the same prompt prefix twice — once at full price, once nearly free. The provider stores the processed state of a repeated prefix (system prompt, tool definitions, a pasted document) and charges a much lower rate when the next request re-reads it. In 2026 the four biggest APIs agree on the shape and disagree on the price: <b>Anthropic</b> charges <b>1.25×</b> input to write a 5-minute cache (<b>2×</b> for 1 hour) and <b>0.1×</b> to read it; <b>OpenAI</b> also charges <b>1.25×</b> to write (30-minute life, 2.5× for 12 hours) and <b>0.1×</b> to read on its current models; <b>Google</b> bills cached tokens at about <b>10%</b> of input <i>and</i> adds a storage meter of <b>$0.50 per million cached tokens per hour</b>; <b>DeepSeek</b> charges <b>$0.003</b> against <b>$0.15</b> — a 98% discount with no write or storage fee at all. The buyer's rule: cache only prefixes you will reuse at least twice, keep the stable part first and the variable part last, and never assume a hit — an exactly identical prefix is the price of the discount.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Every request to a hosted model begins the same way: the provider tokenizes your input and runs a forward pass over the whole prompt before it can emit the first output token. That pass is the expensive, latency-heavy part, and in agentic workloads it repeats almost verbatim — the same system instructions, the same dozen tool schemas, the same 40-page policy document, every single turn. Prompt caching stores the result of that pass, keyed to the exact prefix, so the next request can skip it. It is the server-side cousin of the <a href="/glossary/kv-cache">KV cache</a>: same underlying state, but persisted by the provider across requests instead of inside one conversation.</p>
+      <p>The mechanism is prefix matching, not semantic matching. Anthropic's documentation is explicit that a hit requires <b>100 percent identical</b> prompt segments up to the block you marked; OpenAI and Google describe the same requirement in their own words, and all three isolate caches per organization so nobody benefits from your prefix by accident. That single constraint generates most of the practical advice in this entry: anything that changes early — a timestamp, a per-user greeting, a reordered tool list, even non-deterministic JSON key order in some languages — breaks the prefix and you pay full price for the whole prompt again. Where you put the variable part of your request is not style, it is the billing switch.</p>
+      <p>Billing splits into three meters, and the split is where buyers get surprised: a <b>write</b> (sometimes called cache creation), a <b>read</b> (a hit), and ordinary <b>input</b> for the uncached remainder. Anthropic and OpenAI both price the write above base input and the read far below it; Google prices the read near 10% but charges rent on the stored tokens by the hour; DeepSeek charges neither a write premium nor storage, only a much cheaper hit rate. Read that as three different bets on how long your prefix will live.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>One number decides whether caching pays: how many reads per write.</b> Take a mid-tier model at <b>$3 per million input tokens</b> and a <b>100,000-token</b> system prompt you reuse across a 20-turn agent session. No caching: 20 × 100K × $3/M = <b>$6.00</b>. With a 5-minute-style cache (1.25× write, 0.1× read): one write at $0.375 plus 19 reads at $0.03 each = <b>$0.945</b> — about <b>6.3× cheaper</b>, from a code change that only moves the static block to the front. Do the arithmetic on your own session length before you compare vendors: a workload that reuses a prefix three times barely beats the write premium, and a chat product with a per-user system prompt never gets a hit at all.</p>
+      <p><b>The write premium is a one-off; the storage meter is not.</b> Anthropic's 5-minute write costs 1.25× and its own documentation states the cache pays for itself after <b>one</b> read (two reads for the 1-hour, 2× write). OpenAI's current models follow the same shape — 1.25× to write a 30-minute cache, 0.1× to read — with 2.5× for the 12-hour variant. Google is structurally different: on Gemini's published rates a cached token reads at about a tenth of input <i>and</i> accrues <b>$0.50 per million tokens per hour</b> of storage. Our arithmetic on those two numbers: you save $0.675 per million tokens per read, so a million cached tokens must be read more than <b>0.74 times an hour</b> — roughly once every 80 minutes — just to pay its own rent. Great for a hot document behind a busy endpoint; quietly expensive for a cache you keep warm overnight and query twice.</p>
+      <p><b>Minimum lengths quietly exclude the small stuff.</b> Anthropic publishes a per-model floor that ranges from <b>512</b> tokens on its newest models to <b>4,096</b> on several older ones; OpenAI's current guidance is <b>1,024</b> tokens for its latest generation, and older models varied with request settings. Below the floor the request is processed normally and simply is not cached — no error, no warning, just a bill with no discount. That is why caching changes the economics of long-document and agent workloads and does nothing for a 200-token classification prompt, no matter which vendor you pick.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The discount got much bigger than the launch press releases.</b> OpenAI's 2024 announcement framed prompt caching as a <b>50%</b> discount with a 1,024-token minimum and 128-token increments. Its current documentation describes cached reads at <b>0.1×</b> input (0.05× on two of its newest models) and a write premium of 1.25× or 2.5× depending on cache life — the same shape Anthropic has used since 2024. Anyone still budgeting 50% off is overstating their bill by roughly 5× on the cached portion. Check the live docs, not the blog post that ranks first.</p>
+      <p><b>"Automatic" is not the same as "free".</b> OpenAI applies caching without any code change and DeepSeek has done the same on disk since 2024, which reads as zero engineering work — and it is, for structure. But automatic caching still only helps if your prefix is stable, and both vendors isolate caches per organization so a shared template across customers buys you nothing. Anthropic's model is the opposite trade: you mark breakpoints explicitly (up to <b>4</b> of them), you pay the write premium, and you get the deepest read discount plus free refresh every time the cache is used. Explicit control is worth the code when your prefix is long and its reuse is predictable; automatic is worth the simplicity when it is not.</p>
+      <p><b>The cheapest per-token vendors are also the cheapest to cache into.</b> DeepSeek's published rate card puts cache hits at <b>$0.003</b> per million tokens against <b>$0.15</b> for a miss on its flash model — a 98% gap — with no write premium and no hourly storage, and it runs the same automatic prefix match with nothing to configure. Compare that to Google's rent meter before assuming the two are interchangeable: a workload with a large prefix read a few times an hour will look cheap on DeepSeek and expensive on Gemini, and the entire difference lives in the storage line, not the token line. This is the same trap as <a href="/glossary/inference-cost">inference cost</a> in general — the headline rate is rarely the bill.</p>
+      <p><b>Caching changes latency, and latency changes product design.</b> Both Anthropic and OpenAI describe caching as cutting the time spent processing input before the first output token, and OpenAI documents a pre-warm call to populate a cache ahead of traffic. That is why agent products can afford to re-send a 100K-token context on every step: without the cache the round trip would be dominated by reprocessing, and with it the model effectively starts from the last token. If a competitor's assistant feels materially snappier on long documents, this — not a faster model — is often the explanation.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Count reads per write before you build.</b> One reuse clears a 1.25× write; the 1-hour and 12-hour variants need two or more. If your prefix changes per user or per request, caching cannot help and you should not pay for the plumbing.</li>
+        <li><b>Put the stable block first and the variable block last.</b> Prefix matching is exact: a timestamp, a user name or a reordered tool list at the top of the prompt converts every request into a full-price miss.</li>
+        <li><b>Check the minimum length for your exact model.</b> Floors run from 512 to 4,096 tokens depending on model generation. Under the floor you get no cache and no error — only an undiscounted invoice.</li>
+        <li><b>Price the storage meter, not just the read rate.</b> Rent-based caching needs roughly one read per 80 minutes for a million cached tokens at Google's published $0.50/hour. A cache you keep warm and rarely query is a subscription, not a saving.</li>
+        <li><b>Do not assume a 50% discount.</b> Current list rates put cached reads near a tenth of input (sometimes a twentieth). Budget from the live docs, and re-check after every model launch — multipliers survive price cuts, absolute rates do not.</li>
+        <li><b>Keep cached and uncached traffic separately metered.</b> If your cost model collapses everything into "input tokens", your savings estimate is fiction — track writes, reads and fresh input as three lines.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Three purchases on this site are really decisions about prompt caching: <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> (both ship aggressive cached-input pricing and both document a different control model — automatic versus explicit breakpoints), <a href="/best/ai-chatbots">the best AI chatbots ranking</a> (where "handles long documents" is partly a claim about cache economics), and <a href="/vs/ollama-vs-lm-studio">Ollama vs LM Studio</a> — locally you already get prefix reuse for free, which is the honest reason a home setup can feel competitive on repeated long context. Related terms: <a href="/glossary/kv-cache">KV cache</a> is the same state priced per token instead of per request; <a href="/glossary/ai-token">AI token</a> is the unit all three meters are counted in; <a href="/glossary/context-window">context window</a> is the budget the cached prefix occupies. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Prompt caching is the rare AI feature that is purely arithmetic: store a repeated prefix, pay 1.25× once, read it back at a tenth, and a 20-turn agent session on a 100K-token context drops from about $6.00 to about $0.95. The 2026 pricing has converged on that shape — Anthropic and OpenAI both at 1.25× write and 0.1× read, DeepSeek at 2% with no premium at all — while Google keeps a rent meter of $0.50 per million cached tokens per hour that no other major provider charges. So the questions worth asking any API vendor are boring and specific: what is the minimum cacheable length for this model, is the write premium one-off or renewed, is there a storage charge, and does the discount survive my per-user prompts? Answer those four and you will know whether caching saves you 80% or sells you a subscription you never use.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

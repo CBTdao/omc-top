@@ -59,3 +59,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/quantization](https://top.omc.network/glossary/quantization): What Is Quantization? Bits per Weight, and the VRAM Formula Every Local LLM Buyer Needs | AITop
 - [https://top.omc.network/glossary/tokens-per-second](https://top.omc.network/glossary/tokens-per-second): What Is Tokens per Second? The Two Speeds Every LLM Benchmark Hides | AITop
 - [https://top.omc.network/glossary/kv-cache](https://top.omc.network/glossary/kv-cache): What Is a KV Cache? The Hidden VRAM Bill Behind Every Long Chat | AITop
+- [https://top.omc.network/glossary/prompt-caching](https://top.omc.network/glossary/prompt-caching): What Is Prompt Caching? Why the Same Prompt Costs a Tenth the Second Time | AITop
