@@ -69,7 +69,7 @@
     <section class="section">
       <h2>Why it matters when you're picking a tool</h2>
       <p><b>The discount has an order of operations, and that order is the whole decision.</b> Two levers now sit on the same invoice: batching (50% off) and <a href="/glossary/prompt-caching">prompt caching</a> (a repeated prefix read at a tenth of input). If both compound, a cached token inside a batch costs a twentieth of list. If they do not, batching only touches the uncached remainder. Take a monthly workload of 500M input tokens at a $2-per-million base rate with a 90% cache-hit rate, and run the three published rules through it (our arithmetic, output tokens excluded — those simply halve):</p>
-      <ul class="gl-check">
+      <ul>
         <li><b>No batch, with cache:</b> 0.19× list. On our example, about <b>$190</b>.</li>
         <li><b>Batch that compounds (OpenAI's table):</b> 0.095× list — <b>$95</b>, half of the above, because the 0.1× cached read is itself halved to 0.05×.</li>
         <li><b>Batch that does not compound (Google's stated rule):</b> 0.14× list — <b>$140</b>. The 90% cache discount wins and the batch discount only applies to the 10% of tokens that missed.</li>
