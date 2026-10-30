@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is the Batch API? Why 50% Off Has a Hidden Order of Operations | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/batch-api">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is the Batch API? Why 50% Off Has a Hidden Order of Operations | AITop">
+  <meta property="og:description" content="Every major API sells the same model at half price if you can wait 24 hours. OpenAI, Anthropic and Google all quote 50%. What differs is the order the discounts apply in: OpenAI stacks batch on top of prompt caching (cached input lands at 0.05x), Gemini lets the cache discount win, and Anthropic calls its stack best-effort at 30-98% hit rates.">
+  <meta property="og:url" content="https://top.omc.network/glossary/batch-api">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is the Batch API? Why 50% Off Has a Hidden Order of Operations | AITop">
+  <meta name="twitter:description" content="Three providers, one discount, three different bills. The batch discount is 50% everywhere; whether it compounds with prompt caching is not. Our arithmetic on a 90%-cache-hit workload: 0.095x of list on OpenAI, 0.14x on Gemini.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="The Batch API is an asynchronous queue that runs the same model at roughly half the synchronous price within a 24-hour window. In 2026 OpenAI, Anthropic and Google all quote 50%, with different limits (50,000 requests/200 MB, 100,000/256 MB, 2 GB) and a different order of operations against prompt caching: OpenAI halves cached input to 0.05x, Gemini lets the 90% cache discount take precedence, Anthropic calls the combination best-effort at 30-98% hit rates. Includes the stacking arithmetic, when batch is the wrong lever, and why flex tiers now sell the same 50%.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Batch API","item":"https://top.omc.network/glossary/batch-api"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Batch API","description":"A batch API is an asynchronous endpoint that accepts a large file of independent requests, processes them in a background queue, and returns the results as a file — in exchange for a discount, typically 50% of the synchronous price, and a completion window of up to 24 hours. It is the standard way to buy the same model cheaper for work nobody is waiting on: classification backlogs, extraction runs, evaluation suites, embedding refreshes. Three things decide the real bill. First, the queue is not a different model — quality is identical, only latency changes. Second, the discount interacts with prompt caching in a provider-specific order: some providers compound the two, some let the cache discount take precedence, and at least one only promises a best-effort hit rate because concurrent batch processing spreads identical prefixes across machines. Third, batch buys patience, not price: a batch job on a frontier model can still cost more than real-time calls to a small one.","url":"https://top.omc.network/glossary/batch-api","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is a batch API (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-30. Discounts are stated as multiples of each provider's own list price, so they survive a price cut; the dollar examples are our arithmetic on published list rates, not vendor claims.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>A <b>batch API</b> is a queue you rent instead of a server you call. You hand over a file of independent requests, the provider runs them whenever it has spare capacity, and you get the answers back as a file — usually within an hour, contractually within <b>24 hours</b> — for about <b>half price</b>. In 2026 that half price is industry standard: <b>OpenAI</b> quotes a <b>50%</b> cost discount up to <b>50,000 requests / 200 MB</b> per batch, <b>Anthropic</b> quotes <b>50% of standard prices</b> up to <b>100,000 requests / 256 MB</b>, and <b>Google</b> prices Gemini batch at <b>50%</b> of the interactive rate with a <b>2 GB</b> input file. The part nobody puts in the headline is the <b>order of operations against prompt caching</b>: OpenAI's price table halves cached input too (a 0.1× cached read becomes <b>0.05×</b>), Google's documentation says the cache-hit discount <b>takes precedence</b> so the two do not compound, and Anthropic says they stack but that hits are <b>best-effort, 30–98%</b> because concurrent processing spreads identical prefixes across machines. Same 50% sticker, three different bills.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A normal API call is a promise about latency: you send a request and something is scheduled to answer it within seconds. A batch call is a promise about <i>price</i> instead. You upload a JSONL file where every line is a complete request with its own <code>custom_id</code>, the provider drops the whole file into a background queue, and when it is done you download a results file and join the rows back on that ID. Results come back in <b>arbitrary order</b> — every provider documents this — which is why the ID exists and why "match on position" is the first bug everyone writes.</p>
+      <p>The model is the same model. This is not a smaller, distilled or quantized variant: the batch endpoint runs the same weights with the same context window and, in Anthropic's case, the same tool use, vision and extended thinking. What you give up is latency and interactivity — no streaming, no partial results, no "how far along is it". OpenAI's <code>completion_window</code> currently only accepts <code>24h</code>; Anthropic's ceiling is 24 hours with most batches finishing under one; Google's batch mode targets a 24-hour turnaround. You are not buying a worse model, you are buying a worse queue position.</p>
+      <p>The economics are the point. Inference providers run a demand curve with a hard peak, and batch work is the classic off-peak filler: it can be scheduled around interactive traffic, it does not need to hold a GPU warm for a user, and it fails cheaply. A 50% discount is roughly what that flexibility is worth to them. It is also why batch discounts tend to be flat across the whole model line rather than tiered — the saving comes from <i>when</i> the work runs, not from which model you picked.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>The discount has an order of operations, and that order is the whole decision.</b> Two levers now sit on the same invoice: batching (50% off) and <a href="/glossary/prompt-caching">prompt caching</a> (a repeated prefix read at a tenth of input). If both compound, a cached token inside a batch costs a twentieth of list. If they do not, batching only touches the uncached remainder. Take a monthly workload of 500M input tokens at a $2-per-million base rate with a 90% cache-hit rate, and run the three published rules through it (our arithmetic, output tokens excluded — those simply halve):</p>
+      <ul class="gl-check">
+        <li><b>No batch, with cache:</b> 0.19× list. On our example, about <b>$190</b>.</li>
+        <li><b>Batch that compounds (OpenAI's table):</b> 0.095× list — <b>$95</b>, half of the above, because the 0.1× cached read is itself halved to 0.05×.</li>
+        <li><b>Batch that does not compound (Google's stated rule):</b> 0.14× list — <b>$140</b>. The 90% cache discount wins and the batch discount only applies to the 10% of tokens that missed.</li>
+      </ul>
+      <p>Same advertised 50%, a <b>32% difference in the bill</b>. At a 0% hit rate all three arrive at the same 0.5×; the divergence grows with your hit rate and is at its widest — a factor of two — for a workload that is nearly all repeated prefix.</p>
+      <p><b>Anthropic answers the same question with a caveat instead of a rule.</b> Its documentation says the batch discount and prompt caching can be combined, then warns that because batches are processed concurrently, cache hits are best-effort and typically land between <b>30% and 98%</b>, with two pieces of advice that follow: mark the same <code>cache_control</code> block in every request, and use the <b>1-hour</b> cache duration rather than the 5-minute default, since a batch routinely outlives five minutes. Translated into budgeting: do not model a batch pipeline at a 90% hit rate. Model it at a third and treat the rest as upside.</p>
+      <p><b>Limits decide whether your job fits at all.</b> OpenAI takes <b>50,000 requests and 200 MB per batch</b>, allows <b>2,000 batch creations per hour</b>, and runs batch traffic on a <b>separate rate-limit pool</b> that does not consume your per-model token quota — which is the underrated feature here, because a backfill no longer competes with production. Anthropic takes <b>100,000 requests or 256 MB</b>, keeps results downloadable for <b>29 days</b> from creation, and does not bill requests that expire. Google takes a <b>2 GB</b> file. If your job is 4 million documents, all three mean splitting — and splitting means the 24-hour window is per batch, not per job.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Batch is no longer the only way to buy the 50%.</b> OpenAI now sells <b>flex processing</b> — same token price as the Batch API, with prompt-caching discounts on top — in exchange for slower responses and occasional <code>429 Resource Unavailable</code> errors that are not billed. That is a different product: flexible <i>latency</i> rather than a 24-hour file, which is what you actually want if a human is eventually waiting. Google's optimisation guide describes a comparable discardable-capacity tier at <b>50% of standard</b>, explicitly aimed at multi-step agentic workflows where call N+1 depends on call N. The lesson is to stop treating "batch" as a synonym for "cheap" and start treating it as one of three price tiers — real-time, flexible, queued — that differ only in how much latency risk you absorb.</p>
+      <p><b>The real cost of batch is iteration, not tokens.</b> There is no partial return, so a prompt bug costs a full cycle rather than ten seconds: you wait 24 hours to learn that your JSON schema had a typo. Every practitioner write-up of the last two years converges on the same workaround — validate on a small synchronous sample, freeze the prompt, then submit the bulk job. The discount only pays off on prompts you have <b>stopped editing</b>. Budget one synchronous week per pipeline before you move it to the queue, and keep the eval suite real-time: eval results you cannot iterate on are a museum piece.</p>
+      <p><b>Some vendors sell time-of-day instead of batching.</b> DeepSeek has no batch endpoint; it sells the same flexibility through a peak/off-peak split where <b>off-peak rates are half of peak</b>, and peak is a narrow window — 01:00–04:00 and 06:00–10:00 UTC, Monday to Friday, excluding Chinese public holidays — leaving the rest of the week, including all weekend, at the lower rate. If your pipeline can simply <i>shift</i> rather than queue, that is a cleaner lever than a 24-hour file, because you keep streaming and tool use. The catch is identical in spirit: you are trading scheduling control for price, and the moment your workload becomes interactive the discount disappears.</p>
+      <p><b>Do not confuse a discount with a cheaper model.</b> Halving a frontier model's rate still leaves it several times the price of a small model at full rate, and on most classification and extraction work the small model wins outright before either discount applies. The right sequence is: pick the cheapest model that passes your eval, then apply caching to its repeated prefix, then move the non-urgent half of the traffic to the queue. Teams that start from "how do I get 50% off" usually optimise the wrong term. The same trap shows up in <a href="/glossary/inference-cost">inference cost</a> generally: the headline rate is rarely the bill.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Ask which discount applies first.</b> "50% off" plus "cached input at a tenth" is 0.05× on one provider and 0.1× on another. Model your own hit rate both ways before you commit; the gap at 90% hits is a third of the input bill.</li>
+        <li><b>Freeze the prompt before you queue it.</b> No partial results and no progress bar mean one bad schema costs a full 24-hour cycle. Run a synchronous sample first, then submit the bulk file.</li>
+        <li><b>Size the job against the per-batch ceiling.</b> 50,000 requests / 200 MB, 100,000 / 256 MB, or a 2 GB file — and a batch creation limit of 2,000/hour on OpenAI. Split deliberately, and remember the window is per batch.</li>
+        <li><b>Keep eval suites and anything user-facing out of batch.</b> The discount is for work where nobody is waiting; a chatbot, a coding assistant or a chained agent step all fail the "does anyone wait within the hour" test.</li>
+        <li><b>Join on custom_id, never on position.</b> Every provider returns results in arbitrary order. Persist the ID mapping before you submit, not after you download.</li>
+        <li><b>Check whether flex beats batch for your case.</b> If latency can stretch to minutes rather than a day, a flexible tier at the same token price keeps streaming and tool calls — and unbilled 429s beat a silent 24-hour wait.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Three buying decisions on this site are really batch decisions: <a href="/best/ai-tools-for-small-business">the best AI tools for small business</a> (where "run this over last month's invoices" is a batch job wearing a SaaS subscription), <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> (both providers sell the same 50%, with different limits and a different caching rule underneath), and <a href="/best/ai-coding-assistants">the best AI coding assistants</a> — the explicit counter-example, since an agent loop that waits on its own last output can never be batched. Related terms: <a href="/glossary/prompt-caching">prompt caching</a> is the discount batch has to be ordered against; <a href="/glossary/ai-token">AI token</a> is the unit both meters count; <a href="/glossary/kv-cache">KV cache</a> is why a repeated prefix is cheap to re-read in the first place. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>A batch API is the least glamorous discount in AI and the easiest one to get wrong. The 50% is real and it is universal — OpenAI, Anthropic and Google all publish it, with limits of 50,000 requests/200 MB, 100,000/256 MB and 2 GB respectively — but the number you should budget is the <i>combined</i> rate against prompt caching, and that is where the providers diverge: compounding on OpenAI (cached input to 0.05×), non-compounding on Gemini (the cache discount takes precedence), best-effort on Anthropic (30–98% hit rates). On a 90%-cache-hit workload our arithmetic gives 0.095×, 0.14× and somewhere in between. So the four questions are: does the discount compound with caching, how big is one batch, what happens to requests that expire at the 24-hour mark, and is there a flexible tier at the same price that keeps my streaming. Answer those and batch stops being a coupon and becomes a scheduling decision — which is all it ever was.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
