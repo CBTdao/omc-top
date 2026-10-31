@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Speculative Decoding? The Lossless Speedup That Never Touches Your API Bill | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/speculative-decoding">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Speculative Decoding? The Lossless Speedup That Never Touches Your API Bill | AITop">
+  <meta property="og:description" content="A small draft model guesses several tokens ahead, the big model checks them all in one pass, and modified rejection sampling guarantees the output distribution is identical. 2-3x on T5-XXL and 2-2.5x on Chinchilla 70B came from the two 2023 papers; EAGLE-3 claims 5.6x. Why it is a serving-side technique that never shows up on an API bill.">
+  <meta property="og:url" content="https://top.omc.network/glossary/speculative-decoding">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Speculative Decoding? The Lossless Speedup That Never Touches Your API Bill | AITop">
+  <meta name="twitter:description" content="Draft K tokens, verify them in one forward pass, accept the prefix — provably the same output distribution. Where the 2-3x comes from, when it does not help, and why API buyers can't order it.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Speculative decoding is a lossless inference technique: a fast draft model proposes several tokens, the target model verifies all of them in a single forward pass, and modified rejection sampling provably preserves the target model's output distribution. The original 2023 papers measured 2-3x on T5-XXL and 2-2.5x on Chinchilla 70B; the EAGLE-3 project claims 5.6x over vanilla decoding. Includes the acceptance-rate arithmetic, the method families (draft model, n-gram, Medusa heads, EAGLE, native MTP), and the one caveat that decides everything: it buys latency at low-to-medium traffic, not throughput at saturation.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Speculative decoding","item":"https://top.omc.network/glossary/speculative-decoding"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Speculative decoding","description":"Speculative decoding is a lossless LLM inference acceleration technique in which a small, fast draft model proposes several future tokens at once and the larger target model verifies all of them in a single forward pass. A modified rejection-sampling rule accepts the matching prefix and resamples the first disagreement, which provably preserves the target model's output distribution — the generated text is statistically identical to normal decoding. The original 2023 papers reported 2-3x speedups; modern draft methods (EAGLE-3, native multi-token prediction) claim more. It is a serving-side technique: it reduces latency at low-to-medium traffic and never appears as a line item on a hosted API bill.","url":"https://top.omc.network/glossary/speculative-decoding","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is speculative decoding (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-10-31. Speedup figures are quoted from the primary papers and official project pages, with the baseline hardware named; the per-cycle arithmetic is ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Speculative decoding</b> is a way to make a large language model generate text faster <i>without changing what it generates</i>. A small, fast <b>draft model</b> guesses the next several tokens; the big <b>target model</b> checks all of them in a <b>single forward pass</b> — roughly the cost of generating one — keeps the ones that match, and resamples the first one that does not. The acceptance rule is a modified rejection sampling that provably preserves the target model's output distribution, so the text is <b>statistically identical</b> to ordinary decoding: this is why the technique is called lossless. The two papers that introduced it in 2022–23 measured <b>2–3×</b> on T5-XXL "with identical outputs" (Leviathan et al., Google) and <b>2–2.5×</b> on Chinchilla 70B (Chen et al., DeepMind); the EAGLE-3 project's official page now claims <b>5.6×</b> over vanilla decoding on Vicuna 13B. The catch: it is a <b>serving-side</b> technique. It buys latency for whoever runs the model — and it never appears as an option or a discount on a hosted API bill.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Normal decoding is strictly serial: token 2 cannot be computed until token 1 exists, because each token's input includes the previous one. As our <a href="/glossary/tokens-per-second">tokens-per-second</a> entry explains, that makes decode <b>memory-bandwidth-bound</b> — every step reads every model weight off VRAM once, whether it produces one token or one thousand. Speculative decoding exploits the gap between the two: scoring several candidate tokens in parallel costs about the same as scoring one, because the weights are read once either way. So you spend a cheap model's time guessing, and the expensive model's single pass confirming.</p>
+      <p>The part that makes it rigorous rather than a heuristic is the acceptance rule. If the draft's token is more probable under the target than under the draft, it is always accepted; if it is less probable, it is accepted with a probability proportional to the gap, and a rejected position is resampled from the corrected residual distribution. Leviathan, Kalman and Matias (Google Research, arXiv 2211.17192) and Chen et al. (DeepMind, arXiv 2302.01318) published this scheme independently within weeks of each other in 2022–23, and both papers prove the same theorem: the resulting sequence is drawn from exactly the target model's distribution. Chen et al.'s phrasing is the careful one — "preserves the distribution of the target model <i>within hardware numerics</i>" — the floating-point caveat every honest benchmark carries.</p>
+      <p>How much you gain per pass has a formula, and it only needs one number: the <b>acceptance rate</b> α — how often the draft agrees with the target. The expected tokens emitted per target pass is <b>(1 − α<sup>γ+1</sup>) / (1 − α)</b>, where γ is the number of drafted tokens (Leviathan et al.'s expression). Our arithmetic at α = 0.8 and γ = 5: (1 − 0.8<sup>6</sup>) / 0.2 ≈ <b>3.7 tokens per pass</b>, which at a 4–5× cost ratio between the models is where the headline 2–3× speedups come from. The formula also shows the failure mode: at α = 0.5 the same γ = 5 draft yields 1.97 tokens per pass, barely above break-even once the draft's own latency is counted. <b>The draft's agreement rate is the whole product.</b></p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>If you self-host, this is the highest-leverage knob after quantization.</b> Quantization (see <a href="/glossary/quantization">our entry</a>) changes the weights to make each pass cheaper; speculative decoding keeps the weights and removes passes. The method families, in rough order of effort: an <b>independent draft model</b> (a small model from the same tokenizer family — extra VRAM, moderate acceptance); <b>n-gram / prompt lookup</b> (no model at all, matches repeated spans from the prompt — near-zero cost, works best on code editing, summarization and other echo-heavy output); <b>Medusa-style heads</b> (extra decoding heads trained onto the target model itself); and <b>EAGLE-style feature drafters</b>, which draft from the target's own hidden states. The EAGLE project's official page reports the progression on Vicuna 13B: <b>3×</b> (EAGLE), <b>4×</b> (EAGLE-2), <b>5.6×</b> (EAGLE-3) versus vanilla decoding, on 2× RTX 3090s — and cites a third-party evaluation naming it the fastest speculative method.</p>
+      <p><b>Check whether your target model ships its own drafter.</b> Multi-token-prediction (MTP) heads trained into the model itself have become a native draft source — DeepSeek's V3 lineage popularized the approach, and vLLM exposes it as the built-in <code>mtp</code> method alongside <code>eagle</code>, <code>eagle3</code>, <code>ngram</code>, <code>draft_model</code> and others. If native MTP weights exist for your model, that is usually the lowest-friction path: no second model to serve, no matching checkpoint to hunt for.</p>
+      <p><b>Now the caveat that decides everything: latency, not throughput.</b> vLLM's own documentation scopes speculative decoding to "low to medium QPS, memory-bound workloads" — one user waiting on one answer, where inter-token latency is the product. Their method-selection table rates EAGLE-class methods high-benefit at low QPS but only medium-to-high at high QPS, and notes that the draft-free methods (n-gram, suffix) earn "modest speedups without increasing workload during peak traffic". Under a saturated batch, spare bandwidth is already consumed by other requests, the draft becomes pure overhead, and the win shrinks toward zero. If you are buying tokens by the million rather than serving one user, this is not your lever.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>You cannot order it from an API.</b> Speculative decoding is something the <i>operator</i> of a model does; as an API buyer you see none of it — no parameter to set, no discount to claim. That is also why a hosted frontier model's tokens-per-second has quietly improved without any model change announcements: serving-side speedups like this land in the provider's cost structure, and show up in your bill only indirectly, if at all. When you compare <a href="/best/ai-coding-assistants">AI coding assistants</a> on response feel, part of what you are feeling is this class of engineering, not the model.</p>
+      <p><b>Lossless does not mean better.</b> The output distribution is provably identical, which means speculative decoding makes the model you already chose faster and nothing else. It will not fix a weak model, reduce hallucinations, or change reasoning quality — if the model was wrong at 20 tok/s it is wrong faster at 50. Evaluate the model first, then apply this. The one quality-adjacent trap is practical rather than statistical: a misconfigured draft setup (wrong tokenizer family, unvetted community draft checkpoints) can silently degrade acceptance rates back to break-even, so measure the acceptance metric each engine exposes rather than trusting the config.</p>
+      <p><b>The 5–6× numbers come with a named baseline, so read them like one.</b> EAGLE-3's official 5.6× is measured on Vicuna 13B at fp16 on two RTX 3090s — a specific, modestly sized model on consumer hardware — and the project itself tells benchmarkers to compare against official checkpoints and official draft-tree setups. Smaller targets leave thin margins (a 7B model's draft overhead eats the win), and every published speedup is batch-size dependent. Treat any speedup figure without its hardware and batch context the way you would treat a tok/s benchmark without a model name: as marketing.</p>
+      <p><b>It composes with everything else on this site.</b> Speculative decoding stacks with <a href="/glossary/quantization">quantization</a> (quantize the draft even harder than the target), with <a href="/glossary/kv-cache">KV-cache</a> management (each rejected draft token still writes KV entries that must be unwound), and it is orthogonal to <a href="/glossary/prompt-caching">prompt caching</a>, which attacks the prefill side that speculative decoding never touches. If your workload is long documents and short answers, caching is the bigger lever; if it is a single user watching text stream, this one is.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Locate yourself on the QPS curve first.</b> One user waiting on one answer is the target regime; a saturated batch server is where the technique pays nothing. vLLM's documentation says this in so many words — check the traffic pattern before the method.</li>
+        <li><b>Measure acceptance rate, not vibes.</b> Expected tokens per pass is (1 − α<sup>γ+1</sup>)/(1 − α) in the draft's agreement rate α; at α = 0.8 you clear ~3.7 tokens per pass, at 0.5 you are near break-even. Every major engine exposes per-request acceptance metrics — log them from day one.</li>
+        <li><b>Try the zero-weight methods before training anything.</b> N-gram / prompt-lookup drafting needs no model, no VRAM and no training, and is disproportionately effective on output that echoes the input: code edits, summarization, structured rewrites. Minutes to test.</li>
+        <li><b>Check for native MTP weights on your target model.</b> If the model family ships its own multi-token-prediction heads, that is the lowest-friction high-performance path — no second model, no tokenizer compatibility risk.</li>
+        <li><b>Read every speedup number with its baseline.</b> Model size, hardware, precision, batch size. "5.6× faster" and "2–3× on T5-XXL with identical outputs" are claims about different worlds; neither transfers to yours without measurement.</li>
+        <li><b>Do not expect quality changes.</b> The distribution is provably identical — this is a speed product. If the model needs to be better, change the model; if it needs to be cheaper per token, see <a href="/glossary/inference-cost">inference cost</a>.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Two decisions on this site are really speculative-decoding decisions. <a href="/vs/ollama-vs-lm-studio">Ollama vs LM Studio</a> is the local-serving matchup where a drafter is easiest to try — point your engine at a matching draft checkpoint and measure inter-token latency on your own hardware. And <a href="/best/ai-coding-assistants">the best AI coding assistants</a> are the felt-experience case: coding output echoes the prompt heavily, which is exactly the pattern n-gram drafting eats, so part of an assistant's snappiness is this technique rather than the model behind it. Related terms: <a href="/glossary/tokens-per-second">tokens per second</a> explains why decode is the serial bottleneck this technique breaks; <a href="/glossary/kv-cache">KV cache</a> is the memory bill every rejected draft token briefly inflates; <a href="/glossary/quantization">quantization</a> is the other half of the local-speed playbook. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Speculative decoding is the rare acceleration that comes with a theorem: draft several tokens, verify them in one pass, accept by the rejection-sampling rule, and the output distribution is the target model's — full stop. The measured returns are real (2–3× in the founding papers, 5.6× claimed by EAGLE-3 with its baseline named) and the technique is now a standard switch in every major serving engine. But it is a serving-side lever with a specific regime: one waiter, spare bandwidth, an echo-heavy workload. It never shows up on a hosted API bill, it will not make a weak model better, and under a saturated batch it pays nothing. If you self-host, measure the acceptance rate and start with the free drafters. If you buy tokens by the million, file this one under "why the operator's margin improved" — and go negotiate your own discount.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
