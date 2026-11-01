@@ -62,3 +62,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/prompt-caching](https://top.omc.network/glossary/prompt-caching): What Is Prompt Caching? Why the Same Prompt Costs a Tenth the Second Time | AITop
 - [https://top.omc.network/glossary/batch-api](https://top.omc.network/glossary/batch-api): What Is the Batch API? Why 50% Off Has a Hidden Order of Operations | AITop
 - [https://top.omc.network/glossary/speculative-decoding](https://top.omc.network/glossary/speculative-decoding): What Is Speculative Decoding? The Lossless Speedup That Never Touches Your API Bill | AITop
+- [https://top.omc.network/glossary/reasoning-tokens](https://top.omc.network/glossary/reasoning-tokens): What Are Reasoning Tokens? The Invisible Line on Your API Bill | AITop

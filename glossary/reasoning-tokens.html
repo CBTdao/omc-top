@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Are Reasoning Tokens? The Invisible Line on Your API Bill | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/reasoning-tokens">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Are Reasoning Tokens? The Invisible Line on Your API Bill | AITop">
+  <meta property="og:description" content="Reasoning tokens are the thinking tokens a model writes before it answers — billed at the full output rate, usually hidden from view. OpenAI's docs state they 'occupy space in the model's context window and are billed as output tokens'; Anthropic's own billing example shows 312 of 348 output tokens spent on thinking. Why your bill can be 3-8× what the visible answer suggests.">
+  <meta property="og:url" content="https://top.omc.network/glossary/reasoning-tokens">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Are Reasoning Tokens? The Invisible Line on Your API Bill | AITop">
+  <meta name="twitter:description" content="Thinking tokens bill at the output rate and usually never show. OpenAI's own docs and Anthropic's own billing example, decoded — plus the effort dial that actually controls them.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Reasoning (thinking) tokens are the internal tokens a reasoning model writes before and between its visible answer. Both OpenAI and Anthropic bill them as output tokens at the full output rate — OpenAI's guide states they 'occupy space in the model's context window and are billed as output tokens' and can run from a few hundred to tens of thousands per response; Anthropic's own documentation example bills 348 output tokens of which 312 are thinking. Includes where the number lives in the usage object, the effort dial that controls it, and the checklist that keeps a reasoning bill honest.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Reasoning tokens","item":"https://top.omc.network/glossary/reasoning-tokens"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Reasoning tokens","description":"Reasoning tokens (also called thinking tokens) are the tokens a reasoning model generates internally — planning, checking, backtracking — before and between the visible parts of its answer. Both major reasoning providers bill them at the full output-token rate: OpenAI's documentation states that reasoning tokens 'are not visible via the API' but 'still occupy space in the model's context window and are billed as output tokens', and Anthropic's documentation states thinking tokens 'are billed as output tokens' when generated. They can run from a few hundred to tens of thousands of tokens per response, which means a short visible answer can bill like a long one. The controllable lever is the reasoning-effort dial, not the prompt.","url":"https://top.omc.network/glossary/reasoning-tokens","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What are reasoning tokens (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-01. Billing rules are quoted from OpenAI's and Anthropic's own documentation; the arithmetic on their examples is ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Reasoning tokens</b> (also called <b>thinking tokens</b>) are the tokens a reasoning model writes for itself — planning, checking, backtracking — before and between the text you actually see. They are <b>billed at the full output-token rate</b>, and they are usually <b>hidden</b> from the response. OpenAI's reasoning guide states it plainly: reasoning tokens "are not visible via the API" but "still occupy space in the model's context window and <b>are billed as output tokens</b>" — anywhere from a few hundred to tens of thousands per response. Anthropic's documentation agrees on the meter ("thinking tokens are billed as output tokens") and its own published usage example bills <b>348 output tokens of which 312 are thinking — 90% of that output bill bought text nobody read</b> (our arithmetic on their example). This is why a one-paragraph answer from a reasoning model can cost several times what its length suggests, and why the dial that actually controls the bill is the <i>reasoning-effort</i> setting, not your prompt.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>A normal model goes prompt in, answer out. A <b>reasoning model</b> inserts a step: it generates a private draft — break the problem down, try an approach, check it, discard it, try again — and only then writes the visible answer. Those draft tokens are reasoning tokens. They consume real computation, they occupy the model's context window alongside your prompt and the answer, and the two largest providers meter them on the same line as visible output. OpenAI's guide is explicit that a response "may generate anywhere from <b>a few hundred to tens of thousands</b> of reasoning tokens" depending on how hard the model decides the problem is — the model chooses, not you.</p>
+      <p>Where the number lives matters, because it is the difference between an explainable bill and a mystery. OpenAI's Responses API reports usage as <code>output_tokens</code> with an <code>output_tokens_details.reasoning_tokens</code> breakdown, and its documentation example bills <code>output_tokens: 1186</code> with <code>reasoning_tokens: 1024</code> — the visible answer is roughly 162 tokens, so <b>86% of that output bill is invisible text</b> (our arithmetic). Anthropic reports <code>output_tokens</code> with <code>output_tokens_details.thinking_tokens</code>; its documentation example bills <code>output_tokens: 348</code> with <code>thinking_tokens: 312</code> — <b>90% thinking</b>. Two providers, two APIs, the same shape: the authoritative billing number is the total, the breakdown is observability, and the gap between them is the part of the bill most buyers never see.</p>
+      <p>One structural detail is worth understanding because it explains the pricing: reasoning tokens are output, and <b>output has no discount tier</b>. As our <a href="/glossary/prompt-caching">prompt caching</a> entry explains, repeated input prefixes can be billed at a tenth of list — but reasoning spend is paid at full output price, every time, with no read-back mechanism. A model that burns 20,000 reasoning tokens to produce 500 visible ones has written 40× its visible length into the most expensive segment of the meter.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>The visible answer is no longer a cost estimate.</b> Our <a href="/glossary/ai-token">token</a> entry explains that output bills at several times the input rate; reasoning tokens make that ratio worse by inflating the output count invisibly. When you compare two chatbots on price per "message", you are often comparing different amounts of hidden thinking. A model that answers a simple question after 200 reasoning tokens and one that burns 3,000 on the same question can look identical in a demo and differ by an order of magnitude on an invoice. If a pricing page or a review does not say whether a model reasons by default, you do not know its real output price.</p>
+      <p><b>The control is the effort dial.</b> Both major providers now expose a reasoning-effort setting rather than an on/off switch — OpenAI's guide documents effort levels from <code>low</code> up through <code>xhigh</code> and <code>max</code> (with some current models not supporting <code>none</code> at all), and Anthropic's current models use an equivalent effort ladder. Lower effort favors speed and fewer tokens; the top of the ladder is for work your own evals show benefits. The practical buyer takeaway: a tool that lets you <i>set</i> that dial is cheaper to operate than one that hides it, because the dial — not your prompt — is what moves this bill.</p>
+      <p><b>Know the failure mode that costs money for nothing.</b> OpenAI's documentation warns that a response can hit <code>max_output_tokens</code> "before any visible output tokens are produced, meaning you could incur costs for input and reasoning tokens without receiving a visible response" — and recommends reserving <b>at least 25,000 tokens</b> for reasoning and outputs when starting out. Read that in price terms: a mis-set cap can bill a full output load and return nothing. On Anthropic's side, thinking tokens are "a subset of your max_tokens parameter" and count toward rate limits, so an undersized budget produces the same outcome. This is also why our <a href="/glossary/inference-cost">inference cost</a> entry tells you to budget by bill segment, not by "a query".</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Reasoning is now the default, not an opt-in.</b> What began as a specialty mode ("extended thinking") has become the standard operating mode of frontier chatbots and coding assistants — several current models think on every request and no longer let you switch it off entirely, only steer it down. That is good for answer quality and quietly bad for bills: the invisible line item exists on every request whether or not the task needed it. Neither provider discounts reasoning tokens below the output rate, and hiding them (OpenAI returns summaries of the chain, Anthropic can omit it entirely on some models) does not make them free — Anthropic's docs state the billing is "the same regardless of the display setting".</p>
+      <p><b>The published examples are the honest ones — read them.</b> OpenAI's guide example (1,186 billed, 1,024 reasoning) and Anthropic's steering example (348 billed, 312 thinking) are the vendors' own numbers, not our estimates, and both land in the same place: <b>86–90% of the output bill was invisible thinking</b> on a short, easy task. Real workloads vary widely — long agentic tasks can amortize reasoning across many visible outputs, and trivial requests sometimes still spend hundreds of tokens deciding they are trivial. The ratio you should trust is the one in <i>your</i> usage logs, which is why every serious AI tool now exposes <code>reasoning_tokens</code> / <code>thinking_tokens</code> in its usage object.</p>
+      <p><b>Where it shows up in tool pricing.</b> This entry is one of the three reasons (with cache discounts and <a href="/glossary/batch-api">batch discounts</a>) that two tools quoting "the same" per-million price can bill completely differently for the same job. Coding assistants and agents are the heaviest reasoning spenders — which is part of what you are actually comparing in our <a href="/best/ai-coding-assistants">best AI coding assistants</a> ranking: not just the model, but how much thinking the harness lets the model do per action, and whether you can cap it. On consumer chat plans, reasoning mostly hides inside rate limits and "message caps" — the plan that throttles you after 10 messages may simply be the one whose model thinks harder per message.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Read the usage object, not the transcript.</b> Log <code>reasoning_tokens</code> (OpenAI) or <code>thinking_tokens</code> (Anthropic) per request from day one. The visible answer's length tells you nothing about the bill.</li>
+        <li><b>Compute your invisible share once.</b> thinking ÷ total output is the number that explains why bills run past estimates. On the vendors' own examples it is 86–90%; your workload will differ — measure it.</li>
+        <li><b>Set the effort dial deliberately.</b> Low effort for classification, extraction and routing; high only where your evals show it pays. On models where reasoning can't be disabled, the dial is the only lever.</li>
+        <li><b>Cap output with reasoning in mind.</b> An undersized <code>max_output_tokens</code> can bill a full load of thinking and return no visible answer at all — OpenAI suggests reserving at least 25,000 tokens for reasoning plus output when starting out.</li>
+        <li><b>Compare tools on the same reasoning regime.</b> A cheaper per-token price means little if the tool's default effort burns twice the tokens; normalize comparisons to cost per completed task, not per million tokens.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every bill on this site passes through this line item. Our <a href="/glossary/ai-token">AI token</a> entry covers the metered unit itself, <a href="/glossary/inference-cost">inference cost</a> explains why output bills at several times input, and <a href="/glossary/prompt-caching">prompt caching</a> is the one discount that never applies to reasoning spend. When you are choosing between the <a href="/best/ai-chatbots">best AI chatbots</a> or reading our <a href="/vs/perplexity-vs-chatgpt">Perplexity vs ChatGPT</a> comparison, part of what you are comparing is how much invisible thinking each product's models do per answer. Related terms: <a href="/glossary/kv-cache">KV cache</a> is the VRAM the hidden chain occupies while it runs; <a href="/glossary/tokens-per-second">tokens per second</a> slows down while the model streams its thinking. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Reasoning tokens are the part of an AI bill you pay for and never see — billed at the full output rate on both major platforms, occupying context, and chosen by the model rather than by you. The vendors' own documentation examples put the invisible share of short answers at 86–90% of the output line. None of this makes reasoning models a bad buy; it makes reasoning-blind buying expensive. Read the usage object, set the effort dial like the budget control it is, cap outputs with the reserve the docs recommend, and normalize every tool comparison to cost per completed task. The thinking was always on your invoice. Now it's a line item you can price.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
