@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Are API Rate Limits? The Ceiling Nobody Prices In | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/rate-limits">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Are API Rate Limits? The Ceiling Nobody Prices In | AITop">
+  <meta property="og:description" content="API rate limits are per-minute caps on requests and tokens, enforced per organization rather than per user. OpenAI measures five dimensions (RPM, RPD, TPM, TPD, IPM) and states limits are 'defined at the organization level and at the project level, not user level'; Anthropic measures three (RPM, ITPM, OTPM) per model class. Why the same 429 has two different fixes — and why max_tokens raises one provider's reservation and not the other's.">
+  <meta property="og:url" content="https://top.omc.network/glossary/rate-limits">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Are API Rate Limits? The Ceiling Nobody Prices In | AITop">
+  <meta name="twitter:description" content="Rate limits are a throughput contract, not a fairness rule: five dimensions on OpenAI, three on Anthropic, both enforced per organization. The max_tokens asymmetry that changes your effective ceiling, decoded from both vendors' docs.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="API rate limits are the per-minute ceilings on how many requests and tokens an application may send — measured in RPM, TPM, RPD, TPD and IPM at OpenAI, and in RPM, ITPM and OTPM per model class at Anthropic, and enforced at the organization and project level rather than per user. Includes why a 429 can fire while you are still under every published limit, why max_tokens inflates OpenAI's per-request reservation but is excluded from Anthropic's output meter, how prompt caching raises your effective ceiling, and the difference between a 429 with a retry-after header and one without.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"API rate limits","item":"https://top.omc.network/glossary/rate-limits"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"API rate limits","description":"API rate limits are the caps a model provider places on how many requests and how many tokens a customer may send per unit of time. OpenAI defines rate limits as 'restrictions that our API imposes on the number of times a user or client can access our services within a specified period of time' and measures them in requests per minute (RPM), requests per day (RPD), tokens per minute (TPM), tokens per day (TPD) and images per minute (IPM); Anthropic measures requests per minute (RPM), input tokens per minute (ITPM) and output tokens per minute (OTPM) for each model class. Both are enforced at the organization level rather than per end user, and both return HTTP 429 when a ceiling is crossed — but only some 429s are worth retrying.","url":"https://top.omc.network/glossary/rate-limits","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What are API rate limits (and why does your AI tool slow down)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-02. Every rule below is quoted from OpenAI's and Anthropic's own rate-limit documentation; the comparisons between the two are ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>API rate limits</b> are the ceilings a model provider puts on how much your application may send per unit of time — requests and tokens per minute, sometimes per day, sometimes images. OpenAI defines them as "restrictions that our API imposes on the number of times a user or client can access our services within a specified period of time" and measures five dimensions (RPM, RPD, TPM, TPD, IPM); Anthropic measures three (RPM, ITPM, OTPM) per model class. Both are enforced <b>per organization, not per user</b> — OpenAI states it outright: "Rate limits are defined at the organization level and at the project level, not user level." Exceed one and you get <b>HTTP 429</b>, which is where most teams misread the situation: some 429s carry a <code>retry-after</code> and clear in seconds, others carry none and will not clear until next month. The practical consequence is that rate limits behave less like a price and more like a <b>capacity contract</b> — the thing that decides whether your product can serve the traffic you already sold.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>The mechanism is unglamorous: a provider meters your traffic on several axes at once and rejects requests when any single axis is exhausted. OpenAI's documentation puts it exactly that way — "Rate limits can be hit across any of the options depending on what occurs first" — across <b>RPM</b> (requests per minute), <b>RPD</b> (requests per day), <b>TPM</b> (tokens per minute), <b>TPD</b> (tokens per day) and <b>IPM</b> (images per minute), plus audio minutes for streaming audio models. Anthropic documents a narrower but sharper set — "measured in requests per minute (RPM), input tokens per minute (ITPM), and output tokens per minute (OTPM) for each model class" — which means the ceiling is not one number but one number per model family, and one family's headroom tells you nothing about another's.</p>
+      <p>The second structural fact is scope. Both providers aggregate at the organization, not at the end user: OpenAI's docs state limits are "defined at the organization level and at the project level, not user level," and Anthropic enforces service-configured limits at the organization level while letting you set lower per-workspace caps (with the warning that "Organization-wide limits always apply, even if Workspace limits add up to more"). Read that as a design constraint: <b>a multi-tenant product shares one ceiling across all its customers</b>, so a single heavy user can throttle everyone else, and no amount of per-user throttling in your own code changes the provider's arithmetic.</p>
+      <p>Third, the ceilings are not static. OpenAI tiers organizations automatically — "Your organization's usage tier upgrades automatically as its total credit purchases reach each threshold" — with tiers named Free, Build, Launch and Grow in its current docs, each unlocking higher RPM and TPM as well as a higher monthly usage cap. Anthropic does the same with usage tiers assigned from "usage history and account standing," and notes that new organizations "may start in the Evaluation tier, with limits below the standard limits shown on this page." Translation for a buyer: the rate limit you read on the pricing page is the limit <i>you</i> have today, not the one a funded competitor has.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>The 429 is not one error.</b> OpenAI returns <code>429</code> with type <code>rate_limit_error</code> and code <code>slow_down</code>, and — this is the part worth memorising — "A <code>slow_down</code> error can occur even when your traffic is within its requests-per-minute and tokens-per-minute limits. It reflects how quickly traffic increased, not whether you exhausted those limits." Your dashboard can show green across every published limit while production is erroring, because the axis that tripped is <i>acceleration</i>. Anthropic's 429 is a different animal: it names the limit that was exceeded and, "when the response has a <code>retry-after</code> header, wait that many seconds before retrying."</p>
+      <p><b>And one 429 has no fix at all.</b> Hit Anthropic's monthly spend cap and you also get <code>429</code> — but the docs say the response "has no <code>retry-after</code> header," the error code is <code>enforced_spend_limit_reached</code>, and "retrying, including the SDK's automatic retries, fails until access resumes" at 00:00 UTC on the first of the next month. Same status code, opposite remedy: one wants backoff, the other wants a billing change. A retry loop tuned only on status code will hammer a wall for days. This is the same failure shape as the invisible line item in our <a href="/glossary/reasoning-tokens">reasoning tokens</a> entry — the bill and the error are both telling you something the UI does not.</p>
+      <p><b>The <code>max_tokens</code> knob moves two providers in opposite directions.</b> OpenAI's guide is explicit that a request's token cost for limit purposes is "calculated as the maximum of <code>max_tokens</code> and the estimated number of tokens based on the character count of your request" — so a generous <code>max_tokens</code> reserves headroom against your TPM ceiling whether or not you use it. Anthropic documents the mirror image: "OTPM rate limits are evaluated in real time as output tokens are produced, counting only the actual tokens generated. The <code>max_tokens</code> parameter does not factor into OTPM rate limit calculations." Identical-looking parameter, opposite effect on throughput: on one platform an inflated cap costs you concurrent capacity, on the other it costs you nothing. If you port a prompt stack between providers without re-checking this, your throughput changes for reasons no profiler will show you.</p>
+      <p><b>Caching is a rate-limit lever, not just a discount.</b> Anthropic's docs state that "for most Claude models, only uncached input tokens count toward your ITPM rate limits," with cache reads excluded (and cache writes counted). That makes <a href="/glossary/prompt-caching">prompt caching</a> do double duty: it cuts the price <i>and</i> raises your effective input ceiling, because the tokens you re-send are no longer the ones being metered. OpenAI's guidance points elsewhere but reaches a similar conclusion for batchable work: the <a href="/glossary/batch-api">Batch API</a> lets you "submit and execute large collections of requests without impacting your synchronous request rate limits."</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Retries are not free, and that is now documented.</b> OpenAI's guide says it plainly: "unsuccessful requests contribute to your per-minute limit, so continuously resending a request won't work." A naive retry storm therefore consumes the very capacity it is waiting for — the opposite of the intuition that retries buy you reliability. Both providers push you toward exponential backoff with jitter, and OpenAI's own instruction is to treat <code>Retry-After</code> as a floor: "wait at least that long and add a small random delay so multiple clients don't retry at the same time."</p>
+      <p><b>Provisioning advice has become an engineering spec.</b> OpenAI now tells customers that "once your traffic reaches 1 million input tokens per minute (TPM), increase it by no more than 50% every 15 minutes" — a ramp curve, not a purchase order. That single sentence is the clearest admission of what rate limits really are: a stability mechanism for the provider's fleet, sized to protect aggregate load (the docs list exactly that reason, alongside abuse prevention and fair access). You are not being priced; you are being scheduled.</p>
+      <p><b>Which is why "unlimited" plans are just rate limits with the numbers hidden.</b> Consumer chat subscriptions meter you in messages per window rather than tokens per minute, and the two are not convertible without knowing how many tokens a message costs — the same ambiguity our <a href="/glossary/ai-token">AI token</a> and <a href="/glossary/inference-cost">inference cost</a> entries work through. For API buyers the practical hierarchy is: token price sets the bill, rate limit sets the ceiling, and the two are independent. A cheap model you cannot call fast enough is more expensive than an expensive one you can — which is precisely the trade-off inside our <a href="/best/ai-coding-assistants">best AI coding assistants</a> ranking, where agentic harnesses fire many calls per task and hit per-minute walls before they hit budget walls.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Read the ceilings that apply to you.</b> Tier names match; the numbers behind them do not. Confirm your organization's current RPM/TPM in the console before sizing a launch, not the marketing page.</li>
+        <li><b>Log the 429 body, not just the status.</b> <code>rate_limit_error</code> with a <code>retry-after</code> is transient; <code>enforced_spend_limit_reached</code> without one is a billing event. Route them to different code paths.</li>
+        <li><b>Budget <code>max_tokens</code> against throughput.</b> On OpenAI an inflated cap reserves per-request headroom; on Anthropic it does not count at all. Set it from your real output distribution and re-check after any migration.</li>
+        <li><b>Assume one shared pool.</b> Because limits are enforced per organization, one noisy tenant can starve the rest. Enforce your own per-tenant budget below the provider's ceiling rather than discovering the ceiling in production.</li>
+        <li><b>Use caching and batching as capacity, not only as discounts.</b> Cache reads do not count toward Anthropic's ITPM; batch traffic does not consume OpenAI's synchronous limits. Both raise throughput at the same list price.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every comparison on this site quietly assumes you can call the model as often as you like. Our <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> and <a href="/vs/perplexity-vs-chatgpt">Perplexity vs ChatGPT</a> pages are really comparisons of two different ceilings: the consumer plans meter messages, the APIs meter tokens per minute, and a tool built on either inherits that arithmetic. Related terms: <a href="/glossary/tokens-per-second">tokens per second</a> is the speed you get <i>within</i> the ceiling, <a href="/glossary/reasoning-tokens">reasoning tokens</a> are why one "message" can consume several thousand tokens of headroom, and <a href="/glossary/kv-cache">KV cache</a> is the memory pressure that makes long contexts expensive to serve in the first place. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Rate limits are the part of a provider's contract that has nothing to do with price and everything to do with whether your product works at 3pm on a Tuesday. They are enforced per organization, measured on several axes at once, and can fire while every published number still looks green — because one of them measures acceleration rather than volume. The two facts worth carrying into any tool decision: a 429 with a <code>retry-after</code> is a delay, a 429 without one is a billing problem, and <code>max_tokens</code> costs you throughput on one major platform and nothing on the other. Size your launch against your tier's ceiling, cache and batch to buy headroom at list price, and treat the anthropic-side spend cap as the hard stop it is. The ceiling you never measured is the one that takes you down.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
