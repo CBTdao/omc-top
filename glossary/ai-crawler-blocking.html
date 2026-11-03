@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is AI Crawler Blocking? The robots.txt Gate for GPTBot, ClaudeBot &amp; Friends | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/ai-crawler-blocking">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is AI Crawler Blocking? The robots.txt Gate for GPTBot, ClaudeBot &amp; Friends | AITop">
+  <meta property="og:description" content="AI crawler blocking means controlling which automated AI agents may fetch your site — OpenAI runs four documented bots (GPTBot, OAI-SearchBot, ChatGPT-User, OAI-AdsBot), Anthropic runs three (ClaudeBot, Claude-User, Claude-SearchBot), and Google-Extended is a robots.txt token with no user-agent of its own. Why the same 'block them all' decision raises your bill in one case and deletes your AI-search visibility in another.">
+  <meta property="og:url" content="https://top.omc.network/glossary/ai-crawler-blocking">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is AI Crawler Blocking? The robots.txt Gate for GPTBot, ClaudeBot &amp; Friends | AITop">
+  <meta name="twitter:description" content="Three crawler jobs — training, search, user actions — and three different consequences of blocking each one. Decoded from OpenAI's, Anthropic's and Google's own crawler documentation, plus Cloudflare's 2025 default-block shift.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="AI crawler blocking is the practice of allowing or denying AI crawlers access to a website, mainly through robots.txt tokens such as GPTBot (OpenAI training), OAI-SearchBot (ChatGPT search), ClaudeBot / Claude-User / Claude-SearchBot (Anthropic), and Google-Extended (a Gemini training/grounding token with no user-agent of its own). Includes the three crawler jobs, what each block costs you, Cloudflare's July 2025 default-block switch for new domains, and why IP-based blocks can permanently break your robots.txt opt-out.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"AI crawler blocking","item":"https://top.omc.network/glossary/ai-crawler-blocking"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"AI crawler blocking","description":"AI crawler blocking is the practice of deciding which automated AI agents may fetch a website's content, and for what purpose. The mechanism is mainly the robots.txt file: OpenAI documents four bots (GPTBot for training data, OAI-SearchBot for ChatGPT search results, ChatGPT-User for user-initiated fetches, OAI-AdsBot for ad landing-page verification), Anthropic documents three (ClaudeBot for training, Claude-User for user-initiated requests, Claude-SearchBot for search), and Google-Extended is a separate robots.txt product token — with no HTTP user-agent of its own — that controls whether Google-crawled content may train future Gemini models or ground Gemini answers. Blocking is per-purpose, not per-company: allowing a search bot while disallowing a training bot is a supported, independent choice on both platforms.","url":"https://top.omc.network/glossary/ai-crawler-blocking","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is AI crawler blocking (and which bots should your site actually allow)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-03. Every rule below is quoted from OpenAI's, Anthropic's and Google's own crawler documentation and Cloudflare's announcements; the blocking-decision framework is ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>AI crawler blocking</b> means deciding which automated AI agents may fetch your site — through <b>robots.txt</b> tokens first, and increasingly through network-level defaults. It is not one switch, because crawlers do three different jobs: <b>training data</b> (OpenAI's GPTBot, Anthropic's ClaudeBot), <b>search indexing</b> (OAI-SearchBot, Claude-SearchBot), and <b>user-initiated fetches</b> (ChatGPT-User, Claude-User). OpenAI's docs state the settings are independent — "a webmaster can allow OAI-SearchBot… while disallowing GPTBot to indicate that crawled content should not be used for training" — and Google's Google-Extended token "does not affect a site's inclusion or ranking in Google Search." Blocking the training bot is close to free today; blocking the search bot removes you from AI answers that cite sources; and since 1 July 2025 Cloudflare blocks AI crawlers <b>by default on new domains</b>, so some sites are opted out without having written a single robots.txt line.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>The mechanism is a text file. robots.txt maps user-agent tokens to allow/disallow paths, and each AI vendor now documents its own tokens. <b>OpenAI documents four bots</b> in its crawler guide: <b>GPTBot</b>, which crawls content "that may be used to train OpenAI's generative AI foundation models"; <b>OAI-SearchBot</b>, which fetches pages "to show in ChatGPT search results" and publishes its IP ranges at openai.com/searchbot.json; <b>ChatGPT-User</b>, used "when a user asks ChatGPT to visit a website" — and because these actions are user-initiated, OpenAI notes that "robots.txt rules may not apply" to it; and <b>OAI-AdsBot</b>, which verifies pages submitted as ads, with the explicit statement that its data "is not used to train generative AI foundation models." Two operational details matter: if a site allows both search and training bots, OpenAI "may use the results from just one crawl for both use cases," and after you edit robots.txt "it can take ~24 hours from a site's robots.txt update for our systems to adjust."</p>
+      <p><b>Anthropic documents three bots</b> in its help center: <b>ClaudeBot</b> collects "web content that could potentially contribute to training"; <b>Claude-User</b> retrieves pages "when individuals ask questions to Claude"; <b>Claude-SearchBot</b> navigates "to improve search result quality." All three honor robots.txt and the (non-standard) <code>Crawl-delay</code> directive. One warning in Anthropic's docs is easy to miss and worth quoting in full: blocking the bots' IP addresses "may not work correctly or persistently guarantee an opt-out, as doing so impedes our ability to read your robots.txt file." In other words, an IP firewall is not a stricter robots.txt — it can permanently break the polite opt-out channel.</p>
+      <p><b>Google is the special case.</b> Google-Extended is described in Google's crawler documentation as "a separate product token" — and, unlike every bot above, it "does not have its own HTTP request user-agent string; crawling is done with the existing Google user-agent strings." It controls whether Google-crawled content may be used "to train future versions of Gemini models" and to ground Gemini answers, and Google states that using it "does not affect a site's inclusion or ranking in Google Search, nor is it used as a ranking signal." You cannot split Googlebot's search indexing from Google's AI data collection with robots.txt alone — the token governs downstream use, not the crawl.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Blocking is per-purpose, and the consequences are wildly asymmetric.</b> Disallow a training bot and today's visible cost is roughly zero — your pages still rank in classic search, still load, still convert. Disallow a search bot and the cost is immediate: OpenAI's docs state that sites opted out of OAI-SearchBot "will not be shown in ChatGPT search answers, though can still appear as navigational links," and Anthropic warns that disabling Claude-SearchBot "may reduce your site's visibility and accuracy in user search results." With AI answers now displacing clicks, that asymmetry is the whole decision. The scale of it is measurable: per Cloudflare's 2025 data, the crawl-to-referral ratio was roughly <b>14:1 for Google Search</b>, about <b>1,700:1 for OpenAI</b> and about <b>73,000:1 for Anthropic</b> — crawls per referral click sent back.</p>
+      <p><b>robots.txt is voluntary, and the enforcement layer moved in 2025.</b> In September 2024 Cloudflare shipped a one-click AI-crawler block that more than one million customers enabled. On <b>1 July 2025</b> it flipped the default: "every new domain will now be asked if they want to allow AI crawlers," making Cloudflare "the first Internet infrastructure provider to block AI crawlers accessing content without permission or compensation, by default" — with a <b>Pay Per Crawl</b> beta that charges per fetch using the HTTP 402 status code. Cloudflare fronts roughly 20% of web traffic by its own account, so for a growing share of the web the robots.txt gate sits behind a network gate that may already be shut. Any site owner whose analytics show zero AI-bot traffic should check the host-level switch before concluding their content is simply uninteresting to crawlers.</p>
+      <p><b>The reverse risk is real too: some crawlers are not who they claim to be.</b> A robots.txt line is a request, an IP allowlist is a check, and identity fraud between the two is a documented failure mode — in August 2025 Cloudflare publicly accused Perplexity of using stealth, undeclared crawlers that rotated user-agents and networks to reach blocked sites (Perplexity disputed the findings). The practical takeaway for a buyer is to treat bot traffic the way you treat any other vendor claim: verify against published IP ranges where the vendor provides them (OpenAI publishes per-bot JSON lists; Anthropic publishes its own IP list), rather than trusting a user-agent string in your logs.</p>
+      <p><b>For tool buyers rather than site owners, the same gate works in your favor.</b> Every comparison on this site assumes the underlying model saw enough good data and that AI search can cite real sources — behaviors that only exist because someone, somewhere, allowed a crawler in. When you evaluate an AI search tool, its crawl policy is a quality signal: tools that honor robots.txt and publish their bots (see the vendor pages quoted above) can be opted out of by any site; tools that crawl covertly remove that control from everyone whose content they index — including the sites behind results you're being shown.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The default flipped from opt-out to opt-in.</b> For thirty years, webmasters who did nothing were crawled by everyone. Since mid-2025, a new Cloudflare-fronted domain that does nothing blocks AI crawlers. That means the "do I block AI bots?" question is no longer only asked by publishers with legal departments — it is silently answered for millions of sites at signup, and reopening the gate is now the deliberate act. If your AI-search referrals vanished in 2025-2026, audit the infrastructure layer first.</p>
+      <p><b>Per-subdomain still matters.</b> Anthropic's instructions ask owners to set robots.txt "for every subdomain that you wish to opt out from," and OpenAI's 24-hour adjustment window means a launch-week robots.txt mistake is visible for roughly a day before it is fixed. Editors of large sites should also remember the mixed-crawler problem: Google-Extended does not stop Googlebot from crawling, only from feeding Gemini training and grounding — so "we blocked AI training" and "Google stopped crawling us" are different claims, and only the second one would actually hurt your search traffic.</p>
+      <p><b>Where this leaves an AI-tool buyer:</b> the crawler gate is becoming a negotiation between three parties — your robots.txt, your infrastructure provider's defaults, and the AI vendors' published policies. Vendors are starting to pay for the crawl (Cloudflare's Pay Per Crawl, TollBit-style middlemen) precisely because the old currency, referral traffic, collapsed to 1,700:1 and 73,000:1 ratios. None of that changes which <a href="/best/ai-chatbots">AI chatbot</a> or <a href="/best/ai-writing-tools">writing tool</a> you should buy — but it explains why AI answers cite fewer sources than search results, and why a site that wants to be cited (like this one, which keeps its robots.txt open to search bots and publishes an llms.txt) has to make that choice explicitly.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Decide per purpose, not per company.</b> Three jobs, three consequences: training (cheap to block), search (blocks you out of AI answers), user actions (blocking Claude-User / ChatGPT-User only matters for interactive fetches). Write the robots.txt as a matrix over purposes, and keep search bots visible unless you accept losing AI-search citations.</li>
+        <li><b>Set robots.txt on every subdomain, then wait.</b> Anthropic asks for per-subdomain lines; OpenAI's systems take ~24 hours to adjust. Verify with server logs against the vendors' published IP lists (openai.com/gptbot.json, searchbot.json; Anthropic's IP list) instead of trusting user-agent strings.</li>
+        <li><b>Do not use IP firewalls as your opt-out.</b> Anthropic warns that blocking crawler IPs "impedes our ability to read your robots.txt file" and may not persistently guarantee an opt-out. If you must firewall, do it at the edge (CDN bot management) where verified-bot lists and per-crawler rules exist.</li>
+        <li><b>Check your host's default before blaming robots.txt.</b> Since 1 July 2025, Cloudflare new domains block AI crawlers by default; a million-plus existing customers opted in earlier. If no AI bot has hit your site in months, the gate may be at the network layer, not in your file.</li>
+        <li><b>Keep the quotable text crawlable.</b> Whatever you decide, the content you want AI answers to cite must exist as fetchable HTML — the same principle behind our <a href="/glossary/rag">RAG</a> entry: retrieval systems can only quote what a crawler was allowed to fetch.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every AI-search comparison on this site is downstream of a crawl decision. Our <a href="/vs/perplexity-vs-google-ai-mode">Perplexity vs Google AI Mode vs ChatGPT Search</a> page compares tools that answer only as well as the pages they were allowed to index; our <a href="/glossary/ai-agent">AI agent</a> entry covers the third job — user-initiated fetches, where OpenAI itself says robots.txt "may not apply." Related terms: <a href="/glossary/rag">RAG (retrieval-augmented generation)</a> is why citation quality tracks crawl policy, and <a href="/glossary/open-weights">open weights</a> is the other end of the same "who gets your content" question. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>AI crawler blocking is not one decision; it is three. Training bots are the ones everyone argues about and nearly free to block. Search bots are the ones worth reading before you block, because they decide whether AI answers cite you at all. User-action bots sit in between and are barely governed by robots.txt anyway. Layer on the 2025 shift — Cloudflare blocking AI crawlers by default for new domains, pay-per-crawl billing on the way — and the default posture of the web has quietly reversed from "crawl unless forbidden" to "forbidden unless allowed." Make your choice explicit: a robots.txt you wrote on purpose beats one that was written for you at signup. Crawl-to-referral arithmetic (14:1 for search, 73,000:1 for one AI vendor, per Cloudflare's 2025 data) is the number that explains why the negotiation started.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
