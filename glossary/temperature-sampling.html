@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is LLM Temperature? The Dial Vendors Are Removing (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/temperature-sampling">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is LLM Temperature? The Dial Vendors Are Removing (2026) | AITop">
+  <meta property="og:description" content="Temperature is a sampling parameter that rescales a model's next-token probabilities before it picks one: 0 means always take the most likely token, higher values flatten the distribution. OpenAI documents a 0–2 range with a default of 1, Google documents 0.0–2.0 with a default of 1.0, Anthropic documented 0.0–1.0 with a default of 1.0 and now rejects non-default values on models released after Claude Opus 4.6. What the knob does, what it does not do, and what replaced it.">
+  <meta property="og:url" content="https://top.omc.network/glossary/temperature-sampling">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is LLM Temperature? The Dial Vendors Are Removing (2026) | AITop">
+  <meta name="twitter:description" content="Three providers, three ranges, one direction of travel: temperature is being taken out of the API. What it actually does at 0.2 vs 0.8, why 0 is not deterministic, and why the creativity dial is now a prompt setting.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Temperature is the sampling parameter that controls how randomly a language model picks its next token: 0 always takes the highest-probability token, higher values flatten the distribution so less likely tokens get a chance. The ranges are not universal — OpenAI documents 0–2 with a default of 1, Google documents 0.0–2.0 with a default of 1.0 (topP 0.95, topK 64 on current Gemini models), and Anthropic documented 0.0–1.0 with a default of 1.0 before deprecating the parameter on models released after Claude Opus 4.6. Includes why temperature 0 is not reproducible, why OpenAI advises changing temperature or top_p but not both, and how reasoning effort replaced the dial in 2026.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Temperature (sampling)","item":"https://top.omc.network/glossary/temperature-sampling"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Temperature (LLM sampling)","description":"Temperature is a sampling parameter that divides a language model's next-token logits before they are converted into probabilities, which changes how willing the model is to pick a less likely token. At temperature 0 the model always takes the highest-probability token (greedy decoding); higher values flatten the distribution so lower-probability tokens become reachable. The scale is provider-specific: OpenAI documents a range of 0 to 2 with a default of 1, Google documents 0.0 to 2.0 with a default of 1.0, and Anthropic documented 0.0 to 1.0 with a default of 1.0 before deprecating the parameter on models released after Claude Opus 4.6, where only the default value 1.0 is accepted and any other value returns HTTP 400. Temperature changes which token is chosen, never what the model knows, and it does not make output reproducible: every provider states that temperature 0 is not fully deterministic.","url":"https://top.omc.network/glossary/temperature-sampling","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is temperature in an LLM (and why is it disappearing in 2026)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-04. Ranges, defaults and deprecation wording come from OpenAI's, Google's and Anthropic's own API references; the reading of what they add up to is ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Temperature</b> is the sampling parameter that decides how willing a language model is to pick a word that is not its first choice. It rescales the probability distribution over the next token: at <b>0</b> the model always takes the single most likely token, and as the value rises the distribution flattens so less likely tokens become reachable. The scale is not universal — <b>OpenAI</b> documents a range of <b>0 to 2</b> with a default of <b>1</b>, <b>Google</b> documents <b>0.0 to 2.0</b> with a default of <b>1.0</b>, and <b>Anthropic</b> documented <b>0.0 to 1.0</b> with a default of <b>1.0</b> — which is why "set temperature to 0.7" means different things on different platforms. The 2026 twist is that the parameter is being removed where it matters most: Anthropic's current reference marks temperature, top_p and top_k <b>deprecated</b>, with only the default value accepted on models released after <b>Claude Opus 4.6</b> and every other value returning <b>HTTP 400</b>. Temperature never added knowledge, was never a guarantee of reproducibility, and is now optional on the models you would most want to control. The honest definition is narrower than the marketing: <b>temperature changes which token gets picked, not how much the model knows.</b></p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Every token a language model emits starts as a score for every token in its vocabulary. Those scores become probabilities, and the model picks one. Temperature sits in the middle of that step: it divides the scores before the conversion, and the arithmetic has one visible consequence — <b>low temperature sharpens the distribution toward the top token, high temperature flattens it toward the tail</b>. The three providers describe the effect in almost the same words. OpenAI: "Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic." Google: "A temperature of 0 means that the highest probability tokens are always selected." Anthropic's (now-deprecated) field description: "Use temperature closer to 0.0 for analytical / multiple choice, and closer to 1.0 for creative and generative tasks."</p>
+      <p>The numbers behind those sentences are where buyers get caught. <b>OpenAI's</b> field is documented as "between 0 and 2" with a default of <b>1</b>. <b>Google's</b> documentation states that "Gemini models support a temperature value between 0.0 and 2.0" and that "models have a default temperature of 1.0," adding a detail most comparisons miss: "1.0 is the recommended starting value for temperature." <b>Anthropic's</b> field read "Defaults to 1.0. Ranges from 0.0 to 1.0." A 0.7 that feels restrained on GPT-class models is therefore already well above the midpoint on Claude-class models, and a 0.7 on Gemini is below the vendor's own starting point. Any prompt-engineering guide that hands you one number for all three is handing you a coincidence.</p>
+      <p>Temperature is also not the only knob, and the others are easier to misuse. <b>top_p</b> (nucleus sampling) keeps only the smallest set of tokens whose probabilities sum to that value and discards the rest; OpenAI describes 0.1 as "only the tokens comprising the top 10% probability mass are considered." <b>top_k</b> does the same thing by count rather than mass — Google documents top_k of 1 as greedy decoding, and current Gemini models list it as <b>64, fixed</b>. Both platforms that expose both give the same instruction: OpenAI says "We generally recommend altering this or <code>temperature</code> but not both," and Anthropic labelled top_p and top_k "recommended for advanced use cases only." Turning two randomness dials at once does not give you finer control; it gives you a setting nobody can reproduce.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Because "we run at temperature 0" is the most common false claim in AI procurement.</b> Every one of the three vendors says the same thing in its own words: Anthropic's field note read "even with a temperature of 0.0, the results will not be fully deterministic"; Google's parameter guide says a temperature of 0 is "mostly deterministic, but a small amount of variation is still possible"; OpenAI offers a <code>seed</code> parameter explicitly labelled <b>Beta</b>, promising only that the system "will make a best effort to sample deterministically," adding that "determinism is not guaranteed" and pointing developers at <code>system_fingerprint</code> to detect backend changes. If a vendor promises byte-identical output for a compliance, audit or regression-test use case, the parameter they are pointing at cannot deliver it — and if your acceptance testing depends on it, you find out in production.</p>
+      <p><b>Because the default is often not what your stack thinks it is.</b> Consumer chat apps mostly do not expose temperature at all — Claude's app never did — while agent frameworks and IDE assistants ship their own defaults, commonly around 0.7 in orchestration libraries and 0 in some coding agents. Migrating a workflow from one harness to another can therefore change the sampling behaviour of every request without a single line of your prompt changing. This is the same class of invisible change as the <a href="/glossary/rate-limits">rate-limit</a> and <a href="/glossary/reasoning-tokens">reasoning-token</a> asymmetries we document elsewhere: the knob you did not set is still setting your output.</p>
+      <p><b>Because temperature is not a quality dial.</b> It cannot make a model produce a correct answer it does not already know — it only reshapes a distribution over tokens the model already scores. Google's own guide is unusually candid about the failure modes in both directions: if a response is "too generic, too short, or the model gives a fallback response, try increasing the temperature," and "if the model enters infinite generation, increasing the temperature to at least 0.1 may lead to improved results." Note what that second sentence implies: <b>a low temperature can cause looping</b>, which is the opposite of the intuition that turning randomness down makes output safer. Lower is not better; lower is narrower, and narrow has its own failure mode.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The parameter is being withdrawn from the newest models.</b> Anthropic's API reference now marks temperature, top_p and top_k <b>deprecated</b>, and the wording is specific enough to quote: "Models released after Claude Opus 4.6 do not support setting temperature. A value of 1.0 will be accepted for backwards compatibility, all other values will be rejected with a 400 error." top_p gets the same treatment with a wider tolerance — "a value &gt;= 0.99 will be accepted for backwards compatibility" — while top_k has no tolerated value at all: "models released after Claude Opus 4.6 do not accept top_k; any value will be rejected with a 400 error." OpenAI's reasoning models took the same route earlier and more bluntly: developers porting code report HTTP 400 responses with the code <code>unsupported_value</code> and the message "Only the default (1) value is supported," with some models rejecting the field at any value at all. The pattern across both vendors is identical — <b>the newest models keep the parameter for backward compatibility and refuse to let you use it.</b></p>
+      <p><b>And the replacement is not a smaller dial, it is a different axis.</b> Anthropic's current request schema exposes <code>output_config.effort</code> — low, medium, high, xhigh, max — described as "how much effort the model should put into its response," plus a thinking configuration where Claude "decides when and how much to think" (adaptive) or you set a <code>budget_tokens</code> floor of 1,024 (manual). OpenAI steers the same way with reasoning effort and verbosity. These control how long the model works, not how randomly it samples. For a buyer that is a meaningful shift: <b>the thing you can now tune costs tokens and latency, whereas temperature was free.</b> Where temperature once bought variety at no extra charge, you now buy it with a longer answer and a bigger bill — which is why the <a href="/glossary/inference-cost">inference cost</a> line and the sampling question have become the same conversation.</p>
+      <p><b>Which makes prompt instructions the last portable control.</b> The practical migration advice is unglamorous: move the behaviour into the text. Instead of dropping temperature to 0.2 for an extraction job, write the determinism requirement into the instruction — return only values that appear verbatim in the source, do not paraphrase or infer, return null for absent fields. That survives a model swap, a provider migration and a deprecation notice, because it lives in your prompt rather than in someone else's request schema. It is also the only version of the control that works in a consumer product where no parameters are exposed at all — the chat tools in our <a href="/best/ai-chatbots">best AI chatbots</a> ranking.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Never copy a temperature across providers.</b> OpenAI and Google run 0–2 with a default of 1; Anthropic ran 0–1 with a default of 1. The same number is a different percentile on each, and Google's own recommended starting value is 1.0, not a low number.</li>
+        <li><b>Change temperature or top_p, never both.</b> OpenAI says so directly; Anthropic labels top_p and top_k advanced-only. Two dials at once produce settings no one can reproduce or debug.</li>
+        <li><b>Do not sell temperature 0 as deterministic.</b> All three vendors state that 0 is not fully reproducible. If you need auditable sameness, pin the model version, log <code>system_fingerprint</code>, and test the output rather than trusting the setting.</li>
+        <li><b>Check whether the parameter still exists on your model.</b> On models after Claude Opus 4.6 only the default 1.0 is accepted and everything else is a 400; on OpenAI's reasoning models sampling is refused. Move behaviour into the prompt before the migration, not after the incident.</li>
+        <li><b>Budget for the replacement.</b> Effort and thinking budgets trade money and latency for thoroughness. If your cost model was built when temperature was free, the new control is not free — re-run the estimate with <a href="/glossary/ai-token">token pricing</a> before you raise it.</li>
+        <li><b>Watch for low-temperature looping.</b> Google's own guide suggests raising temperature to at least 0.1 when a model gets stuck in infinite generation. If you set 0 for "safety," verify that against real traffic, not intuition.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every AI tool review on this site implicitly assumes a sampling configuration, because it decides what a "good" answer even looks like: a <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> comparison run at each vendor's default is a comparison of two different default distributions, not two different amounts of intelligence. It shows up hardest in three places. <b>Structured extraction</b>, where a single sampled token can turn a number into a paragraph. <b>Agentic loops</b>, where each step samples again and small divergences compound into entirely different tool calls — the reason agent harnesses tend to run cold. And <b>long-context work</b>, where the <a href="/glossary/context-window">context window</a> sets what the model can see and temperature sets how adventurous it is about what to say next. Related terms worth reading alongside this one: <a href="/glossary/tokens-per-second">tokens per second</a> for the speed you get at any setting, <a href="/glossary/reasoning-tokens">reasoning tokens</a> for the output you pay for but never see, and <a href="/glossary/ai-hallucination">AI hallucination</a> for the failure that temperature is often (wrongly) blamed for. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Temperature is a small, honest mechanism with an oversized reputation. It reshapes a probability distribution and nothing else: it does not add knowledge, it does not make output reproducible, and it does not mean the same thing on three providers whose ranges disagree by a factor of two. The 2026 development is that the vendors have started agreeing with that assessment — Anthropic deprecates it on everything released after Claude Opus 4.6, OpenAI's reasoning models refuse any value but the default, and Google tells you to start at 1.0 and raise it if the model loops. What replaces it is not a better dial but a more expensive one: effort and thinking budgets that cost tokens and seconds. So the practical advice for anyone buying an AI tool is to stop treating temperature as a quality setting and start treating it as a portability risk — write your determinism and style requirements into the prompt, check which parameters still exist on the model you just migrated to, and never let a vendor's "temperature 0" claim stand in for a reproducibility test you did not run.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
