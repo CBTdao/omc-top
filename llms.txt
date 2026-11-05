@@ -66,3 +66,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/rate-limits](https://top.omc.network/glossary/rate-limits): What Are API Rate Limits? The Ceiling Nobody Prices In | AITop
 - [https://top.omc.network/glossary/ai-crawler-blocking](https://top.omc.network/glossary/ai-crawler-blocking): What Is AI Crawler Blocking? The robots.txt Gate for GPTBot, ClaudeBot & Friends | AITop
 - [https://top.omc.network/glossary/temperature-sampling](https://top.omc.network/glossary/temperature-sampling): What Is LLM Temperature? The Dial Vendors Are Removing (2026) | AITop
+- [https://top.omc.network/glossary/structured-outputs](https://top.omc.network/glossary/structured-outputs): What Are Structured Outputs? The JSON Guarantee That Doesn't Check Facts (2026) | AITop

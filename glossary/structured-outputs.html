@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Are Structured Outputs? The JSON Guarantee That Doesn't Check Facts (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/structured-outputs">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Are Structured Outputs? The JSON Guarantee That Doesn't Check Facts (2026) | AITop">
+  <meta property="og:description" content="Structured outputs constrain a model's decoding with a JSON Schema, so the response always parses and always matches your field names — and can still be confidently wrong inside those fields. OpenAI, Google and Anthropic each accept a different subset of JSON Schema: all fields required on OpenAI, optional by default on Gemini, 24 optional parameters total on Claude. What the guarantee covers, where a working schema returns a 400, and the schema costs most teams never budget for.">
+  <meta property="og:url" content="https://top.omc.network/glossary/structured-outputs">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Are Structured Outputs? The JSON Guarantee That Doesn't Check Facts (2026) | AITop">
+  <meta name="twitter:description" content="A schema fixes the shape of an answer, never the truth of it. Three providers, three different JSON Schema subsets, and one 400 error waiting for the schema you wrote for a different vendor.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Structured outputs is a decoding mode that constrains each generated token against a JSON Schema you supply, guaranteeing the response parses and matches your declared fields — but not that the values are correct. OpenAI calls it 'the evolution of JSON mode' and says only Structured Outputs ensure schema adherence; Google warns that JSON mode without a response schema 'acts only as a strong hint'; Anthropic's version reached general availability on 4 February 2026 and caps you at 20 strict tools, 24 optional parameters and 16 union-typed parameters per request, with a 180-second compile timeout. Includes where a schema that works on one provider returns HTTP 400 on another, why schema size lands on your input-token bill, and why a refusal or a max_tokens cut still bypasses the guarantee.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Structured outputs","item":"https://top.omc.network/glossary/structured-outputs"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Structured outputs (JSON schema mode)","description":"Structured outputs is a constrained-decoding mode in which a language model's next-token choices are filtered against a JSON Schema supplied in the request, so the final response is guaranteed to be valid JSON that matches the declared field names, types and nesting. The guarantee covers shape, not truth: a schema-perfect object can still contain a fabricated number. The three major providers implement it differently. OpenAI enables it with strict: true on a json_schema response format, requires every field to be listed as required, requires additionalProperties false, and documents its output as the only mode that ensures schema adherence versus plain JSON mode. Google requires both a response schema and an application/json MIME type, states that the MIME type alone is only a hint, supports string enums only, and treats fields as optional unless marked required. Anthropic exposes the feature as a JSON output format and as strict tool use, reached general availability on 4 February 2026, and limits a request to 20 strict tools, 24 optional parameters and 16 union-typed parameters, with a 180-second schema compilation timeout. All three allow the response to escape the schema through a safety refusal or a token-limit truncation.","url":"https://top.omc.network/glossary/structured-outputs","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What are structured outputs (and what do they still not guarantee in 2026)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-05. Parameter names, schema limits and refusal behaviour come from OpenAI's, Google's and Anthropic's own API references — plus Microsoft's Azure OpenAI documentation, which publishes the operational limits the OpenAI page leaves implicit. The reading of what they add up to is ours.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Structured outputs</b> is a decoding mode that constrains every token the model generates against a <b>JSON Schema</b> you send with the request, so the answer is guaranteed to parse and to carry exactly the field names, types and nesting you declared. OpenAI calls it "the evolution of JSON mode" and states plainly that "only Structured Outputs ensure schema adherence." Google's docs are blunter about the cheap version: setting a JSON MIME type without a schema "acts only as a strong hint to the model and doesn't ensure 100% valid JSON." Anthropic shipped the same idea, reached general availability on <b>4 February 2026</b>, and enforces hard complexity budgets — <b>20 strict tools, 24 optional parameters, 16 union-typed parameters</b> per request, with a <b>180-second</b> schema compilation timeout. The catch that decides purchases: the guarantee covers <b>shape, not truth</b>. A schema-perfect object can hold a fabricated figure, and the three vendors accept <b>different subsets of JSON Schema</b> — a schema that runs cleanly on one provider returns <b>HTTP 400</b> on the next.</p></div>
+
+    <section class="section">
+      <h2>What structured outputs actually guarantee</h2>
+      <p>Normally a language model picks the next token from a probability distribution over its whole vocabulary. Structured outputs inserts a filter: at each step, tokens that would break your schema are masked out before sampling. The result is not a better prompt — it is a grammar the decoder cannot violate. That is why the guarantee is unusually strong and unusually narrow at the same time. It is strong because it is mechanical: if your schema says <code>priority</code> is one of three strings, no run will ever return a fourth. It is narrow because a grammar has no opinion about content. A field called <code>amount</code> will always be a number and can always be the wrong number.</p>
+      <p>OpenAI draws that line explicitly, and the distinction is the single most useful sentence in any of the three docs: <b>"Structured Outputs is the evolution of JSON mode. While both ensure valid JSON is produced, only Structured Outputs ensure schema adherence."</b> The older <code>json_object</code> mode guarantees parseable JSON and nothing else — no required keys, no types, no nesting. OpenAI's recommendation is unambiguous: "We recommend always using Structured Outputs instead of JSON mode when possible." It is enabled by sending a schema with <code>strict: true</code>, either as <code>text.format</code> in the Responses API or as <code>response_format</code> in Chat Completions, and it is available from the <code>gpt-4o-2024-08-06</code> and <code>gpt-4o-mini</code> snapshots onward.</p>
+      <p>The guarantee has three documented escape hatches, and every production system eventually meets one. <b>Safety refusals</b>: OpenAI adds a field outside your schema because "a refusal does not necessarily follow the schema you have supplied in <code>response_format</code>," so the response carries a <code>refusal</code> property instead of your object. <b>Truncation</b>: if the answer hits the token ceiling, the JSON ends mid-object — OpenAI's own sample code checks <code>incomplete_details.reason === "max_output_tokens"</code> before parsing. <b>Case drift</b>: Anthropic warns that structured outputs "don't guarantee the capitalization of string <code>enum</code> and <code>const</code> values." None of these is a bug. They are the reasons a schema is a contract about format, not a promise of a well-formed application.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does a schema work on one provider and fail on another?</h2>
+      <p>Because "supports JSON Schema" means three different things. Each vendor accepts a subset, and the subsets do not nest. OpenAI's supported types are string, number, boolean, integer, object, array, enum and <code>anyOf</code>, with recursion via <code>$ref</code> allowed. Google supports <code>anyOf</code>, <code>format</code>, <code>items</code>, <code>minItems</code>/<code>maxItems</code>, <code>minimum</code>/<code>maximum</code>, <code>nullable</code> and <code>propertyOrdering</code> — but only string enums. Anthropic supports string formats including <code>date-time</code>, <code>email</code>, <code>uuid</code> and <code>ipv4</code>, and explicitly does <b>not</b> support recursive schemas, numeric constraints such as <code>minimum</code>/<code>maximum</code>/<code>multipleOf</code>, or string length limits. Write a schema against the union of all three and you will get a 400 from at least two of them.</p>
+      <p>The subtler trap is what "optional" means. <b>OpenAI</b> requires every property to appear in <code>required</code>; a genuinely optional field is emulated with a union type that includes <code>null</code>, and every object needs <code>additionalProperties: false</code>. <b>Google</b> is the reverse — "By default, fields are optional, meaning the model can populate the fields or skip them" — so a field you forgot to mark required will sometimes simply be absent. <b>Anthropic</b> allows optional parameters but prices them: they count against a shared budget of <b>24 optional parameters across all strict schemas in one request</b>, because, in its words, "each optional parameter roughly doubles a portion of the grammar's state space." The same design decision is a mandatory null-union on one platform, a silent omission risk on the second, and a scarce quota on the third.</p>
+      <div class="cmp-wrap"><table class="cmp">
+        <thead><tr><th>Provider</th><th>How you turn it on</th><th>Optional fields</th><th>The limit you'll hit</th></tr></thead>
+        <tbody>
+          <tr><td><b>OpenAI</b></td><td><code>strict: true</code> on a <code>json_schema</code> format</td><td>Not allowed — every field is required; use <code>type: ["string","null"]</code></td><td>Microsoft's Azure OpenAI doc for the same API publishes <b>100 object properties</b> and <b>5 nesting levels</b>; no <code>minLength</code>, <code>pattern</code> or <code>format</code></td></tr>
+          <tr><td><b>Google Gemini</b></td><td><code>responseSchema</code> plus <code>application/json</code> MIME type</td><td>Optional unless marked <code>required</code></td><td>String enums only; a complex schema returns <code>InvalidArgument: 400</code>; schema tokens bill as input</td></tr>
+          <tr><td><b>Anthropic Claude</b></td><td><code>output_config.format</code>, or <code>strict: true</code> on tools</td><td>Allowed, but 24 total per request</td><td><b>20</b> strict tools, <b>24</b> optional params, <b>16</b> union params, <b>180 s</b> compile timeout → "Schema is too complex for compilation"</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Because it moves your integration risk from the model to the schema.</b> Before structured outputs, teams shipped retry loops and regex repairs; now they ship schemas, and a schema is portable in theory and fragile in practice. If your product extracts invoices, tickets or lab results, the schema is the part of your codebase most likely to break on a model swap — which makes it the part you should be able to test across providers before you sign. This is the same failure mode as the <a href="/glossary/temperature-sampling">temperature ranges</a> that disagree by a factor of two between vendors: the parameter looks universal and is not.</p>
+      <p><b>Because the schema is billed.</b> Google states it outright: "The size of your response schema counts towards the input token limit." Anthropic says your "input token count is slightly higher." On a long-context pipeline where the schema is fixed and the documents are large, that is noise; on a high-volume classification job with a 300-line schema and a 20-token input, the schema is most of what you pay for. Run the arithmetic with <a href="/glossary/ai-token">token pricing</a> before you assume the structured version of a call is free.</p>
+      <p><b>Because the first call is slow and the cache is fragile.</b> OpenAI notes that "the first request you make with any schema will have additional latency as our API processes the schema," and Anthropic adds the operational detail that compiled grammars are cached for <b>24 hours</b> from last use and invalidated when the schema structure or the tool set changes — but not when you only edit a <code>name</code> or <code>description</code>. A team that ships a schema change every deploy keeps paying a cold grammar, and anyone who changes the output format also "invalidate[s] any prompt cache for that conversation thread." Two caching systems, two invalidation rules, one bill.</p>
+      <p><b>Because "it's structured, so it's reliable" is how bad data reaches production.</b> Constrained decoding fixes the parse, not the number. Extraction tools in categories like <a href="/best/ai-customer-service-tools">AI customer service</a> and <a href="/best/ai-coding-assistants">AI coding assistants</a> are exactly where this bites: a ticket classifier that always returns one of four labels will always look healthy on a schema check while quietly mislabelling a fifth of traffic. Schema validation replaces your JSON parser; it does not replace your evaluation set.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The feature is now table stakes, and the differentiation moved to the limits.</b> OpenAI has had it since the August 2024 model snapshots. Anthropic ran it as a public beta from November 2025 (the old beta header was literally named <code>structured-outputs-2025-11-13</code>) and moved to general availability on <b>4 February 2026</b>, at which point the parameter moved from <code>output_format</code> to <code>output_config.format</code> and the beta header became unnecessary — using the old parameter without the header now returns a <b>400</b>. That is a migration event, not a footnote: any code pinned to the beta shape breaks silently on upgrade.</p>
+      <p><b>The real 2026 differentiator is what happens when the schema is too big.</b> Anthropic publishes the only explicit complexity budget in the market — 20 strict tools, 24 optional parameters, 16 union-typed parameters, a 180-second compilation timeout — and notes the failures are counter-intuitive: "if you have 4 strict tools with 6 optional parameters each, you'll reach the 24-parameter limit even though no single tool seems complex." Google takes the other route, letting a complex schema through the front door and returning <code>InvalidArgument: 400</code> with advice to "shorten property names," "flatten nested arrays" and "reduce the number of valid values for enums." OpenAI simply refuses the schema's shape up front. Three vendors, three failure modes, one shared lesson: <b>schema design is now a capacity-planning exercise, not a formatting preference.</b></p>
+      <p><b>And the honest framing of what changed.</b> Two years ago the problem was that models produced prose when you wanted JSON. That problem is solved — the guarantees are real and they are cheap to obtain. What replaced it is the older problem underneath: <b>a well-formed answer can be wrong.</b> Structured outputs did not make AI outputs trustworthy; it removed one specific class of failure and left the rest exactly where it was, which is why <a href="/glossary/ai-hallucination">hallucination</a> is still a separate entry in this glossary and still a separate line in every serious evaluation. Anthropic's own caveat — that a refusal "takes precedence over schema constraints" — is the polite version of the same warning.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Never ship <code>json_object</code> / bare JSON mode as a reliability feature.</b> OpenAI says only Structured Outputs ensure schema adherence; Google says the MIME type alone "doesn't ensure 100% valid JSON." If the field matters, the schema must be present.</li>
+        <li><b>Test the schema on every provider you might migrate to.</b> All-required objects, <code>additionalProperties: false</code> and no <code>minLength</code>/<code>pattern</code> is the portable subset. Anything richer is a vendor commitment, not a JSON Schema commitment.</li>
+        <li><b>Treat optional fields as a budget, not a style.</b> Anthropic caps you at 24 optional parameters per request; OpenAI does not allow them at all and wants nullable unions; Google will silently omit them. Pick per provider, do not copy.</li>
+        <li><b>Budget the schema on the input bill.</b> Google bills schema tokens as input; Anthropic raises the input count. On high-volume, short-prompt jobs, measure it before assuming it's negligible.</li>
+        <li><b>Write the refusal and truncation path first.</b> Check the <code>refusal</code> field (OpenAI), <code>stop_reason: "refusal"</code> (Anthropic, returned with HTTP 200) and <code>max_tokens</code> truncation before you parse. A schema does not cover these.</li>
+        <li><b>Keep the eval set.</b> Schema validity is a unit test. A fourth grader can pass it while the content is wrong — see <a href="/glossary/rag">RAG</a> for the retrieval half of the same problem.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every tool comparison on this site quietly assumes structured outputs now that the answer has to land in a table: a <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> benchmark scored by an automated grader is only as honest as the grader's schema, and a <a href="/vs/claude-code-vs-cursor">Claude Code vs Cursor</a> comparison depends on both agents emitting tool arguments that parse. It shows up hardest in three places. <b>Extraction pipelines</b> — invoices, tickets, contracts — where the schema is the product. <b>Agent loops</b>, where an <a href="/glossary/ai-agent">agent</a>'s tool call is structured output with <code>strict: true</code> on top, and one malformed argument ends the run. And <b>evaluation harnesses</b>, where the judge model's output format decides whether your benchmark numbers mean anything at all. Related terms worth reading alongside this one: <a href="/glossary/rate-limits">rate limits</a> for the ceiling that ends a structured pipeline before the schema does, <a href="/glossary/reasoning-tokens">reasoning tokens</a> for the output that counts against your <code>max_tokens</code> before the JSON starts, and <a href="/glossary/context-window">context window</a> for the budget the document and the schema share. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Structured outputs is a real engineering win sold with a misleading frame. The mechanism is honest — a grammar constrains decoding, the JSON parses, the field names arrive as declared — and it retires an entire category of integration bug. What it does not do is make the content true, and the marketing shorthand ("guaranteed output") invites exactly that confusion. For a buyer, the useful way to read the feature is as a portability cost: three vendors, three JSON Schema subsets, three different meanings for "optional," and three different failure modes when a schema gets big — 5 nesting levels on the OpenAI-flavoured API, a 400 on Gemini, a 180-second compile timeout and a 24-optional-parameter ceiling on Claude. Write to the smallest common subset, budget the schema against your input tokens, always implement the refusal and truncation path, and keep an evaluation set that can catch a well-formed lie. The JSON was never the hard part.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
