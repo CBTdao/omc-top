@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is an Embedding? Why More Dimensions Don't Buy Better Answers (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/embedding">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is an Embedding? Why More Dimensions Don't Buy Better Answers (2026) | AITop">
+  <meta property="og:description" content="An embedding is a fixed-length list of numbers that stands in for a piece of text, so that 'close' means 'similar' and a database can search by meaning instead of by keyword. OpenAI sells 1,536 and 3,072 dimensions at $0.02 and $0.13 per million tokens; Google lets you pick anything from 128 to 3,072 for $0.15 and reports that 1,536 scores slightly higher than 2,048 on its own benchmark; Cohere sells 256 to 1,536 with a 128k-token input. The API is the cheap part — the index, the re-embedding and the query/document mismatch are where the money and the bugs are.">
+  <meta property="og:url" content="https://top.omc.network/glossary/embedding">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is an Embedding? Why More Dimensions Don't Buy Better Answers (2026) | AITop">
+  <meta name="twitter:description" content="Three vendors, three dimension menus, one 6 KB-per-vector bill. The embedding call is the cheapest line in an AI stack and the one that decides whether you can ever change model again.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="An embedding is a fixed-length vector of floating-point numbers produced by an embedding model, positioned so that semantically similar text lands close together; it is what lets a system search by meaning rather than by keyword. Dimensions are not quality: Google's own published table for gemini-embedding-001 shows 1,536 dimensions scoring 68.17 on MTEB against 68.16 at 2,048, so a 25% smaller vector measured no worse, and OpenAI states that text-embedding-3-large truncated to 256 dimensions still beats unshortened text-embedding-ada-002 at 1,536. What actually costs money is downstream: 1 million chunks at 1,536 dimensions is about 6 GB of float32 before the index, changing models means re-embedding the entire corpus because vectors from two models are not comparable, and embedding documents with a query-mode call quietly degrades retrieval with no error message.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Embedding","item":"https://top.omc.network/glossary/embedding"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Embedding (vector representation)","description":"An embedding is a fixed-length vector of numbers produced by an embedding model that represents a piece of text (or an image, or a page) such that the geometric distance between two vectors approximates the semantic similarity of the two inputs. It is the mechanism behind semantic search and retrieval-augmented generation: instead of matching keywords, a system compares vectors. The vector length is a per-model design choice, not a quality grade. OpenAI's text-embedding-3-small returns 1,536 dimensions for $0.02 per million input tokens and text-embedding-3-large returns 3,072 for $0.13, both capped at 8,192 input tokens, and both can be shortened with the dimensions parameter without losing their concept-representing properties. Google's gemini-embedding-001 accepts 128 to 3,072 dimensions, recommends 768, 1,536 or 3,072, caps input at 2,048 tokens, costs $0.15 per million input tokens, and requires manual normalisation when you use fewer than 3,072 dimensions. Cohere's embed-v4.0 offers 256, 512, 1,024 or 1,536 dimensions (1,536 default) over a 128k-token context and can return float, int8, uint8, binary or ubinary vectors. Because each model learns its own vector space, vectors from two different models are not comparable and a model migration requires re-embedding the corpus.","url":"https://top.omc.network/glossary/embedding","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is an embedding (and why do more dimensions not buy better answers in 2026)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-06. Dimension menus, input limits, normalisation rules and prices come from OpenAI's model and embeddings documentation, Google's Gemini embeddings documentation and the Gemini Embedding general-availability announcement, Cohere's Embed documentation and the Amazon Bedrock model card for the same model. The arithmetic on storage and re-embedding cost is ours, and labelled as such.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>An <b>embedding</b> is a fixed-length list of numbers that represents a piece of text so that "close together" means "similar in meaning" — it is what lets software search by intent instead of by keyword, and it is the retrieval half of every <a href="/glossary/rag">RAG</a> system. The number of dimensions is a <b>design choice, not a quality score</b>: Google's own published table for <b>gemini-embedding-001</b> shows <b>1,536 dimensions at 68.17</b> on MTEB against <b>2,048 at 68.16</b>, so a quarter-smaller vector measured no worse, and OpenAI states that <b>text-embedding-3-large</b> shortened to <b>256</b> dimensions still beats an unshortened <b>text-embedding-ada-002</b> at 1,536. Prices are trivial next to what follows — <b>$0.02 to $0.15 per million input tokens</b> — because the bill arrives downstream: <b>about 6 KB per vector</b> of float32, a full re-embed of the corpus whenever you change models, and a silent quality loss if you embed documents and queries with the wrong mode.</p></div>
+
+    <section class="section">
+      <h2>What is an embedding, exactly?</h2>
+      <p><b>An embedding is a fixed-length array of floating-point numbers, produced by a model, that positions a piece of content in a geometric space where distance means similarity.</b> Feed the sentence "the invoice is overdue" to an embedding model and you get back a list — 1,536 numbers, say — and feeding it "this bill was not paid on time" produces a different list whose numbers are numerically close to the first. Nothing in either list is readable. What makes the list useful is that the model was trained so that the <i>angle</i> between two vectors tracks whether two humans would call the two texts the same thing.</p>
+      <p>That is the whole trick, and it has three consequences that decide real budgets. First, <b>an embedding model is not a chat model</b>: there is no output text, no prompt, no reasoning, and no per-token output charge — you pay for input tokens only, and the response is a block of numbers. Second, <b>the vector must be stored somewhere that can search it</b>, which is why a vector database appears in every architecture diagram; a million vectors is a data-engineering problem before it is a model problem. Third, and most often missed, <b>the space is specific to the model that built it</b>. Vectors from OpenAI's model and vectors from Google's model are lists of numbers with no shared coordinate system — you cannot mix them in one index, average them, or compare them, which is why swapping embedding models is a migration rather than a configuration change.</p>
+      <p>The mechanics of comparison are worth one paragraph because they explain the storage maths later. OpenAI states that its embeddings are <b>normalised to length 1</b>, so cosine similarity can be computed as a plain dot product and cosine and Euclidean distance produce the same ranking. Cohere accepts cosine, dot-product and Euclidean metrics. In practice all three vendors are selling you a unit-length direction plus a magnitude you can usually ignore, and every vector index you might use — HNSW, IVF, disk-based — is trading recall against the cost of holding those numbers in memory.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why do three vendors disagree about how many dimensions you need?</h2>
+      <p>Because "dimensions" is a storage decision dressed up as a model spec, and each vendor exposes the dial differently. <b>OpenAI</b> ships two sizes — <b>text-embedding-3-small</b> at 1,536 dimensions and <b>text-embedding-3-large</b> at 3,072 — with an 8,192-token input cap on both, and lets you shorten either at request time with a <code>dimensions</code> parameter. Its documentation is unusually direct about why that is safe: the v3 models were trained with a technique that lets developers "shorten embeddings ... without the embedding losing its concept-representing properties," and the worked example is that a 3-large embedding "can be shortened to a size of 256 while still outperforming an unshortened text-embedding-ada-002 embedding with a size of 1536." If you truncate vectors yourself rather than using the parameter, you must L2-normalise the result — OpenAI says so explicitly, and it is the step teams skip.</p>
+      <p><b>Google</b> exposes a range instead of a menu: <b>gemini-embedding-001</b> accepts anything from <b>128 to 3,072</b> dimensions and recommends <b>768, 1,536 or 3,072</b>, over a <b>2,048-token</b> input cap. Its documentation also states that when you use fewer than the full 3,072 dimensions on this model you must normalise the vector yourself. And Google publishes the table that should end the "more is better" argument: on MTEB, 2,048 dimensions score <b>68.16</b>, 1,536 score <b>68.17</b>, 768 score <b>67.99</b>, 512 score <b>67.55</b>, 256 score <b>66.19</b> and 128 score <b>63.31</b>. Read those six numbers as a curve: between 512 and 2,048 the vector shrinks by 75% while the score moves by less than a tenth of a point. The cliff is below 256.</p>
+      <p><b>Cohere</b> takes a third approach: <b>embed-v4.0</b> offers <b>256, 512, 1,024 or 1,536</b> dimensions (1,536 by default) over a <b>128k-token</b> context — the longest of the three by a factor of 16 against Google — and lets you choose the output number format, returning float, int8, uint8, binary or ubinary vectors. That last option matters more than it looks: a binary vector is 1 bit per dimension, which is <b>1/32nd</b> the size of a float32 at the same dimension count.</p>
+      <p>All three are implementing the same idea, <b>Matryoshka Representation Learning (MRL)</b>, published by Aditya Kusupati and colleagues at the University of Washington, Google Research and the Allen Institute for AI as arXiv:2205.13147 (May 2022) and presented at NeurIPS 2022. MRL trains the encoder so that the first <i>m</i> numbers of a vector are themselves a usable representation, which is why a prefix can be sliced off at request time. The paper's own headline result is up to <b>14× smaller</b> embeddings at equivalent accuracy on ImageNet-1K. The property is <b>trained in</b>, not universal: naive truncation of a model that was not trained this way degrades quality. That is the difference between the <code>dimensions</code> parameter and cutting an array in half.</p>
+      <div class="cmp-wrap"><table class="cmp">
+        <thead><tr><th>Model</th><th>Dimensions</th><th>Input cap</th><th>List price / 1M input tokens</th><th>The catch</th></tr></thead>
+        <tbody>
+          <tr><td><b>OpenAI text-embedding-3-small</b></td><td>1,536 default, shrinkable via <code>dimensions</code></td><td>8,192 tokens</td><td><b>$0.02</b></td><td>Cheapest credible English default; half the vector size of 3-large at the same 8,192 cap</td></tr>
+          <tr><td><b>OpenAI text-embedding-3-large</b></td><td>3,072 default, shrinkable</td><td>8,192 tokens</td><td><b>$0.13</b></td><td>6.5× the price of 3-small for a few MTEB points; worth it on hard, cross-lingual retrieval</td></tr>
+          <tr><td><b>Google gemini-embedding-001</b></td><td>128–3,072, recommended 768/1,536/3,072</td><td><b>2,048 tokens</b></td><td><b>$0.15</b></td><td>Shortest input window of the three — long documents must be chunked aggressively; must normalise below 3,072</td></tr>
+          <tr><td><b>Cohere embed-v4.0</b></td><td>256/512/1,024/1,536, default 1,536</td><td><b>128k tokens</b></td><td>$0.12 (marketplace rate — see note)</td><td>Text and image in one space; you must send <code>input_type</code> and get it right; ≤96 inputs per call</td></tr>
+        </tbody>
+      </table></div>
+      <p class="gl-note">Price note: OpenAI's figures are the per-1M-token rates on its own model pages (2026-11-06). Google's $0.15 is the rate stated in its Gemini Embedding general-availability announcement. Cohere no longer publishes an Embed per-token rate on its pricing page, which now routes model access through enterprise and Model Vault plans; the $0.12 figure is the rate listed consistently by the AWS Bedrock, Azure AI Foundry and Oracle OCI marketplaces for <code>cohere.embed-v4.0</code>, and we have labelled it as a marketplace rate rather than a vendor page.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Because the embedding call is the cheapest line item in the stack, and everything downstream of it is not.</b> Take a corpus of one million chunks at 500 tokens each: 500 million input tokens, which costs <b>$10</b> at OpenAI's 3-small rate and <b>$65</b> at 3-large. Now store them. A float32 vector at 1,536 dimensions is 6,144 bytes, so a million vectors is <b>about 5.7 GiB</b> of raw float payload before any index metadata — and an in-memory graph index typically holds more than the vectors themselves. The API call is rounding error; the RAM, the disk and the query latency are the procurement.</p>
+      <p>That arithmetic is also the honest case for shrinking the vector. Going from 1,536 to 768 dimensions halves storage and search work while Google's own numbers move the score from 68.17 to 67.99. Going to binary quantisation at 1,536 bits cuts the payload by 32×, to about <b>192 bytes per vector</b> — 180 MB for the same million chunks — at a recall cost you should measure rather than assume. Cohere returning binary directly, rather than making you post-process, is a quiet signal that the industry expects most large indexes to end up quantised.</p>
+      <p><b>Because document mode and query mode are different calls.</b> This is the bug that produces no error message. Both Cohere (<code>input_type</code>: <code>search_document</code>, <code>search_query</code>, <code>classification</code>, <code>clustering</code>) and Google (<code>task_type</code>: <code>RETRIEVAL_DOCUMENT</code>, <code>RETRIEVAL_QUERY</code>, and so on) require you to declare what kind of text you are embedding, and the model applies a different prompt prefix per type accordingly. Embed your corpus with the query setting, or your queries with the document setting, and retrieval still returns results — just worse ones, with nothing in the logs. If a RAG demo feels disappointing and the plumbing looks correct, check this before you blame the model.</p>
+      <p><b>Because dimension is a schema decision you will live with.</b> Vectors from two different models are not comparable, so changing embedding model means re-embedding every document — one million chunks is another $10 and a few hours, but 100 million chunks is a project with a freeze window. Teams that expect to migrate should store the <b>raw text</b> alongside the vector (you need it anyway for citations), keep chunking deterministic and versioned, and record which model and dimension produced each vector. A vector column with no provenance is a one-way door.</p>
+      <p><b>Because multilingual and multimodal change the choice more than quality does.</b> If your corpus is English support tickets, 3-small at $0.02 is the rational default and the leaderboard gap does not survive contact with your own data. If it is scanned contracts, Cohere's 128k window and image support remove an OCR pipeline; if it is long policy documents, Google's 2,048-token cap forces chunking that will cost you more accuracy than any dimension choice. That is a capability question, and capability questions beat spec-sheet rankings every time.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Embeddings went multimodal, and the input window split the market.</b> Google's <b>gemini-embedding-2</b> embeds images, audio and video into the same space as text — up to 8,192 total input tokens per request, with limits of six images, 180 seconds of audio and 120 seconds of video — so a page can be retrieved by a screenshot of it. Cohere's embed-v4.0 does text, images and interleaved page content over 128k tokens, and publishes its own tokenisation rule for images: roughly <b>(pixels ÷ 784) × 4</b> tokens. Meanwhile the text-only models that win on MTEB remain deliberately narrow: <b>2,048 tokens</b> on gemini-embedding-001 is 2.5 pages. The practical consequence is that "which embedding model" is now two questions — how long is my document, and is any of it a picture.</p>
+      <p><b>The benchmark numbers are not comparable, and the vendors know it.</b> OpenAI reports MTEB (English) figures — 62.3 for 3-small, 64.6 for 3-large — while Google reports MTEB Multilingual v2 at 68.17 and publishes its own dimension-vs-score table. Different task sets, different languages, different normalisation. Quoting "68 beats 64" across those two columns is not an analysis, it is a category error, and it is the single most common mistake in embedding-model comparison articles published in 2026. The only number that decides your deployment is your own labelled retrieval set, run on your own chunks.</p>
+      <p><b>The dimensions arms race quietly reversed.</b> The 2023 story was 1,536 → 3,072. The 2026 story is that three vendors now let you go <i>down</i> — OpenAI via <code>dimensions</code>, Google across a 128–3,072 range, Cohere across four fixed sizes — because retrieval quality turned out to saturate well below the maximum and index cost did not. A team buying a vector database on the assumption that vectors will get bigger is planning for the last generation. Budget for <b>fewer, cheaper dimensions</b> and for the storage savings funding a reranker, which usually buys more accuracy per dollar than the extra 1,536 floats did.</p>
+      <p><b>What has not changed: nothing here makes retrieval correct.</b> An embedding measures similarity of phrasing, not truth or relevance — the same limitation that makes <a href="/glossary/rag">RAG</a> fail on questions whose answer is not in the corpus, and that keeps <a href="/glossary/ai-hallucination">hallucination</a> a separate entry in this glossary. If the top-10 chunks do not contain the answer, no dimension count will invent it.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Start at the default dimension, not the maximum.</b> 1,536 (or 768 on Gemini) is the sane first index. Shrink only after you have a labelled retrieval set that tells you what you lost; Google's own curve says you have room.</li>
+        <li><b>Check the input cap against your real documents.</b> 2,048 tokens (Gemini 001) versus 8,192 (OpenAI) versus 128k (Cohere v4) decides your chunking strategy, and chunking decides retrieval quality more than the model does.</li>
+        <li><b>Use the vendor's truncation parameter, then normalise.</b> OpenAI's <code>dimensions</code> and Cohere's <code>output_dimension</code> exist because MRL was trained in. Hand-slicing an array without L2-normalising it is the classic silent degradation.</li>
+        <li><b>Never mix models in one index.</b> Different models, different vector spaces. Store the model name, dimension and normalisation flag next to every vector, and keep the source text so re-embedding is possible.</li>
+        <li><b>Get document/query mode right on day one.</b> Cohere <code>input_type</code>, Google <code>task_type</code>. A mismatch degrades recall without raising an error — the most expensive bug in this list because it is invisible.</li>
+        <li><b>Price the index, not the API.</b> A million 1,536-dim float32 vectors is ~5.7 GiB before the index; binary quantisation takes that to ~180 MB. Run the storage number before the token number, because the token number will never be the problem.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every retrieval-backed product on this site sits on top of an embedding index, whether or not the landing page says so. It shows up hardest in three places. <b>Support and knowledge tools</b> — a <a href="/best/ai-customer-service-tools">customer service</a> assistant that cites the wrong help article is almost always a chunking or query-mode problem, not a model problem. <b>Code search and repo agents</b>, where the corpus is code and the useful chunk is a function rather than a paragraph — see what that does to <a href="/best/ai-coding-assistants">coding assistants</a> and to <a href="/vs/claude-code-vs-cursor">Claude Code versus Cursor</a>. And <b>local RAG stacks</b>, where the embedding model runs on your own GPU and the dimension you pick is VRAM you cannot get back — the same arithmetic that governs <a href="/glossary/quantization">quantisation</a> and the <a href="/glossary/kv-cache">KV cache</a> in tools compared in <a href="/vs/ollama-vs-lm-studio">Ollama versus LM Studio</a>. Related entries worth reading alongside this one: <a href="/glossary/rag">RAG</a> for what happens after retrieval, <a href="/glossary/context-window">context window</a> for the budget the retrieved chunks compete for, and <a href="/glossary/ai-token">token pricing</a> for the arithmetic that makes the embedding call the cheapest line in the stack. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>An embedding is the cheapest and most consequential decision in an AI product: a few dollars of API calls that determine whether your search works and whether you can ever change your mind. The marketing frame — "more dimensions, better model" — is the wrong axis, and the vendors themselves have stopped pretending otherwise: Google publishes a table where 1,536 dimensions score marginally above 2,048, OpenAI ships a parameter whose documented purpose is to make vectors smaller, and Cohere lets you ask for one bit per dimension. What you are actually choosing is three things: an <b>input window</b> (2,048 tokens or 128k — this decides your chunking), a <b>vector size</b> (which decides your RAM bill and your query latency), and a <b>vector space</b> (which decides whether you can ever migrate without re-embedding everything). Pick the cheapest dimension that passes your own retrieval test, keep the source text and the model name beside every vector, and check your document/query mode before you blame the model. The numbers are cheap; the schema is the commitment.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
