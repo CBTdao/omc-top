@@ -68,3 +68,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/temperature-sampling](https://top.omc.network/glossary/temperature-sampling): What Is LLM Temperature? The Dial Vendors Are Removing (2026) | AITop
 - [https://top.omc.network/glossary/structured-outputs](https://top.omc.network/glossary/structured-outputs): What Are Structured Outputs? The JSON Guarantee That Doesn't Check Facts (2026) | AITop
 - [https://top.omc.network/glossary/embedding](https://top.omc.network/glossary/embedding): What Is an Embedding? Why More Dimensions Don't Buy Better Answers (2026) | AITop
+- [https://top.omc.network/glossary/reranking](https://top.omc.network/glossary/reranking): What Is Reranking? The Meter That Bills by the Pair (2026) | AITop

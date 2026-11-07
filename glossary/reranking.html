@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Reranking? The Meter That Bills by the Pair (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/reranking">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Reranking? The Meter That Bills by the Pair (2026) | AITop">
+  <meta property="og:description" content="A reranker is a cross-encoder that re-scores your top search results by reading the query and each candidate together. Cohere sells it per search unit ($2.00 per 1,000 on Azure, Rerank 4 Fast); Voyage bills per processed token ($0.05 per million on rerank-2.5), and the processed-token formula multiplies your candidates. The embedding bill is one-time; the rerank bill runs on every query forever.">
+  <meta property="og:url" content="https://top.omc.network/glossary/reranking">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Reranking? The Meter That Bills by the Pair (2026) | AITop">
+  <meta name="twitter:description" content="Reranking is the accuracy lever that reads every query-candidate pair — and bills you for it. 100 candidates × 500 tokens ≈ 50,000 processed tokens per query.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Reranking is a second-stage retrieval step in which a cross-encoder model reads the query and each candidate document together and returns a relevance score, re-ordering the candidates the cheap first-stage search produced. It is more accurate than the embedding search it sits on top of because the two texts pass through the model jointly — and that joint pass is why the bill scales with the number of candidates per query, not with the size of your corpus. Cohere sells reranking per search unit: the official Azure AI Foundry price page lists Rerank 4 Fast at $2.00 per 1,000 searches and Rerank 4 Pro at $2.50, with one search unit covering up to 100 document chunks. Voyage AI bills per processed token — (query tokens × number of documents) + all document tokens — at $0.05 per million tokens for rerank-2.5, which works out to roughly $0.0025 per 100-candidate query. At one million queries a month over 100 candidates, both models cost about $2,000–2,500 a month, against a one-time embedding bill of around $10 for the same million-chunk corpus.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Reranking","item":"https://top.omc.network/glossary/reranking"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Reranking (cross-encoder re-scoring)","description":"Reranking is a second-stage retrieval step in which a cross-encoder model reads the query and each candidate document together and returns a relevance score, re-ordering the candidates that a cheaper first-stage search (keyword or embedding) already produced. A cross-encoder passes both texts through the transformer jointly and outputs a single score rather than a vector, which is why it scores relevance more accurately than comparing two independently computed embeddings — and why it cannot be precomputed: the work happens at query time, once per candidate. Cohere's Rerank models are sold per search unit, where one unit covers a query with up to 100 document chunks (the official Azure AI Foundry price page lists Rerank 4 Fast at $2.00 per 1,000 searches; Amazon Bedrock lists Rerank 3.5 at $2.00 per 1,000 queries, counting requests over 100 chunks as multiple queries). Voyage AI bills per processed token, defined as (query tokens × number of documents) + sum of document tokens, at $0.05 per million tokens for rerank-2.5 and $0.02 for rerank-2.5-lite. The practical consequence: the embedding bill is one-time per corpus, the rerank bill recurs on every query and scales with candidates per query.","url":"https://top.omc.network/glossary/reranking","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is reranking (and why does it bill you by the pair)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-07. Model specs come from Cohere's Rerank documentation, the official Azure AI Foundry and Amazon Bedrock price pages, and Voyage AI's pricing documentation. The 65-hours-versus-5-seconds figure comes from the Sentence-BERT paper (arXiv:1908.10084) and the SentenceTransformers documentation. The per-query cost arithmetic is ours, and labelled as such.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Reranking</b> is the second stage of a two-stage search pipeline: a <b>cross-encoder</b> model reads your query and each candidate document <i>together</i> and returns a relevance score, re-sorting the candidates that a cheap first stage (usually an <a href="/glossary/embedding">embedding</a> search) already picked. It is more accurate than the vector search it sits on top of precisely because the two texts go through the model jointly — and that joint pass is why you cannot precompute it, and why the bill scales with <b>candidates × queries</b>, not with corpus size. The published numbers make the trade concrete: the Sentence-BERT paper measured that scoring every pair among 10,000 sentences with a cross-encoder takes <b>about 65 hours</b> on a V100, versus <b>about 5 seconds</b> with precomputed embeddings. As a service, Cohere sells it per search unit — the official Azure price page lists <b>Rerank 4 Fast at $2.00 per 1,000 searches</b> (up to 100 document chunks per unit) — while Voyage bills per processed token (<b>$0.05 per million</b> for rerank-2.5, with "processed" defined so that 100 candidates of 500 tokens each bill ~50,000 tokens per query). Run a million queries a month over 100 candidates and reranking costs <b>$2,000–2,500 a month</b> on either vendor — against a one-time embedding bill of about <b>$10</b> for the same corpus.</p></div>
+
+    <section class="section">
+      <h2>What is reranking, exactly?</h2>
+      <p><b>A reranker is a model that takes one query and a list of candidate documents and returns the same list sorted by relevance, each document carrying a score.</b> It never sees your whole corpus. It sees the 100 (or 1,000) candidates your first-stage search already selected, and its whole job is to fix their order. The input is a query plus a candidate; the output is a number. There is no generated text, no prompt, and no vector coming back.</p>
+      <p>The architecture behind it is the <b>cross-encoder</b>, and the contrast with the <b>bi-encoder</b> (the embedding model) explains everything about cost and quality. A bi-encoder processes your query and each document <i>separately</i>, producing a vector for each, so document vectors can be computed offline once and compared cheaply at query time with a dot product. A cross-encoder processes the query and a document <i>together</i> in a single pass and outputs one relevance score. The SentenceTransformers documentation states it flatly: cross-encoders "achieve better performances than bi-encoders," but "do not produce a sentence embedding" and cannot be indexed — a query against a corpus becomes one full model pass per document.</p>
+      <p>That is why reranking exists as a <i>stage</i> rather than the whole search engine. The standard pipeline the same documentation recommends: retrieve the top 100 with an efficient bi-encoder, then rerank those 100 by scoring every (query, hit) combination. You pay the expensive joint read only on a shortlist. Every serious retrieval stack works this way, whether or not the product page names the reranker — see <a href="/glossary/rag">RAG</a> for what happens with the reranked shortlist afterwards.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why can't you just use the accurate model for everything?</h2>
+      <p>Because the accurate model is O(candidates) full model passes per query, and that arithmetic does not negotiate. The Sentence-BERT paper by Nils Reimers and Iryna Gurevych (Technische Universität Darmstadt, EMNLP 2019, arXiv:1908.10084) put a number on it that has aged well: finding the most similar pair in a collection of 10,000 sentences requires about <b>50 million inference computations — roughly 65 hours on a V100 GPU</b> — with the cross-encoder approach. Precomputing 10,000 sentence embeddings with SBERT and comparing them takes <b>about 5 seconds</b>, plus roughly 0.01 seconds of cosine similarity. That four-orders-of-magnitude gap is the entire business case for embeddings, and the reason the cross-encoder gets relegated to a shortlist.</p>
+      <p>The corollary matters for your bill: <b>the reranker's cost is the compute you would have needed to search the whole corpus without one.</b> When you buy a hosted rerank API, you are buying back a slice of those 65 hours at metered rates — per pair. Which is exactly how the two main vendors bill it.</p>
+    </section>
+
+    <section class="section">
+      <h2>What do the two main vendors actually sell?</h2>
+      <p><b>Cohere</b> is the incumbent and sells reranking per <b>search unit</b>: one unit is a query with up to <b>100 document chunks</b>; a request with 350 documents is billed as 4 queries, and any document longer than 512 tokens gets split into chunks that each count as documents. The official Azure AI Foundry price page lists <b>Cohere Rerank v4 Fast at $2.00 per 1K searches</b> and <b>Rerank v4 Pro at $2.50 per 1K searches</b>; Amazon Bedrock lists the older <b>Rerank 3.5 at $2.00 per 1,000 queries</b> under the same 100-chunk rule. Cohere's own documentation shows the model line has since moved to Rerank 5 — <code>rerank-v5.0-pro</code> (about 2B parameters) and <code>rerank-v5.0-fast</code> (about 500M) over a <b>32,768-token</b> combined query+document context, 100+ languages, and calibrated 0–1 relevance scores — with Rerank 3.5 remaining at a 4k context. Cohere's own pricing page no longer lists per-unit API rates (access routes through enterprise and Model Vault plans), so the durable public prices are the cloud-marketplace ones.</p>
+      <p><b>Voyage AI</b> sells reranking per <b>processed token</b>, and its definition of "processed" is the load-bearing detail: <i>(number of query tokens × number of documents) + sum of the tokens in all documents</i>. <b>rerank-2.5</b> costs <b>$0.05 per million tokens</b> and <b>rerank-2.5-lite</b> $0.02, with the first 200 million tokens free per account. Voyage's own worked estimate: a request with 100 documents where query plus each document totals 500 tokens bills about <b>$0.0025 per request</b>. A Batch API exists (12-hour window, 33% discount, free credits not applicable).</p>
+      <div class="cmp-wrap"><table class="cmp">
+        <thead><tr><th>Vendor / model</th><th>Billing model</th><th>Published price</th><th>Context</th><th>The catch</th></tr></thead>
+        <tbody>
+          <tr><td><b>Cohere Rerank v4 Fast</b></td><td>Per search unit — 1 query ≤ 100 doc chunks</td><td><b>$2.00 / 1K searches</b> (Azure price page)</td><td>—</td><td>Docs over ~512 tokens split into chunks, each counting toward the 100 — your chunk count is your bill</td></tr>
+          <tr><td><b>Cohere Rerank v4 Pro</b></td><td>Per search unit</td><td><b>$2.50 / 1K searches</b> (Azure price page)</td><td>—</td><td>+25% over Fast for the quality tier</td></tr>
+          <tr><td><b>Cohere Rerank 3.5</b></td><td>Per query, ≤ 100 chunks</td><td>$2.00 / 1K queries (Amazon Bedrock)</td><td><b>4k</b> combined</td><td>Older generation; still the Bedrock list price</td></tr>
+          <tr><td><b>Cohere Rerank 5 (pro / fast)</b></td><td>See current marketplace listings</td><td>Not publicly listed on cohere.com</td><td><b>32,768</b> combined</td><td>~2B / ~500M params; adds Context Focus (returns relevant passages, not just order)</td></tr>
+          <tr><td><b>Voyage rerank-2.5</b></td><td>Per processed token: (query × docs) + all doc tokens</td><td><b>$0.05 / 1M tokens</b> (≈$0.0025 per 100-doc request)</td><td>—</td><td>The formula multiplies candidates by query length — a 2× candidate budget is a 2× bill</td></tr>
+          <tr><td><b>Voyage rerank-2.5-lite</b></td><td>Per processed token</td><td><b>$0.02 / 1M tokens</b></td><td>—</td><td>Lighter model, same meter; the obvious A/B default</td></tr>
+        </tbody>
+      </table></div>
+      <p class="gl-note">Price note (2026-11-07): the Cohere v4 figures are from Microsoft's official Azure AI Foundry price page (azure.microsoft.com, "Cohere Rerank v4 Fast Global $2 / 1K searches, Rerank v4 Pro Global $2.50 / 1K searches"); the Rerank 3.5 figure is from Amazon's official Bedrock pricing page, which also documents the 100-chunk rule. Cohere's own pricing page routes model access through enterprise and Model Vault plans and does not publish per-unit API rates, so we cite the marketplace pages rather than inferring. Voyage figures are from Voyage's own pricing documentation; third-party trackers (LiteLLM, UsagePricing) match both vendors' numbers. Two vendors, two billing models, one sanity check: at 100 candidates of ~500 tokens, Voyage's token meter works out to ~$0.0025 per query — within 25% of Cohere's $0.002. The two meters agree, which is the best evidence either is honestly priced.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>Because the embedding bill is one-time and the rerank bill is forever.</b> Take a corpus of one million chunks at 500 tokens each. Embedding it once costs about <b>$10</b> at OpenAI's text-embedding-3-small rate (see our <a href="/glossary/embedding">embedding</a> entry). Now rerank it: one million queries a month over 100 candidates is 1,000 search units × 1,000 = one million units at Cohere's rate — <b>$2,000 a month</b> — or roughly 50 billion processed tokens at Voyage's — <b>$2,500 a month</b>. Two independent billing models land within 25% of each other, so treat ~$2–2.5 per thousand queries (at 100 candidates) as the market price of accuracy, not a vendor quirk. The reranker is not a rounding error on the embedding bill; it is 200× the embedding bill.</p>
+      <p><b>Because "2¢ per query" is a human-scale number wearing an agent-scale problem.</b> Ten queries a day is under a dollar a month — free, effectively. Ten thousand queries a day (300,000 a month — a busy support bot, an agent loop that searches while it works) is <b>$600–750 a month per application</b>, at 100 candidates, before you add a second rerank pass for a second data source. The 2026 pattern that breaks budgets is agentic retrieval: an agent that issues dozens of searches per task multiplies your per-query line by its iteration count, and the rerank meter multiplies with it.</p>
+      <p><b>Because your chunking strategy is a billing decision.</b> Cohere counts chunks: over 100 chunks per request means multiple queries, and documents over 512 tokens get split into chunks that each count. The same corpus chunked twice as fine is roughly twice the rerank bill for the same retrieval job. Voyage's formula has the same shape — processed tokens scale with the number of documents — so doubling your candidate depth (reranking top-200 instead of top-100) doubles the bill while adding diminishing accuracy. Budget reranking as <i>queries × candidates</i>, and you will never be surprised by an invoice.</p>
+      <p><b>Because the accuracy is real and worth paying for — on the shortlist only.</b> The research consensus (and the Sentence-BERT paper's own framing) is that cross-encoders outperform bi-encoders on relevance scoring; that is why the retrieve-then-rerank pattern exists. The rational deployment is a cheap, slightly oversized first stage (retrieve 100 with a small <a href="/glossary/embedding">embedding model</a>) and the best reranker you can afford on the top of the stack, with <code>top_n</code> set to the handful of chunks your <a href="/glossary/context-window">context window</a> can actually hold. Paying cross-encoder prices to score the whole corpus is the arithmetic error the SBERT paper was written to prevent.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Rerankers are moving up the stack.</b> Cohere's Rerank 5 adds <b>Context Focus</b>: the same rerank call can return the most relevant <i>passages inside</i> each document (character offsets with scores, off by default, enabled via a <code>relevant_spans</code> parameter), so the reranker stops being just an orderer and starts deciding what text reaches the LLM. Voyage's rerank-2.5 is instruction-following — a query can carry a prefix stating what "relevant" means for this search. The direction is consistent across vendors: the reranker is becoming the relevance policy layer of retrieval, not the last formatting step.</p>
+      <p><b>The pricing pages have gone dark in a specific way.</b> Cohere's own site now routes model access to enterprise and Model Vault plans, leaving the cloud marketplaces (Azure, AWS Bedrock, SageMaker, OpenRouter) as the only public per-unit rates — and the marketplace generations lag the docs (Azure lists v4 while the docs headline v5). Practical rule: treat marketplace prices as a ceiling for list-price planning and expect enterprise discounts under them; and re-check the generation alignment before comparing "Cohere" as if it were one price.</p>
+      <p><b>What a reranker cannot fix has not changed.</b> It reorders the candidates it is given. If the first-stage retrieval missed the right document entirely, the reranker scores garbage against garbage and returns it confidently — the same failure mode that makes <a href="/glossary/rag">RAG</a> fail when the answer is not in the corpus. Relevance scores are not truth scores; a well-scored wrong document is still wrong, which is why <a href="/glossary/ai-hallucination">hallucination</a> needs its own defences regardless of how good your reranker is.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Compute queries × candidates before anything else.</b> That product is your rerank bill on every vendor. 10 queries/day is a rounding error; 10k/day with 100 candidates is $600–750/month. No pilot is complete without this number.</li>
+        <li><b>Keep candidates at 100, not 1,000.</b> Accuracy gains above 100 candidates are small and the bill is linear in candidates. Grow the first stage, not the rerank stage.</li>
+        <li><b>Count your chunks.</b> Cohere bills per 100-chunk unit and splits long documents into counted chunks; Voyage's meter multiplies document count. Finer chunking = higher bill for the same corpus.</li>
+        <li><b>A/B the lite model first.</b> rerank-2.5-lite is 2.5× cheaper than rerank-2.5; Cohere's Fast is 20% cheaper than Pro. On shortlists of 100, the lite tier is often indistinguishable on your own labelled set.</li>
+        <li><b>Set top_n to what your context window can hold.</b> Reranking 100 candidates and passing 50 to the LLM wastes both context and money — the point of the reranker is to shrink the shortlist, see <a href="/glossary/kv-cache">KV cache</a> for what every extra chunk costs at generation time.</li>
+        <li><b>Price the reranker against the LLM tokens it saves.</b> A reranker that lets you send 5 chunks instead of 20 to a model at $3/M input tokens can pay for itself — run that subtraction per query before deciding it is a luxury.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Every retrieval-backed product on this site either uses a reranker or is leaving accuracy on the table; you will meet it in three places. <b>Support and knowledge tools</b> — a <a href="/best/ai-customer-service-tools">customer service</a> assistant that cites the right article in the top three but the wrong one first is the classic reranker-shaped failure, and the reason enterprise search vendors bundle one invisibly. <b>Code search and repo agents</b> — <a href="/best/ai-coding-assistants">coding assistants</a> and tools like those compared in <a href="/vs/claude-code-vs-cursor">Claude Code versus Cursor</a> rerank retrieved functions against your task, and a repo-sized corpus makes the first-stage/reranker split mandatory rather than optional. And <b>local stacks</b> — if you run retrieval on your own hardware, a cross-encoder model competes with your LLM for the same VRAM budget that <a href="/glossary/quantization">quantisation</a> arithmetic governs, which is the hidden cost in setups compared in <a href="/vs/ollama-vs-lm-studio">Ollama versus LM Studio</a>. Related entries: <a href="/glossary/embedding">embedding</a> for the first stage this sits on top of, <a href="/glossary/rag">RAG</a> for the pipeline around it, and <a href="/glossary/ai-token">token pricing</a> for the LLM-side tokens a good reranker saves. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Reranking is the rare AI line item where the physics, the architecture and the invoice all say the same thing: accuracy costs compute per pair. A cross-encoder reads your query and each candidate together, which is why it beats the embedding search underneath it and why it can never be free — Sentence-BERT's 65 hours versus 5 seconds is the whole story in two numbers. Buy it anyway, on three conditions. Keep the candidate count at 100; keep your chunk count honest (it is a billing unit, not just a retrieval choice); and meter queries × candidates before you ship, because agent-driven retrieval is quietly turning the cheapest accuracy upgrade in the stack into the line item that grows fastest. Two vendors, two meters, one price band — about $2–2.5 per thousand 100-candidate queries — is as close to a market consensus as AI pricing gets. The corpus is a one-time cost; relevance is a subscription.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
