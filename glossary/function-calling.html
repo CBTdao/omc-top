@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Function Calling? The Per-Request Tax on Every Tool (2026) | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/function-calling">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Function Calling? The Per-Request Tax on Every Tool (2026) | AITop">
+  <meta property="og:description" content="Function calling (tool use) is the mechanism that lets an LLM emit structured requests to run your code instead of only writing text. OpenAI's docs state that tool definitions are injected into the system message and billed as input tokens on every request; Anthropic's docs quantify the floor at 286–675 tokens of system prompt just for enabling tools. Twenty tools with detailed descriptions cost roughly 3,000–8,000 input tokens per request — a per-request tax that agent loops multiply.">
+  <meta property="og:url" content="https://top.omc.network/glossary/function-calling">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Function Calling? The Per-Request Tax on Every Tool (2026) | AITop">
+  <meta name="twitter:description" content="Function calling lets an LLM call your code — and bills the definitions as input tokens on every single request. All three major vendors now guarantee schema adherence, guarantee nothing about the values, and are retiring forced tool calls.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Function calling, also known as tool use, is the mechanism by which a large language model emits a structured request to run an external function — a name plus JSON arguments — instead of answering in prose, then waits for your application to execute it and return the result. OpenAI's documentation states that functions are injected into the system message and billed as input tokens on every request; Anthropic's documentation quantifies a floor of 286–675 tokens of system prompt just for enabling tools, before your own tool definitions; Google's Vertex AI documentation restricts schemas to eleven supported OpenAPI attributes and 'remaining attributes are not supported.' All three vendors now advertise schema adherence guarantees (strict mode on OpenAI and Anthropic, VALIDATED/ANY modes on Google), none guarantee the values are correct — Anthropic's own docs note the model 'might also infer a reasonable value' for a missing parameter — and the newest Anthropic models reject forced tool calls with a 400 error, pushing the design pattern toward auto mode plus strict schemas.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Function calling","item":"https://top.omc.network/glossary/function-calling"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Function calling (tool use)","description":"Function calling, also known as tool use, is the mechanism by which a large language model emits a structured request to run an external function — a tool name plus JSON arguments matching a declared schema — instead of answering in prose, then waits for the application to execute the function and return the result. The model never runs anything itself: it only nominates the call. Vendors define tools with a name, a natural-language description and a JSON Schema of parameters (OpenAI uses a strict-mode flag, Anthropic restricts names to a 1–128 character regex, Google's Vertex AI accepts only eleven OpenAPI schema attributes). Tool definitions are billed: OpenAI's documentation states that functions are injected into the system message and count against the context limit as input tokens on every request, and Anthropic's documentation lists 286–675 tokens of system-prompt overhead for enabling tools before the definitions themselves are counted. Schema adherence is now guaranteed by all three vendors (strict mode on OpenAI and Anthropic; ANY or VALIDATED modes on Google), but the values inside the schema are not guaranteed — Anthropic's docs state the model 'might also infer a reasonable value' for a missing parameter.","url":"https://top.omc.network/glossary/function-calling","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is function calling (and why does every request pay for it)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-08. The mechanics, billing rules, schema limits and mode tables come from OpenAI's function calling guide (developers.openai.com), Anthropic's tool use documentation (platform.claude.com), and Google Cloud's Vertex AI function calling documentation (docs.cloud.google.com) — three first-party sources, each cited for its own vendor. The per-request token arithmetic is ours, and labelled as such.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Function calling</b> (the same feature Google's docs call <b>tool use</b>) is the mechanism that lets a model <i>nominate</i> an action instead of writing prose: it returns a tool name plus JSON arguments that match a schema you declared, and your application runs the actual function and feeds the result back. The model never executes anything — it issues structured requests, and the five-step loop is request → tool call → your code runs → tool output → final answer. Three facts from the vendors' own documentation matter when you buy: ① <b>definitions are billed as input tokens on every request</b> — OpenAI's docs state that "functions are injected into the system message … and are billed as input tokens," and Anthropic's docs put the floor for merely enabling tools at <b>286–675 tokens</b> of system prompt before your definitions count; ② <b>schema adherence is now guaranteed by all three majors</b> (strict mode on OpenAI and Anthropic, ANY/VALIDATED modes on Google) but only for the <i>shape</i> of the arguments — Anthropic's own docs concede the model "might also infer a reasonable value" for a missing parameter; ③ <b>forced tool calls are being retired</b> — Anthropic's newest models return a 400 error for forced-call modes, and forcing a call skips the model's thinking entirely.</p></div>
+
+    <section class="section">
+      <h2>What is function calling, exactly?</h2>
+      <p><b>Function calling is a structured handshake between a model and your code.</b> Google's Vertex AI documentation defines the term directly: "Function calling, also known as tool use, provides the LLM with definitions of external tools … the model intelligently determines if a tool is needed and, if so, outputs structured data specifying the tool to call and its parameters." You declare tools up front — a name, a human-language description of when to use it, and a JSON Schema of the arguments — and the model responds with the name plus arguments instead of (or alongside) prose. Your application executes the real function, returns the output, and the model writes the final answer. OpenAI's guide spells out the five steps: make a request with tools, receive a tool call, execute code on your side, send the tool output back, and receive the final response (or more tool calls).</p>
+      <p>The definition is where vendors diverge in the small print, and the small print is the product. Anthropic restricts tool names to the regex <code>^[a-zA-Z0-9_-]{1,128}$</code> and its docs insist on descriptions of "at least 3–4 sentences," calling detailed descriptions "by far the most important factor in tool performance." Google's schema support covers exactly eleven OpenAPI attributes — <code>type, nullable, required, format, description, properties, items, enum, anyOf, $ref, $defs</code> — with everything else rejected: "Remaining attributes are not supported." OpenAI's <code>strict</code> flag trades flexibility for guarantees: it requires <code>additionalProperties: false</code> on every object and every field marked required, with optionality simulated by allowing <code>null</code> as a type.</p>
+      <p>Function calling is the engine under everything called an <a href="/glossary/ai-agent">AI agent</a>: the loop that lets a chatbot check the weather, a coding assistant edit a file, or a support bot read your order history. The intelligence is the model's; the <i>capability</i> is entirely the tool surface you expose — which is why the number of tools, and the tokens they cost, are billing decisions.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why do tool definitions show up on your bill?</h2>
+      <p><b>Because the definitions travel inside every request, and the vendors say so in writing.</b> OpenAI's documentation is explicit about the mechanism: "Under the hood, functions are injected into the system message in a syntax the model has been trained on. This means callable function definitions count against the model's context limit and are billed as input tokens." Anthropic's documentation quantifies the floor: with tools present, the API appends a system-prompt block of <b>286–675 tokens depending on the model</b> (496 tokens for Claude Sonnet 4.5 in auto mode, 588 in forced mode, for example) — before a single one of your own tool definitions is counted. Google bills the declarations the same way, as part of the input.</p>
+      <p><b>The arithmetic (ours, not the vendors'): a twenty-tool agent pays thousands of input tokens per request for the privilege of having tools.</b> Take OpenAI's own soft suggestion — "aim for fewer than 20 functions available at the start of a turn" — with Anthropic's description guidance of 3–4 sentences plus a modest parameter schema: about 150–400 tokens per tool definition. Twenty tools therefore ship roughly <b>3,000–8,000 input tokens per request</b>, plus Anthropic's 286–675-token floor. Now multiply by the request count: an <a href="/glossary/ai-agent">agent</a> that runs ten internal turns per task turns that into ten payments per task, and tool-heavy MCP setups with dozens of servers multiply it further. This is the mechanical reason OpenAI added <b>tool search</b> (deferred tools loaded only when needed, on gpt-5.4 and later) and recommends "limiting the number of functions loaded up front" — the definitions are a meter, not a configuration file.</p>
+      <p>The mitigation everyone runs is <a href="/glossary/prompt-caching">prompt caching</a>: definitions sit at the front of the prompt as a stable prefix, so the cached-read discount applies on subsequent requests — OpenAI's allowed-tools mode is explicitly paired with prompt-caching optimisation in its docs. The un-mitigated case is the one to budget for: a new conversation, an evicted cache, or a schema you edit daily (cached prefixes break when the prefix changes) all reset the tax to full price.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>Schema adherence has converged in vocabulary and diverged in mechanics.</b> All three majors now promise the arguments will match your schema — OpenAI's docs say <code>strict: true</code> "will ensure function calls reliably adhere to the function schema, instead of being best effort. We recommend always enabling strict mode"; Anthropic's docs say strict tool use ensures "Claude's tool calls always match your schema exactly"; Google's docs say the ANY and VALIDATED modes "ensure function schema adherence." But the guarantees are engineered differently: OpenAI demands all-required fields and forbids <code>additionalProperties</code>; Google accepts only eleven schema attributes and notes that "Starting with Gemini 3, this mode also enforces the presence of required parameters"; Anthropic applies strictness to custom tools with its own complexity quotas (the ones we tabulated in the <a href="/glossary/structured-outputs">structured outputs</a> entry). Same sentence, three different engines — porting an agent between providers is a translation job, not a flag swap.</p>
+      <p><b>Guaranteed shape is not guaranteed truth.</b> Anthropic's own documentation demonstrates the limit: for a required <code>location</code> parameter when the user says only "What's the weather?", Claude "might also infer a reasonable value" — inventing "New York, NY" — and the docs add: "This behavior is not guaranteed, especially for more ambiguous prompts and for less capable models." Strict mode validates the arguments against the schema; it cannot know the city is wrong. This is the same conclusion the <a href="/glossary/structured-outputs">structured outputs</a> entry reached for JSON responses, now proven for tool arguments: the schema constrains form, and <a href="/glossary/ai-hallucination">hallucination</a> walks straight through it wearing valid JSON.</p>
+      <p><b>Forced tool calls are being retired by the vendors themselves.</b> Anthropic's docs state that on Claude Opus 5.5, Sonnet 5.5, Fable 5.1 and Mythos 5.1, the forced-call modes <code>any</code> and <code>tool</code> "return 400 error," with the recommended alternatives being auto mode plus strict tool use, or structured outputs. The same docs note that "forcing a tool also skips thinking on every model that accepts forced tool use: the response starts with the <code>tool_use</code> block and has no <code>thinking</code> block." The design pattern the vendors are pushing is: let the model decide (<code>auto</code>/<code>AUTO</code> is the default everywhere), make the schemas strict, and validate outputs yourself. If your integration still hard-requires a call, plan for it to be a legacy behaviour.</p>
+      <p><b>Parallel calls are default-on everywhere, and each vendor has a different off-switch.</b> OpenAI: "The model may choose to call multiple functions in a single turn. You can prevent this by setting <code>parallel_tool_calls</code> to <code>false</code>." Anthropic: a <code>disable_parallel_tool_use</code> flag nested <i>inside</i> <code>tool_choice</code>. Google: no opt-out flag at all — instead a return contract, "return all corresponding <code>functionResponse</code> parts together in a single <code>Content</code> object," matched by id (Gemini 3 and later) or by name and order, with a name mismatch failing as a 400 error. One more footgun from OpenAI's docs: for fine-tuned models, "if the model calls multiple functions in one turn then strict mode will be disabled for those calls."</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Count your tool tokens before you count your users.</b> Definitions × requests is a real bill line: ~20 tools with detailed descriptions ≈ 3,000–8,000 input tokens per request, paid on every turn. If that number embarrasses you, use deferred tools / tool search (OpenAI, gpt-5.4+) or trim descriptions.</li>
+        <li><b>Put caching behind your definitions — and stop editing them.</b> A stable tool prefix is <a href="/glossary/prompt-caching">prompt-caching</a> gold; a schema you tweak daily resets the discount. Ship tool versions like code, not like notes.</li>
+        <li><b>Design for auto, not forced.</b> Anthropic's newest models reject <code>any</code>/<code>tool</code> with a 400, and forced calls skip thinking. If a workflow genuinely requires a call, enforce it in your application logic after an auto-mode response, not with a deprecated flag.</li>
+        <li><b>Validate values, not just schemas.</b> Strict mode guarantees the JSON shape; Anthropic's docs show the model inventing plausible parameter values. Range-check arguments before executing — a valid-schema wrong-city lookup is a real support ticket.</li>
+        <li><b>Assume parallel calls in your response parser.</b> All three vendors return zero, one or several calls per turn; OpenAI's docs say "it is best practice to assume there are several." A parser that handles one call breaks silently the day the model batches two.</li>
+        <li><b>Port between providers with a mapping table.</b> <code>required</code>/<code>any</code>/<code>ANY</code> are three dialects of "force a call"; the off-switches live in three different places. Budget the translation as engineering work, not a find-and-replace.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Function calling is the plumbing of every product on this site that does something rather than just says something. <b>Coding assistants</b> are function calling with a file system attached — <a href="/best/ai-coding-assistants">AI coding assistants</a> and the tools compared in <a href="/vs/claude-code-vs-cursor">Claude Code versus Cursor</a> live or die on how their tools are described and batched, because a mis-described tool is an edit to the wrong file. <b>Chatbots with search</b> — the assistants ranked in <a href="/best/ai-chatbots">best AI chatbots</a> and compared in <a href="/vs/chatgpt-vs-claude">ChatGPT versus Claude</a> all decide per turn whether to call a web-search tool, which is why the same question sometimes gets a cited answer and sometimes a memorised one. <b>Support and automation tools</b> — the platforms in <a href="/best/ai-customer-service-tools">AI customer service tools</a> expose order lookups and refunds as tools, which makes tool-surface cost (and the per-request token tax) a pricing input for their per-resolution invoices. Related entries: <a href="/glossary/ai-agent">AI agent</a> for the loop this enables, <a href="/glossary/structured-outputs">structured outputs</a> for the sibling guarantee on JSON responses, <a href="/glossary/prompt-caching">prompt caching</a> for the discount that softens the definition tax, and <a href="/glossary/ai-token">token pricing</a> for what an input token costs. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Function calling is how a model asks your code to do something — and 2026's documentation, read closely, teaches one economic lesson and one design lesson. The economic one: tool definitions are billed as input tokens on every request (OpenAI states it; Anthropic quantifies the floor at 286–675 tokens), so a wide tool surface is a per-request tax that only <a href="/glossary/prompt-caching">caching</a> and deferred tool loading soften — size your tool surface like a subscription, not a setting. The design one: schema adherence is now guaranteed by all three majors, forced calls are being deprecated out (Anthropic's newest models 400 on them, and they skip thinking anyway), and parallel calls are default-on with three different off-switches — so build agents that run in auto mode with strict schemas, parse for multiple calls, and validate the <i>values</i> yourself, because the vendors guarantee the shape of the arguments and openly document the model inventing them. The tools are the capability; the definitions are the bill; the schema is a form, not a truth guarantee.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
