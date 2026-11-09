@@ -70,3 +70,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/embedding](https://top.omc.network/glossary/embedding): What Is an Embedding? Why More Dimensions Don't Buy Better Answers (2026) | AITop
 - [https://top.omc.network/glossary/reranking](https://top.omc.network/glossary/reranking): What Is Reranking? The Meter That Bills by the Pair (2026) | AITop
 - [https://top.omc.network/glossary/function-calling](https://top.omc.network/glossary/function-calling): What Is Function Calling? The Per-Request Tax on Every Tool (2026) | AITop
+- [https://top.omc.network/glossary/reasoning-effort](https://top.omc.network/glossary/reasoning-effort): What Is Reasoning Effort? The Dial That Bills You in Hidden Thinking Tokens (2026) | AITop

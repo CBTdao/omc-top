@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Reasoning Effort? The Dial That Bills You in Hidden Thinking Tokens | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/reasoning-effort">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Reasoning Effort? The Dial That Bills You in Hidden Thinking Tokens | AITop">
+  <meta property="og:description" content="Reasoning effort decides how many thinking tokens a model writes before it answers — so it moves the bill, not the unit price. Three vendors, three incompatible enums (OpenAI none–xhigh, Anthropic low–max, Gemini MINIMAL–HIGH), one shared default: medium.">
+  <meta property="og:url" content="https://top.omc.network/glossary/reasoning-effort">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Reasoning Effort? The Dial That Bills You in Hidden Thinking Tokens | AITop">
+  <meta name="twitter:description" content="Three vendors, three incompatible enums, one shared default (medium). OpenAI GPT-5.2 has a true off switch; Gemini's minimal 'does not guarantee thinking is off'; and Anthropic warns that changing effort mid-conversation invalidates your prompt cache.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Reasoning effort decides how many thinking tokens a model writes before it answers — so it moves the bill, not the unit price. Three vendors, three incompatible enums (OpenAI none–xhigh, Anthropic low–max, Gemini MINIMAL–HIGH), one shared default: medium.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Reasoning effort","item":"https://top.omc.network/glossary/reasoning-effort"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Reasoning effort","description":"Reasoning effort is a discrete setting on AI models and APIs that controls how many internal thinking (reasoning) tokens the model generates before answering. Because thinking tokens are billed at the output rate, the dial moves your bill and your latency without changing the per-token price. In 2026 the three major vendors use three incompatible enums: OpenAI's GPT-5.2 accepts none, low, medium, high and xhigh (the pro tier drops none and low), Anthropic's output_config.effort takes low, medium, high, xhigh and max, and Google's Gemini 3+ replaced the numeric thinking_budget with MINIMAL, LOW, MEDIUM and HIGH string tiers. All three default to medium.","url":"https://top.omc.network/glossary/reasoning-effort","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is reasoning effort (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-09. Every vendor claim below comes from that vendor's own documentation or launch page — OpenAI's GPT-5 developer guide and Help Center, Anthropic's Haiku 5.5 announcement and prompting docs, and Google's Gemini thinking documentation. Level menus change model by model; check the docs for the model you actually run.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Reasoning effort</b> is the setting that decides how many <b>thinking tokens</b> a model writes before it answers — which means it moves <b>the bill and the wait</b>, never the per-token price. In 2026 the three majors run <b>three incompatible enums</b>: OpenAI's GPT-5.2 accepts <b>none / low / medium / high / xhigh</b> (the pro tier drops none and low), Anthropic's <code>output_config.effort</code> takes <b>low / medium / high / xhigh / max</b>, and Google's Gemini 3+ retired the numeric <code>thinking_budget</code> in favor of <b>MINIMAL / LOW / MEDIUM / HIGH</b> string tiers. All three converged on the same default — <b>medium</b>. One trap is common to all of them: Anthropic's docs state that changing effort between requests <b>invalidates your prompt cache</b>.</p></div>
+
+    <section class="section">
+      <h2>What it actually means</h2>
+      <p>Reasoning effort is a <b>discrete tier</b> that controls how much internal reasoning a model does before producing its visible answer. OpenAI's Help Center is explicit about the mechanism: "reasoning.effort controls how many reasoning tokens are generated before producing an answer" — and for GPT-5.2 the menu is none, low, medium, high, and xhigh, while <b>gpt-5.2-pro only supports medium, high, and xhigh</b>. Setting effort to none, OpenAI says, makes the model "behave like a non-reasoning model for latency-sensitive use cases." The original GPT-5 (August 2025) launched with a fourth value, minimal, added "to return an answer quickly"; the current 5.2 menu replaces it with none.</p>
+      <p>Anthropic's dial lives at <code>output_config.effort</code> and has five levels: low, medium, high, xhigh, max. Per Anthropic's own prompting guide, effort <b>replaced the numeric thinking budget</b> (<code>budget_tokens</code>) that older Claude models used — "there's no old setting to carry over" — and it covers <b>every</b> output token: text, tool calls, and thinking. Anthropic's Claude Code engineering guide puts it bluntly: "Effort is the main control for how long Claude thinks, and it replaces most of what people used to do with prompt wording." Claude Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to medium; Claude Haiku 5.5 is the first Haiku-class model with an adjustable effort setting at all.</p>
+      <p>Google's Gemini 3 and later models use <code>thinking_level</code> with four values — MINIMAL, LOW, MEDIUM, HIGH — and Google's docs warn that the older numeric <code>thinking_budget</code> is deprecated: on Gemini 4 models it always returns a 400 error, on Gemini 3 it can fail intermittently, and sending both parameters in one request is an outright error. On Gemini 2.5 and earlier, the opposite holds: thinking_level isn't supported at all. The parallel with <a href="/glossary/temperature-sampling">temperature's 2026 deprecation wave</a> is not a coincidence — vendors are replacing continuous knobs with coarse, predictable tiers.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why it matters when you're picking a tool</h2>
+      <p><b>The dial is denominated in hidden tokens, so it is a bill dial, not a price dial.</b> Effort levels do not change the per-token rate — they change how many <a href="/glossary/reasoning-tokens">reasoning tokens</a> get written before the first visible word, all billed at the output rate. That makes effort one of the few settings that can swing an invoice by multiples without any line item looking different. Anthropic's own Haiku 5.5 launch page publishes accuracy-vs-cost charts per effort level with the cost axis on a log scale spanning $0.05 to $5 per attempt — more than two orders of magnitude on the same model. On the vendor's own evidence, the cheapest and most expensive effort level on one model differ by more than most models differ from each other.</p>
+      <p><b>Effort also changes behavior, not just length.</b> OpenAI's developer guide notes that reasoning_effort controls "how readily it calls tools" — low-effort models reach for tools less. Anthropic's Haiku 5.5 guide warns the other direction: at low effort "the model is more likely to skip a search, stop early, or skip a check," which surfaces in agents as premature task hand-backs. If your agent feels lazy or chatty after a model update, effort is the first suspect — not the prompt.</p>
+      <p><b>Latency tracks effort almost linearly.</b> Thinking tokens are output tokens: each one is generated by the same memory-bound decode step described in <a href="/glossary/tokens-per-second">tokens per second</a>. Low effort means fewer tokens to write before and after the first visible one, which is exactly why OpenAI offers none "for latency-sensitive use cases" and why Anthropic's docs report that thinking and replies "get much longer" at xhigh and max.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>"Medium" is the industry default — and that is worth noticing.</b> OpenAI's reasoning_effort defaults to medium. Anthropic's Opus 5.5, Sonnet 5.5, and Haiku 5.5 default to medium. Google's thinking_level table lists MEDIUM as the default for most Flash models (with Pro-tier models defaulting HIGH and some Flash-Lite/image models defaulting MINIMAL). Three independent vendors converged on the same answer, which tells you where the cost-quality knee sits on current models. Treat medium as your eval baseline and only pay for deviations it earns.</p>
+      <p><b>"No thinking" means three different things.</b> OpenAI has a true off switch: none on GPT-5.2. Anthropic's effort dial cannot turn thinking off at all — the separate <code>thinking: disabled</code> setting works at low, medium, and high, but Anthropic's docs state that requests with it at xhigh or max effort <b>return a 400 error</b>. Google's MINIMAL comes with a disclaimer in the official docs: it "does not guarantee that thinking is off" — the model may still reason minimally on complex tasks, and in multi-turn conversations MINIMAL requires thought signatures or the request fails with a 400. If your SLA depends on zero reasoning overhead, only one of the three vendors gives you a contract for it.</p>
+      <p><b>Switching effort has a hidden cache cost.</b> Anthropic's docs: "Changing the top-level effort value between requests invalidates the prompt cache for the conversation's messages" — the effort value is part of the rendered prompt, so a medium-to-low flip mid-conversation re-bills the whole cache write (see <a href="/glossary/prompt-caching">prompt caching</a> for the 1.25× write / 0.1× read arithmetic). Anthropic ships a per-message effort change as a beta (the <code>mid-conversation-output-config-2026-07-01</code> header) precisely to let agents vary effort without breaking cache — and it requires adaptive thinking; with thinking off, it errors.</p>
+      <p><b>The top tiers have their own quirks.</b> Anthropic documents that at xhigh in multi-turn chats the model "sometimes writes its whole answer in its thinking and ends the turn with no visible text" — parse for empty replies. And prompting does not substitute for the dial: in Anthropic's testing, telling the model to answer directly "didn't stop it from thinking." Meanwhile the level menus are deliberately uneven — gpt-5.2-pro trims none and low, Gemini 3.1 Pro tops out at HIGH with no MINIMAL — so a configuration that works on one model can 400 on its own pro sibling.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Treat effort as a bill dial, not a quality dial.</b> It changes the number of hidden thinking tokens at the unchanged output rate. Before judging a model as "expensive," check which effort level the benchmark or the demo ran at — low and max on the same model can differ by ~100× in cost per task on Anthropic's own charts.</li>
+        <li><b>Run two or three levels on your own evals — the vendors say so too.</b> Anthropic's Haiku 5.5 guide literally instructs: "Compare two or three of these levels on your own evals." Effort's quality gains are task-specific; OpenAI found high effort adds little on simple long-context retrieval but real points on visual-reasoning benchmarks.</li>
+        <li><b>Never flip effort mid-conversation if you cache prompts.</b> The change invalidates the cache and re-bills the write. Hold effort constant per conversation, or use a per-message beta API if your vendor offers one.</li>
+        <li><b>Check your model's actual level menu before writing the enum.</b> gpt-5.2-pro rejects none and low; Gemini 2.5 rejects thinking_level entirely; Anthropic xhigh/max reject disabled thinking with a 400. Model-and-level compatibility is a lookup, not an assumption.</li>
+        <li><b>Agent misbehaving? Audit effort before rewriting the prompt.</b> Low effort skips searches and checks (Anthropic's own warning); high effort makes more tool calls and longer summaries (OpenAI's note that effort controls "how readily it calls tools").</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>The effort dial sits behind three purchases on this site: <a href="/best/ai-chatbots">the best AI chatbots ranking</a> (a chatbot that suddenly "got slower" is often running a higher default effort tier), <a href="/vs/chatgpt-vs-claude">the ChatGPT vs Claude vs Gemini comparison</a> (the same question at medium effort can cost measurably different amounts across the three, because each vendor's default tier and thinking behavior differ), and <a href="/glossary/reasoning-tokens">reasoning tokens</a> (the invisible line on the bill that effort scales up and down). Related terms: <a href="/glossary/prompt-caching">prompt caching</a> is the cost that breaks when effort flips, <a href="/glossary/temperature-sampling">temperature</a> is the sampling knob being deprecated in the same 2026 consolidation, and <a href="/glossary/tokens-per-second">tokens per second</a> is why more thinking tokens also means more waiting. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Reasoning effort is the 2026 control surface that replaced prompt-hacking and numeric thinking budgets: OpenAI's GPT-5.2 takes none/low/medium/high/xhigh, Anthropic's effort takes low/medium/high/xhigh/max in output_config, and Gemini 3+ swapped thinking_budget for MINIMAL/LOW/MEDIUM/HIGH — three incompatible enums with one shared default, medium. Because the dial is denominated in output-billed thinking tokens, it moves cost and latency by multiples without touching the price list, and it even changes tool-calling behavior. Set it deliberately, eval two or three tiers, hold it constant within a conversation to protect your prompt cache, and never assume the top tier of one vendor maps to another's.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
