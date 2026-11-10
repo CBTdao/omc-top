@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fine-tuning vs RAG (2026) | Which one does your task need, now that one door is closing? | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/vs/fine-tuning-vs-rag">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Fine-tuning vs RAG (2026) | AITop">
+  <meta property="og:description" content="Fine-tuning changes model weights; RAG changes the context. In 2026 the choice narrowed itself: OpenAI closed fine-tuning to new users (last new jobs January 6, 2027), Anthropic's API has never offered it, while Google Vertex still tunes listed Gemini models. Costs, vendors and the decision rule compared.">
+  <meta property="og:url" content="https://top.omc.network/vs/fine-tuning-vs-rag">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fine-tuning vs RAG (2026) | AITop">
+  <meta name="twitter:description" content="Fine-tuning changes model weights; RAG changes the context. In 2026 the choice narrowed itself: OpenAI closed fine-tuning to new users (last new jobs January 6, 2027), Anthropic's API has never offered it, while Google Vertex still tunes listed Gemini models.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Fine-tuning vs RAG compared for 2026: what each changes, what each costs (OpenAI training $25 per 1M tokens, tuned inference +50%; RAG embeddings from $0.02 per 1M), which vendors still offer hosted tuning, and the decision rule that settles most projects.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Comparisons","item":"https://top.omc.network/#rankings"},{"@type":"ListItem","position":3,"name":"Fine-tuning vs RAG (2026)","item":"https://top.omc.network/vs/fine-tuning-vs-rag"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Fine-tuning vs RAG: which one does your task need, now that one door is closing (2026)","description":"Fine-tuning changes weights, RAG changes context. OpenAI is winding down the fine-tuning platform (last new jobs January 6, 2027), Anthropic has never offered it, Google Vertex still does — the 2026 decision rule and costs compared.","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Organization","name":"AITop Editorial"},"publisher":{"@type":"Organization","name":"AITop"},"mainEntityOfPage":"https://top.omc.network/vs/fine-tuning-vs-rag"}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="/glossary" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="/vs/chatgpt-vs-claude" data-i18n="crumb.vs">Comparisons</a></p>
+      <h1>Fine-tuning vs RAG: which one does your task need, now that one door is closing (2026)</h1>
+      <p class="updated" id="updatedLine">Data last updated: 2026-11-10. Pricing may have changed — verify with the vendor.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <p class="gl-note">New to the jargon? <a href="/glossary">AITop's AI glossary</a> explains it in plain English.</p>
+    <p class="gl-note"><b>Related:</b> <a href="/glossary/fine-tuning">what fine-tuning actually changes</a> · <a href="/glossary/rag">what RAG is in buyer's terms</a> · <a href="/glossary/embedding">what embeddings cost</a> · <a href="/glossary/prompt-caching">why the same prompt costs a tenth the second time</a></p>
+    <p class="disclaimer"><b>Fine-tuning retrains a model's weights on your examples; RAG (retrieval-augmented generation) fetches documents into the prompt at request time and leaves the model untouched.</b> One changes the machine, the other changes what the machine reads. In 2026 that choice partly made itself: OpenAI announced it is winding down its self-serve fine-tuning platform — closed to new users, with the last new training jobs accepted January 6, 2027 per its own deprecations page — and Anthropic's official glossary states the Claude API does not currently offer fine-tuning at all. Google's Vertex AI still offers supervised tuning for a list of Gemini models. The comparison below is per the vendors' own published pages, checked November 2026.</p>
+    <div class="tldr" id="tldrBox"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>RAG adds facts; fine-tuning changes behavior. If your model lacks knowledge, RAG is the answer — and in 2026 it is also the only half that every major vendor still sells intact. If your gap is format, tone or compliance, fine-tuning still works, but only where the door is still open: Google Vertex or open-weight models you train yourself.</p></div>
+    <div id="cmpRoot"><div class="cmp-wrap"><table class="cmp"><thead><tr><th></th><th>Fine-tuning<span class="tool-by">changes the weights</span></th><th>RAG<span class="tool-by">changes the context</span></th></tr></thead><tbody><tr><td>Pricing</td><td>OpenAI listed training at $25 per 1M tokens (gpt-4.1), $5 (gpt-4.1-mini), $3 (gpt-4o-mini) — and tuned inference costs more than base: fine-tuned gpt-4.1 runs $3.00 in / $12.00 out per 1M vs $2.00 / $8.00 untuned (+50%)</td><td>No training bill. A one-time embedding index (OpenAI lists $0.02–$0.13 per 1M tokens) plus ordinary per-request input tokens for the retrieved text — discounted when caching applies</td></tr><tr><td>Model</td><td>Bakes behavior into weights: format, tone, terminology, refusal patterns. Does not add facts — the knowledge cutoff is untouched (per OpenAI's own optimization guide and our fine-tuning entry)</td><td>Changes nothing about the model. Knowledge updates the moment your index updates — no retraining, no vendor schedule</td></tr><tr><td>Context window</td><td>Frees context: trained behavior needs no few-shot examples, so prompts shrink — which is how a +50% token premium can still net out cheaper at volume</td><td>Consumes context: every request re-pays input tokens for whatever the retriever fetched. Long documents at high volume is where the bill lives</td></tr><tr><td>Chinese support</td><td>Whatever your tuning examples demonstrate — a curated set per language is on you</td><td>Whatever your documents and retriever handle — multilingual by default if your index is</td></tr><tr><td>API</td><td>A dedicated model id (OpenAI's ft: prefix; Google Vertex returns a tuned model). In 2026, access is gated: OpenAI closed to new users with the last new jobs January 6, 2027; Anthropic offers none; Google Vertex tunes listed Gemini models (3.5 Flash / Flash-Lite, 3.1 Flash-Lite, 2.5 family)</td><td>No special endpoint — retrieval runs in front of any model you already call, on every vendor</td></tr><tr class="row-pros"><td>Strengths</td><td><ul><li>Consistent format and tone without re-prompting, at any request volume</li><li>Shorter prompts: behavior lives in weights, not in a system prompt you re-send</li><li>Still a first-class product on Google Vertex, which also offers preference tuning and reward-guided RLFT</li></ul></td><td><ul><li>Works with any model you already call — no platform gate, no wind-down clock</li><li>Knowledge is current when your index is; facts stay separable and citable</li><li>Per-user permissions can be enforced in the retriever, before anything reaches the model</li></ul></td></tr><tr class="row-cons"><td>Weaknesses</td><td><ul><li>The hosted frontier-lab path is closing: OpenAI's platform is closed to new users (announced May 2026)</li><li>Anthropic has never offered API fine-tuning — its glossary says so in one sentence</li><li>Tuned inference carries a premium: +50% on OpenAI's own gpt-4.1 rate card</li><li>Weights age with the base model — every base-model shutdown date applies to your fine-tune</li></ul></td><td><ul><li>Every request re-bills the retrieved text as input tokens</li><li>Retrieval quality is a new failure surface: wrong chunk in, wrong answer out</li><li>The index is an engineering budget — chunking, refresh cadence, evaluation</li></ul></td></tr><tr><td>Score</td><td><span class="score-badge">7.8</span></td><td><span class="score-badge">9.1</span></td></tr></tbody></table></div></div>
+    <section class="section" id="truthsSec"><h2 data-i18n="ui.truths">What the landing pages won't tell you</h2><div class="truth-grid" id="truthsRoot"><div class="truth-card"><b>Fine-tuning</b><p>The 2026 headline is not a price change — it is an exit. OpenAI announced the wind-down in May 2026: organizations that never fine-tuned were locked out May 7, organizations without recent tuned-model inference lost access July 2, and every remaining customer loses job creation January 6, 2027. Inference on existing fine-tunes continues until the base model is deprecated — and those dates are printed: October 23, 2026 for o4-mini and gpt-4.1-nano, January 14, 2027 for gpt-4o and gpt-4.1.</p></div><div class="truth-card"><b>RAG</b><p>RAG is not free — it is unbundled. Embeddings are a one-time line item; retrieved tokens are a forever line item. The per-request retrieval bill is exactly what a fine-tuned model would have baked into weights, which is the honest way to price the comparison at your own query volume.</p></div><div class="truth-card"><b>Both</b><p>They are not rivals for the same job. RAG answers "what are the facts"; fine-tuning answers "how do you behave". OpenAI's own optimization guide runs evals → prompt engineering → fine-tuning as a loop, and the vendors' docs converge on one rule: fix the prompt, add retrieval for missing knowledge, and only fine-tune when a measured behavior gap survives both.</p></div></div></section>
+    <div class="verdict"><h2 data-i18n="ui.verdict">The verdict</h2><p id="verdictText">In November 2026, default to RAG plus a better prompt, and let an evaluation set tell you when that isn't enough. Fine-tune only when a measured behavior gap — format, tone, classification discipline — survives good prompting and retrieval, and only on a platform still accepting jobs: Google Vertex tunes Gemini 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite and the 2.5 family; open-weight models you train yourself never had a door to close. If you already fine-tuned on OpenAI, note the dates: last new jobs January 6, 2027, and existing fine-tunes follow their base models — gpt-4o and gpt-4.1 included — out the door on January 14, 2027.</p></div>
+    <section class="faq" id="faqSec"><h2 data-i18n="ui.faq">Straight answers</h2><div id="faqRoot"><details class="faq-item"><summary>Can I still fine-tune OpenAI models in 2026?</summary><p>Only if you already qualify. Per OpenAI's deprecations page, organizations that had never fine-tuned were shut out May 7, 2026; those without fine-tuned-model inference in the past 60 days lost access July 2, 2026; and active existing customers can create no new jobs after January 6, 2027. Fine-tuned models keep serving inference until their base model is deprecated — gpt-4o and gpt-4.1 base models shut down January 14, 2027.</p></details><details class="faq-item"><summary>Does Claude support fine-tuning?</summary><p>No. Anthropic's official glossary states: "The Claude API does not currently offer fine-tuning, but ask your Anthropic contact if you are interested in exploring this option." Claude's behavior is adapted at request time — system prompts, examples in the prompt, retrieved documents, prompt caching.</p></details><details class="faq-item"><summary>Can I combine fine-tuning and RAG?</summary><p>Technically yes — a fine-tuned model still accepts retrieved documents in its prompt. Practically, you then maintain both a training set and a retrieval index, and you pay both bills. Test the combination against RAG alone on a fixed evaluation set before adopting it; the vendors' own guidance is to reach for each tool only when the cheaper one measurably fails.</p></details></div></section>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script>
+    window.VS_DATA = {
+      updated: "2026-11-10",
+      tldr: {
+        en: "RAG adds facts; fine-tuning changes behavior. If your model lacks knowledge, RAG is the answer — and in 2026 it is also the only half that every major vendor still sells intact. If your gap is format, tone or compliance, fine-tuning still works, but only where the door is still open: Google Vertex or open-weight models you train yourself.",
+        zh: "RAG 补知识，微调改行为。模型缺的是事实，答案是 RAG——而且 2026 年它是唯一一家没断供的那一半：三大厂都还在卖。缺的是格式、语气、合规，微调仍然有效，但只剩还开着门的地方：Google Vertex，或你自己训练的开源权重模型。"
+      },
+      truths: [
+        { tool: "Fine-tuning", text: { en: "The 2026 headline is not a price change — it is an exit. OpenAI announced the wind-down in May 2026: organizations that never fine-tuned were locked out May 7, organizations without recent tuned-model inference lost access July 2, and every remaining customer loses job creation January 6, 2027. Inference on existing fine-tunes continues until the base model is deprecated — and those dates are printed: October 23, 2026 for o4-mini and gpt-4.1-nano, January 14, 2027 for gpt-4o and gpt-4.1.", zh: "2026 年的头条不是价格变了，而是一扇门在关。OpenAI 在 2026 年 5 月宣布收缩自服务微调平台：从未微调过的组织 5 月 7 日出局、近 60 天没用微调模型跑推理的组织 7 月 2 日出局，剩余所有客户 2027 年 1 月 6 日起不能再建新任务。已有微调模型的推理可持续到基础模型弃用为止——而日期印在官方页上：o4-mini 与 gpt-4.1-nano 2026 年 10 月 23 日关停，gpt-4o 与 gpt-4.1 2027 年 1 月 14 日关停。" } },
+        { tool: "RAG", text: { en: "RAG is not free — it is unbundled. Embeddings are a one-time line item; retrieved tokens are a forever line item. The per-request retrieval bill is exactly what a fine-tuned model would have baked into weights, which is the honest way to price the comparison at your own query volume.", zh: "RAG 不是免费，是把账单拆开了。嵌入是一次性科目，检回的 token 是按月按次的科目。每次请求的检索账单，正是微调模型本可以烤进权重里的那部分——按你自己的查询量来算这笔账，才是诚实的比价方式。" } },
+        { tool: "Both", text: { en: "They are not rivals for the same job. RAG answers \"what are the facts\"; fine-tuning answers \"how do you behave\". OpenAI's own optimization guide runs evals → prompt engineering → fine-tuning as a loop, and the vendors' docs converge on one rule: fix the prompt, add retrieval for missing knowledge, and only fine-tune when a measured behavior gap survives both.", zh: "两者不是同一份工作的竞争者。RAG 回答『事实是什么』，微调回答『你该表现成什么样』。OpenAI 自家的模型优化指南把 evals → 提示词工程 → 微调排成一个循环，各家文档收敛于同一条规则：先修提示词，缺知识就加检索，只有当可测量的行为差距在两者之后仍然存在，才轮到微调。" } }
+      ],
+      faq: [
+        { q: { en: "Can I still fine-tune OpenAI models in 2026?", zh: "2026 年还能微调 OpenAI 的模型吗？" }, a: { en: "Only if you already qualify. Per OpenAI's deprecations page, organizations that had never fine-tuned were shut out May 7, 2026; those without fine-tuned-model inference in the past 60 days lost access July 2, 2026; and active existing customers can create no new jobs after January 6, 2027. Fine-tuned models keep serving inference until their base model is deprecated — gpt-4o and gpt-4.1 base models shut down January 14, 2027.", zh: "只有已经具备资格的组织可以。按 OpenAI 官方弃用页：从未微调过的组织 2026 年 5 月 7 日起不能建任务；过去 60 天没有微调模型推理的组织 7 月 2 日起不能建任务；活跃的现有客户 2027 年 1 月 6 日起不能再建新任务。已有微调模型的推理持续到基础模型弃用——gpt-4o 与 gpt-4.1 的基础模型 2027 年 1 月 14 日关停。" } },
+        { q: { en: "Does Claude support fine-tuning?", zh: "Claude 支持微调吗？" }, a: { en: "No. Anthropic's official glossary states: \"The Claude API does not currently offer fine-tuning, but ask your Anthropic contact if you are interested in exploring this option.\" Claude's behavior is adapted at request time — system prompts, examples in the prompt, retrieved documents, prompt caching.", zh: "不支持。Anthropic 官方术语表原话：『Claude API 目前不提供微调，如有兴趣请咨询你的 Anthropic 对接人。』Claude 的行为调整全部发生在请求时——系统提示词、提示词内的示例、检索到的文档、提示词缓存。" } },
+        { q: { en: "Can I combine fine-tuning and RAG?", zh: "微调和 RAG 能一起用吗？" }, a: { en: "Technically yes — a fine-tuned model still accepts retrieved documents in its prompt. Practically, you then maintain both a training set and a retrieval index, and you pay both bills. Test the combination against RAG alone on a fixed evaluation set before adopting it; the vendors' own guidance is to reach for each tool only when the cheaper one measurably fails.", zh: "技术上可以——微调后的模型照样能在提示词里接收检索文档。但实际代价是你要同时维护训练集和检索索引、同时付两笔账。采用之前先在固定的评测集上把『组合』与『纯 RAG』比一遍；各家自己的建议都是：只有当更便宜的那个方案被实测证明不够用时，才动用下一个工具。" } }
+      ],
+      tools: [
+        {
+          name: "Fine-tuning", by: "changes the weights", score: "7.8",
+          pricing: { en: "OpenAI listed training at $25 per 1M tokens (gpt-4.1), $5 (gpt-4.1-mini), $3 (gpt-4o-mini) — and tuned inference costs more than base: fine-tuned gpt-4.1 runs $3.00 in / $12.00 out per 1M vs $2.00 / $8.00 untuned (+50%)", zh: "OpenAI 官方价页：训练 $25/百万 token（gpt-4.1）、$5（gpt-4.1-mini）、$3（gpt-4o-mini）；微调版推理比基础版更贵——微调版 gpt-4.1 为 $3.00 输入 / $12.00 输出每百万 token，基础版 $2.00 / $8.00（贵 50%）" },
+          model: { en: "Bakes behavior into weights: format, tone, terminology, refusal patterns. Does not add facts — the knowledge cutoff is untouched (per OpenAI's own optimization guide and our fine-tuning entry)", zh: "把行为烤进权重：格式、语气、术语、拒答模式。不加事实——知识截止时间不受影响（OpenAI 自家优化指南与本站 fine-tuning 词条口径一致）" },
+          context: { en: "Frees context: trained behavior needs no few-shot examples, so prompts shrink — which is how a +50% token premium can still net out cheaper at volume", zh: "释放上下文：训练过的行为不再需要 few-shot 示例，提示词变短——这就是为什么每 token 贵 50%，量大后总账仍可能更便宜" },
+          chinese: { en: "Whatever your tuning examples demonstrate — a curated set per language is on you", zh: "取决于你的训练示例——每种语言都要自备一套精选数据" },
+          api: { en: "A dedicated model id (OpenAI's ft: prefix; Google Vertex returns a tuned model). In 2026, access is gated: OpenAI closed to new users with the last new jobs January 6, 2027; Anthropic offers none; Google Vertex tunes listed Gemini models (3.5 Flash / Flash-Lite, 3.1 Flash-Lite, 2.5 family)", zh: "专用模型 ID（OpenAI 的 ft: 前缀；Google Vertex 返回微调后的模型）。2026 年已设门槛：OpenAI 对新用户关闭、最后一日为 2027 年 1 月 6 日；Anthropic 不提供；Google Vertex 可微调指定 Gemini 模型（3.5 Flash / Flash-Lite、3.1 Flash-Lite、2.5 系列）" },
+          pros: { en: ["Consistent format and tone without re-prompting, at any request volume", "Shorter prompts: behavior lives in weights, not in a system prompt you re-send", "Still a first-class product on Google Vertex, which also offers preference tuning and reward-guided RLFT"], zh: ["任意请求量下，格式与语气稳定一致，无需反复提示", "提示词更短：行为在权重里，不用每次重发系统提示", "在 Google Vertex 上仍是正式产品，还提供偏好调优与奖励引导的 RLFT"] },
+          cons: { en: ["The hosted frontier-lab path is closing: OpenAI's platform is closed to new users (announced May 2026)", "Anthropic has never offered API fine-tuning — its glossary says so in one sentence", "Tuned inference carries a premium: +50% on OpenAI's own gpt-4.1 rate card", "Weights age with the base model — every base-model shutdown date applies to your fine-tune"], zh: ["头部实验室的托管微调通道正在关闭：OpenAI 平台对新用户关闭（2026 年 5 月官宣）", "Anthropic 从未提供 API 微调——官方术语表一句话写明", "微调版推理有溢价：OpenAI 自己的 gpt-4.1 价卡上贵 50%", "权重随基础模型老化——基础模型的每个关停日期同样适用于你的微调版本"] }
+        },
+        {
+          name: "RAG", by: "changes the context", score: "9.1",
+          pricing: { en: "No training bill. A one-time embedding index (OpenAI lists $0.02–$0.13 per 1M tokens) plus ordinary per-request input tokens for the retrieved text — discounted when caching applies", zh: "没有训练账单。一次性嵌入索引（OpenAI 挂牌 $0.02–$0.13/百万 token）+ 每次请求为检索文本支付的普通输入 token 费——命中缓存时可打折" },
+          model: { en: "Changes nothing about the model. Knowledge updates the moment your index updates — no retraining, no vendor schedule", zh: "模型本身分毫不动。知识在你的索引更新那一刻就更新——无需重训、不看厂商排期" },
+          context: { en: "Consumes context: every request re-pays input tokens for whatever the retriever fetched. Long documents at high volume is where the bill lives", zh: "消耗上下文：每次请求都要为检索回来的文本再付一遍输入 token。长文档 × 高频请求，账单就在这里" },
+          chinese: { en: "Whatever your documents and retriever handle — multilingual by default if your index is", zh: "取决于你的文档和检索器——索引是中文的，它就支持中文" },
+          api: { en: "No special endpoint — retrieval runs in front of any model you already call, on every vendor", zh: "无需特殊端点——检索跑在任何你已经在用的模型前面，各家通用" },
+          pros: { en: ["Works with any model you already call — no platform gate, no wind-down clock", "Knowledge is current when your index is; facts stay separable and citable", "Per-user permissions can be enforced in the retriever, before anything reaches the model"], zh: ["配上任何你已在调用的模型就行——没有平台门槛，没有关停倒计时", "索引更新则知识即时更新；事实与模型可分离、可引用", "按用户的权限可以在检索器里强制执行，内容到达模型之前就被过滤"] },
+          cons: { en: ["Every request re-bills the retrieved text as input tokens", "Retrieval quality is a new failure surface: wrong chunk in, wrong answer out", "The index is an engineering budget — chunking, refresh cadence, evaluation"], zh: ["每次请求都要为检索文本再付一遍输入 token", "检索质量是新引入的故障面：错的块进去，错的答案出来", "索引本身是一笔工程预算——分块、刷新节奏、评测"] }
+        }
+      ],
+      verdict: {
+        en: "In November 2026, default to RAG plus a better prompt, and let an evaluation set tell you when that isn't enough. Fine-tune only when a measured behavior gap — format, tone, classification discipline — survives good prompting and retrieval, and only on a platform still accepting jobs: Google Vertex tunes Gemini 3.5 Flash, 3.5 Flash-Lite, 3.1 Flash-Lite and the 2.5 family; open-weight models you train yourself never had a door to close. If you already fine-tuned on OpenAI, note the dates: last new jobs January 6, 2027, and existing fine-tunes follow their base models — gpt-4o and gpt-4.1 included — out the door on January 14, 2027.",
+        zh: "2026 年 11 月的默认答案：RAG 加一个更好的提示词，并让评测集告诉你这不够的时刻。只有当可测量的行为差距——格式、语气、分类纪律——在好的提示词与检索之后仍然存在，才考虑微调，而且只在还收任务的平台做：Google Vertex 可微调 Gemini 3.5 Flash、3.5 Flash-Lite、3.1 Flash-Lite 与 2.5 系列；自己训练开源权重模型则从来没有门可关。已经在 OpenAI 上微调过的读者记住两个日期：最后一日 2027 年 1 月 6 日；已有微调版本随基础模型一同退场——包括 gpt-4o 与 gpt-4.1——2027 年 1 月 14 日。"
+      }
+    };
+  </script>
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+  <script src="../assets/js/table.js"></script>
+</body>
+</html>
