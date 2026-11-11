@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Prompt Injection? The Test That Decides Which AI Tools Are Safe to Connect | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/prompt-injection">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Prompt Injection? The Test That Decides Which AI Tools Are Safe to Connect | AITop">
+  <meta property="og:description" content="Prompt injection is when instructions hidden in content an AI reads — an email, a web page, a PDF, a tool result — get followed as if you had typed them. It has no patch: OWASP says fool-proof prevention is unclear, and the defences that hold are architectural. The buying test is Meta's Rule of Two and Simon Willison's lethal trifecta.">
+  <meta property="og:url" content="https://top.omc.network/glossary/prompt-injection">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Prompt Injection? The Test That Decides Which AI Tools Are Safe to Connect | AITop">
+  <meta name="twitter:description" content="Three yes/no questions decide whether an AI agent is safe to connect: does it read content you didn't write, does it hold data you care about, can it send or change something? Two of three is the 2026 ceiling.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Prompt injection is when instructions embedded in content an AI system reads — an email, web page, document, or tool output — are followed as if the user had typed them. OWASP ranks it LLM01 for 2025 and states fool-proof prevention is unclear; Google DeepMind's CaMeL solves 77% of AgentDojo tasks with provable security versus 84% undefended. The practical buying test is the lethal trifecta and Meta's Rule of Two.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Prompt injection","item":"https://top.omc.network/glossary/prompt-injection"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Prompt injection","description":"Prompt injection is a class of vulnerability in which instructions embedded in content an AI system reads are executed as if they came from the operator or user. OWASP's LLM01:2025 entry defines it as user prompts or external content altering a model's behaviour in unintended ways, and splits it into direct injection (the user's own input) and indirect injection (a website, file, email, or tool result the model is asked to process). Because everything reaches the model as one token sequence, models cannot reliably distinguish instructions by their source. Jailbreaking is a related but distinct problem. The practical control is architectural: never let one agent session combine untrusted input, access to private data or sensitive systems, and the ability to change state or communicate externally — Meta's Agents Rule of Two (October 2025), derived from Simon Willison's lethal trifecta (June 2025).","url":"https://top.omc.network/glossary/prompt-injection","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is prompt injection (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-11. Every claim below is attributed to the organisation that published it — OWASP's LLM Top 10, Google DeepMind's CaMeL paper, Meta's AI security guidance, and Simon Willison, who coined the term in September 2022. Prompt-injection defences change quarterly; the structural test in this entry has not changed since 2025.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Prompt injection</b> is a vulnerability in which instructions hidden in content an AI system <i>reads</i> — an email, a web page, a PDF, a calendar invite, another tool's output — get executed as if you had typed them. It is not a bug you patch, because the model receives your instructions and the attacker's text as one undifferentiated run of tokens; as Simon Willison put it when he named the term on 12 September 2022, "everything eventually gets glued together into a sequence of tokens." <b>The buying test has three questions:</b> does the tool read content you didn't write, does it hold data you care about, and can it send something out or change something? <b>Two out of three is the 2026 ceiling</b> — that is Meta's <b>Agents Rule of Two</b> (published 31 October 2025), a formalisation of Willison's <b>lethal trifecta</b> (16 June 2025). The strongest published defence, Google DeepMind's <b>CaMeL</b>, solves <b>77%</b> of tasks on the AgentDojo benchmark with provable security against <b>84%</b> for an undefended system — an 8% relative loss of capability in exchange for a security guarantee that does not depend on the model noticing the attack.</p></div>
+
+    <section class="section">
+      <h2>What does prompt injection actually mean?</h2>
+      <p>Prompt injection is the AI-era version of SQL injection, and the analogy is exact rather than decorative: in both cases a system concatenates trusted instructions with untrusted data, and in both cases the boundary between the two is only as strong as the parser. OWASP's <b>LLM01:2025</b> entry — the top-ranked risk in the OWASP Top 10 for LLM Applications — defines it as follows: "A Prompt Injection Vulnerability occurs when user prompts alter the LLM's behavior or output in unintended ways. These inputs can affect the model even if they are imperceptible to humans, therefore prompt injections do not need to be human-visible/readable, as long as the content is parsed by the model."</p>
+      <p>OWASP splits it in two. <b>Direct prompt injection</b> is a user's own input changing the model's behaviour — sometimes malicious, sometimes accidental. <b>Indirect prompt injection</b> is the dangerous one for buyers: the model accepts input from an external source such as a website or a file, and content inside that source alters the model's behaviour when the model interprets it. The victim is the person who asked for the summary, not the person who wrote the page.</p>
+      <p>Two naming disputes are worth settling because they change what you buy. First, <b>jailbreaking versus injection</b>: OWASP treats jailbreaking as "a form of prompt injection where the attacker provides inputs that cause the model to disregard its safety protocols entirely." Willison, who coined both the term and the distinction, argues they are different problems — jailbreaking is about what a model will <i>say</i>, injection is about what an agent will <i>do</i> with your credentials. For a buyer picking tools, the operational definition is Willison's: if the attack arrives inside content, it is injection, and content filters tuned for offensive output will not catch it. Second, <b>"prompt"</b>: the attack is not necessarily a prompt in the chat sense. It is text — or pixels, or a tool response — that the model parses.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>Because the entire 2026 category of AI products — agents, browser assistants, inbox copilots, coding agents — is a bet that models can safely act on content nobody vetted. The same three capabilities that make an assistant useful are the three that make it exploitable, and Willison's <b>lethal trifecta</b> names them: "access to your private data," "exposure to untrusted content," and "the ability to externally communicate in a way that could be used to steal your data." His conclusion is blunt: "If your agent combines these three features, an attacker can easily trick it into accessing your private data and sending it to that attacker."</p>
+      <p>This is no longer theoretical. <b>CVE-2025-32711</b> ("EchoLeak"), reported against Microsoft 365 Copilot by Aim Labs and fixed in mid-2025, was a <b>zero-click</b> indirect injection: a crafted email carried instructions that made Copilot retrieve private content and smuggle it out through a Markdown image reference pointing at an allowed domain's open redirect — no user click, no malware, no attachment. Willison's running catalogue of the same pattern spans ChatGPT, Google Bard, Amazon Q, NotebookLM, GitHub Copilot Chat, Slack, Mistral Le Chat, Grok, the Claude iOS app and ChatGPT Operator, from 2023 through 2025.</p>
+      <p>The commercial consequence is a question you can ask a vendor in a sales call: <b>which leg of the trifecta does your product remove?</b> A chatbot that reads your files but cannot send anything has removed the exfiltration leg. A coding agent that can open pull requests but only reads public repos has removed the private-data leg. A tool with access to everything and an outbound channel has removed nothing and is asking you to trust a classifier. Vendors increasingly answer this in public: Meta's guidance says that when an agent needs all three properties "the agent should not be permitted to operate autonomously and at a minimum requires supervision — via human-in-the-loop approval or another reliable means of validation."</p>
+    </section>
+
+    <section class="section">
+      <h2>What actually works as a defence?</h2>
+      <h3>Does a guardrail model fix it?</h3>
+      <p>No, and the honest sources say so. OWASP: "Given the stochastic influence at the heart of the way models work, it is unclear if there are fool-proof methods of prevention for prompt injection." EchoLeak is the demonstration — Microsoft had classifiers for what it calls XPIA (cross/indirect prompt injection), and the researchers bypassed them simply by phrasing the malicious email as instructions to its human recipient, never mentioning AI, assistants or Copilot. Filter vendors who quote a detection rate are quoting a false-negative rate too: Willison's verdict on "95% of attacks" claims is that "in web application security 95% is very much a failing grade."</p>
+      <h3>What is the Rule of Two, and why can you put it in a contract?</h3>
+      <p>Meta's <b>Agents Rule of Two</b> (31 October 2025) converts the trifecta into a countable constraint: within a single session, an agent may satisfy <b>no more than two</b> of [A] processing untrustworthy inputs, [B] access to sensitive systems or private data, [C] the ability to change state or communicate externally. Meta credits both Chromium's Rule of Two and Willison's trifecta, and states the framework was built so that "the severity of security risks is deterministically reduced." The reason this matters commercially is that it is a design-review question with a binary answer, citable in a procurement conversation, rather than a vague promise of "defence in depth." Note what [C] covers: not just sending data out but <i>changing state</i> — merging a pull request, issuing a refund, deleting a record. An agent that reads attacker text and can write to your ticketing system is dangerous even if it never transmits a byte.</p>
+      <h3>What does a defended architecture look like?</h3>
+      <p>The published designs all move the trust decision out of the model and into code around it. The June 2025 "Design Patterns for Securing LLM Agents against Prompt Injections" paper states the principle in one sentence: "once an LLM agent has ingested untrusted input, it must be constrained so that it is impossible for that input to trigger any consequential actions" — and offers six patterns, of which the most cited are <i>plan-then-execute</i> (the plan is fixed before untrusted data arrives) and the <i>dual-LLM</i> split (a privileged model plans and calls tools but never reads untrusted text; a quarantined model reads untrusted text but has no tools). Google DeepMind's <b>CaMeL</b> (arXiv 2503.18813, March 2025) hardens the dual-LLM idea with capabilities and information-flow control enforced by a deterministic interpreter, and reports <b>77%</b> of AgentDojo tasks solved "with provable security" versus <b>84%</b> for an undefended system — roughly a 7-point, or 8% relative, capability cost. The paper is candid about the ceiling: the quarantined model can still be lied to, so extracted <i>values</i> remain untrustworthy even when control flow is safe.</p>
+    </section>
+
+    <section class="section">
+      <h2>The 2026 reality check</h2>
+      <p><b>The attack moved from chat to credentials.</b> Through 2023 injection meant a bot producing embarrassing text. In 2026 it means an agent holding your OAuth tokens, your repository scope or your inbox. That shift is why OWASP created a separate Top 10 for agentic applications, where goal hijacking via prompt injection sits at the top of the list, and why the mitigation list leads with privilege control: "Provide the application with its own API tokens … and handle these functions in code rather than providing them to the model."</p>
+      <p><b>MCP made the surface combinatorial.</b> A tool catalog wired to one vendor is a closed set; a protocol that lets users mix servers from many sources is an open one. Willison's warning is structural rather than partisan: the problem with MCP "is that it encourages users to mix and match tools from different sources that can do different things" — some holding private data, some fetching untrusted content, some able to make an outbound request. Each combination has to be evaluated as a combination, which is exactly what the Rule of Two is for.</p>
+      <p><b>Zero-click is the new normal.</b> EchoLeak needed nothing from the user beyond receiving an email, and the exfiltration hid in a rendering path (an allow-listed domain's open redirect) rather than in a tool call. The lesson generalises: the outbound leg is often something you did not think of as a network call — an image URL, a link preview, a shared document, a log line. Audit egress by what the product <i>renders</i>, not only by what it posts.</p>
+      <p><b>"Internal" is not a trust label.</b> Every published incidence chain in 2025 and 2026 starts with content that looked routine: a support ticket, a public issue, a spam email, a shared doc. If your agent reads it, treat it as attacker-controlled, and treat summaries of it as data rather than instructions.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Count the trifecta before you connect anything.</b> For each agent, list: untrusted input (yes/no), private data or sensitive systems (yes/no), outbound or state-changing action (yes/no). Three yeses in one session is the only list that matters — and most teams have never drawn it.</li>
+        <li><b>Ask the vendor which leg they removed.</b> A specific answer ("we cannot send email, only draft it"; "the agent has no write scope") is a defence. "We have guardrails" is a classifier with a published false-negative rate.</li>
+        <li><b>Default egress closed.</b> Allow-list destinations per task, and check the rendering paths — images, link previews, embeds — not just API calls and messages.</li>
+        <li><b>Require approval on the trifecta paths, not on everything.</b> Approval fatigue is real; scoping approval to the paths that touch private data plus an action is short enough that a human will actually read it.</li>
+        <li><b>Reset the session, not the prompt.</b> Meta's escape hatch is a fresh context window. Do the reading in one session and the acting in another, with a check between them that does not depend on a model's judgement.</li>
+        <li><b>Treat "it fixed the bug" as a schedule, not a state.</b> EchoLeak was reported in January 2025 and patched months later; the same shape recurred across a dozen products. Re-test after every agent upgrade — a new tool is a new leg.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Prompt injection is the hidden column in three purchases on this site. In <a href="/best/ai-chatbots">the best AI chatbots ranking</a> it is why consumer chat products sandbox their browsing and file tools — the assistant that can read a PDF you uploaded can also read a PDF someone sent you. In <a href="/vs/chatgpt-vs-claude">the ChatGPT vs Claude vs Gemini comparison</a> it is the reason the three vendors draw their tool permissions differently, and why "connectors" and "agent mode" are not equivalent features across products. In <a href="/best/ai-coding-assistants">the best AI coding assistants ranking</a> it is the difference between an agent that opens a pull request for review and one that merges it. Related terms: <a href="/glossary/function-calling">function calling</a> is the mechanism an injection abuses to reach your tools, <a href="/glossary/ai-agent">AI agent</a> is the product category the trifecta describes, <a href="/glossary/ai-crawler-blocking">AI crawler blocking</a> covers the inbound half of the same trust problem, and <a href="/glossary/structured-outputs">structured outputs</a> explains why a schema guarantee makes injection <i>narrower</i> but not safe. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Prompt injection is the vulnerability class in which instructions inside content an AI reads get followed as commands — ranked LLM01 by OWASP for 2025, named by Simon Willison in September 2022, and still unsolved at the model layer, with OWASP itself saying fool-proof prevention is unclear. The defences that hold are architectural and countable: Meta's Agents Rule of Two caps a session at two of {untrusted input, private data, external or state-changing action}, and CaMeL-style capability enforcement buys provable security on 77% of AgentDojo tasks against 84% undefended. For a buyer the practical test is three yes/no questions per tool, plus one more: which leg did the vendor remove on purpose?</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
