@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is the Model Context Protocol (MCP)? The Wire Standard Behind Every AI Connector | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/model-context-protocol">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is the Model Context Protocol (MCP)? The Wire Standard Behind Every AI Connector | AITop">
+  <meta property="og:description" content="MCP is an open JSON-RPC 2.0 protocol that lets an AI app call tools and read data from a separate server, so one integration works across many AI products. It was donated to the Linux Foundation's Agentic AI Foundation in December 2025, and the 2026-07-28 revision deleted protocol sessions and the initialize handshake entirely — which means most MCP advice written in 2025 is now wrong.">
+  <meta property="og:url" content="https://top.omc.network/glossary/model-context-protocol">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is the Model Context Protocol (MCP)? The Wire Standard Behind Every AI Connector | AITop">
+  <meta name="twitter:description" content="MCP is the USB-C of AI connectors — but the 2026-07-28 revision made it stateless, deleted the initialize handshake, and deprecated roots, sampling and logging. Ask a vendor which revision it speaks before you believe the checkbox.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="MCP (Model Context Protocol) is an open JSON-RPC 2.0 protocol, introduced by Anthropic in November 2024 and donated to the Linux Foundation's Agentic AI Foundation on 2025-12-09, that standardises how an AI application calls tools and reads resources on a separate server. The 2026-07-28 revision removed protocol-level sessions and the initialize handshake, required server/discover, and deprecated Roots, Sampling and Logging. Anthropic's own benchmark puts a tool catalog's context cost at 150,000 tokens against 2,000 via code execution.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Model Context Protocol (MCP)","item":"https://top.omc.network/glossary/model-context-protocol"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Model Context Protocol (MCP)","description":"The Model Context Protocol is an open, JSON-RPC 2.0-based protocol that standardises how an AI application (the host) discovers and calls capabilities exposed by a separate service (the server). It replaces N×M bespoke integrations with one interface. Servers expose tools (functions the model may execute), resources (context for the user or model to read) and prompts (templated workflows); clients may offer elicitation (server-initiated requests for user input). Two standard transports exist: stdio for client-launched subprocesses, and Streamable HTTP for remote servers, where each message is a POST to a single endpoint. Anthropic introduced MCP in November 2024 and donated it to the Agentic AI Foundation, a directed fund under the Linux Foundation, on 2025-12-09. The 2026-07-28 revision is the current specification: it removed protocol-level sessions and the initialize handshake, making every request self-contained and stateless, added a required server/discover RPC, replaced server-initiated requests with the Multi Round-Trip Request pattern, and deprecated the Roots, Sampling and Logging features.","url":"https://top.omc.network/glossary/model-context-protocol","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is the Model Context Protocol (MCP), in plain English?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-12. Every claim below is attributed to the organisation that published it — the MCP specification at modelcontextprotocol.io, Anthropic's donation announcement, and Anthropic's engineering blog. MCP's wire format changed materially in July 2026, so advice written before then should be treated as a different protocol.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>The Model Context Protocol (MCP)</b> is an open protocol — JSON-RPC 2.0 messages over either a local subprocess (<b>stdio</b>) or HTTP (<b>Streamable HTTP</b>) — that standardises how an AI application discovers and calls tools on a separate server, so one integration works across ChatGPT, Claude, Gemini, Cursor, Copilot and VS Code instead of one integration per pair. Anthropic introduced it in <b>November 2024</b> and donated it to the <b>Agentic AI Foundation</b>, a directed fund under the Linux Foundation, on <b>2025-12-09</b>; by then it had <b>10,000+ active public servers</b> and <b>97M+ monthly SDK downloads</b>. The part almost nobody has updated: the current specification, dated <b>2026-07-28</b>, <b>deleted protocol-level sessions and the <code>initialize</code> handshake</b>, so every request now carries its own protocol version and capabilities and the protocol is stateless. It also added a required <code>server/discover</code> call, replaced server-initiated requests with a multi-round-trip pattern, and <b>deprecated Roots, Sampling and Logging</b>. For a buyer, "MCP support" is therefore a compatibility claim rather than a feature: what matters is which revision, which transport, and who holds the OAuth token.</p></div>
+
+    <section class="section">
+      <h2>What does MCP actually mean?</h2>
+      <p>MCP is a <b>wire standard</b>, not a product and not a plugin store. Its specification defines three roles — a <b>host</b> (the AI application), a <b>client</b> (the connector inside the host, one per server), and a <b>server</b> (the service that exposes capabilities) — and one message format. The specification's own framing is that MCP "provides a standardized way for applications to share contextual information with language models, expose tools and capabilities to AI systems, and build composable integrations and workflows," using "JSON-RPC 2.0 messages" between those three roles. It is explicitly modelled on the Language Server Protocol, which did the same job for editors and programming languages.</p>
+      <p>Servers expose three kinds of thing, and the distinction is the one buyers most often miss. <b>Tools</b> are functions the model may execute — the only primitive that can change the world. <b>Resources</b> are context and data for the user or the model to read. <b>Prompts</b> are templated messages and workflows for a human to invoke. Clients may offer one thing back: <b>elicitation</b>, a structured way for a server to ask the user for more information. Everything else in the protocol is plumbing — progress, cancellation, error reporting, configuration.</p>
+      <p>Two transports carry those messages. <b>stdio</b> is newline-delimited JSON-RPC over the standard streams of a subprocess the client launches; it is how a desktop app runs a local server. <b>Streamable HTTP</b> is "each message is an HTTP POST to a single MCP endpoint; replies arrive as a JSON object or a request-scoped SSE stream" — it is how a remote server behind a URL works. That difference is not cosmetic: a local stdio server inherits your machine's credentials and has no authentication story of its own, while a remote server needs OAuth, scopes and a resource identifier. Same protocol, two completely different security models, and vendors routinely advertise the first while selling the second.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does MCP change which tool you buy?</h2>
+      <p>Because it moves the integration from the vendor's roadmap to a spec anyone can implement, and that inverts what you are evaluating. Before MCP, every AI product connected to your data through bespoke, vendor-owned connectors; the catalogue <i>was</i> the moat, and switching cost was the catalogue. With MCP, the catalogue is portable — Anthropic's donation post lists first-class support across <b>ChatGPT, Cursor, Gemini, Microsoft Copilot and Visual Studio Code</b>, and states that enterprise deployment support exists from <b>AWS, Cloudflare, Google Cloud and Microsoft Azure</b>. The connector is no longer the reason to pick a product; the quality of the agent loop around it is.</p>
+      <p>What replaces it as a differentiator is cost and control, and both are measurable. <b>Cost</b>: tool definitions are injected into the prompt and billed as input tokens on every request. Anthropic's engineering team published the number that makes this concrete — a workflow that consumed <b>150,000 tokens</b> of tool definitions and intermediate results ran in about <b>2,000 tokens</b> when the agent wrote code against the tools instead of calling them one at a time, "a time and cost saving of 98.7%." The same post estimates that a two-hour sales meeting passed between two tools costs "an additional 50,000 tokens," and that a 10,000-row spreadsheet can be reduced to five rows before it reaches the model. A connector catalogue is a recurring charge, not a one-off setup fee.</p>
+      <p><b>Control</b>: every server you connect is a leg of the prompt-injection trifecta. The specification is unusually direct about this for a standards document — "Tools represent arbitrary code execution and must be treated with appropriate caution," and tool descriptions "such as annotations should be considered untrusted, unless obtained from a trusted server." A protocol that lets a user mix servers from many sources is, by construction, a protocol that lets a user assemble an agent that reads untrusted content, holds private data and can send things out. That is why <a href="/glossary/prompt-injection">prompt injection</a> is the entry to read next: MCP is the mechanism, not the mitigation.</p>
+    </section>
+
+    <section class="section">
+      <h2>What changed in 2026?</h2>
+      <h3>Is MCP still a session protocol?</h3>
+      <p>No, and this is the change that invalidates most published advice. The <b>2026-07-28</b> revision lists as its first two major changes: "Remove protocol-level sessions and the <code>Mcp-Session-Id</code> header from the Streamable HTTP transport," and "Make MCP stateless: remove the <code>initialize</code>/<code>notifications/initialized</code> handshake. Every request now carries its protocol version and client capabilities in <code>_meta</code>." The base protocol section now reads "Stateless, self-contained requests" and "Per-request capability negotiation." A server that needs state across calls must mint its own handle and pass it as an ordinary tool argument.</p>
+      <p>Three consequences follow, and each one is a procurement question. Servers <b>must</b> implement a <code>server/discover</code> RPC that advertises supported protocol versions, capabilities and identity — so "does your server answer <code>server/discover</code>?" is a one-line test of whether a vendor is on the current spec. Version mismatches return <code>UnsupportedProtocolVersionError</code>, which means a client and server built a year apart may simply refuse each other. And servers may no longer initiate JSON-RPC requests: the transport page states flatly that "servers do not initiate JSON-RPC requests and clients do not send JSON-RPC responses," with the old patterns replaced by a <b>Multi Round-Trip Request</b> flow in which a server returns <code>resultType: "input_required"</code> and the client retries with the answers.</p>
+      <h3>Which revision should you actually require?</h3>
+      <p>Ask for the revision string and treat <b>2026-07-28</b> as current, <b>2025-11-25</b> as the previous one, and anything earlier as legacy. The 2025-11-25 revision is the one that introduced experimental tasks, incremental scope consent and Client ID Metadata Documents; 2026-07-28 moved tasks into an official extension, replaced <code>ping</code>, <code>logging/setLevel</code> and <code>resources/subscribe</code> with per-request settings and a single <code>subscriptions/listen</code> stream, dropped SSE resumability entirely ("A broken response stream loses the in-flight request"), and deprecated the OAuth 2.0 Dynamic Client Registration flow in favour of Client ID Metadata Documents. It also deprecated three features outright — <b>Roots, Sampling and Logging</b> — with a minimum twelve-month deprecation window and a public registry. If a vendor's connector depends on Sampling, it is building on a feature the spec has already scheduled for removal.</p>
+      <h3>Do the vendors describe it accurately?</h3>
+      <p>Not always, and one example is worth knowing because it is checkable in two documents. Anthropic's donation announcement says "the November 25th spec release introduced many new features, including asynchronous operations, statelessness, server identity, and official extensions." The 2025-11-25 changelog does not list statelessness anywhere; the statelessness change is dated <b>2026-07-28</b>, tied to two specification enhancement proposals. The likeliest reading is a marketing summary written ahead of the change it described. The lesson generalises: <b>read the changelog, not the announcement</b> — the changelog is versioned, dated, and cites the proposal that made each change.</p>
+      <p>The other 2026 development is governance. On <b>2025-12-09</b> Anthropic donated MCP to the <b>Agentic AI Foundation (AAIF)</b>, "a directed fund under the Linux Foundation, co-founded by Anthropic, Block and OpenAI, with support from Google, Microsoft, Amazon Web Services (AWS), Cloudflare, and Bloomberg." MCP joined Block's goose and OpenAI's AGENTS.md as founding projects, and both Anthropic's post and the MCP project blog state that the maintainer structure and SEP process are unchanged. For a buyer this is the difference between adopting a competitor's protocol and adopting a neutral standard, and it is the single strongest argument that the interface will still exist when your three-year contract ends.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Ask for the revision string, not the checkbox.</b> "MCP support" without a date is unfalsifiable. Current is <code>2026-07-28</code>; anything that only speaks <code>initialize</code> is running a protocol the spec has since removed.</li>
+        <li><b>Ask which transport you are buying.</b> A bundled stdio server on your laptop and a hosted Streamable HTTP endpoint are different products with different auth, different uptime and different data-residency answers.</li>
+        <li><b>Test <code>server/discover</code> before you trust the integration.</b> It is mandatory in the current revision. A server that cannot answer it is either old or incomplete — and either way, your agent will hit the failure at runtime rather than at evaluation.</li>
+        <li><b>Count the catalogue in tokens, then in dollars.</b> Add up every tool description your agent loads per request, multiply by requests per day, and price it as input tokens. Anthropic's own before/after is 150,000 → 2,000; the gap is the value of progressive disclosure.</li>
+        <li><b>Map each server to the trifecta.</b> For every connector, note whether it reads untrusted input, holds private data, or can act outward. Servers are additive: three individually reasonable connectors can compose into an unsafe agent.</li>
+        <li><b>Ask who holds the token and where it is scoped.</b> Remote MCP servers use OAuth; incremental scope consent and Client ID Metadata Documents are now the recommended patterns, and a connector that wants one broad scope for everything is telling you it has not implemented them.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>MCP is the reason "connectors" became a feature category rather than a partnership announcement, so it shows up in almost every purchase on this site. In <a href="/best/ai-coding-assistants">the best AI coding assistants ranking</a> it is the difference between an agent that can reach your issue tracker through a vendor-built integration and one that reaches it through a server you can swap. In <a href="/vs/claude-code-vs-cursor">Claude Code vs Cursor</a> it is the part of the two products that is genuinely converging, which is why the comparison now turns on permissions and review flow rather than on tool lists. In <a href="/vs/ollama-vs-lm-studio">Ollama vs LM Studio</a> it is the dividing line for local-first setups: a local model is only as useful as the local servers it can drive. Related terms: <a href="/glossary/function-calling">function calling</a> is the model-level mechanism MCP standardises at the protocol level, <a href="/glossary/ai-agent">AI agent</a> is the product category that consumes it, <a href="/glossary/prompt-injection">prompt injection</a> is the attack surface it widens, and <a href="/glossary/tokens-per-second">tokens per second</a> explains why a large tool catalogue also costs latency, not just money. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>The Model Context Protocol is an open JSON-RPC 2.0 standard, introduced by Anthropic in November 2024 and donated to the Linux Foundation's Agentic AI Foundation on 2025-12-09, that lets one AI connector work across ChatGPT, Claude, Gemini, Cursor, Copilot and VS Code. Its current revision, 2026-07-28, is stateless: protocol sessions and the <code>initialize</code> handshake are gone, <code>server/discover</code> is mandatory, servers can no longer initiate requests, and Roots, Sampling and Logging are deprecated. That is why "we support MCP" is not an answer — the three questions that decide the purchase are which revision, which transport, and who holds the token. The cost of getting it wrong is measured in tokens: 150,000 versus 2,000 in Anthropic's own benchmark for the same task.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
