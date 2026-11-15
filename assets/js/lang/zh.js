@@ -54,6 +54,8 @@ window.I18N.zh = {
   "hot.c9.m": "许可 · MLX · 本地 API 端口 · 结论",
   "hot.c10": "改权重，还是给上下文？",
   "hot.c10.m": "成本 · 谁还开放 · 决策规则 · 结论",
+  "hot.c11": "买 token，还是租显卡？",
+  "hot.c11.m": "token 价格 · GPU 时租 · 盈亏平衡算术 · 结论",
   "rank.r7": "2026 最佳 AI 视频生成工具",
   "rank.r7.m": "Veo · Runway · 可灵 · Pika · Sora 按活选",
   "rank.r8": "2026 最佳 AI 写作工具",

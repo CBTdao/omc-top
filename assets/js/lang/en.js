@@ -54,6 +54,8 @@ window.I18N.en = {
   "hot.c9.m": "Licence · MLX · local API port · verdict",
   "hot.c10": "Weights or context?",
   "hot.c10.m": "Cost · who still offers it · decision rule · verdict",
+  "hot.c11": "Buy tokens or rent the GPUs?",
+  "hot.c11.m": "Token prices · GPU-hour rates · break-even arithmetic · verdict",
   "rank.r7": "Best AI video generators of 2026",
   "rank.r7.m": "Veo · Runway · Kling · Pika · Sora, routed by job",
   "rank.r8": "Best AI writing tools of 2026",
