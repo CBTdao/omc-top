@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is a Vector Database? In 2026 the Bill Is Queries, Not Storage | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/vector-database">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is a Vector Database? In 2026 the Bill Is Queries, Not Storage | AITop">
+  <meta property="og:description" content="A vector database stores embeddings and answers nearest-neighbour queries over them. The 2026 pricing reality: Pinecone bills $0.33/GB-month for storage but $16–18 per million read units, and a read unit is billed per gigabyte of namespace scanned — so at 1536 dimensions, storing a million vectors costs about $2.36/month while querying them 50,000 times a day costs about $180.">
+  <meta property="og:url" content="https://top.omc.network/glossary/vector-database">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is a Vector Database? In 2026 the Bill Is Queries, Not Storage | AITop">
+  <meta name="twitter:description" content="A vector database stores embeddings for similarity search. Pinecone bills queries by the gigabyte scanned: 1 read unit per GB of namespace per query. Storage is $0.33/GB-month; at a million 1536-dim vectors the query bill runs ~75× the storage bill.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="A vector database is a database built to store embeddings and answer nearest-neighbour queries over them. In 2026 the four major managed services bill on four different models: Pinecone on storage plus read/write units ($0.33/GB-month; $16–18 per million read units, where one read unit is billed per gigabyte of namespace scanned), Weaviate Cloud on total vector dimensions plus GiB stored (Flex from $45/month), Zilliz Cloud on per-CU-hour compute, and open-source options (Milvus, Qdrant, pgvector) on the nodes you run. Using Pinecone's own size formula and rates, one million 1536-dimension vectors with 1 KB of metadata each occupy a 7.15 GB index costing about $2.36/month in storage — but 50,000 queries per day against that namespace consume roughly 10.7 million read units, about $171–193/month. The query bill scales with your corpus size, not your traffic.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Vector database","item":"https://top.omc.network/glossary/vector-database"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Vector database","description":"A vector database is a database built to store embeddings (numeric vector representations produced by embedding models) and answer approximate nearest-neighbour queries over them, typically via ANN indexes such as HNSW. It is the storage layer underneath retrieval-augmented generation (RAG), semantic search and recommender systems. In 2026 the four mainstream managed options bill on four different models: Pinecone bills storage ($0.33 per GB-month) plus read units and write units ($16–18 and $4–4.50 per million on the Standard plan, varying by cloud and region), where a query consumes one read unit per gigabyte of namespace size with a 0.25-RU minimum and parameters like top_k do not affect read cost; Weaviate Cloud bills total vector dimensions plus storage in GiB, with a $45/month Flex minimum and a $400/month Premium minimum; Zilliz Cloud bills compute in Capacity Units per hour; and open-source engines (Milvus, Qdrant, Weaviate self-managed, pgvector) bill whatever nodes you run them on. Because read units are metered by the gigabytes scanned, per-query billing makes the monthly bill scale with corpus size rather than traffic: on Pinecone's own size formula, one million 1536-dimension vectors with 1 KB metadata each form a 7.15 GB index (about $2.36/month of storage), and 50,000 queries a day against it consume roughly 10.7 million read units (about $171–193/month).","url":"https://top.omc.network/glossary/vector-database","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is a vector database (in plain English)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-16. Sources are the vendors' own pages and documentation: Pinecone's pricing page and "Understand Pinecone cost" docs (read/write-unit formulas, index-size formula), Weaviate's pricing page and pricing FAQ, and Zilliz Cloud's list-price guide. Rates were re-checked against the official pages on 2026-11-16; Pinecone's numbers were additionally cross-checked against two independent pricing trackers.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p>A <b>vector database</b> is a database built to store <a href="/glossary/embedding">embeddings</a> and answer nearest-neighbour queries over them — the storage layer under <a href="/glossary/rag">RAG</a>, semantic search and recommendations. The 2026 buyer's trap is that the four mainstream managed options bill on four incompatible models: <b>Pinecone</b> bills storage plus per-query <i>read units</i> (<b>$0.33/GB-month</b>; <b>$16–18 per million</b> read units on Standard, where <b>one read unit is billed per GB of namespace scanned</b>); <b>Weaviate Cloud</b> bills total <i>vector dimensions</i> plus GiB stored (<b>$45/month</b> Flex minimum); <b>Zilliz Cloud</b> bills per-CU-hour compute; open-source engines bill whatever nodes you run. Work Pinecone's own numbers and the reversal appears: one million 1536-dim vectors with metadata form a <b>7.15 GB</b> index costing about <b>$2.36/month</b> to store — but 50,000 queries a day against it meter roughly <b>10.7 million read units</b>, about <b>$171–193/month</b>. The query bill scales with your <i>corpus</i>, not your traffic.</p></div>
+
+    <section class="section">
+      <h2>What does a vector database actually mean?</h2>
+      <p>A vector database does three jobs. It stores records that carry an embedding — the list of numbers an <a href="/glossary/embedding">embedding model</a> produces, typically 768 to 3,072 dimensions — alongside each record's ID and metadata. It builds an approximate-nearest-neighbour (ANN) index over those vectors, most commonly an HNSW graph, so that "which records are most similar to this query vector" is answered in milliseconds without comparing against every row. And it filters those results by metadata, so a search can be constrained to one tenant, one folder or one date range. That is the whole machine; everything else in the marketing is configuration.</p>
+      <p>What makes it a <i>database</i> decision rather than a library decision is the operational wrapper: replication, multi-tenancy, backups, and a bill you can forecast. Postgres with the pgvector extension, or a raw ANN library inside your application, covers the first two jobs free. What you are buying from a managed vector database is the third — plus the opinionated metering that comes with it. That metering is where the actual purchase decision lives, because the 2026 market has not converged on one pricing axis; it has fragmented across four, and they rank workloads differently.</p>
+      <p>The four models, from the vendors' own pricing pages (November 2026): <b>Pinecone</b> meters four things on serverless — storage, read units, write units, and egress — at $0.33 per GB-month of index size, $16–18 per million read units and $4–4.50 per million write units on the Standard plan (rates vary by cloud and region; Enterprise runs $24–27 and $6–6.75 with a $500/month minimum and a 99.95% SLA). <b>Weaviate Cloud</b> bills the <i>total number of vector dimensions</i> you store, plus storage in GiB and backups — its FAQ explains the choice as "a simple number you can calculate, rather than abstract Read/Write units or CPU cycles" — with a $45/month Flex minimum and a $400/month Premium minimum, and discounted dimension rates for quantized indexes. <b>Zilliz Cloud</b> (the managed Milvus) bills compute in Capacity Units (CU) per hour plus per-GB storage. And the open-source route — self-managed Milvus, Qdrant, Weaviate, or pgvector — bills whatever nodes you run it on, per node rather than per query.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>Because on the per-query model, <b>the price of one query depends on how big your corpus is, not on how hard the query is</b>. Pinecone's cost documentation is explicit about the meter: "A query uses 1 RU for every 1 GB of namespace size, with a minimum of 0.25 RUs per query." The same page adds the counterintuitive part — parameters that shape the response, like <code>top_k</code>, <code>include_metadata</code> and <code>include_values</code>, <i>do not affect query cost</i>. A query that returns 5 results and one that returns 100 from the same namespace meter identically. You are paying for the scan, not the answer.</p>
+      <p>Run the arithmetic end to end (ours, from Pinecone's published formula and rates). Pinecone's own size formula counts ID + metadata + dimensions × 4 bytes per record, and its documentation works the same example we will: <b>1,000,000 records, 1536 dimensions, 1,000 bytes of metadata, 8-byte IDs = a 7.15 GB index</b>. Storage at $0.33/GB-month costs about <b>$2.36/month</b>. Now query it: a 7.15 GB namespace meters ~7.15 RUs per query. At 50,000 queries per day — 1.5 million queries a month — that is roughly <b>10.7 million RUs</b>, or <b>$171–193/month</b> at Standard rates. Reads out-bill storage by about <b>75×</b>.</p>
+      <p>Now hold traffic constant and change corpus size, because that is the trap. The same 1.5 million queries a day-month against a <b>1 GB</b> namespace meter 1.5M RUs — <b>$24–27/month</b>. Identical traffic, one-seventh the corpus, one-seventh the read bill. This is the opposite of how most SaaS bills behave, and it inverts the usual optimisation instincts: shrinking <code>top_k</code> saves nothing, while splitting one mega-index into per-customer namespaces, or cutting metadata payload (which counts toward the billed GB), moves the number linearly. It also explains why Weaviate's dimension-based model and Zilliz's per-CU model exist: they price the corpus and the hardware, letting query volume ride free up to capacity — which is exactly the wrong deal for spiky, low-QPS workloads and the right one for hot, read-heavy ones. There is no universally cheaper option; there is only the axis your workload is heaviest on.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>Is Pinecone still the default, and what does it really cost?</h3>
+      <p>Pinecone's serverless platform is the per-query model at its purest, and its pricing page keeps the entry price low enough to be misleading without the fine print. The free Starter tier includes 2 GB of storage, 2M write units and 1M read units a month — enough for a prototype. Standard requires no published minimum but starts metering at the rates above, plus $0.10/GB of egress with 100 GB/month included; Enterprise carries a $500/month minimum, 99.95% uptime SLA, and BYOC. Two cost details hide in the documentation rather than the pricing page: every <i>fetch</i> request costs 1 RU per 10 records (minimum 1), and every <i>upsert</i> request bills 1 WU per 1 KB of request with a 5 WU minimum — so 1,000 upserts of 1536-dim records with 1 KB metadata each meter about 7,140 WUs per the vendor's own table. Index writes are not the bill you should watch; queries are.</p>
+      <h3>What do the alternatives actually price?</h3>
+      <p>Weaviate Cloud's FAQ justifies its dimension meter directly: total vector dimensions are "a good indicator of the resources required — a simple number you can calculate." The trade is legibility versus load-blindness: your Flex bill starts at $45/month whether you run 10 queries or 10 million, until hardware capacity forces you up the tiers (Premium from $400/month with a 99.9% SLA, dedicated deployments above that). Quantization discounts the dimension rate itself — compressed indexes "yield greater efficiency, reflected in discounted list prices." Zilliz Cloud splits compute (per CU-hour, with separate on-demand query and indexing CUs) from storage (per GB-month), which is the model closest to renting hardware; it suits steady production traffic and punishes idle clusters less than a fixed node does. And the open-source route — self-managed Milvus, Qdrant or Weaviate, or pgvector inside the Postgres you already run — has zero license cost and per-node economics that win decisively at high query rates, at the price of owning the 3 a.m. pager yourself.</p>
+      <h3>When do you not need one at all?</h3>
+      <p>The honest 2026 answer: more often than the landing pages admit. Under roughly 10 million vectors at moderate query rates, pgvector on a Postgres instance you already pay for usually costs less in total than any managed vector bill, with recall that is competitive for most RAG workloads. Dedicated vector databases earn their keep on scale, multi-tenancy, latency SLAs and hybrid search features. A useful tells-based rule (ours): if your embedding bill is bigger than your query bill and your corpus fits on one machine, you have a Postgres problem, not a vector database problem. If read units are growing faster than your storage and your namespaces approach tens of GB, the per-query model has found your workload, and the model choice becomes a real decision. And whichever storage you pick, the vectors themselves are disposable — re-embedding after a model swap is the real switching cost, which is why the <a href="/glossary/embedding">embedding</a> choice deserves more deliberation than the database choice.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Price the queries, not the vectors.</b> Ask every managed vendor the same question with your real numbers: monthly storage cost at your corpus size, and monthly cost at your query rate <i>against</i> that corpus size. On per-query billing the second number contains the first multiplied by your scan size.</li>
+        <li><b>Count the GB your queries scan.</b> Pinecone meters 1 RU per GB of namespace. Metadata counts toward that GB, so trimming stored metadata and splitting one index into per-tenant namespaces are the two levers that actually move the bill; <code>top_k</code> moves nothing.</li>
+        <li><b>Match the meter to the workload shape.</b> Spiky or low-QPS with a large corpus: per-node or per-dimension models (Zilliz, Weaviate, self-hosted) usually win. Hot, read-heavy, steady: per-query billing is predictable and cheap at small namespaces. Both at once: run the arithmetic both ways before believing either vendor's calculator.</li>
+        <li><b>Do not buy a managed cluster for a corpus that fits in RAM.</b> Under ~10M vectors, pgvector on Postgres you already run covers most RAG needs at near-zero marginal cost. Scale out when you hit multi-tenant isolation, latency SLAs, or hundreds of millions of vectors — not before.</li>
+        <li><b>Check the meter on fetch and upsert too.</b> 1 RU per 10 fetched records and 5 WU minimum per write request sound small and compound in batch jobs. Read the metering doc, not just the pricing table, before moving ingestion pipelines.</li>
+        <li><b>Weight the switching cost on the embeddings, not the database.</b> Exporting vectors is a COPY command; re-embedding a corpus after an <a href="/glossary/embedding">embedding model</a> change is a full re-embedding bill. Prefer a database that stores vectors you bring, over one that locks you into its own.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>The vector database is the line item under everything retrieval-shaped on this site. In <a href="/glossary/embedding">embedding</a> it is where the "6 KB per vector" storage warning lands as an actual invoice; in <a href="/glossary/reranking">reranking</a> it is the stage whose per-query meter sits on top of the vector store's per-query meter — stack both and the retrieval bill can outgrow the model bill. In <a href="/vs/fine-tuning-vs-rag">fine-tuning vs RAG</a> it is the infrastructure the RAG half quietly assumes. In <a href="/best/ai-customer-service-tools">the best AI customer-service tools ranking</a> it is what "searches your knowledge base" actually runs on, and the reason per-resolution pricing looks cheap until you check what the vendor pays for retrieval. Related terms: <a href="/glossary/embedding">embedding</a> is the content it stores, <a href="/glossary/rag">RAG</a> is the workload that makes it load-bearing, and <a href="/glossary/inference-cost">inference cost</a> is the other half of the RAG bill. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>A vector database stores embeddings and answers nearest-neighbour queries over them — and in 2026 the four mainstream managed options bill on four different meters: Pinecone on storage plus read units where one query costs 1 RU per GB of namespace scanned ($0.33/GB-month storage, $16–18 per million RUs on Standard), Weaviate on total vector dimensions ($45/month Flex minimum), Zilliz on per-CU-hour compute, and open-source engines on the nodes you run. Pinecone's own formulas produce the number to remember: a million 1536-dim vectors cost about $2.36/month to store and about $171–193/month to query 50,000 times a day. On per-query billing, the bill tracks your corpus, not your traffic — so pick the meter that matches what your workload actually does at scale, and do not buy a managed cluster for a corpus that fits on one Postgres box.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>

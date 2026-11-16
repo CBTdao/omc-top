@@ -77,3 +77,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/prompt-injection](https://top.omc.network/glossary/prompt-injection): What Is Prompt Injection? The Test That Decides Which AI Tools Are Safe to Connect | AITop
 - [https://top.omc.network/glossary/model-context-protocol](https://top.omc.network/glossary/model-context-protocol): What Is the Model Context Protocol (MCP)? The Wire Standard Behind Every AI Connector | AITop
 - [https://top.omc.network/glossary/distillation](https://top.omc.network/glossary/distillation): What Is Distillation in AI? In 2026 It Is a Supply Chain, Not a Feature | AITop
+- [https://top.omc.network/glossary/vector-database](https://top.omc.network/glossary/vector-database): What Is a Vector Database? In 2026 the Bill Is Queries, Not Storage | AITop
