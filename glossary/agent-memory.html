@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Agent Memory? In 2026 the Bill Is Tokens, Not Rows | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/agent-memory">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Agent Memory? In 2026 the Bill Is Tokens, Not Rows | AITop">
+  <meta property="og:description" content="Agent memory is the layer that lets a model carry facts across sessions instead of replaying the whole conversation. In 2026 it is three different products: Anthropic's client-side memory directory (six file commands, shipped 2025-09-29 with context editing), session stores that replay history, and extracted-fact stores like Mem0, whose own paper reports 26% relative gain over OpenAI's memory, 91% lower p95 latency and 90%+ fewer tokens than full-context replay — at a 7k-token footprint instead of a 26k-token transcript.">
+  <meta property="og:url" content="https://top.omc.network/glossary/agent-memory">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Agent Memory? In 2026 the Bill Is Tokens, Not Rows | AITop">
+  <meta name="twitter:description" content="Memory is sold as a token saver. Run the arithmetic against prompt caching and it mostly isn't one: 26k replayed tokens at a cache-read rate cost about $0.008 a turn, while 7k retrieved memory tokens at full input price cost about $0.021. Memory's real product is surviving the window boundary and being shared across sessions.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Agent memory is the persistence layer that lets an AI agent keep facts, preferences and progress across sessions instead of replaying the conversation. In 2026 three families exist and they are not the same product: conversation-replay session stores, Anthropic's client-side memory tool (a /memories directory the model edits with six commands, shipped 2025-09-29 in public beta alongside context editing, which Anthropic measured at 84% lower token consumption on a 100-turn web search evaluation), and extracted-fact memory services such as Mem0, whose paper reports 26% relative improvement over OpenAI's memory on LOCOMO, 91% lower p95 latency and over 90% fewer tokens than full-context replay, with a ~7k-token memory footprint instead of a ~26k-token transcript. The buyer's trap is that the headline savings are measured against a baseline almost nobody ships, and against prompt caching the arithmetic inverts.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Agent memory","item":"https://top.omc.network/glossary/agent-memory"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Agent memory","description":"Agent memory is the persistence layer that lets an AI agent retain facts, user preferences and task progress across sessions, instead of re-sending the entire conversation history inside the context window on every turn. It is implemented in three distinct families in 2026: (1) conversation-replay session stores, where the framework persists message history and re-injects it; (2) a file-based memory tool, in which the model itself writes and edits files in a memory directory through tool calls — Anthropic's memory tool (type memory_20250818) does this with six commands (view, create, str_replace, insert, delete, rename) against a /memories path, executes client-side under the developer's own storage, and shipped on 2025-09-29 in public beta together with context editing, where Anthropic reports a 39% performance improvement combining both, 29% from context editing alone, and 84% lower token consumption on a 100-turn web-search evaluation; and (3) extracted-fact memory services such as Mem0 and Zep, which use an LLM to extract and consolidate facts and retrieve a small ranked set per query — the Mem0 paper (arXiv 2504.19413) reports a 26% relative improvement on the LLM-as-a-Judge metric over OpenAI's memory on the LOCOMO benchmark, about 91% lower p95 latency and over 90% lower token cost than full-context replay, with a memory footprint of roughly 7,000 tokens per conversation against roughly 26,000 for the raw transcript. Because memory is metered in tokens rather than rows, its economics are a context-budget trade rather than a storage trade.","url":"https://top.omc.network/glossary/agent-memory","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is agent memory (and what does it actually cost)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-17. Primary sources: Anthropic's memory-tool documentation and its 2025-09-29 context-management announcement, the Mem0 paper (arXiv 2504.19413) and Mem0's own pricing page, plus our own token arithmetic at published list rates. Numbers were re-checked on 2026-11-17.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Agent memory</b> is the layer that lets a model keep facts, preferences and task state <i>across</i> sessions instead of re-sending the whole conversation inside the <a href="/glossary/context-window">context window</a> every turn. In 2026 it is three different products sold under one word: conversation-replay <b>session stores</b>, a <b>file-based memory tool</b> the model edits itself (Anthropic's <code>memory_20250818</code>: six commands against a <code>/memories</code> directory, client-side storage, shipped 2025-09-29 with context editing — Anthropic reports <b>39%</b> better performance with both, <b>29%</b> from context editing alone, and <b>84%</b> fewer tokens on a 100-turn search evaluation), and <b>extracted-fact stores</b> like Mem0, whose paper claims <b>26%</b> relative gain over OpenAI's memory, <b>91%</b> lower p95 latency and <b>90%+</b> fewer tokens than full-context replay — carrying <b>~7,000</b> tokens of memory instead of a <b>~26,000</b>-token transcript. The buyer's trap: those savings are measured against full replay, and against <a href="/glossary/prompt-caching">prompt caching</a> the arithmetic inverts. Memory is a <i>window-boundary</i> product, not a token-saving one.</p></div>
+
+    <section class="section">
+      <h2>What does agent memory actually mean?</h2>
+      <p>Agent memory is the persistence layer that lets an AI agent retain what it learned in an earlier session and act on it in a later one — user preferences, project state, decisions already made — without paying to re-read the entire prior conversation on every request. The context window is working memory and it is erased at the end of a call; memory is the thing on the other side of that erasure. Everything else in the category is an implementation choice about <i>what</i> gets written down and <i>who</i> decides.</p>
+      <p>Those implementation choices split into three families, and they are not interchangeable products.</p>
+      <ul>
+        <li><b>Replay (session stores).</b> The framework persists the message list and re-injects it — sometimes verbatim, sometimes with a rolling summary. This is the default in most agent SDKs because it needs no new infrastructure: the "memory" is the conversation, and the bill is the conversation's length. It works exactly until the transcript outgrows the window, which for an agent doing multi-hour work is measured in days, not months.</li>
+        <li><b>Tool-based files.</b> The model is given a small filesystem and decides what to write. Anthropic's memory tool is the cleanest published example: a <code>/memories</code> directory, six commands (<code>view</code>, <code>create</code>, <code>str_replace</code>, <code>insert</code>, <code>delete</code>, <code>rename</code>), executed <i>client-side</i> — the model emits a tool call and your application performs the file operation against whatever store you choose. Anthropic frames it as "just-in-time" retrieval: keep the active context focused, fetch detail on demand. The design consequence is that the model owns relevance and your infrastructure owns durability; there is no ranking function to tune, and no bill except the tokens the model spends reading and writing.</li>
+        <li><b>Extracted facts.</b> A separate pipeline reads each exchange, extracts candidate facts, and consolidates them against what is already stored — the Mem0 paper describes the update step as an LLM choosing among <b>ADD, UPDATE, DELETE or NOOP</b> for each candidate. Retrieval then returns a small ranked set per query instead of a transcript. This is the family that produces the benchmark numbers everyone quotes, and the one that carries a per-turn write bill nobody puts on the pricing page.</li>
+      </ul>
+      <p>The distinction that decides purchases is <b>who chooses what to forget</b>. In replay, nobody does — the window truncates. In the tool model, the model decides, in-band, using the same judgment it uses for everything else. In the extracted-fact model, an extraction prompt decides, out-of-band, before you ever see the result. Those are three different failure modes: silent truncation, confident miscategorisation, and a lossy summary you cannot audit.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>Because memory is priced like inference and sold like storage, and the two do not reconcile. Rows in a memory store cost approximately nothing; the tokens it takes to <i>read and write</i> those rows are billed at the same rates as any other token. So the question is never "how much memory does the plan include" — it is "how many tokens does one turn cost with memory versus without it, and at what point does the transcript stop fitting".</p>
+      <p>Run the arithmetic on the vendors' own published figures (ours; rates are a mid-tier $3.00 per million input tokens, the cache-read rate is the 0.1× multiplier documented in <a href="/glossary/prompt-caching">prompt caching</a>). The Mem0 paper puts a raw LOCOMO conversation at roughly <b>26,000 tokens</b> and its own memory footprint at roughly <b>7,000</b>.</p>
+      <table>
+        <thead><tr><th>What you send each turn</th><th>Tokens</th><th>Effective input rate</th><th>Cost per turn</th></tr></thead>
+        <tbody>
+          <tr><td>Full transcript, no caching</td><td>26,000</td><td>$3.00 / M</td><td><b>$0.078</b></td></tr>
+          <tr><td>Full transcript as a cache read</td><td>26,000</td><td>$0.30 / M</td><td><b>$0.0078</b></td></tr>
+          <tr><td>Retrieved memory, uncached</td><td>7,000</td><td>$3.00 / M</td><td><b>$0.021</b></td></tr>
+          <tr><td>Retrieved memory as a cache read</td><td>7,000</td><td>$0.30 / M</td><td><b>$0.0021</b></td></tr>
+        </tbody>
+      </table>
+      <p>Read the second row against the third. A warm cache makes replaying the <i>entire</i> transcript about <b>2.7× cheaper</b> per turn than reading a 7,000-token memory. The 90%-fewer-tokens headline is real, and it is being compared against the one baseline — uncached full replay — that a competent team stopped shipping the day caching became available. If your sessions fit in the window and your cache stays warm, a memory layer is a new cost centre, not a saving.</p>
+      <p>Then add the write side, which the benchmark tables leave out. Extraction is not free: the Mem0 method calls an LLM at least twice per exchange — once to pull candidate facts, once to decide ADD/UPDATE/DELETE — and those calls are billed as normal input and output tokens. At 2,000 input and 300 output tokens per call on a mid-tier model, one exchange costs roughly <b>$0.021</b> to write before it costs anything to read. Over 1,000 exchanges that is about <b>$21 of writes</b> against roughly <b>$8 of cached replay</b> for the same turns. Memory only starts winning when the alternative stops being available.</p>
+      <p>Which is the honest case for it, and it is a good one: <b>memory is what you buy at the window boundary and across sessions.</b> A support agent that must remember a customer from March in November cannot replay March; a coding agent that resumes after a context reset cannot replay what was truncated; a consumer product with a per-user profile cannot re-send every user's history on every request. In those cases the comparison is not memory versus cache — it is memory versus <a href="/glossary/rag">RAG</a> over raw logs, or memory versus nothing. Against <i>that</i> baseline the 7k-token footprint is a bargain, and the 91% p95 latency reduction (1.44 s versus 17.12 s in the paper's LOCOMO runs) is the number that actually shows up in a product demo.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>What did Anthropic ship, and what does the "39%" measure?</h3>
+      <p>On <b>2025-09-29</b> Anthropic shipped two features together: <b>context editing</b>, which automatically clears stale tool calls and results from the window as it approaches the limit, and the <b>memory tool</b>, which lets the model persist what it learned into files outside the window and read it back later. Anthropic's own announcement gives three measurements: combining both improved performance by <b>39% over baseline</b> on its agentic evaluation; context editing <b>alone</b> delivered <b>29%</b>; and on a 100-turn web-search evaluation, context editing let agents finish workflows that would otherwise fail on context exhaustion while cutting token consumption by <b>84%</b>.</p>
+      <p>Read those three numbers in order and the product strategy is visible: <b>most of the gain comes from deletion, not storage.</b> Thirty of the thirty-nine points arrive from throwing away stale tool output. Memory is the smaller, more expensive partner — and it exists because once you delete, you need a place to have put things first. Anthropic's documentation is explicit that the memory tool is the "just-in-time" half of the pattern: store what you learn, retrieve on demand, keep the active context focused. It is also explicitly client-side, and eligible for zero-data-retention agreements — the model proposes, your infrastructure stores.</p>
+      <h3>What does the memory layer actually cost per turn?</h3>
+      <p>Two line items, and buyers usually price only one. The <b>read</b> is the retrieved memory in the prompt: 7,000 tokens in the paper's configuration, more if you concatenate several memory types. The <b>write</b> is the extraction pipeline, which runs whether or not anyone ever retrieves the result — a fixed cost per exchange, paid in full even for the turns that produced nothing worth remembering. On the published rates above, the write roughly matches the read for a mid-sized model, and dominates it for a cheap one. That is the opposite of a database, where writes are cheap and reads are the cost.</p>
+      <p>One more asymmetry worth naming: the memory footprint scales with <i>entities</i>, not with traffic. A store holding 7k tokens per user costs 7k tokens for user one and 7k for user ten thousand — linear in users, flat in queries. Compare that to a <a href="/glossary/vector-database">vector database</a>, where the per-query meter scales with corpus size, and to <a href="/glossary/kv-cache">KV cache</a>, which scales with context length per request. Three different axes, three different bills; a stack can be cheap on one and expensive on the other two.</p>
+      <h3>Why is the memory market's price list empty?</h3>
+      <p>Check the vendors' own pages and the shape of the 2026 market is visible. Mem0's pricing page currently lists two options: <b>Free</b> — unlimited end users, 10,000 add requests and 1,000 retrievals per month for the first 30 days with model calls included, or 50,000 adds and 10,000 retrievals a month if you bring your own LLM key — and <b>Custom</b>, which is a contract. The self-serve paid tier in the middle is gone, and graph memory, user profiles and consolidation are gated behind the contract. Meanwhile the platform vendors have taken the other route: Anthropic sells the primitive (tool calls at token rates, storage on your side), and every agent framework ships its own session store for free.</p>
+      <p>That is what a category looks like when it is being absorbed into the platform layer. The honest 2026 recommendation follows from it: <b>start with context editing plus caching, add a file-based memory only for state you must survive a reset, and buy an extracted-fact service only when you have a per-user profile that outlives the window and can measure the accuracy you are trading away.</b> Which brings up the number least likely to appear in a vendor deck: in the Mem0 paper, the best LLM-as-a-Judge score belongs to <b>full-context</b> processing, with the graph variant at <b>68.44%</b> and the base variant lower still. Memory does not beat reading everything. It beats reading everything <i>on cost and latency</i>, and it loses accuracy to do it. That is a fine trade — as long as you know you are making it.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Measure your session length against your window first.</b> If p95 sessions fit, caching plus context editing beats a memory layer on cost — run the four-row table above with your real token counts before you evaluate any vendor.</li>
+        <li><b>Price the writes, not the rows.</b> Ask what the extraction pipeline calls per exchange, on which model, and whether it runs on every turn or only on session close. A memory product that extracts on every turn has a permanent, traffic-linear bill.</li>
+        <li><b>Ask who decides what to forget.</b> Replay truncates silently, a file-based tool lets the model decide in-band, an extraction service decides out-of-band with a prompt you cannot see. Pick the failure mode you can debug.</li>
+        <li><b>Check where the bytes live.</b> Client-side storage (Anthropic's model) keeps data in your infrastructure and can qualify for zero-retention terms; a managed memory service moves the same personal data into a third party. That is a compliance decision before it is a technical one.</li>
+        <li><b>Treat "26% better" as relative.</b> It is measured against a named competitor on one benchmark (LOCOMO), not against the ceiling — in the same paper, full-context scoring is higher. Budget for an accuracy drop and measure it on your own eval set.</li>
+        <li><b>Do not buy memory to replace <a href="/glossary/rag">RAG</a>.</b> Documents belong in retrieval over a corpus; memory is for facts about the user and the task. Mixing them produces a store that is neither auditable nor cheap to query.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Memory is the line item that appears once an assistant stops being stateless. In <a href="/glossary/ai-agent">AI agent</a> it is what makes multi-session work possible at all; in <a href="/glossary/context-window">context window</a> it is the answer to the window's two hard edges — length and cost; in <a href="/glossary/prompt-caching">prompt caching</a> it is the alternative you should price against before buying it; in <a href="/glossary/function-calling">function calling</a> it is why the memory interface is six tool commands rather than an API endpoint; and in <a href="/vs/fine-tuning-vs-rag">fine-tuning vs RAG</a> it is the third option neither side of that comparison covers — learned behaviour belongs in weights, facts belong in retrieval, and <i>state</i> belongs here. In <a href="/best/ai-customer-service-tools">the best AI customer-service tools ranking</a> it is what "remembers your customers" actually runs on, and why per-resolution pricing hides a per-turn write. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Agent memory is the persistence layer that lets an agent carry facts across sessions instead of replaying the transcript — and in 2026 it is three products wearing one name: replay session stores, a client-side file directory the model edits itself (Anthropic's six-command memory tool, shipped 2025-09-29 with context editing, where 29 of the 39 points of measured gain came from deleting stale context rather than storing new context), and extracted-fact services like Mem0 (26% relative over OpenAI's memory, 91% lower p95 latency, 90%+ fewer tokens than full replay, ~7k tokens of footprint against ~26k of transcript). Price it honestly: at a $3.00/M input rate, a warm cache makes replaying 26k tokens cost about $0.008 per turn, while reading 7k uncached memory tokens costs about $0.021 — plus roughly $0.021 per exchange to write them. Memory is not a token-saving purchase. It is what you buy when the transcript no longer fits, the session no longer persists, or the profile belongs to a user you must remember for a year.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
