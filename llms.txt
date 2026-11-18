@@ -79,3 +79,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/distillation](https://top.omc.network/glossary/distillation): What Is Distillation in AI? In 2026 It Is a Supply Chain, Not a Feature | AITop
 - [https://top.omc.network/glossary/vector-database](https://top.omc.network/glossary/vector-database): What Is a Vector Database? In 2026 the Bill Is Queries, Not Storage | AITop
 - [https://top.omc.network/glossary/agent-memory](https://top.omc.network/glossary/agent-memory): What Is Agent Memory? In 2026 the Bill Is Tokens, Not Rows | AITop
+- [https://top.omc.network/glossary/context-rot](https://top.omc.network/glossary/context-rot): What Is Context Rot? The Bigger the Window, the Worse the Recall | AITop

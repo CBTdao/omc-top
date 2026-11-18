@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Context Rot? The Bigger the Window, the Worse the Recall | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/context-rot">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Context Rot? The Bigger the Window, the Worse the Recall | AITop">
+  <meta property="og:description" content="Context rot is the measured decline of LLM accuracy as input tokens increase — named by Chroma in a 2025-07-14 report that tested 18 models including GPT-4.1, Claude Opus 4, Gemini 2.5 Pro and Qwen3. Even one distractor degrades performance and four degrade it further; a shuffled haystack outperformed a coherent one across all 18 models; and on LongMemEval every model scored better with ~300 focused tokens than with ~113,000 full-context tokens. Anthropic adopted the term in its 2025-09-29 context-engineering guide.">
+  <meta property="og:url" content="https://top.omc.network/glossary/context-rot">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Context Rot? The Bigger the Window, the Worse the Recall | AITop">
+  <meta name="twitter:description" content="Context rot: LLM recall degrades as the context window fills. Chroma tested 18 models on 2025-07-14 — one distractor already hurts, four hurt more, and every model did better with 300 curated tokens than 113,000 raw ones. Window size is a marketing number; recall quality is the spec that matters.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Context rot is the measured decline of LLM performance as input tokens increase, even on trivial tasks. Named by Chroma's 2025-07-14 research report (18 models: GPT-4.1, Claude Opus 4, Gemini 2.5 Pro, Qwen3 and others), it means the advertised context window size is not the usable one: one distractor already degrades accuracy and four degrade it further, a shuffled haystack outperformed a coherent one across all 18 models, and on LongMemEval every model scored better with ~300 focused tokens than with ~113,000 full-context tokens. Anthropic adopted the term in its 2025-09-29 context-engineering guide and treats context as a finite attention budget.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Context rot","item":"https://top.omc.network/glossary/context-rot"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Context rot","description":"Context rot is the measured decline of a large language model's accuracy and recall as the number of input tokens increases — including on trivially simple tasks. The term comes from Chroma's research report 'Context Rot: How Increasing Input Tokens Impacts LLM Performance', published 2025-07-14 by Kelly Hong, Anton Troynikov and Jeff Huber, which tested 18 models (GPT-4.1 family, Claude Opus 4 / Sonnet 4 family, Gemini 2.5, o3, Qwen3). Key findings: a single distractor document already degrades performance and four degrade it further; a haystack with shuffled (incoherent) sentences outperformed a logically coherent one across all 18 models; accuracy degrades steadily on a repeated-words copying task from 25 to 10,000 words; and on LongMemEval every model scored better with roughly 300 focused tokens than with roughly 113,000 full-context tokens. Anthropic's engineering guide 'Effective context engineering for AI agents' (2025-09-29) adopted the term and frames the cause as a finite attention budget: a transformer with n tokens attends across n-squared pairwise relationships, so context must be treated as a finite resource with diminishing marginal returns, producing a performance gradient rather than a hard cliff. For buyers the implication is that a larger advertised context window is not a larger usable one, and tools that curate context (retrieval plus reranking) outperform tools that merely accept longer inputs.","url":"https://top.omc.network/glossary/context-rot","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is context rot (and why a bigger window doesn't fix it)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-18. Primary sources: Chroma's research report "Context Rot" (2025-07-14, Kelly Hong / Anton Troynikov / Jeff Huber) and Anthropic's engineering guide "Effective context engineering for AI agents" (2025-09-29). Numbers were re-checked on 2026-11-18.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Context rot</b> is the measured decline of a model's accuracy and recall as the number of input tokens grows — even on trivially simple tasks. The term was coined by vector-database company <b>Chroma</b> in a report published <b>2025-07-14</b> that tested <b>18 models</b> (GPT-4.1, Claude Opus 4, Gemini 2.5 Pro, Qwen3 and others). Its sharpest findings: a <b>single distractor</b> document already degrades performance and <b>four</b> degrade it further; a haystack with <b>shuffled</b> sentences outperformed a logically coherent one across <b>all 18 models</b>; and on the LongMemEval benchmark, <b>every model</b> scored better with roughly <b>300 focused tokens</b> than with roughly <b>113,000 full-context tokens</b>. Anthropic adopted the term in its 2025-09-29 engineering guide and treats context as a finite <b>attention budget</b>. The buyer's takeaway: the advertised context window is a marketing number — recall quality is the spec that matters.</p></div>
+
+    <section class="section">
+      <h2>What does context rot actually mean?</h2>
+      <p>Context rot is the gap between how much text a model <i>accepts</i> and how reliably it <i>uses</i> it. A model that advertises a one-million-token context window does not process token 100,000 with the same fidelity as token 100 — accuracy on retrieval, instruction-following and reasoning degrades as the input grows, and the degradation is task-dependent, not a fixed cliff. The name deliberately echoes hardware decay: capacity keeps being quoted in perfect condition, while effective recall wears out with use.</p>
+      <p>The <b>Chroma report</b> ("Context Rot: How Increasing Input Tokens Impacts LLM Performance", 2025-07-14) is the study that named the phenomenon. Its authors — <b>Kelly Hong</b>, <b>Anton Troynikov</b> and <b>Jeff Huber</b> — ran roughly <b>194,480 LLM calls</b> (of which only 69, or 0.035%, were task refusals) across four controlled experiments that extend the classic needle-in-a-haystack test, plus a word-copying task scaled from 25 to 10,000 words and the multi-session conversational benchmark LongMemEval. The models covered GPT-4.1, GPT-4.1 mini and nano, GPT-4o, o3, Claude Opus 4, Claude Sonnet 4/3.7/3.5, Gemini 2.5 Pro and Flash, and three Qwen3 sizes.</p>
+      <p>Four findings carry the paper, and each one breaks a habit buyers have picked up from vendor marketing:</p>
+      <ul>
+        <li><b>Distractors, not just length.</b> A single irrelevant document added to the haystack already degrades performance; four degrade it further. The degradation was also uneven — one specific distractor caused the largest drop in one configuration — and on the failure analysis, the models that hallucinated most were the GPT family, while Claude models hallucinated least and tended to abstain instead.</li>
+        <li><b>Coherence hurts.</b> Across all 18 models, a haystack whose sentences were randomly <i>shuffled</i> produced better results than the original logically coherent text. Structure is not neutral: a coherent document gives the model more semantically plausible places to be wrong.</li>
+        <li><b>Similarity decides the slope.</b> The more semantically similar the needle is to its surrounding haystack, the faster performance decays as input grows — the opposite of the intuitive "similar is easier" reading. Exact-match retrieval hides rot; fuzzy, real-world questions expose it early.</li>
+        <li><b>Position was not the culprit here.</b> Across 11 needle positions, the report found no significant performance difference — a result that complicates the popular "lost in the middle" story and points instead at interaction quality (what surrounds the needle) rather than location.</li>
+      </ul>
+      <p>The most quotable number is from LongMemEval: on the same 306 prompts, <b>every model performed significantly better with a focused prompt of roughly 300 tokens than with the full ~113,000-token context</b>. Nothing in the task changed — only the curation did.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>Because context-window size is one of the few spec-sheet numbers AI tools compete on, and it is close to meaningless without effective-use data. A tool that charges more for "1M-token context" is pricing capacity, not recall; Chroma's data shows recall is the binding constraint long before capacity is. Every token you stuff into the prompt is billed as <a href="/glossary/ai-token">input tokens</a> — so context rot charges you twice: once on the invoice, once in answer quality.</p>
+      <p>Anthropic's engineering guide (published 2025-09-29 by its Applied AI team) adopted the term and gave it a mechanical explanation: a transformer lets every token attend to every other token, which makes <b>n² pairwise relationships for n tokens</b> — as context lengthens, that attention budget is stretched thin. The guide's prescription is to treat context as "a finite resource with diminishing marginal returns" and find "the smallest possible set of high-signal tokens" for each turn. Two of its claims matter to buyers directly:</p>
+      <ul>
+        <li><b>It is a gradient, not a cliff.</b> Anthropic explicitly notes models "remain highly capable at longer contexts" with reduced precision on retrieval and long-range reasoning — so the failure shows up as subtly worse answers, not errors you can catch in a demo.</li>
+        <li><b>Long-context handling is interpolated, not learned.</b> Techniques like position encoding interpolation let models accept sequences longer than they were trained on, with some degradation in positional understanding — which is why the same model family can show very different effective-context behavior from its marketing copy.</li>
+      </ul>
+      <p>For a buyer this reframes the tool comparison. The questions stop being "how long is the window" and become "how does the product curate what enters it": does it retrieve rather than dump, does it rerank what it retrieves, does it clear stale tool output, and does it put constraints where the model will actually attend to them?</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>Is context rot fixed in newer models?</h3>
+      <p>Not eliminated — absorbed into practice. The 2025 Chroma report tested the then-current frontier (GPT-4.1, Claude Opus 4, Gemini 2.5 Pro) and found degradation in all of them, including on the trivial word-copying task. Anthropic's 2025-09-29 guide states the characteristic "emerges across all models", with some degrading more gently than others. What changed in 2026 is not the physics but the shipping pattern: platforms now sell the mitigation as a feature. Context editing that clears stale tool output, memory tools that offload state outside the window, and sub-agent architectures that explore in isolated contexts and return 1,000–2,000-token summaries are all responses to the same measured problem. The mitigation is real — Anthropic measured an 84% token reduction from context editing on a 100-turn evaluation — but it is a curation discipline, not a bigger number on the window spec.</p>
+      <h3>What did the repeated-words experiment show?</h3>
+      <p>The simplest task in the paper — copy a sequence of repeated words containing one unique word, from 25 up to 10,000 words — produced degradation in <b>every</b> model, with accuracy best when the unique word sat at the start of the sequence. Several models began generating words that were not in the input at around 500–750 words, and refusal behavior clustered at roughly 2.5–2.9% for GPT-4.1 and Claude Opus 4 (Qwen3-8B showed random outputs from about 5,000 words). A task a human cannot get wrong is a task the models measurably get worse at as input grows — that is the cleanest single demonstration of what context rot means.</p>
+      <h3>How should you shop with this in mind?</h3>
+      <p>Treat the three layers of the stack as the mitigation, and check each tool for all three: <a href="/glossary/rag">retrieval</a> to bring in only what the task needs, <a href="/glossary/reranking">reranking</a> to push the highest-signal documents to the top of what you send, and structured context (clear sections, constraints in prominent positions) so the tokens you do send are the ones the model can act on. Vendors that market window size without effective-recall data are selling the capacity half of a two-part spec.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Ignore window size as a buying criterion; test effective recall.</b> Ask how a tool performs at 10k, 100k and near its advertised maximum with realistic, semantically messy inputs — Chroma showed exact-match needles hide the rot and fuzzy questions expose it.</li>
+        <li><b>Count the distractors.</b> One irrelevant document already degraded performance in the study and four degraded it further. If a product pastes your whole workspace into the prompt, it is buying rot by default.</li>
+        <li><b>Prefer products that curate over products that accumulate.</b> Retrieval, reranking, context editing and structured note-taking are the 2026 mitigation set; "we accept 1M tokens" is not one of them.</li>
+        <li><b>Put constraints where they are attended to.</b> The report found needle position mattered little, but interaction quality mattered a lot — instructions buried in coherent prose are weaker than the same instructions isolated and explicit.</li>
+        <li><b>Watch for abstention versus hallucination.</b> In the failure analysis, Claude models tended to decline rather than guess and GPT models hallucinated most — a behavioral difference that changes which failure mode your product ships to users under long context.</li>
+        <li><b>Budget for the gradient.</b> Because degradation is gradual, it will pass a demo and surface in production. Build a regression set at your real context lengths, not at demo lengths.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Context rot is the quality-side constraint of the <a href="/glossary/context-window">context window</a>, whose entry covers the size-and-cost side of the same spec. It is the reason <a href="/glossary/rag">RAG</a> and <a href="/glossary/reranking">reranking</a> exist as product categories rather than research curiosities — both are curation responses to a recall budget that shrinks as input grows. It is what makes <a href="/glossary/agent-memory">agent memory</a> a window-boundary product: offloading state beats replaying it once the transcript is long enough to rot. And it is the invisible variable in every model comparison on this site — in <a href="/best/ai-chatbots">the best AI chatbots ranking</a>, in <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a>, and in <a href="/vs/fine-tuning-vs-rag">fine-tuning vs RAG</a>, where stuffing more context is the alternative neither side recommends. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Context rot is the measured decline of LLM accuracy as input tokens grow — named by Chroma in a 2025-07-14 report that tested 18 frontier models and found degradation even when the task was copying words: one distractor already hurt, four hurt more, a shuffled haystack beat a coherent one across all 18 models, and on LongMemEval every model did better with ~300 curated tokens than with ~113,000 raw ones. Anthropic's 2025-09-29 engineering guide adopted the term, explains it as a finite attention budget stretched across n² token relationships, and prescribes the mitigation the market now ships: retrieve, rerank, clear stale context, keep the highest-signal tokens. For buyers, the window size on the spec sheet is the capacity number; effective recall is the spec that decides what you actually get. Summary: on 2025-07-14, Chroma measured all 18 tested models — including GPT-4.1, Claude Opus 4 and Gemini 2.5 Pro — scoring better on LongMemEval with roughly 300 focused tokens than with roughly 113,000 full-context tokens, which is context rot in one number.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
