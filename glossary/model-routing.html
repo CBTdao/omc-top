@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Model Routing? The Fee Behind the &quot;Free&quot; Model Switcher | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/model-routing">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Model Routing? The Fee Behind the &quot;Free&quot; Model Switcher | AITop">
+  <meta property="og:description" content="Model routing is the intermediary layer that predicts which model should serve each request and dispatches it — usually between a cheap small model and a capable large one — to cut inference cost without dropping answer quality. Amazon Bedrock charges $1 per 1,000 routing decisions on top of token charges; OpenRouter charges nothing per request but takes a 5.5% fee when you buy credits. The router fee scales with request count while the savings scale with token spend, and on short-token workloads the fee can outgrow the savings.">
+  <meta property="og:url" content="https://top.omc.network/glossary/model-routing">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Model Routing? The Fee Behind the &quot;Free&quot; Model Switcher | AITop">
+  <meta name="twitter:description" content="Model routing dispatches each request to the cheapest model predicted to answer it well. Amazon Bedrock bills the decision ($1 per 1,000 requests); OpenRouter bills the capital (5.5% on credits). Neither is free — and the breakeven sits at roughly $3.3 of token spend per 1,000 requests.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Model routing is the intermediary layer that predicts which model should serve each request and dispatches it — usually between a cheap small model and a capable large one — to cut inference cost without dropping answer quality. Two managed examples define the 2026 market: Amazon Bedrock Intelligent Prompt Routing charges $1 per 1,000 requests on top of the routed model's token charges and claims up to 30% cost reduction within a same-family two-model pair; OpenRouter routes with no per-request fee but charges a 5.5% fee on credit purchases (8% on Business) and a 5% BYOK fee above its $25,000/month allowance. The router fee scales with request count while the savings scale with token spend — the breakeven for the Bedrock fee sits at roughly $3.3 of token spend per 1,000 requests.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Model routing","item":"https://top.omc.network/glossary/model-routing"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Model routing","description":"Model routing is the intermediary layer that predicts which model should serve each request and dispatches it — usually between a cheap small model and a capable large one — to cut inference cost without dropping answer quality. Two managed examples define the 2026 market. Amazon Bedrock Intelligent Prompt Routing (generally available since April 2025) holds a router with exactly two models from the same family (Anthropic Claude, Meta Llama, or Amazon Nova), predicts which will perform better per prompt, and charges $1 per 1,000 requests on top of the routed model's standard token charges; AWS states it can reduce costs by up to 30 percent without compromising accuracy, and the routing is tuned for English prompts. OpenRouter's auto router routes across providers with no per-request fee — you pay the serving model's list rate, the response's model field names what served you — while OpenRouter instead charges a 5.5% fee when you buy credits ($0.80 minimum, 8% on Business) and a 5% BYOK fee above a $25,000/month allowance. The pricing inversion that matters to buyers: the router fee scales with request count, the savings scale with token spend, and the breakeven for a $1/1,000 fee under a 30% saving sits at roughly $3.3 of token spend per 1,000 requests — short-token workloads like classification can pay more for routing than routing saves.","url":"https://top.omc.network/glossary/model-routing","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is model routing (and why is the "free" model switcher never free)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-21. Primary sources: AWS's official Bedrock pricing page (checked 2026-11-21, English and Chinese versions agree) and OpenRouter's official pricing FAQ (checked 2026-11-21), each cross-checked against independent third-party trackers.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Model routing</b> is the intermediary layer that predicts which model should serve each request and dispatches it — usually between a cheap small model and a capable large one — to cut inference cost without dropping answer quality. Two managed examples define the 2026 market. <b>Amazon Bedrock Intelligent Prompt Routing</b> charges <b>$1 per 1,000 requests</b> on top of the routed model's token charges, holds a router with <b>exactly two models from the same family</b> (Anthropic Claude, Meta Llama, or Amazon Nova), and claims <b>up to 30% cost reduction</b> without compromising accuracy. <b>OpenRouter's</b> auto router charges <b>no per-request fee</b> — but OpenRouter takes a <b>5.5% fee when you buy credits</b> (8% on Business) and a 5% BYOK fee above its <b>$25,000/month</b> allowance. The inversion that decides whether routing saves you money: the router fee scales with <b>request count</b>, the savings scale with <b>token spend</b> — and on short-token workloads the fee outgrows the savings.</p></div>
+
+    <section class="section">
+      <h2>What does model routing actually mean?</h2>
+      <p>Model routing is a dispatch decision inserted before inference: instead of hard-coding one model for an application, a routing layer looks at each incoming request and predicts which model should serve it. The prediction targets two quantities at once — response quality and cost — and the router picks the cheaper model whenever its predicted quality is good enough. The pattern exists because LLM workloads are skewed: in most products a large share of requests are trivial (greetings, lookups, classification) and a small share carry the real difficulty. Paying frontier-model rates for the trivial share is the waste routing exists to remove.</p>
+      <p>Two architectures dominate. A <b>predictive router</b> decides before any model runs: Amazon Bedrock's Intelligent Prompt Routing (generally available since April 2025) predicts each candidate model's response quality per request and forwards the prompt to the best quality-per-cost pick. A <b>cascading router</b> lets the cheap model attempt every request and promotes to the capable one only when the cheap answer looks weak — adaptive, but hard requests pay twice. Bedrock's implementation is the cleanest managed example of the first kind: each router holds exactly two models from the same family — Anthropic Claude, Meta Llama, or Amazon Nova — with one nominated as the fallback, and the dial you configure is the <b>response quality difference</b>: set it to 10%, and a request stays with the fallback unless the other model's predicted response is 10% better. Requests are addressed to the router ARN through the Converse and InvokeModel APIs, and the response trace names the model that actually served it (<i>trace.promptRouter.invokedModelId</i>).</p>
+    </section>
+
+    <section class="section">
+      <h2>What does model routing cost in 2026?</h2>
+      <h3>Amazon Bedrock: the router bills the decision</h3>
+      <p>AWS's official pricing page lists <b>Intelligent Prompt Routing at $1 per 1,000 requests</b> (On-Demand) — and that fee is on top of the standard token charges of whichever model the request is routed to. AWS's claim for the feature is that it "can reduce costs by up to 30 percent without compromising on accuracy." Two constraints bound the value: the pair sits inside one model family, and the routing is tuned for English prompts (per AWS documentation as tracked by independent router directories and engineering write-ups).</p>
+      <h3>OpenRouter: the platform bills the capital</h3>
+      <p>OpenRouter — a unified API across 600+ models and multiple providers per model — takes the opposite pricing shape. Its official FAQ states there is <b>no markup on inference</b>: you pay the provider's list price per token, and OpenRouter charges a <b>5.5% fee ($0.80 minimum) when you purchase credits</b> (the Business plan's credit fee is 8%, per its pricing page as tracked by independent cost calculators). Its auto router (<i>openrouter/auto</i>) picks a model and provider per request with <b>no extra routing fee</b> — you pay the serving model's rate, and the response's <i>model</i> field names it. If you bring your own provider keys (BYOK), pay-as-you-go accounts include a <b>$25,000-per-month allowance</b> of list-price inference with no BYOK fee; usage above the allowance carries a 5% fee, measured by inference cost rather than request count. Its free-model tier (50 requests/day, 1,000/day once you have bought at least $10 of credits) is the same routing machinery at a $0 price point.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>Because "routing" sounds like free optimization, and the fee is hiding in the units. Bedrock charges per <b>decision</b>; the savings scale with <b>tokens</b>. Run the arithmetic: a $1-per-1,000-requests fee is $0.001 per request. If routing genuinely cuts 30% of your token spend, the fee pays for itself only when the average request costs more than <b>$0.001 ÷ 0.30 ≈ $0.0033 in tokens</b> — call it roughly $3.3 of token spend per 1,000 requests. A long-context RAG request that costs $0.05 clears that bar forty-fold; a classification workload with short prompts and one-line answers can sit below it, meaning the router's decision fee exceeds the money the routing saves. Neither vendor publishes a per-request token-cost breakdown, so this breakeven is our arithmetic from the published fee and AWS's own 30% claim — but the shape is unavoidable: <b>the denser your tokens per request, the safer the fee; the thinner, the more the fee eats the savings.</b></p>
+      <p>OpenRouter's fee inverts the same trap. A 5.5% credit fee is a flat tax on <i>all</i> your inference — routed or not — so it cannot "outgrow the savings"; instead it is the cost of the option to route, failover, and switch providers. $100 of credits costs $105.50, which spreads to +5.5% on every list rate those credits buy. Whether that beats direct provider billing depends on what you get for it: one balance and one key across providers, automatic failover when a provider errors, and per-request provider controls (price caps, region pinning, zero-data-retention choices) that each direct provider relationship would otherwise force you to manage separately.</p>
+      <p>The second buyer trap is <b>what the router is allowed to pick</b>. A router is a two-model household, not a market: you are not buying "the best model for each request" — you are buying "the cheaper of two models, from the same family, that the router predicts will land within your quality-difference dial of the fallback." And on aggregators, the catalog itself varies: OpenRouter's own blog notes that some providers serve <b>quantized weights (FP8, FP4, INT8) at lower prices</b>, so the cheapest endpoint for "the same model" may not be the same model in full precision. If you cannot see which model and provider served each request, you cannot audit the bill — which is why the response's model field (OpenRouter) and the trace field (Bedrock) are not developer conveniences but billing controls.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>Is routing worth switching on by default?</h3>
+      <p>For high-token workloads — RAG answers, document analysis, agent loops with long transcripts — a 30% saving against a $0.001 decision fee is the cheapest cost lever on the board, cheaper than <a href="/glossary/prompt-caching">prompt caching</a> engineering in many stacks. For low-token workloads — classification, routing-between-routers, short chat turns — run the breakeven arithmetic first. The honest generalization: routing optimizes the <i>distribution</i> of your requests, so its value is a function of how skewed that distribution is. Uniform workloads gain little; heavy-tailed workloads gain the most.</p>
+      <h3>How do you audit what a router actually did?</h3>
+      <p>Three checks cover it. Log the <b>serving-model field</b> on every response (OpenRouter's <i>model</i> field; Bedrock's <i>trace.promptRouter.invokedModelId</i>). Track the <b>mix</b> over time — if the share of requests landing on the cheap model drifts, your quality-difference dial or your workload has changed. And spot-check outputs against a fixed regression set per model, because a router that quietly starts serving a quantized endpoint passes every latency check while degrading answer quality.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Compute the breakeven before enabling a per-request router fee.</b> Fee ÷ savings-rate = the average token cost per request routing must exceed. Below it, the fee is bigger than the saving.</li>
+        <li><b>Know your pair, not just the feature.</b> A Bedrock router holds exactly two same-family models with a nominated fallback; "routing" never means the whole catalog unless the platform says so (OpenRouter's auto router does range wider).</li>
+        <li><b>Set the quality-difference dial deliberately.</b> It is the knob that trades your answers for your budget — 10% predicted degradation tolerated on the cheap model is a product decision, not a default to leave untouched.</li>
+        <li><b>Log the serving-model field on every response.</b> The model field (OpenRouter) and the Bedrock trace are your audit trail; a router you cannot audit is a bill you cannot check.</li>
+        <li><b>Watch for quantized endpoints on aggregators.</b> The cheapest provider for the same model slug may serve FP8/FP4/INT8 weights — pin precision requirements if your workload is sensitive.</li>
+        <li><b>Remember the English caveat.</b> Bedrock's prompt routing is tuned for English prompts; multilingual workloads should validate quality before trusting the predicted-quality mechanism.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Model routing is the demand-side sibling of the supply-side choice in <a href="/vs/inference-provider-vs-gpu-cloud">inference provider vs GPU cloud</a> — that comparison decides where your tokens come from, routing decides which model serves each one. It compounds with <a href="/glossary/rate-limits">API rate limits</a> (a router that fans across providers also pools their rate ceilings) and with <a href="/glossary/inference-cost">inference cost</a>, whose input/output asymmetry is exactly the spread routers monetize. On this site, the model-choice half of the decision is covered in <a href="/best/ai-chatbots">the best AI chatbots ranking</a> and <a href="/vs/chatgpt-vs-claude">ChatGPT vs Claude</a> — routing is what happens when you refuse to pick just one. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Model routing is the layer that predicts which model should serve each request and dispatches it — and in 2026 it is never free. Amazon Bedrock bills the decision at $1 per 1,000 requests on top of the routed model's tokens, inside a two-model same-family pair with a quality-difference dial and an up-to-30% saving claim; OpenRouter bills the capital at 5.5% on credit purchases (8% Business, 5% BYOK above $25,000/month) and routes with no per-request fee while the response names what served you. The arithmetic that decides the outcome: the fee scales with request count, the savings with token spend, and the Bedrock breakeven sits at roughly $3.3 of token spend per 1,000 requests — routing is a cost lever for heavy requests, a fee for light ones. Summary: on AWS's own numbers, a $1/1,000 router fee under a 30% saving only pays off above ~$0.0033 of tokens per request, which is why model routing should be switched on per workload, never by default.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
