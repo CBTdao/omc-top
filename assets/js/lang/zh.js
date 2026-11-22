@@ -78,6 +78,8 @@ window.I18N.zh = {
   "rank.r16.m": "Fathom · Otter · Fireflies · Zoom AI Companion · Granola —— 参考价被套装定成了 $0",
   "rank.r17": "AI 数据分析工具 TOP5（2026）",
   "rank.r17.m": "ChatGPT · Claude · Julius · Hex · Power BI —— 同样是 $20，三种不同的计量",
+  "rank.r18": "AI CRM 工具 TOP5（2026）",
+  "rank.r18.m": "Salesforce · HubSpot · Zoho · Attio · Pipedrive —— 席位是门票，代理是计量表",
 
   "banner.title": "由 Omniverse Compute 团队运营",
   "banner.sub": " AITop 由 OMC（币安链上的去中心化 GPU 算力网络）团队建设与维护，每一页都如实披露，且 OMC 从不出现在我们的评测排名中。",

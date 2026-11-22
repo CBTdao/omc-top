@@ -78,6 +78,8 @@ window.I18N.en = {
   "rank.r16.m": "Fathom · Otter · Fireflies · Zoom AI Companion · Granola — priced against a bundle that costs $0",
   "rank.r17": "Best AI data analysis tools of 2026",
   "rank.r17.m": "ChatGPT · Claude · Julius · Hex · Power BI — the same $20, three different meters",
+  "rank.r18": "Best AI CRM tools of 2026",
+  "rank.r18.m": "Salesforce · HubSpot · Zoho · Attio · Pipedrive — the seat is the ticket, the agent is the meter",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",
