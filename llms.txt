@@ -83,3 +83,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/agent-memory](https://top.omc.network/glossary/agent-memory): What Is Agent Memory? In 2026 the Bill Is Tokens, Not Rows | AITop
 - [https://top.omc.network/glossary/context-rot](https://top.omc.network/glossary/context-rot): What Is Context Rot? The Bigger the Window, the Worse the Recall | AITop
 - [https://top.omc.network/glossary/model-routing](https://top.omc.network/glossary/model-routing): What Is Model Routing? The Fee Behind the "Free" Model Switcher | AITop
+- [https://top.omc.network/glossary/outcome-based-pricing](https://top.omc.network/glossary/outcome-based-pricing): What Is Outcome-Based Pricing? The Meter Is a Definition, Not a Count | AITop
