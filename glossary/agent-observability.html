@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Agent Observability? You Pay for Every Data Point You Emit | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/agent-observability">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is Agent Observability? You Pay for Every Data Point You Emit | AITop">
+  <meta property="og:description" content="Agent observability is the practice of tracing every step an AI agent takes — each model call, tool invocation and evaluation score — as structured telemetry. OpenTelemetry's GenAI conventions are still in Development status, and platforms like Langfuse bill per data point: on its official pricing page, 100k units are included at $29/month and overage is $8 per additional 100k.">
+  <meta property="og:url" content="https://top.omc.network/glossary/agent-observability">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Agent Observability? You Pay for Every Data Point You Emit | AITop">
+  <meta name="twitter:description" content="One agent interaction can emit 20+ billable data points: a trace, ten model generations, ten tool spans, a handful of scores. Langfuse's official pricing page includes 100k units at $29/month; OpenTelemetry's GenAI conventions are still Development status. Observing an agent costs like running one.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="Agent observability is the practice of recording what an AI agent actually did — every model call, tool invocation, token count, latency and evaluation score — as structured, queryable telemetry instead of log lines. The vendor-neutral format is the OpenTelemetry semantic conventions for generative AI, whose official documentation still carries Development status with a version opt-in environment variable. Commercial platforms meter it per data point: Langfuse's official pricing page includes 100,000 units per month on its $29 Core plan and charges $8 per additional 100k units, and its FAQ defines a billable unit as any tracing data point you send — the trace, the observations inside it, and the scores attached to it. The arithmetic that decides the bill: an agentic workflow multiplies data points per interaction, so the observability invoice scales with agent step count, not user count.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Agent observability","item":"https://top.omc.network/glossary/agent-observability"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"Agent observability","description":"Agent observability is the practice of recording what an AI agent did — every model call, tool invocation, token count, latency and evaluation score — as structured telemetry that can be queried per step, per session and per cost. The vendor-neutral format is the OpenTelemetry (OTel) semantic conventions for generative AI systems, which define model spans, agent spans, events, exceptions and metrics such as gen_ai.client.token.usage; the official documentation marks these conventions as Development status as of 2026, with existing instrumentations pinned to version v1.36.0 and newer versions gated behind the OTEL_SEMCONV_STABILITY_OPT_IN environment variable. By default, OTel-based telemetry captures no prompt content or tool arguments — only metadata such as model names, token counts and durations — because content can contain sensitive data; capturing content is an explicit opt-in. Commercial observability platforms meter per data point: Langfuse's official pricing page defines a billable unit as any tracing data point sent (the trace, the observations inside it — spans, events, generations — and scores), includes 50,000 units per month free (Hobby, 30-day retention, 2 users), 100,000 units at $29/month (Core, 90-day retention, unlimited users) and $199/month (Pro, 3-year retention), charging $8 per additional 100,000 units with volume tiers down to $6. Because one agent interaction can emit twenty or more data points, the observability bill scales with agent step count, not user count.","url":"https://top.omc.network/glossary/agent-observability","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is agent observability (and why does it bill per step)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-24. Primary sources: the OpenTelemetry semantic conventions for generative AI systems (official docs and OTel blog, checked 2026-11-24) and Langfuse's official pricing page and billable-units FAQ (checked 2026-11-24).</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>Agent observability</b> is the practice of recording what an AI agent actually did — every model call, tool invocation, token count, latency and evaluation score — as structured telemetry you can query per step, rather than as flat log lines. The vendor-neutral format is <b>OpenTelemetry's semantic conventions for generative AI</b>, whose official documentation still carries <b>Development status</b> in 2026, with version switches gated behind an <b>OTEL_SEMCONV_STABILITY_OPT_IN</b> environment variable. By default that telemetry captures <b>no prompt content</b> — only metadata like model names, token counts and durations. The platforms that collect it bill <b>per data point</b>: Langfuse's official pricing page defines a billable unit as <b>any tracing data point you send</b> — the trace, the observations inside it, the scores attached to it — with 100k units included at <b>$29/month</b> and overage at <b>$8 per 100k</b>. One agent interaction can emit twenty or more data points, so <b>the observability bill scales with step count, not user count</b>.</p></div>
+
+    <section class="section">
+      <h2>What does agent observability actually mean?</h2>
+      <p>Agent observability is the instrumentation layer that answers three questions about an autonomous AI workflow: <b>what happened</b> (which model calls and tool calls ran, in what order, nested under which agent loop), <b>how much it cost</b> (input and output tokens per call, multiplied by the model's rates), and <b>why it went wrong</b> (errors, timeouts, finish reasons, the exact prompt that produced a bad answer). A chatbot log tells you what the user saw; agent telemetry tells you every intermediate decision the agent made on the way there.</p>
+      <p>The vendor-neutral format is the <b>OpenTelemetry semantic conventions for generative AI systems</b>. Per the official documentation, the conventions cover five signals — events, exceptions, metrics, model spans and agent spans — plus provider-specific pages for Anthropic, Azure AI Inference, AWS Bedrock and OpenAI. A single interaction renders as a span tree: a top-level <code>invoke_agent</code> span with child <code>chat</code> spans for each model call and <code>execute_tool</code> spans for each tool invocation, carrying attributes such as <code>gen_ai.request.model</code>, <code>gen_ai.usage.input_tokens</code>, <code>gen_ai.usage.output_tokens</code> and <code>gen_ai.response.finish_reasons</code>. Token metrics are recorded against recommended histogram bucket boundaries that run from 1 up to 67,108,864 tokens — a range wide enough to hold both a chat reply and a context-window-sized retrieval, per the official metrics spec.</p>
+      <p>Two details in the spec matter commercially. First, <b>content is opt-in</b>: the official OTel blog states that "by default, no prompt content or tool arguments are captured with GenAI telemetry, as these can contain sensitive data. Only metadata like model names, token counts, and durations are included." Second, <b>billed tokens win</b>: the official metrics spec instructs that when a system reports both used tokens and billed tokens, the instrumentation must report the billed ones — the spec itself acknowledges that what the model used and what the invoice says can differ.</p>
+    </section>
+
+    <section class="section">
+      <h2>What does agent observability cost in 2026?</h2>
+      <h3>The standard is free; the platform is metered per data point</h3>
+      <p>The OpenTelemetry conventions are an open standard with no license fee — but they only define the wire format. Collecting, storing and viewing the telemetry is what you pay for, and the platforms that do it meter <b>per data point</b>, not per seat and not per token. Langfuse's official pricing page defines the unit precisely: "a billable unit in Langfuse is any tracing data point you send to our platform — this includes the trace (a complete application interaction), observations (individual steps within a trace: Spans, Events and Generations), and scores (evaluations of your AI outputs)."</p>
+      <h3>Langfuse's official price ladder (checked 2026-11-24)</h3>
+      <p>On its official pricing page, Langfuse publishes: <b>Hobby — free</b>, all platform features with limits, <b>50,000 units/month</b> included, <b>30 days</b> data access, 2 users, 1,000 ingestion requests/min. <b>Core — $29/month</b>, <b>100,000 units included</b>, additional usage at <b>$8 per 100k units</b> with volume tiers stepping down to $7 (1M–10M), $6.50 (10M–50M) and $6 (50M+), <b>90 days</b> data access, unlimited users, 4,000 requests/min. <b>Pro — $199/month</b> with <b>3 years</b> data access and 20,000 requests/min. <b>Enterprise — $2,499/month</b> with audit logs, SCIM, SSO and custom rate limits, plus an optional Teams add-on at $300/month. Langfuse is also open source and can be self-hosted free — its own FAQ confirms it — which moves the cost from subscription to the servers and engineering time you spend running the pipeline yourself.</p>
+      <h3>The arithmetic: step count is the bill multiplier</h3>
+      <p>Count the data points one agent interaction emits under this definition: one trace, ten model generations (one per reasoning step), ten tool spans (one per tool call), five evaluation scores. That is <b>26 billable units for one user-visible answer</b> (our arithmetic on Langfuse's own unit definition). At the Core plan's included 100k units, that budget buys roughly <b>3,800 such interactions per month — about 128 per day</b> — before overage starts at $8 per additional 100k units, or $0.08 per 1,000 data points. A support bot that answers in one generation and no tools emits 1–2 units for the same interaction; an agentic workflow emits twenty times that. The same 100k-unit budget that covers a month of chat traffic can cover a week of agent traffic.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>First, because <b>observability is the only honest cost ledger for an agent</b>. Per-model price lists tell you what a token costs; only step-level telemetry tells you how many tokens an agent actually burned across eleven retries and four tool calls before it produced the answer. The token metric spec's own "report billed tokens" rule exists because the gap between usage and billing is normal, and an agent multiplies that gap by every step it takes. If you cannot see the span tree, you are pricing an agent on its final answer, which is the least expensive thing it did.</p>
+      <p>Second, because <b>the default telemetry is deliberately blind</b>. Content capture — the actual prompts, tool arguments and tool results — is off by default for privacy reasons, and enabling it pipes customer text into a third-party platform's storage. That is the right default, but it means the debugging moments where you most want the exact prompt (the wrong-answer incident, the injection attempt) require a deliberate, governed opt-in. Budget for that decision before an incident forces it; the OTel blog notes that captured content lands in span attributes like <code>gen_ai.input.messages</code> and <code>gen_ai.output.messages</code>, which observability platforms may render as hard-to-read raw JSON unless they have GenAI-specific views.</p>
+      <p>Third, because <b>the standard is not frozen, and the retention is the paywall</b>. The OTel GenAI conventions remain in Development status as of 2026: instrumentations pin to version v1.36.0 by default, and moving to newer conventions requires the OTEL_SEMCONV_STABILITY_OPT_IN environment variable — meaning a dashboard you build this quarter may need re-wiring when the conventions stabilize. And on the platform side, the tier ladder is mostly a data-retention ladder: 30 days free, 90 days at $29, 3 years at $199. Regression analysis ("did the new prompt reduce tool failures?") needs history; the free tier forgets in a month.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>Is agent observability the same as model monitoring?</h3>
+      <p>No. Model monitoring watches one API call: latency, tokens, error rate. Agent observability watches a <b>tree</b>: the agent loop, the workflow spans, every model and tool call nested underneath, tied together by a conversation ID so a session can be replayed end to end. The OTel agent-span conventions (agent creation, agent invocation, workflow invocation, tool execution) exist precisely because the single-call view cannot express an agent's branching. If a vendor's "agent observability" is a per-request latency chart, it is model monitoring with agent branding.</p>
+      <h3>How do you estimate your unit count before signing up?</h3>
+      <p>Instrument one representative interaction locally — a free tier or a self-hosted instance — and count the data points it emits: traces + observations + scores. Multiply by your expected monthly interactions and add 30–50% for retries and incident debugging, which you will do with content capture on, doubling the payload. The Langfuse pricing calculator on the official page shows the graduated tiers: the $8/100k headline rate steps down to $6/100k above 50M units, so the marginal cost falls with scale but never reaches zero.</p>
+      <h3>Self-host or buy?</h3>
+      <p>Self-hosting is free in license terms and is the right call when content capture must never leave your infrastructure — the SDKs (Python, JavaScript, OpenTelemetry) point at any OTLP endpoint. Buying the cloud plan buys the things that actually take engineering time: ingestion throughput (1,000 requests/min free vs 20,000 on Pro), dashboards, annotation queues, and the SSO/audit layer at Enterprise. The honest comparison is your on-call engineer's time against the $29–$2,499 ladder.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Count data points, not users, before comparing platforms.</b> One agent interaction = 1 trace + every generation + every tool span + every score; a 10-step loop can emit 20+ billable units per answer.</li>
+        <li><b>Check the retention line first.</b> 30 days (free) cannot answer "did last month's change help?" — 90 days at $29/month or 3 years at $199/month is where regression analysis starts.</li>
+        <li><b>Decide the content-capture policy now, not during the incident.</b> OTel defaults to metadata only; enabling prompt capture is a governed opt-in with privacy consequences.</li>
+        <li><b>Verify the billed-token rule in your dashboards.</b> The spec says report billed tokens when both are available — your cost dashboards should reconcile against invoices, not model usage.</li>
+        <li><b>Ask what happens when the conventions stabilize.</b> OTel GenAI is Development status with a version opt-in env var; pin your dashboards to attributes, not span names, where you can.</li>
+        <li><b>Test the export path.</b> Batch export to your own storage and an open API are what make the telemetry portable; without them, observability data is a hostage.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Agent observability is the measurement layer on top of the concepts in the <a href="/glossary/ai-agent">AI agent</a> and <a href="/glossary/agent-memory">agent memory</a> entries — every step an agent takes is a potential tool call, and the <a href="/glossary/function-calling">function calling</a> entry explains why tool definitions are themselves a per-request tax that telemetry makes visible. The token side of the ledger is the <a href="/glossary/inference-cost">inference cost</a> and <a href="/glossary/reasoning-tokens">reasoning tokens</a> entries; the platform side of step-level billing is the same seat-versus-meter split behind <a href="/glossary/outcome-based-pricing">outcome-based pricing</a>. The tools that emit this telemetry — coding agents in particular — are ranked in <a href="/best/ai-coding-assistants">the best AI coding assistants ranking</a>. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>Agent observability is step-level telemetry for AI agents — every model call, tool invocation and score recorded as structured data, standardized (still in Development status) by OpenTelemetry's GenAI conventions, which by default capture metadata only and gate content capture behind an explicit opt-in. Commercial platforms bill per data point: Langfuse's official pricing page includes 100k units at $29/month and charges $8 per additional 100k, and one agent interaction can emit 20+ units. Summary: observability of an agent costs like running one — estimate your unit count from step count, negotiate retention (30 days free forgets too fast), and treat content capture as a governance decision, not a debug checkbox.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
