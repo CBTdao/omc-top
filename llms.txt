@@ -85,3 +85,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/model-routing](https://top.omc.network/glossary/model-routing): What Is Model Routing? The Fee Behind the "Free" Model Switcher | AITop
 - [https://top.omc.network/glossary/outcome-based-pricing](https://top.omc.network/glossary/outcome-based-pricing): What Is Outcome-Based Pricing? The Meter Is a Definition, Not a Count | AITop
 - [https://top.omc.network/glossary/agent-observability](https://top.omc.network/glossary/agent-observability): What Is Agent Observability? You Pay for Every Data Point You Emit | AITop
+- [https://top.omc.network/glossary/guardrails](https://top.omc.network/glossary/guardrails): What Are AI Guardrails? The Safety Layer Has Three Different Meters | AITop

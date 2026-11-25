@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Are AI Guardrails? The Safety Layer Has Three Different Meters | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/guardrails">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Are AI Guardrails? The Safety Layer Has Three Different Meters | AITop">
+  <meta property="og:description" content="AI guardrails are the policy layer — content filters, denied topics, PII redaction, prompt-attack detection, grounding checks — wrapped around model input and output. Amazon Bedrock bills them per 1,000-character text unit (content filters $0.15, denied topics $0.15, PII $0.10, grounding $0.10); Azure AI Content Safety bills $0.38 per 1,000-char record with 5,000 free per month; OpenAI's moderation endpoint is free.">
+  <meta property="og:url" content="https://top.omc.network/glossary/guardrails">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Are AI Guardrails? The Safety Layer Has Three Different Meters | AITop">
+  <meta name="twitter:description" content="One word, three pricing models: OpenAI's moderation endpoint is free, Azure charges $0.38 per 1,000-character record, and Bedrock bills each filter separately per text unit — and both vendors round every 1,000 characters up. Guardrails cost is a per-character tax on the whole conversation, not a flat fee.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="AI guardrails are the policy and safety layer wrapped around a model's input and output — content filters, denied topics, PII redaction, prompt-attack detection and grounding checks. In 2026 the same word covers three incompatible pricing models: OpenAI's moderation endpoint is free (official help center), Azure AI Content Safety bills $0.38 per 1,000-character text record with 5,000 records per month free, and Amazon Bedrock Guardrails bills each filter separately — $0.15 per 1,000 text units for content filters, $0.15 for denied topics, $0.10 for sensitive-information filtering, $0.10 for contextual grounding, $0.17 for Automated Reasoning checks — while regex and word-list filters are free. Both metered vendors round every 1,000 characters up, so guardrail cost scales with the character count of the entire conversation, not with tokens or users.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"Guardrails","item":"https://top.omc.network/glossary/guardrails"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"AI guardrails","description":"AI guardrails are the policy and safety layer applied around a model's input and output — content filters, denied topics, sensitive-information (PII) redaction, prompt-attack detection and contextual grounding checks — either bundled with the model vendor's API or sold as a separate metered service. Amazon Bedrock Guardrails (official pricing page, checked 2026-11-25) bills per text unit of up to 1,000 characters, rounded up: content filters $0.15 per 1,000 text units, denied topics $0.15, sensitive-information filters $0.10, contextual grounding $0.10, Automated Reasoning checks $0.17 per 1,000 text units per policy, image content filters $0.00075 per image; regular-expression and word filters are free, and the InvokeGuardrailChecks API variant prices content filters at $0.07 and prompt-attack detection at $0.08 per 1,000 text units. Azure AI Content Safety (official pricing page) charges $0.38 per 1,000-character text record and $0.75 per 1,000 images on the Standard tier, with 5,000 text records per month free. OpenAI's moderation endpoint is free and does not count against usage limits, and inline moderation scores can be attached to generation requests at no charge. AWS's own 2024 summit training material listed content filters at $0.75 per 1,000 text units — the same filter is $0.15 in 2026, roughly a 5× drop.","url":"https://top.omc.network/glossary/guardrails","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What are AI guardrails (and why do they bill per 1,000 characters)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-25. Primary sources: Amazon Bedrock official pricing page, Azure AI Content Safety official pricing page, OpenAI moderation documentation and help center (all checked 2026-11-25).</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>AI guardrails</b> are the policy layer wrapped around a model's input and output: <b>content filters, denied topics, sensitive-information (PII) redaction, prompt-attack detection and grounding checks</b>. The word covers three incompatible pricing models. <b>OpenAI</b> bundles moderation into the API and prices it at <b>free</b> — the official help center states the moderation endpoint is free and doesn't count toward usage limits, and inline moderation scores ride along on generation requests. <b>Azure AI Content Safety</b> meters <b>$0.38 per 1,000-character text record</b> (images $0.75 per 1,000) with 5,000 records a month free. <b>Amazon Bedrock Guardrails</b> bills <b>each filter separately</b> per text unit: $0.15 per 1,000 text units for content filters, $0.15 for denied topics, $0.10 for PII, $0.10 for grounding, $0.17 for Automated Reasoning — while regex and word-list filters are free. Both metered vendors <b>round every 1,000 characters up</b>, so the guardrail bill scales with the character count of the whole conversation — source documents included — not with tokens or users.</p></div>
+
+    <section class="section">
+      <h2>What do guardrails actually do?</h2>
+      <p>Guardrails sit outside the model, between your application and the API, and run deterministic or model-based checks on what goes in and what comes out. The canonical menu, from Amazon Bedrock Guardrails' official pricing table, has six entries: <b>content filters</b> (hate, violence, sexual, insults, misconduct — for text and images), <b>denied topics</b> (custom natural-language descriptions of subjects the assistant must refuse), <b>sensitive-information filters</b> (PII detection with block or mask actions), <b>word and regular-expression filters</b> (literal blocklists), <b>contextual grounding checks</b> (is the answer actually supported by your retrieved source?), and <b>Automated Reasoning checks</b> (formally verifying answers against a policy document). Azure AI Content Safety's official page bundles a similar set — text and image moderation severity scoring, <b>Prompt Shields</b> for injection attempts, protected-material detection and groundedness detection — behind one per-record price. OpenAI's moderation endpoint classifies text and images against its own harm categories and returns per-category scores you can act on.</p>
+      <p>Every guardrail filter is optional and independently priced on AWS: per the official page, "each guardrail filter is optional and can be enabled based on your application requirements," and a guardrail that combines content filters and sensitive-information filtering incurs charges only for those two. That makes guardrail cost a <b>menu you compose</b>, not a plan you subscribe to — the bill is the sum of the filters you switch on, multiplied by the characters they inspect.</p>
+    </section>
+
+    <section class="section">
+      <h2>What do guardrails cost in 2026?</h2>
+      <h3>Three vendors, three meters (all official pages, checked 2026-11-25)</h3>
+      <p><b>OpenAI — free.</b> The official help center article asks "Is the Moderation endpoint free to use?" and answers: "Yes, the Moderation endpoint is free for OpenAI API users, and usage of this tool doesn't count towards your monthly usage limits." The official moderation guide adds that you can attach a <code>moderation</code> object to a generation request, and the API returns scores for both the model input and the generated output — with no separate moderation call and no charge.</p>
+      <p><b>Azure AI Content Safety — per record, with a free tier.</b> The official pricing page: Standard tier text moderation (including Prompt Shields, protected-material detection and groundedness detection) is <b>$0.38 per 1,000 text records</b>; image moderation is <b>$0.75 per 1,000 images</b>; the free tier includes <b>5,000 text records and 5,000 images per month</b> and stops rather than overcharging when you hit it. A text record is defined as <b>up to 1,000 characters</b> measured in Unicode code points, and the official FAQ rounds up: a 7,500-character input counts as 8 records.</p>
+      <p><b>Amazon Bedrock Guardrails — per filter, per text unit.</b> The official pricing page, standard tier (same prices for classic tier): content filters <b>$0.15 per 1,000 text units</b> and <b>$0.00075 per image</b>; denied topics <b>$0.15</b>; sensitive-information filters <b>$0.10</b>; contextual grounding checks <b>$0.10</b>; Automated Reasoning checks <b>$0.17 per 1,000 text units per policy</b>; regular-expression and word filters <b>free</b>. Through the <code>InvokeGuardrailChecks</code> API — which lets you run checks outside a model invocation — content filters are <b>$0.07</b> and prompt-attack detection <b>$0.08</b> per 1,000 text units. A text unit is <b>up to 1,000 characters, rounded up</b>: the official note says a 5,600-character input is charged as 6 text units.</p>
+      <h3>The price of a guardrail fell 5× since 2024</h3>
+      <p>AWS's own 2024 summit training deck (a current AWS-hosted document) listed Bedrock guardrails at <b>$0.75 per 1,000 text units for content filters and $1.00 for denied topics</b>. The 2026 official page lists the same two filters at <b>$0.15</b> each — a roughly 5× and 6.7× drop inside two years, a faster deflation than most line items in an AI stack. Guardrails are not a fixed tax; they are a market.</p>
+      <h3>The arithmetic: characters, not conversations, set the bill</h3>
+      <p>Price one retrieval-augmented turn on Bedrock (our arithmetic on the official rates): a 2,400-character retrieved source + a 600-character user query + a 3,200-character answer = <b>6,200 characters → 7 text units</b> (rounded up). Content filters: 7 × $0.00015 = <b>$0.00105</b>. Contextual grounding — which the official page says charges the <b>combined</b> characters of source, query and response: 7 × $0.0001 = <b>$0.0007</b>. Two filters together: about <b>$0.0018 per turn</b>. At 100,000 turns a month that is roughly <b>$175/month for two filters</b> — before denied topics or PII. The same 100,000 turns through OpenAI's inline moderation cost $0 — but moderation scores come only for OpenAI's harm categories, while Bedrock's denied topics are your policy in your words. The free meter and the custom meter are different products; the character tax is what the custom one costs.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does it matter when you're choosing a tool?</h2>
+      <p>First, because <b>"guardrails" has no uniform billing unit</b>. A per-token model bill and a per-record moderation bill cannot be compared line by line — convert both to a per-character or per-conversation basis before choosing. A vendor quoting "$0.38" and a vendor quoting "free" may both be describing the same compliance requirement; the difference is whether your policy is expressible in their categories.</p>
+      <p>Second, because <b>the 1,000-character rounding is a context-length tax</b>. Both metered vendors define their unit as up to 1,000 characters and round up, so every partial block costs a full unit. A 9,999-character document bills as 10 units; one character less bills as 10 too. And on Bedrock, the grounding check charges the source, the query and the answer <b>as one sum</b> — meaning your retrieval corpus is billed as if the user typed it. Long-context RAG is the workload where guardrail cost grows fastest.</p>
+      <p>Third, because <b>the deterministic layer is free and the model-based layer is not</b>. Regex and word lists cost $0 on Bedrock — masking a fixed set of account numbers or banned phrases should never run through a metered classifier. Model-based checks earn their price only where wording varies: denied topics and grounding read meaning, not patterns. Compose the free layer first and spend the metered one on the checks that need comprehension.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true in 2026 specifically?</h2>
+      <h3>Are guardrails included with the model API?</h3>
+      <p>Depends on the vendor. OpenAI includes moderation classification free with API usage — but doesn't sell custom denied topics or grounding checks as a metered product. Amazon Bedrock applies guardrails to model invocations (its own models and others) and charges per filter per text unit. Azure sells Content Safety as a standalone Foundry service priced per record, usable with any model. There is no vendor-neutral free guardrail layer in 2026; the closest to one is composing your own filters (regex, blocklists, your own classifier) at zero platform cost.</p>
+      <h3>Do guardrails count both the prompt and the answer?</h3>
+      <p>Yes, wherever you apply them to both sides. Bedrock's content filter pricing is charged per text unit processed on each guarded call, and its grounding check explicitly sums source + query + response characters. Azure counts each submitted record. The guardrail bill therefore has the same shape as a pre-token-billing phone bill: every party to the conversation is metered, and the bill scales with how much text your pipeline moves, not how many customers you have.</p>
+      <h3>What's the cheapest correct setup?</h3>
+      <p>Estimate per turn first: characters-in + characters-out, divided by 1,000, rounded up, times the sum of your enabled filter rates. Keep the metered filters to the checks that need language understanding, put fixed patterns in free regex/word filters, and re-check the price page before annualizing — the Bedrock content-filter rate fell about 5× between 2024 and 2026, and the same downward drift can move a budget by hundreds of dollars a month at scale.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Convert every guardrail quote to per-character before comparing.</b> "Free" (OpenAI), "$0.38/1k records" (Azure) and "$0.15/1k text units per filter" (Bedrock) are three different meters on the same requirement.</li>
+        <li><b>Count the whole conversation, not just the prompt.</b> Bedrock grounding charges source + query + response as one character sum; a RAG pipeline bills its corpus, not its traffic.</li>
+        <li><b>Exploit the free deterministic layer.</b> Regex and word filters cost $0 on Bedrock; reserve metered model-based checks for meaning-dependent policy.</li>
+        <li><b>Watch the round-up.</b> Both metered vendors charge a full unit per started 1,000 characters — a 9,999-character document is 10 units, and partial blocks are pure rounding tax.</li>
+        <li><b>Re-price annually.</b> AWS's own documents show content filters falling from $0.75 to $0.15 per 1,000 text units between 2024 and 2026 — last year's guardrail budget is not this year's.</li>
+        <li><b>Match the meter to the policy.</b> Free moderation covers OpenAI's harm categories; custom denied topics and grounding checks are what you pay Azure or Bedrock for.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>Guardrails are the enforcement layer for the attack surface described in the <a href="/glossary/prompt-injection">prompt injection</a> entry — Prompt Shields on Azure and prompt-attack detection on Bedrock both meter exactly that threat. The per-turn character math stacks on top of the <a href="/glossary/inference-cost">inference cost</a> entry, and the retrieval side that feeds the grounding check is explained in <a href="/glossary/rag">RAG</a> and <a href="/glossary/vector-database">vector database</a>. The per-resolution billing style these add-ons are converging toward is covered under <a href="/glossary/outcome-based-pricing">outcome-based pricing</a>, and the support workloads that buy them are ranked in <a href="/best/ai-customer-service-tools">the best AI customer service tools ranking</a>. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>AI guardrails are the policy layer around model input and output — content filters, denied topics, PII redaction, prompt-attack detection and grounding checks. In 2026 the same word prices three ways: OpenAI's moderation endpoint is free with the API, Azure AI Content Safety meters $0.38 per 1,000-character record (5,000 free a month), and Amazon Bedrock bills each filter separately at $0.07–$0.17 per 1,000 text units, with regex and word filters free. Both metered vendors round every 1,000 characters up, and Bedrock's grounding check charges source, query and answer as one sum. Summary: guardrail cost is a per-character tax on everything your pipeline moves — compose the free deterministic layer first, price the model-based checks per turn before you commit, and re-check the rate card yearly, because the same filter cost 5× more in 2024.</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
