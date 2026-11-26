@@ -80,6 +80,8 @@ window.I18N.en = {
   "rank.r17.m": "ChatGPT · Claude · Julius · Hex · Power BI — the same $20, three different meters",
   "rank.r18": "Best AI CRM tools of 2026",
   "rank.r18.m": "Salesforce · HubSpot · Zoho · Attio · Pipedrive — the seat is the ticket, the agent is the meter",
+  "rank.r19": "Best AI spreadsheet tools of 2026",
+  "rank.r19.m": "Copilot · Sheets with Gemini · Quadratic · Rows · Coefficient — one category, three meters",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",
