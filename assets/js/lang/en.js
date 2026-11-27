@@ -82,6 +82,8 @@ window.I18N.en = {
   "rank.r18.m": "Salesforce · HubSpot · Zoho · Attio · Pipedrive — the seat is the ticket, the agent is the meter",
   "rank.r19": "Best AI spreadsheet tools of 2026",
   "rank.r19.m": "Copilot · Sheets with Gemini · Quadratic · Rows · Coefficient — one category, three meters",
+  "rank.r20": "Best AI email marketing tools of 2026",
+  "rank.r20.m": "Klaviyo · Mailchimp · Constant Contact · Brevo · MailerLite — the contact list is the meter",
 
   "banner.title": "Operated by the Omniverse Compute team",
   "banner.sub": " AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.",
