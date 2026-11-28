@@ -88,3 +88,4 @@ This site is static HTML in English. Chinese is available via the language toggl
 - [https://top.omc.network/glossary/outcome-based-pricing](https://top.omc.network/glossary/outcome-based-pricing): What Is Outcome-Based Pricing? The Meter Is a Definition, Not a Count | AITop
 - [https://top.omc.network/glossary/agent-observability](https://top.omc.network/glossary/agent-observability): What Is Agent Observability? You Pay for Every Data Point You Emit | AITop
 - [https://top.omc.network/glossary/guardrails](https://top.omc.network/glossary/guardrails): What Are AI Guardrails? The Safety Layer Has Three Different Meters | AITop
+- [https://top.omc.network/glossary/llm-gateway](https://top.omc.network/glossary/llm-gateway): What Is an AI Gateway? The Proxy Is Free, the Meter Is Not | AITop

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is an AI Gateway? The Proxy Is Free, the Meter Is Not | AITop</title>
+  <link rel="canonical" href="https://top.omc.network/glossary/llm-gateway">
+  <meta property="og:site_name" content="AITop">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What Is an AI Gateway? The Proxy Is Free, the Meter Is Not | AITop">
+  <meta property="og:description" content="An AI gateway is a proxy between your app and model providers that handles routing, caching, rate limits, logs and spend controls. Cloudflare charges no gateway fee but adds 5% to Unified Billing credits; Vercel charges 0% markup on tokens but $0.10 per 1,000 requests for team-wide zero-data-retention; Helicone bills $79 or $799 per month plus usage. The proxy is free, the governance is not.">
+  <meta property="og:url" content="https://top.omc.network/glossary/llm-gateway">
+  <meta property="og:image" content="https://top.omc.network/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is an AI Gateway? The Proxy Is Free, the Meter Is Not | AITop">
+  <meta name="twitter:description" content="Cloudflare AI Gateway's core features are free and its 5% fee lands on credit purchases. Vercel charges 0% on tokens but $0.10 per 1,000 requests for team-level governance. Helicone charges $79 or $799 a month. Four gateways, four different places to put the meter.">
+  <meta name="twitter:image" content="https://top.omc.network/og-image.png">
+  <meta name="description" content="An AI gateway (LLM gateway) is a proxy layer between an application and model providers that supplies one endpoint plus caching, rate limiting, logging, spend controls and guardrails. In 2026 four published pricing models coexist: Cloudflare makes the core free and charges 5% on Unified Billing credits ($100 costs $105), Vercel charges zero markup on tokens but $0.10 per 1,000 requests for team-wide zero-data-retention and provider allowlists, Helicone charges $79 or $799 per month plus unmetered overage, and OpenRouter charges 5.5% on credit purchases. The fee is attached to a different object at each vendor — credits, requests, a platform seat, or model spend.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/assets/img/logo.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2694516805115904" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://top.omc.network/"},{"@type":"ListItem","position":2,"name":"Glossary","item":"https://top.omc.network/glossary"},{"@type":"ListItem","position":3,"name":"AI gateway","item":"https://top.omc.network/glossary/llm-gateway"}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"DefinedTerm","name":"AI gateway (LLM gateway)","description":"An AI gateway is a proxy layer placed between an application and one or more model providers. It supplies a single endpoint and provider-agnostic API, then adds caching, rate limiting, request logs, spend limits, credential handling, guardrails and failover. It does not serve inference itself: tokens still come from the underlying provider and bill at that provider's list rate unless the gateway resells them. Four published 2026 pricing shapes coexist. Cloudflare AI Gateway offers analytics, caching and rate limiting free on all plans and adds a 5% fee to credits bought through Unified Billing, so a $100 top-up costs $105 while provider inference passes through with no token markup. Vercel AI Gateway charges no markup and no platform fee on tokens, includes $5 per month of credit for Free Tier eligible models only, and meters governance add-ons such as team-wide zero data retention at $0.10 per 1,000 requests, a provider allowlist at $0.10 per 1,000 billed requests, custom reporting writes at $0.075 per 1,000 and queries at $5 per 1,000, and trace drains at $0.05 per 1,000 traces plus $0.50 per GB. Helicone charges $79 per month on Pro and $799 on Team on top of 10,000 free requests and 1 GB of storage, with usage-based overage whose unit price is not published. OpenRouter charges 5.5% on Standard credit purchases and 8% on Business. The practical rule: the proxy is usually free, but the fee is attached to a different object at each vendor — credits, requests, a platform seat, or model spend — so the same 1 million requests can cost $0, $100, $79, or about $550 in gateway charges alone.","url":"https://top.omc.network/glossary/llm-gateway","inDefinedTermSet":{"@type":"DefinedTermSet","name":"AITop AI Glossary","url":"https://top.omc.network/glossary"}}
+  </script>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-in">
+      <a class="logo" href="/"><span class="logo-badge">T</span><span class="logo-text">AI<b>Top</b></span></a>
+      <nav class="nav-links">
+        <a href="/" data-i18n="nav.home">Home</a>
+        <a href="/vs/chatgpt-vs-claude" data-i18n="nav.vs">Comparisons</a>
+        <a href="/best/ai-chatbots" data-i18n="nav.best">Rankings</a>
+        <a href="./" data-i18n="nav.glossary">Glossary</a>
+        <a href="https://game.omc.network" data-i18n="nav.game">Real or AI</a>
+      </nav>
+      <select class="lang-select" id="langSelect" aria-label="Language">
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <p class="crumbs"><a href="/" data-i18n="crumb.home">Home</a> › <a href="./" data-i18n="crumb.glossary">Glossary</a></p>
+      <h1>What is an AI gateway (and why is the free proxy still on the bill)?</h1>
+      <p class="updated">Plain-English definition · Updated 2026-11-28. Primary sources: Cloudflare AI Gateway pricing and Unified Billing docs, Vercel AI Gateway pricing docs and Helicone pricing (all checked 2026-11-28), each cross-checked against independent pricing trackers.</p>
+    </div>
+    <p class="disclaimer" data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+    <div class="tldr"><span class="tldr-tag" data-i18n="ui.tldr">The 30-second answer</span><p><b>An AI gateway</b> — also called an LLM gateway — is a proxy layer between your application and one or more model providers. It gives you one endpoint, then adds caching, rate limits, request logs, spend controls, credential handling and guardrails. It does <b>not</b> run the model. In 2026, <b>Cloudflare</b> makes the core gateway free and charges <b>5% when you buy credits</b> ($100 costs $105); <b>Vercel</b> charges <b>0% markup on tokens</b> but <b>$0.10 per 1,000 requests</b> for team-wide zero-data-retention and provider allowlists; <b>Helicone</b> charges <b>$79/month (Pro)</b> or <b>$799/month (Team)</b> plus usage; <b>OpenRouter</b> charges <b>5.5% on credit purchases</b>. Four gateways, four different places to put the meter — which is why a free proxy can still produce a four-figure gateway bill.</p></div>
+
+    <section class="section">
+      <h2>What does an AI gateway actually do?</h2>
+      <p>An AI gateway is an intermediary placed in front of every model call. The application points one SDK base URL at the gateway instead of at OpenAI, Anthropic, Google or a self-hosted endpoint; the gateway forwards the request, returns the response, and records what happened in between. Cloudflare describes its AI Gateway as available on all plans with core features — dashboard analytics, caching and rate limiting — offered free, and describes setup as one line of code. The essential point for a buyer: the gateway is a <b>control point</b>, not a model. Tokens are still served by the underlying provider, and unless you buy them through the gateway's own credit system they still bill on that provider's invoice.</p>
+      <p>The features that justify putting a proxy in the path fall into four groups. <b>Reliability:</b> failover across providers and models when one errors. <b>Cost:</b> caching repeated prompts, spend limits, and routing cheaper models for easy requests. <b>Governance:</b> rate limits, provider allowlists, zero-data-retention settings and PII scanning. <b>Audit:</b> per-request logs, token counts and attribution by user, tag or team. Every one of those features is measurable, and every measurable feature is a candidate meter — which is the pricing story in the next section. A gateway that only forwards bytes is a five-line proxy; a gateway that enforces who may call which model at what cost is a control plane.</p>
+    </section>
+
+    <section class="section">
+      <h2>What does an AI gateway cost in 2026?</h2>
+      <h3>Where does each vendor attach the meter?</h3>
+      <p>Four published 2026 price sheets attach the charge to four different objects. All figures below are list prices in US dollars at the vendors' own official pricing documentation, checked 2026-11-28 and cross-checked against independent pricing trackers. Separate inference charges from gateway charges: none of these figures includes the tokens themselves.</p>
+      <ul class="gl-check">
+        <li><b>Cloudflare AI Gateway — meter on purchased credits.</b> Core features (analytics, caching, rate limiting) are free on all plans. <b>Unified Billing adds 5% to every credit purchase: $100 of credit costs $105.</b> Provider inference is passed through at the provider's own per-token rate with no markup. Bring-your-own-key requests resolve provider credentials before the Unified Billing fallback and do not consume those credits.</li>
+        <li><b>Vercel AI Gateway — zero token markup, meters on governance.</b> Official wording: <b>no markup and no platform fee on tokens</b>; you pay the provider's list rate. The free tier includes <b>$5/month</b>, but only for Free Tier eligible models, not the full catalog. Per-request zero-data-retention and per-request provider filters are free; <b>team-wide zero data retention costs $0.10 per 1,000 requests</b>, a <b>team-wide provider allowlist $0.10 per 1,000 billed requests</b>, custom-reporting writes <b>$0.075 per 1,000</b> and queries <b>$5 per 1,000</b>, and trace drains <b>$0.05 per 1,000 traces plus $0.50 per GB</b> of egress.</li>
+        <li><b>Helicone — meter on a platform seat plus usage.</b> Hobby is free with <b>10,000 requests/month and 1 GB of storage</b>; Pro is <b>$79/month</b> and Team <b>$799/month</b>, both with 10,000 requests and 1 GB included and usage-based charges above that. Helicone does not publish a per-request overage rate on the pricing page, so any exact overage figure would be a guess.</li>
+        <li><b>OpenRouter — meter on purchased credits.</b> The official FAQ puts <b>5.5% on Standard credit purchases</b> (8% on Business) and passes provider inference through at list price. Its routing and BYOK terms are covered in our <a href="/glossary/model-routing">model routing glossary entry</a>.</li>
+      </ul>
+      <h3>What is the same one-million-request bill across gateways?</h3>
+      <p>Our arithmetic on the published rates, excluding all model tokens: at <b>$10,000 of monthly model spend</b> routed through gateway-managed credits, Cloudflare's 5% is <b>$500</b> and OpenRouter's 5.5% is <b>$550</b>, while Vercel's 0% token markup is <b>$0</b> — before add-ons. At <b>1,000,000 requests per month</b> on Vercel, team-wide zero-data-retention plus a team-wide provider allowlist is <b>$100 + $100 = $200</b>; choosing the per-request versions of the same two controls is <b>$0</b>. On Helicone, 1,000,000 requests is 100 times the 10,000 free requests, but the invoice cannot be predicted from the public price sheet because the overage rate is not printed. The comparable number is never the headline "free gateway" — it is <b>gateway charge per 1,000 requests at your own mix of controls</b>.</p>
+    </section>
+
+    <section class="section">
+      <h2>Why does a free gateway still show up on the invoice?</h2>
+      <p>Because "free" describes the proxy, not the policy engine. Caching, analytics and rate limiting are cheap to run at the edge and are given away to attract traffic; the charges land where the gateway takes on a liability or does work per request. Buying credits means the gateway fronts the provider and carries payment and float risk, so Cloudflare and OpenRouter charge a percentage at top-up. Request-level governance means the gateway has to inspect and store policy decisions, so Vercel charges per 1,000 requests — but only for the <b>team-wide</b> version; the per-request version is free. A hosted observability plan means someone stores your logs and carries support and compliance obligations, so Helicone charges a monthly floor. These are different businesses hiding behind the same word.</p>
+      <p>The other asymmetry is <b>when the meter runs</b>. A percentage on credits scales with model spend, so expensive models make the gateway fee grow even though the gateway did nothing different. A per-request fee scales with call count, so a workload of tiny classification calls can pay more per dollar of intelligence than a workload of long answers. A monthly seat fee does not move at all until you cross the included allowance, then jumps. This is the same unit-mismatch problem as <a href="/glossary/rate-limits">API rate limits</a> and <a href="/glossary/inference-cost">inference cost</a>: before comparing two gateways, convert both to your own workload's unit.</p>
+      <p>One more distinction matters in 2026: <b>bring your own keys changes which meter applies</b>. On Cloudflare, a provider key on the request wins over the stored key and over Unified Billing fallback, so no gateway credits are bought and the 5% never appears. On Vercel, BYOK removes token markup but the add-on surcharges you switched on still apply to those requests. "BYOK makes the gateway free" is true for the proxy and not always true for the controls you left enabled.</p>
+    </section>
+
+    <section class="section">
+      <h2>What is true about AI gateways specifically in 2026?</h2>
+      <h3>Is a gateway a cost tool or a governance tool?</h3>
+      <p>Both, and the pricing reveals which one a vendor is selling. Cloudflare gives away caching and rate limiting and monetizes credit float; Vercel gives away token routing and monetizes team-level controls; Helicone monetizes the observability seat; OpenRouter monetizes the balance. If your problem is a wandering model bill, a 0%-markup proxy with BYOK and caching is enough. If your problem is that nobody can say which agent called which model, the per-request governance features are the product — and free per-request controls are often enough at small scale.</p>
+      <h3>Does a gateway replace choosing a model provider?</h3>
+      <p>No. A gateway changes <i>how</i> you reach providers, not <i>which</i> providers exist or what they charge. The supply-side choice — buy tokens from an inference provider or rent the GPUs behind them — is a separate decision covered in <a href="/vs/inference-provider-vs-gpu-cloud">inference provider vs GPU cloud</a>. Model selection within a provider is a third decision, covered by <a href="/glossary/model-routing">model routing</a>. Guardrails are a fourth, with their own three incompatible meters in <a href="/glossary/guardrails">the guardrails entry</a>. The gateway is the piece of plumbing that makes those decisions enforceable in one place, not a substitute for making them.</p>
+    </section>
+
+    <section class="section">
+      <h2>Quick checklist</h2>
+      <ul class="gl-check">
+        <li><b>Name the meter before you compare prices.</b> Credits (Cloudflare 5%, OpenRouter 5.5%), requests (Vercel $0.10 per 1,000 for team controls), or a seat (Helicone $79/$799) — a zero in one column does not mean zero on the invoice.</li>
+        <li><b>Convert to your workload's unit.</b> Divide the gateway charge by your monthly requests or by your monthly token spend, whichever matches the vendor's meter; compare that number, not the marketing line.</li>
+        <li><b>Check whether BYOK removes the fee or only the token markup.</b> Cloudflare's provider-key-first credential order avoids the credit fee; Vercel's enabled add-ons still bill on BYOK requests.</li>
+        <li><b>Read the free tier's model list, not just its dollar value.</b> Vercel's $5/month covers Free Tier eligible models only, and buying credits ends the monthly free credit.</li>
+        <li><b>Do not budget an unpublished overage.</b> Helicone prints 10,000 included requests and says usage-based pricing applies, but prints no per-request rate — ask for a quote before modeling a 100,000-request month.</li>
+        <li><b>Confirm the response names the serving model.</b> If you cannot audit which provider answered, you cannot reconcile either the gateway bill or the model bill.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Where you'll hit it</h2>
+      <p>AI gateways appear wherever a team stops calling one provider directly: coding agents, RAG pipelines, customer-support bots and internal chat products. They sit next to the model comparisons in <a href="/best/ai-chatbots">the best AI chatbots ranking</a>, share the request-count constraint with <a href="/glossary/rate-limits">rate limits</a>, and are the natural enforcement point for <a href="/glossary/guardrails">guardrails</a>. If your question is which model to choose per request rather than where to enforce policy, read <a href="/glossary/model-routing">model routing</a> first. Full list on <a href="./">the AI tools glossary</a>.</p>
+    </section>
+
+    <div class="verdict"><h2 data-i18n="ui.verdict">The bottom line</h2><p>An AI gateway is the proxy between your app and model providers that centralizes caching, rate limits, logs, credentials and spend controls — it is not a model and it is not automatically free. On the vendors' own 2026 pages, Cloudflare bills 5% only when you buy credits ($100 costs $105), Vercel bills 0% on tokens but $0.10 per 1,000 requests for team-wide controls, Helicone bills $79 or $799 per month plus unspecified overage, and OpenRouter bills 5.5% on credits. Summary: at $10,000 of monthly model spend the published gateway fee is $500 on Cloudflare, $550 on OpenRouter and $0 on Vercel before add-ons — so the number to compare is gateway charge per 1,000 requests at your own mix of controls, not the word "free".</p></div>
+  </main>
+
+  <aside class="omc-banner">
+    <div class="container omc-in">
+      <span class="omc-badge">OMC</span>
+      <p><b data-i18n="banner.title">Operated by the Omniverse Compute team</b><span data-i18n="banner.sub"> AITop is built and maintained by OMC, a decentralized GPU network on BNB Chain. Disclosed on every page — and OMC never appears in our rankings.</span></p>
+      <a class="omc-cta" href="/about" data-i18n="banner.cta">Editorial policy →</a>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container footer-in">
+      <p data-i18n="footer.note">AITop is an independent guide. Prices and features change fast — always check the vendor's page.</p>
+      <p class="footer-links"><a href="https://omc.network" target="_blank" rel="noopener">omc.network</a> · <a href="https://forum.omc.network" target="_blank" rel="noopener">DCF forum</a> · <a href="https://game.omc.network" data-i18n="footer.game">Real or AI game</a> · <a href="https://github.com/CBTdao" target="_blank" rel="noopener">GitHub</a> · <a href="/privacy" data-i18n="f.privacy">Privacy</a> · <a href="/terms" data-i18n="f.terms">Terms</a> · <a href="/about" data-i18n="f.about">About</a> · <a href="/contact" data-i18n="f.contact">Contact</a> · <span data-i18n="footer.rights">© 2026 AITop.</span></p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/lang/en.js"></script>
+  <script src="../assets/js/lang/zh.js"></script>
+  <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
